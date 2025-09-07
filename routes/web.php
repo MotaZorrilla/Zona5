@@ -30,7 +30,11 @@ Route::name('public.')->group(function () {
     Route::view('/archive', 'public.archive')->name('archive');
     Route::view('/news', 'public.news')->name('news');
     Route::view('/contact', 'public.contact')->name('contact');
+    Route::view('/sitemap', 'public.sitemap')->name('sitemap');
 });
+
+Route::view('/privacy-policy', 'public.privacy-policy')->name('privacy-policy');
+Route::view('/terms-of-service', 'public.terms-of-service')->name('terms-of-service');
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');

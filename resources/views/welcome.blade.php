@@ -58,8 +58,6 @@
         </div>
     </div>
 
-    <x-public.faq />
-
     <!-- News Section -->
     <div class="bg-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,7 +66,7 @@
                 <p class="mt-4 text-lg text-gray-500">La actualidad de nuestra zona, al alcance de todos.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <x-card image="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" title="Tenida de Solsticio de Invierno" subtitle="Invitamos a todos los QQ.`.`HH.`.` a la magna tenida que se celebrará en el Templo Principal." type="evento" link="#">
+                <x-card image="https://picsum.photos/seed/welcome-card1/800/600" title="Tenida de Solsticio de Invierno" subtitle="Invitamos a todos los QQ.`.`HH.`.` a la magna tenida que se celebrará en el Templo Principal." type="evento" link="#">
                     <div class="mt-6 flex items-center">
                         <div class="text-sm text-gray-500">21 de Junio, 2025</div>
                     </div>
@@ -78,7 +76,7 @@
                         <div class="text-sm text-gray-500">15 de Septiembre, 2025</div>
                     </div>
                 </x-card>
-                <x-card image="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" title="Nueva Edición del Manual de Rito" subtitle="Ya se encuentra disponible en el repositorio la nueva edición revisada del manual del R.`.`E.`.`A.`.`A.`.`" type="comunicado" link="#">
+                <x-card image="https://picsum.photos/seed/welcome-card3/800/600" title="Nueva Edición del Manual de Rito" subtitle="Ya se encuentra disponible en el repositorio la nueva edición revisada del manual del R.`.`E.`.`A.`.`A.`.`" type="comunicado" link="#">
                     <div class="mt-6 flex items-center">
                         <div class="text-sm text-gray-500">1 de Septiembre, 2025</div>
                     </div>
@@ -86,6 +84,8 @@
             </div>
         </div>
     </div>
+
+    <x-public.faq />
 
     <!-- CTA Section -->
     <div class="bg-primary-700">
@@ -98,4 +98,4 @@
             <a href="#" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-primary-50 sm:w-auto">Ponerse en Contacto</a>
         </div>
     </div>
-@endsectionion
+@endsection

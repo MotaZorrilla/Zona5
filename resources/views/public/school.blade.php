@@ -3,11 +3,11 @@
 @section('title', 'Escuela Virtual - Gran Zona 5')
 
 @section('content')
-
+<div>
     <!-- Hero Section -->
     <div class="relative bg-primary-800">
         <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80" alt="Escuela Virtual de la Gran Zona 5">
+            <img class="w-full h-full object-cover" src="https://picsum.photos/seed/school-hero/1920/1080" alt="Escuela Virtual de la Gran Zona 5">
             <div class="absolute inset-0 bg-primary-800 mix-blend-multiply" aria-hidden="true"></div>
         </div>
         <div class="relative max-w-4xl mx-auto text-center py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
@@ -114,7 +114,7 @@
                 <p class="mt-4 text-lg text-gray-500">Aprende a tu propio ritmo con nuestra biblioteca de cursos disponibles 24/7.</p>
             </div>
             <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <x-card image="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80" title="Historia y Filosofía de la Masonería" subtitle="Un recorrido desde los antiguos constructores hasta la masonería especulativa moderna." type="Primer Grado" link="#">
+                <x-card image="https://picsum.photos/seed/school-card1/800/600" title="Historia y Filosofía de la Masonería" subtitle="Un recorrido desde los antiguos constructores hasta la masonería especulativa moderna." type="Primer Grado" link="#">
                     @guest
                         <a href="{{ route('login') }}" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Inicia Sesión para Ver Curso</a>
                     @endguest
@@ -139,3 +139,7 @@
                     @endauth
                 </x-card>
             </div>
+        </div>
+    </div>
+</div>
+@endsection

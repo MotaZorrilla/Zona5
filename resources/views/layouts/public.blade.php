@@ -172,15 +172,44 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-            <div class="flex justify-center space-x-6 md:order-2">
-                <a href="#" class="text-gray-400 hover:text-white"><i class="ri-facebook-circle-fill text-2xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white"><i class="ri-instagram-fill text-2xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white"><i class="ri-twitter-x-fill text-2xl"></i></a>
-            </div>
-            <div class="mt-8 md:mt-0 md:order-1">
-                <p class="text-center text-base text-gray-400">&copy; 2025 Gran Zona 5, G.`.`L.`.`R.`.`V.`.` Todos los derechos reservados.</p>
+    <footer class="bg-gray-800 text-gray-300">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <!-- Logo and Copyright -->
+                <div class="space-y-4 md:col-span-1">
+                    <a href="{{ route('welcome') }}" class="inline-flex items-center justify-center md:justify-start">
+                        <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white text-xl font-bold">Z5</div>
+                        <span class="ml-3 text-2xl font-bold text-white">Gran Zona 5</span>
+                    </a>
+                    <p class="text-sm text-gray-400">
+                        &copy; {{ date('Y') }} Gran Zona 5.<br>
+                        Todos los derechos reservados.<br>
+                        Jurisdiccionada a la Gran Logia de la República de Venezuela.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        Desarrollado por <a href="https://motazorrilla.com" target="_blank" rel="noopener noreferrer" class="font-semibold text-primary-400 hover:text-white transition-colors">@MotaZorrilla</a>
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div class="md:col-span-1">
+                    <h3 class="text-sm font-semibold tracking-wider uppercase text-gray-400">Enlaces Útiles</h3>
+                    <ul class="mt-4 space-y-2 pl-4">
+                        <li><a href="{{ route('public.sitemap') }}" class="text-base text-gray-300 hover:text-white transition-colors">Mapa del Sitio</a></li>
+                        <li><a href="{{ route('privacy-policy') }}" class="text-base text-gray-300 hover:text-white transition-colors">Política de Privacidad</a></li>
+                        <li><a href="{{ route('terms-of-service') }}" class="text-base text-gray-300 hover:text-white transition-colors">Términos de Servicio</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div class="md:col-span-1">
+                    <h3 class="text-sm font-semibold tracking-wider uppercase text-gray-400">Síguenos</h3>
+                    <div class="flex space-x-6 mt-4 justify-center md:justify-start">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="ri-facebook-circle-fill text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="ri-instagram-fill text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="ri-twitter-x-fill text-2xl"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
