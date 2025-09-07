@@ -24,6 +24,11 @@ Desarrollar el portal administrativo y público para la **Gran Zona 5 de la Gran
     -   Corregidos los estilos de la página de inicio (`welcome.blade.php`).
     -   Ajustada la estrategia de acceso para la sección "Recursos": ahora es visible para todos, pero la interacción requiere autenticación.
     -   Corregido un error de maquetación que causaba inconsistencias en el pie de página en varias secciones públicas, unificando el diseño.
+    -   Mejorada la página de "Logias" con imágenes funcionales y una nueva estructura de contenido agrupada por ciudades.
+    -   Reemplazadas las imágenes de Unsplash por placeholders de Picsum Photos en todo el sitio público para solucionar enlaces rotos y mejorar la carga.
+    -   Mejorada la página de "Archivo Histórico" con más contenido de ejemplo y una nueva sección de "Documentos Recientes" con estilos mejorados.
+    -   Añadido más contenido de ejemplo a la página de "Noticias".
+    -   Rediseñada la página "Quiénes Somos" con una estructura más visual y atractiva, utilizando tarjetas e iconos para mejorar la legibilidad.
 -   **Próximo Paso Inmediato (PRIORIDAD):** Iniciar el desarrollo del backend para la **Fase 2: El Repositorio de Documentos**, comenzando por los modelos y la lógica de subida de archivos.
 
 ---

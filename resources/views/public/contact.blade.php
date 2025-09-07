@@ -6,7 +6,7 @@
     <x-public.hero 
         title="Ponte en Contacto" 
         subtitle="¿Tienes alguna pregunta o quieres saber más sobre nosotros? No dudes en contactarnos."
-        imageUrl="https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+        imageUrl="https://picsum.photos/seed/contact-hero/1920/1080"
     />
 
     <div class="py-16 sm:py-24">

@@ -122,7 +122,7 @@
                         <a href="#" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Ver Curso</a>
                     @endauth
                 </x-card>
-                <x-card image="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" title="Las 7 Artes Liberales y el Compañero" subtitle="Explora la gramática, retórica, lógica, aritmética, geometría, música y astronomía." type="Segundo Grado" link="#">
+                <x-card image="https://picsum.photos/seed/school-card2/800/600" title="Las 7 Artes Liberales y el Compañero" subtitle="Explora la gramática, retórica, lógica, aritmética, geometría, música y astronomía." type="Segundo Grado" link="#">
                     @guest
                         <a href="{{ route('login') }}" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Inicia Sesión para Ver Curso</a>
                     @endguest
@@ -130,7 +130,7 @@
                         <a href="#" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Ver Curso</a>
                     @endauth
                 </x-card>
-                <x-card image="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80" title="Liderazgo y Dirección de Logia" subtitle="Herramientas prácticas para Venerables Maestros y oficiales en la conducción de una logia." type="Tercer Grado" link="#">
+                <x-card image="https://picsum.photos/seed/school-card3/800/600" title="Liderazgo y Dirección de Logia" subtitle="Herramientas prácticas para Venerables Maestros y oficiales en la conducción de una logia." type="Tercer Grado" link="#">
                     @guest
                         <a href="{{ route('login') }}" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Inicia Sesión para Ver Curso</a>
                     @endguest

@@ -8,7 +8,7 @@
     <!-- Hero Section -->
     <div class="relative bg-primary-600">
         <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&sat=-100" alt="Foro de la Gran Zona 5">
+            <img class="w-full h-full object-cover" src="https://picsum.photos/seed/forums-hero/1920/1080" alt="Foro de la Gran Zona 5">
             <div class="absolute inset-0 bg-primary-600 mix-blend-multiply" aria-hidden="true"></div>
         </div>
         <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">

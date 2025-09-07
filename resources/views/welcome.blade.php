@@ -73,7 +73,7 @@
                         <div class="text-sm text-gray-500">21 de Junio, 2025</div>
                     </div>
                 </x-card>
-                <x-card image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80" title="Balance Anual de la Gran Zona 5" subtitle="El Gran Delegado Zonal presenta el balance de los trabajos y el crecimiento de la membresía." type="noticia" link="#">
+                <x-card image="https://picsum.photos/seed/welcome-card2/800/600" title="Balance Anual de la Gran Zona 5" subtitle="El Gran Delegado Zonal presenta el balance de los trabajos y el crecimiento de la membresía." type="noticia" link="#">
                     <div class="mt-6 flex items-center">
                         <div class="text-sm text-gray-500">15 de Septiembre, 2025</div>
                     </div>
@@ -98,4 +98,4 @@
             <a href="#" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-primary-50 sm:w-auto">Ponerse en Contacto</a>
         </div>
     </div>
-@endsection
+@endsectionion
