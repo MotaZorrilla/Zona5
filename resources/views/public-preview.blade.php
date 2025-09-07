@@ -17,8 +17,8 @@
 
     <style>
         :root {
-            --primary-color: #6366F1; /* Indigo 500 */
-            --primary-hover: #4F46E5; /* Indigo 600 */
+            --primary-color: #6366F1; /* primary 500 */
+            --primary-hover: #4F46E5; /* primary 600 */
             --secondary-color: #EC4899; /* Pink 500 */
             --light-bg: #F9FAFB; /* Gray 50 */
             --font-sans: 'Inter', sans-serif;
@@ -60,17 +60,17 @@
             <!-- Navbar -->
             <nav class="relative flex items-center justify-between">
                 <div class="flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white text-xl font-bold">Z5</div>
+                    <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white text-xl font-bold">Z5</div>
                     <span class="ml-3 text-2xl font-bold text-white">Gran Zona 5</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#" class="text-base font-medium text-white hover:text-indigo-200">Logias</a>
-                    <a href="#" class="text-base font-medium text-white hover:text-indigo-200">Archivo</a>
-                    <a href="#" class="text-base font-medium text-white hover:text-indigo-200">Noticias</a>
-                    <a href="#" class="text-base font-medium text-white hover:text-indigo-200">Contacto</a>
+                    <a href="#" class="text-base font-medium text-white hover:text-primary-200">Logias</a>
+                    <a href="#" class="text-base font-medium text-white hover:text-primary-200">Archivo</a>
+                    <a href="#" class="text-base font-medium text-white hover:text-primary-200">Noticias</a>
+                    <a href="#" class="text-base font-medium text-white hover:text-primary-200">Contacto</a>
                 </div>
                 <div class="hidden md:block">
-                    <a href="#" class="inline-block bg-white text-indigo-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-200">Iniciar Sesión</a>
+                    <a href="#" class="inline-block bg-white text-primary-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-200">Iniciar Sesión</a>
                 </div>
             </nav>
 
@@ -78,17 +78,17 @@
             <div class="mt-24 text-center">
                 <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl font-serif">
                     <span class="block">Tradición y Futuro</span>
-                    <span class="block text-indigo-300">Uniendo la Masonería</span>
+                    <span class="block text-primary-300">Uniendo la Masonería</span>
                 </h1>
                 <p class="mt-3 max-w-md mx-auto text-base text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                     Un espacio para el encuentro, el conocimiento y la fraternidad de todas las Logias que conforman la Gran Zona 5 de la Gran Logia de la República de Venezuela.
                 </p>
                 <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                     <div class="rounded-md shadow">
-                        <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 cta-button md:py-4 md:text-lg md:px-10">Conoce las Logias</a>
+                        <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 cta-button md:py-4 md:text-lg md:px-10">Conoce las Logias</a>
                     </div>
                     <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                        <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 cta-button md:py-4 md:text-lg md:px-10">Explora el Archivo</a>
+                        <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-gray-50 cta-button md:py-4 md:text-lg md:px-10">Explora el Archivo</a>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-8 rounded-lg shadow-md border-t-4 border-transparent feature-card">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
                         <i class="ri-archive-line text-2xl"></i>
                     </div>
                     <h3 class="mt-5 text-lg font-medium text-gray-900">Conocimiento</h3>
@@ -142,7 +142,7 @@
                     </div>
                     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
                         <div class="flex-1">
-                            <p class="text-sm font-medium text-indigo-600">EVENTO</p>
+                            <p class="text-sm font-medium text-primary-600">EVENTO</p>
                             <a href="#" class="block mt-2">
                                 <p class="text-xl font-semibold text-gray-900">Tenida de Solsticio de Invierno</p>
                                 <p class="mt-3 text-base text-gray-500">Invitamos a todos los QQ.`.`HH.`.` a la magna tenida que se celebrará en el Templo Principal.</p>
@@ -192,14 +192,14 @@
     </div>
 
     <!-- CTA Section -->
-    <div class="bg-indigo-700">
+    <div class="bg-primary-700">
         <div class="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-extrabold text-white sm:text-4xl font-serif">
                 <span class="block">Fortaleciendo nuestros lazos.</span>
                 <span class="block">Iluminando nuestro camino.</span>
             </h2>
-            <p class="mt-4 text-lg leading-6 text-indigo-200">¿Eres un hermano de visita? ¿Interesado en conocer más sobre nuestros trabajos? Contáctanos.</p>
-            <a href="#" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 sm:w-auto">Ponerse en Contacto</a>
+            <p class="mt-4 text-lg leading-6 text-primary-200">¿Eres un hermano de visita? ¿Interesado en conocer más sobre nuestros trabajos? Contáctanos.</p>
+            <a href="#" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-primary-50 sm:w-auto">Ponerse en Contacto</a>
         </div>
     </div>
 

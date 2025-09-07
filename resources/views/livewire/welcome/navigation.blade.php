@@ -2,24 +2,24 @@
     @auth
         <a
             href="{{ url('/dashboard') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+            class="inline-block bg-white text-primary-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-200"
         >
             Dashboard
         </a>
     @else
         <a
             href="{{ route('login') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+            class="inline-block bg-white text-primary-600 font-semibold px-4 py-2 rounded-md hover:bg-gray-200"
         >
-            Log in
+            Iniciar Sesión
         </a>
 
         @if (Route::has('register'))
             <a
                 href="{{ route('register') }}"
-                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                class="inline-block bg-primary-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-primary-600 ml-4"
             >
-                Register
+                Registro
             </a>
         @endif
     @endauth

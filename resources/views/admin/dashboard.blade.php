@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 
 @section('title', 'Admin Dashboard V4 - Preview')
