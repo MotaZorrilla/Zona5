@@ -10,7 +10,7 @@
     />
 
     <div class="py-24 sm:py-32">
-        <div class="mx-auto max-w-4xl px-6 lg:px-8 bg-white p-8 rounded-lg shadow-lg">
+        <div class="mx-auto max-w-4xl px-6 lg:px-8 bg-white p-8 rounded-lg shadow-lg" data-scroll-reveal>
             <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-8" role="alert">
                 <p class="font-bold">Aviso Importante:</p>
                 <p>Este es un texto de ejemplo para los Términos de Servicio. Es crucial que consultes a un profesional legal para redactar unos términos que cumplan con todas las leyes y regulaciones aplicables a tu jurisdicción y a la naturaleza de tu sitio web.</p>

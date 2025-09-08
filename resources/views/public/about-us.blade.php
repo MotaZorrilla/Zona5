@@ -18,7 +18,7 @@
     {{-- Contenido Principal --}}
     <div class="bg-white" x-data="{ activeModal: null }">
         <!-- Historia Section -->
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8" data-scroll-reveal>
             <div class="max-w-3xl mx-auto text-center">
                 <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestra Historia</h2>
                 <p class="mt-4 text-lg text-gray-500">La Masonería en la región de Guayana tiene raíces profundas, entrelazadas con el desarrollo social, cultural y político del Estado Bolívar. Desde la fundación de las primeras logias, los hermanos masones han sido pilares en la construcción de una sociedad más justa, educada y fraterna.</p>
@@ -31,7 +31,7 @@
         </div>
 
         <!-- Misión y Visión Section -->
-        <div class="bg-gray-50">
+        <div class="bg-gray-50" data-scroll-reveal>
             <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div>
                     <h3 class="text-2xl font-extrabold text-gray-900 font-serif mb-4">Misión</h3>
@@ -45,7 +45,7 @@
         </div>
 
         <!-- Valores Section -->
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8" data-scroll-reveal>
             <div class="max-w-3xl mx-auto text-center">
                 <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestros Valores</h2>
                 <p class="mt-4 text-lg text-gray-500">Los pilares que guían nuestro trabajo y fortalecen nuestra fraternidad.</p>
@@ -76,7 +76,7 @@
         </div>
 
         <!-- Junta Directiva Section -->
-        <div class="bg-gray-50">
+        <div class="bg-gray-50" data-scroll-reveal>
             <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
                     <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestra Junta Directiva</h2>

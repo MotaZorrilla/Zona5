@@ -30,7 +30,7 @@
     </div>
 
     <!-- Pillars Section -->
-    <div class="bg-gray-50">
+    <div class="bg-gray-50" data-scroll-reveal>
         <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestros Pilares</h2>
@@ -45,7 +45,7 @@
     </div>
 
     <!-- News Section -->
-    <div class="bg-white py-16">
+    <div class="bg-white py-16" data-scroll-reveal>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Últimas Noticias y Eventos</h2>
@@ -72,7 +72,7 @@
     </div>
 
     <!-- CTA Section -->
-    <div class="bg-primary-700">
+    <div class="bg-primary-700" data-scroll-reveal>
         <div class="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-extrabold text-white sm:text-4xl font-serif">
                 <span class="block">Fortaleciendo nuestros lazos.</span>

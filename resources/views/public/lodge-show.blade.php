@@ -16,7 +16,7 @@
                 <!-- Columna Principal (Historia y Eventos) -->
                 <div class="lg:col-span-2">
                     <!-- Historia -->
-                    <div class="mb-12">
+                    <div class="mb-12" data-scroll-reveal>
                         <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-serif border-b pb-4 mb-6">Nuestra Historia</h2>
                         <div class="prose prose-lg max-w-none text-gray-600 text-justify">
                             <p>{{ $lodge['history'] }}</p>
@@ -24,7 +24,7 @@
                     </div>
 
                     <!-- Próximos Eventos -->
-                    <div>
+                    <div data-scroll-reveal>
                         <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-serif border-b pb-4 mb-6">Próximos Eventos</h2>
                         <div class="space-y-4">
                             @forelse ($lodge['events'] as $event)
@@ -45,7 +45,7 @@
                 <!-- Columna Lateral (Dignatarios y Mapa) -->
                 <aside class="lg:col-span-1 space-y-12">
                     <!-- Dignatarios -->
-                    <div>
+                    <div data-scroll-reveal>
                         <h3 class="text-2xl font-bold text-gray-900 font-serif mb-4">Cuadro Logial</h3>
                         <ul class="space-y-3">
                             @foreach ($lodge['dignitaries'] as $dignitary)
@@ -61,7 +61,7 @@
                     </div>
 
                     <!-- Mapa -->
-                    <div>
+                    <div data-scroll-reveal>
                         <h3 class="text-2xl font-bold text-gray-900 font-serif mb-4">Ubicación</h3>
                         <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-md">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.339728974775!2d-62.716088!3d-8.101628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8dce86a7c5c37c75%3A0x54468b4f569c46b6!2sPlaza%20Bolivar!5e0!3m2!1sen!2sve!4v1678886400000!5m2!1sen!2sve" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

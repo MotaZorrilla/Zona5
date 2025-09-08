@@ -13,7 +13,7 @@
         <div class="mx-auto max-w-4xl px-6 lg:px-8">
             <div class="space-y-12">
                 <!-- Inicio -->
-                <div>
+                <div data-scroll-reveal>
                     <h2 class="text-2xl font-bold text-gray-900 font-serif border-b pb-4">Inicio</h2>
                     <ul class="mt-4 space-y-2 list-disc list-inside">
                         <li><a href="{{ route('welcome') }}" class="text-primary-600 hover:underline font-semibold">Página Principal</a>
@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- Quiénes Somos -->
-                <div>
+                <div data-scroll-reveal>
                     <h2 class="text-2xl font-bold text-gray-900 font-serif border-b pb-4">Quiénes Somos</h2>
                     <ul class="mt-4 space-y-2 list-disc list-inside">
                         <li><a href="{{ route('public.about-us') }}" class="text-primary-600 hover:underline font-semibold">Quiénes Somos</a>
@@ -41,7 +41,7 @@
                 </div>
 
                 <!-- Logias -->
-                <div>
+                <div data-scroll-reveal>
                     <h2 class="text-2xl font-bold text-gray-900 font-serif border-b pb-4">Logias</h2>
                     <ul class="mt-4 space-y-2 list-disc list-inside">
                         <li><a href="{{ route('public.lodges') }}" class="text-primary-600 hover:underline font-semibold">Listado de Logias</a>
@@ -63,7 +63,7 @@
                 </div>
 
                 <!-- Actualidad -->
-                <div>
+                <div data-scroll-reveal>
                     <h2 class="text-2xl font-bold text-gray-900 font-serif border-b pb-4">Actualidad</h2>
                     <ul class="mt-4 space-y-2 list-disc list-inside">
                         <li><a href="{{ route('public.news') }}" class="text-primary-600 hover:underline font-semibold">Actualidad</a>
@@ -77,7 +77,7 @@
                 </div>
 
                 <!-- Contacto -->
-                <div>
+                <div data-scroll-reveal>
                     <h2 class="text-2xl font-bold text-gray-900 font-serif border-b pb-4">Contacto</h2>
                     <ul class="mt-4 space-y-2 list-disc list-inside">
                         <li><a href="{{ route('public.contact') }}" class="text-primary-600 hover:underline font-semibold">Contacto</a>
@@ -90,7 +90,7 @@
                 </div>
 
                 <!-- Preguntas Frecuentes (FAQ) -->
-                <div>
+                <div data-scroll-reveal>
                     <h2 class="text-2xl font-bold text-gray-900 font-serif border-b pb-4">Preguntas Frecuentes (FAQ)</h2>
                     <ul class="mt-4 space-y-2 list-disc list-inside">
                         <li><a href="{{ route('public.faq') }}" class="text-primary-600 hover:underline font-semibold">Preguntas Frecuentes</a>
@@ -102,7 +102,7 @@
                 </div>
 
                 <!-- Recursos -->
-                <div>
+                <div data-scroll-reveal>
                     <h2 class="text-2xl font-bold text-gray-900 font-serif border-b pb-4">Recursos</h2>
                     <ul class="mt-4 space-y-2 list-disc list-inside">
                         <li><a href="{{ route('public.school') }}" class="text-primary-600 hover:underline font-semibold">Escuela Virtual</a>
@@ -130,7 +130,7 @@
                 </div>
 
                 <!-- Legal -->
-                <div>
+                <div data-scroll-reveal>
                     <h2 class="text-2xl font-bold text-gray-900 font-serif border-b pb-4">Legal</h2>
                     <ul class="mt-4 space-y-2 list-disc list-inside">
                         <li><a href="{{ route('privacy-policy') }}" class="text-primary-600 hover:underline font-semibold">Política de Privacidad</a></li>
@@ -139,7 +139,7 @@
                 </div>
 
                 <!-- Otros -->
-                <div>
+                <div data-scroll-reveal>
                     <h2 class="text-2xl font-bold text-gray-900 font-serif border-b pb-4">Otros</h2>
                     <ul class="mt-4 space-y-2 list-disc list-inside">
                         <li><a href="{{ route('public.sitemap') }}" class="text-primary-600 hover:underline font-semibold">Mapa del Sitio (Esta Página)</a></li>

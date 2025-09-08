@@ -269,6 +269,21 @@
         </button>
     </div>
 
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <script>
+        // Initialize ScrollReveal
+        window.sr = ScrollReveal();
+
+        // Apply reveal to elements with data-scroll-reveal attribute
+        window.sr.reveal('[data-scroll-reveal]', {
+            delay: 200,
+            distance: '50px',
+            easing: 'ease-in-out',
+            origin: 'bottom',
+            interval: 100,
+            mobile: true
+        });
+    </script>
     @livewireScripts
 </body>
 </html>

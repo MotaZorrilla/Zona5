@@ -13,7 +13,7 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
             <!-- Logias de Ciudad Guayana -->
-            <div class="mb-24">
+            <div class="mb-24" data-scroll-reveal>
                 <h2 class="text-3xl font-extrabold text-gray-900 font-serif text-center mb-12 border-b pb-4">Logias de Ciudad Guayana</h2>
                 <ul role="list" class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     <li>
@@ -29,7 +29,7 @@
             </div>
 
             <!-- Logias de Upata -->
-            <div class="mb-24">
+            <div class="mb-24" data-scroll-reveal>
                 <h2 class="text-3xl font-extrabold text-gray-900 font-serif text-center mb-12 border-b pb-4">Logias de Upata</h2>
                 <ul role="list" class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     <li>
@@ -45,7 +45,7 @@
             </div>
 
             <!-- Logias de Ciudad Bolívar -->
-            <div>
+            <div data-scroll-reveal>
                 <h2 class="text-3xl font-extrabold text-gray-900 font-serif text-center mb-12 border-b pb-4">Logias de Ciudad Bolívar</h2>
                 <ul role="list" class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     <li>

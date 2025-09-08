@@ -29,7 +29,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Upcoming Live Classes -->
-            <div class="text-center">
+            <div class="text-center" data-scroll-reveal>
                 <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-serif">Próximas Clases en Vivo</h2>
                 <p class="mt-4 text-lg text-gray-500">Participa en nuestras sesiones interactivas y comparte en tiempo real con instructores y hermanos.</p>
             </div>
@@ -71,7 +71,7 @@
             </div>
 
             <!-- Asynchronous Courses -->
-            <div class="mt-24 text-center">
+            <div class="mt-24 text-center" data-scroll-reveal>
                 <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-serif">Catálogo de Cursos Asíncronos</h2>
                 <p class="mt-4 text-lg text-gray-500">Aprende a tu propio ritmo con nuestra biblioteca de cursos disponibles 24/7.</p>
             </div>

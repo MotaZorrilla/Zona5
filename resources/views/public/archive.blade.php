@@ -12,7 +12,7 @@
     <div class="bg-gray-50 py-24 sm:py-32">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <!-- Search and Filters -->
-            <div class="mb-16 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="mb-16 flex flex-col md:flex-row justify-between items-center gap-4" data-scroll-reveal>
                 <div class="relative w-full md:w-2/3">
                     <i class="ri-search-line absolute top-1/2 -translate-y-1/2 left-3 text-gray-400"></i>
                     <input type="text" class="w-full bg-white border border-gray-300 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-400" placeholder="Buscar en el archivo...">
@@ -35,7 +35,7 @@
             </div>
 
             <!-- Documents List -->
-            <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+            <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-4" data-scroll-reveal>
                 <x-card-image image="https://picsum.photos/seed/archive-card1/800/600" title="Fundación de la Gran Logia" subtitle="Un recorrido por los eventos y personajes que dieron origen a nuestra Gran Logia." type="Historia" link="#">
                     <div class="mt-8 flex items-center gap-x-4 text-xs">
                         <time datetime="2020-03-16" class="text-gray-500">16 Mar, 2020</time>
@@ -59,7 +59,7 @@
             </div>
 
             <!-- Recent Documents List -->
-            <div class="mt-24 bg-white p-8 rounded-2xl shadow-lg">
+            <div class="mt-24 bg-white p-8 rounded-2xl shadow-lg" data-scroll-reveal>
                 <h3 class="text-2xl font-bold text-gray-900 mb-6">Documentos Recientes</h3>
                 @guest
                     <p class="text-sm text-gray-600 mb-4">Para descargar documentos, por favor <a href="{{ route('login') }}" class="underline font-semibold text-primary-600 hover:text-primary-500" wire:navigate>inicia sesión</a> o <a href="{{ route('register') }}" class="underline font-semibold text-primary-600 hover:text-primary-500" wire:navigate>regístrate</a>.</p>

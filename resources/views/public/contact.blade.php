@@ -11,7 +11,7 @@
 
     <div class="py-16 sm:py-24">
         <div class="mx-auto max-w-3xl px-6 lg:px-8">
-            <form action="#" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+            <form action="#" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" data-scroll-reveal>
                 <div class="sm:col-span-2">
                     <label for="full-name" class="block text-sm font-semibold leading-6 text-gray-900">Nombre Completo</label>
                     <div class="mt-2.5">
@@ -41,7 +41,7 @@
                 </div>
             </form>
 
-            <div class="mt-16 border-t border-gray-200 pt-10 text-center">
+            <div class="mt-16 border-t border-gray-200 pt-10 text-center" data-scroll-reveal>
                 <h3 class="text-lg font-semibold text-gray-900">Información Adicional</h3>
                 <dl class="mt-4 text-base text-gray-600 space-y-2">
                     <div>

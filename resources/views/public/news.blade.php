@@ -12,14 +12,14 @@
     <div class="py-16 sm:py-24">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             {{-- Filter Bar Mockup --}}
-            <div class="mb-12 flex justify-center space-x-4">
+            <div class="mb-12 flex justify-center space-x-4" data-scroll-reveal>
                 <x-button variant="primary" size="sm">Todos</x-button>
                 <x-button variant="secondary" size="sm">Noticias</x-button>
                 <x-button variant="secondary" size="sm">Eventos</x-button>
                 <x-button variant="secondary" size="sm">Galerías</x-button>
             </div>
 
-            <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3" data-scroll-reveal>
                 <x-card-image image="https://picsum.photos/seed/news-card1/800/600" title="Tenida de Solsticio de Invierno" subtitle="Invitamos a todos los QQ.`.`HH.`.` a la magna tenida que se celebrará en el Templo Principal." type="Evento" link="#">
                     <div class="mt-8 flex items-center gap-x-4 text-xs">
                         <time datetime="2025-06-21" class="text-gray-500">21 Jun, 2025</time>

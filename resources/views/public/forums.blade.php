@@ -25,7 +25,7 @@
             <div class="lg:col-span-9">
 
                 <!-- Search and Actions -->
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-8 border-b border-gray-200">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-8 border-b border-gray-200" data-scroll-reveal>
                     <div class="relative flex-1">
                         <input type="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Buscar un tema...">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -66,7 +66,7 @@
                 </nav>
 
                 <!-- Topics List -->
-                <div class="bg-white shadow overflow-hidden sm:rounded-md">
+                <div class="bg-white shadow overflow-hidden sm:rounded-md" data-scroll-reveal>
                     <ul role="list" class="divide-y divide-gray-200">
                         <!-- Pinned Topic Example -->
                         <li>
@@ -163,7 +163,7 @@
                 </div>
 
                 <!-- Pagination -->
-                <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-4 rounded-md" aria-label="Pagination">
+                <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-4 rounded-md" aria-label="Pagination" data-scroll-reveal>
                     <div class="hidden sm:block">
                         <p class="text-sm text-gray-700">
                             Mostrando
@@ -191,7 +191,7 @@
             <div class="lg:col-span-3 mt-8 lg:mt-0">
                 <div class="space-y-6">
                     <!-- Categories -->
-                    <div class="bg-white p-6 shadow rounded-lg">
+                    <div class="bg-white p-6 shadow rounded-lg" data-scroll-reveal>
                         <h3 class="text-lg font-medium text-gray-900 font-serif">Categorías</h3>
                         <ul class="mt-4 space-y-2">
                             <li><a href="#" class="flex justify-between items-center text-gray-600 hover:text-primary-600 font-medium"><span>Discusión General</span> <span class="bg-gray-200 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">42</span></a></li>
@@ -203,7 +203,7 @@
                     </div>
 
                     <!-- Recent Activity -->
-                    <div class="bg-white p-6 shadow rounded-lg">
+                    <div class="bg-white p-6 shadow rounded-lg" data-scroll-reveal>
                         <h3 class="text-lg font-medium text-gray-900 font-serif">Actividad Reciente</h3>
                         <ul class="mt-4 space-y-4">
                             <li class="flex items-start">

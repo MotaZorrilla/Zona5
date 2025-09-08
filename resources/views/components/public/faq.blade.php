@@ -80,7 +80,7 @@
             }">
                 <dl class="space-y-4">
                     <template x-for="faq in faqs" :key="faq.id">
-                        <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="border border-gray-200 rounded-lg p-4" data-scroll-reveal>
                             <dt>
                                 <button @click="toggle(faq)" class="w-full flex justify-between items-center text-left text-gray-700">
                                     <span class="text-base font-medium" x-text="faq.question"></span>
