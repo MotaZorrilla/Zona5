@@ -34,78 +34,40 @@
                 <p class="mt-4 text-lg text-gray-500">Participa en nuestras sesiones interactivas y comparte en tiempo real con instructores y hermanos.</p>
             </div>
             <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <x-card title="La Retórica en el Arte Real" subtitle="Un análisis profundo sobre el uso de la palabra y la persuasión en la vida masónica." type="EN VIVO PRONTO" link="#">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 bg-red-500 text-white rounded-md p-2">
-                                <i class="ri-live-fill"></i>
-                            </div>
-                            <span class="ml-3 text-sm font-medium text-red-600">EN VIVO PRONTO</span>
-                        </div>
-                        <span class="text-sm text-gray-500">20 de Sep, 2025</span>
-                    </div>
-                    <div class="mt-4 flex items-center">
-                        <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/40?u=4" alt="">
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900">V.`.`H.`.` Ricardo Salas</p>
-                            <p class="text-sm text-gray-500">Orador de la G.`.`L.`.`R.`.`V.`.</p>
-                        </div>
-                    </div>
-                    @guest
-                        <a href="{{ route('login') }}" class="mt-6 block w-full text-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-primary-600 shadow-sm ring-1 ring-inset ring-primary-600 hover:bg-primary-50">Inicia Sesión para Inscribirte</a>
-                    @endguest
-                    @auth
-                        <a href="#" class="mt-6 block w-full text-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-primary-600 shadow-sm ring-1 ring-inset ring-primary-600 hover:bg-primary-50">Inscribirse Ahora</a>
-                    @endauth
-                </x-card>
-                <x-card title="Manejo de Tesorería en Logia" subtitle="Principios de contabilidad y administración para una tesorería eficiente y transparente." type="EN VIVO PRONTO" link="#">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 bg-red-500 text-white rounded-md p-2">
-                                <i class="ri-live-fill"></i>
-                            </div>
-                            <span class="ml-3 text-sm font-medium text-red-600">EN VIVO PRONTO</span>
-                        </div>
-                        <span class="text-sm text-gray-500">27 de Sep, 2025</span>
-                    </div>
-                    <div class="mt-4 flex items-center">
-                        <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/40?u=5" alt="">
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900">Q.`.`H.`.` Alberto Ríos</p>
-                            <p class="text-sm text-gray-500">Gran Tesorero Adjunto</p>
-                        </div>
-                    </div>
-                    @guest
-                        <a href="{{ route('login') }}" class="mt-6 block w-full text-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-primary-600 shadow-sm ring-1 ring-inset ring-primary-600 hover:bg-primary-50">Inicia Sesión para Inscribirte</a>
-                    @endguest
-                    @auth
-                        <a href="#" class="mt-6 block w-full text-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-primary-600 shadow-sm ring-1 ring-inset ring-primary-600 hover:bg-primary-50">Inscribirse Ahora</a>
-                    @endauth
-                </x-card>
-                <x-card title="Taller de Liturgia y Ritual" subtitle="Un espacio para perfeccionar la ejecución del ritual y comprender su profundo significado." type="PRÓXIMAMENTE" link="#">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 bg-gray-400 text-white rounded-md p-2">
-                                <i class="ri-calendar-event-line"></i>
-                            </div>
-                            <span class="ml-3 text-sm font-medium text-gray-600">PRÓXIMAMENTE</span>
-                        </div>
-                        <span class="text-sm text-gray-500">Octubre 2025</span>
-                    </div>
-                    <div class="mt-4 flex items-center">
-                        <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center"><i class="ri-user-line text-gray-500"></i></div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900">Por Anunciar</p>
-                            <p class="text-sm text-gray-500">Comisión de Liturgia</p>
-                        </div>
-                    </div>
-                    @guest
-                        <a href="{{ route('login') }}" class="mt-6 block w-full text-center rounded-md bg-gray-100 px-3 py-2 text-sm font-semibold text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 cursor-not-allowed">Inicia Sesión para Ver Detalles</a>
-                    @endguest
-                    @auth
-                        <a href="#" class="mt-6 block w-full text-center rounded-md bg-gray-100 px-3 py-2 text-sm font-semibold text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 cursor-not-allowed">Registro Cerrado</a>
-                    @endauth
-                </x-card>
+                <x-card-event 
+                    image="https://picsum.photos/seed/event-rhetoric/800/600"
+                    title="La Retórica en el Arte Real" 
+                    subtitle="Un análisis profundo sobre el uso de la palabra y la persuasión en la vida masónica." 
+                    date="2025-09-20" 
+                    time="19:00"
+                    instructorName="V.`.`H.`.` Ricardo Salas"
+                    instructorRole="Orador de la G.`.`L.`.`R.`.`V.`."
+                    instructorImage="https://i.pravatar.cc/40?u=4"
+                    status="upcoming"
+                    link="#"
+                />
+                <x-card-event 
+                    image="https://picsum.photos/seed/event-treasury/800/600"
+                    title="Manejo de Tesorería en Logia" 
+                    subtitle="Principios de contabilidad y administración para una tesorería eficiente y transparente." 
+                    date="2025-09-27" 
+                    time="19:30"
+                    instructorName="Q.`.`H.`.` Alberto Ríos"
+                    instructorRole="Gran Tesorero Adjunto"
+                    instructorImage="https://i.pravatar.cc/40?u=5"
+                    status="upcoming"
+                    link="#"
+                />
+                <x-card-event 
+                    image="https://picsum.photos/seed/event-liturgy/800/600"
+                    title="Taller de Liturgia y Ritual" 
+                    subtitle="Un espacio para perfeccionar la ejecución del ritual y comprender su profundo significado." 
+                    date="2025-10-15" 
+                    status="closed"
+                    instructorName="Por Anunciar"
+                    instructorRole="Comisión de Liturgia"
+                    link="#"
+                />
             </div>
 
             <!-- Asynchronous Courses -->
@@ -114,30 +76,27 @@
                 <p class="mt-4 text-lg text-gray-500">Aprende a tu propio ritmo con nuestra biblioteca de cursos disponibles 24/7.</p>
             </div>
             <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <x-card image="https://picsum.photos/seed/school-card1/800/600" title="Historia y Filosofía de la Masonería" subtitle="Un recorrido desde los antiguos constructores hasta la masonería especulativa moderna." type="Primer Grado" link="#">
-                    @guest
-                        <a href="{{ route('login') }}" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Inicia Sesión para Ver Curso</a>
-                    @endguest
-                    @auth
-                        <a href="#" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Ver Curso</a>
-                    @endauth
-                </x-card>
-                <x-card image="https://picsum.photos/seed/school-card2/800/600" title="Las 7 Artes Liberales y el Compañero" subtitle="Explora la gramática, retórica, lógica, aritmética, geometría, música y astronomía." type="Segundo Grado" link="#">
-                    @guest
-                        <a href="{{ route('login') }}" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Inicia Sesión para Ver Curso</a>
-                    @endguest
-                    @auth
-                        <a href="#" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Ver Curso</a>
-                    @endauth
-                </x-card>
-                <x-card image="https://picsum.photos/seed/school-card3/800/600" title="Liderazgo y Dirección de Logia" subtitle="Herramientas prácticas para Venerables Maestros y oficiales en la conducción de una logia." type="Tercer Grado" link="#">
-                    @guest
-                        <a href="{{ route('login') }}" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Inicia Sesión para Ver Curso</a>
-                    @endguest
-                    @auth
-                        <a href="#" class="mt-6 block w-full text-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">Ver Curso</a>
-                    @endauth
-                </x-card>
+                <x-card-course 
+                    image="https://picsum.photos/seed/school-card1/800/600" 
+                    title="Historia y Filosofía de la Masonería" 
+                    subtitle="Un recorrido desde los antiguos constructores hasta la masonería especulativa moderna." 
+                    grade="Primer Grado" 
+                    link="#"
+                />
+                <x-card-course 
+                    image="https://picsum.photos/seed/school-card2/800/600" 
+                    title="Las 7 Artes Liberales y el Compañero" 
+                    subtitle="Explora la gramática, retórica, lógica, aritmética, geometría, música y astronomía." 
+                    grade="Segundo Grado" 
+                    link="#"
+                />
+                <x-card-course 
+                    image="https://picsum.photos/seed/school-card3/800/600" 
+                    title="Liderazgo y Dirección de Logia" 
+                    subtitle="Herramientas prácticas para Venerables Maestros y oficiales en la conducción de una logia." 
+                    grade="Tercer Grado" 
+                    link="#"
+                />
             </div>
         </div>
     </div>

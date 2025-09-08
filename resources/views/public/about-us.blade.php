@@ -112,21 +112,7 @@
                 @endphp
                 <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     @foreach ($boardMembers as $member)
-                        <div class="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer ring-2 ring-transparent hover:ring-primary-500" x-on:click="$dispatch('open-modal', '{{ Str::slug($member['name']) }}')">
-                            <div class="pt-8 pb-4 bg-gray-50">
-                                <img class="w-32 h-32 rounded-full object-cover mx-auto shadow-md" src="{{ $member['image'] }}" alt="Foto de {{ $member['name'] }}">
-                            </div>
-                            <div class="p-6 text-center">
-                                <h4 class="text-xl font-bold text-gray-900">{{ $member['name'] }}</h4>
-                                <p class="text-primary-600 font-semibold">{{ $member['role'] }}</p>
-                                <div class="mt-4">
-                                    <span class="inline-flex items-center text-sm font-medium text-primary-700 group-hover:text-primary-900">
-                                        Ver más
-                                        <i class="ri-arrow-right-line ml-1"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        <x-card-member :image="$member['image']" :name="$member['name']" :role="$member['role']" :slug="Str::slug($member['name'])" />
 
                         <x-modal :name="Str::slug($member['name'])" maxWidth="lg">
                             <div class="p-6">

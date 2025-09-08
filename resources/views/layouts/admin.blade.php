@@ -61,7 +61,7 @@
     <main class="min-h-screen transition-all" :class="sidebarOpen ? 'md:w-[calc(100%-256px)] md:ml-64' : 'w-full'">
         <!-- Top Navbar -->
         <div class="py-2 px-6 bg-white flex items-center shadow-sm sticky top-0 left-0 z-30">
-            <button @click="sidebarOpen = !sidebarOpen" type="button" class="text-lg text-gray-600">
+            <button @click="sidebarOpen = !sidebarOpen" type="button" class="text-lg text-gray-600" x-show="!sidebarOpen">
                 <i class="ri-menu-2-line"></i>
             </button>
             <div class="ml-auto flex items-center" x-data="{ profileOpen: false, quickAddOpen: false }">

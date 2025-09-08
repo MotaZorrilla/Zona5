@@ -24,31 +24,38 @@
                         <option>Ritual</option>
                         <option>Administración</option>
                     </select>
+                    <select class="bg-white border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary-400">
+                        <option>Filtrar por Grado</option>
+                        <option>Aprendiz</option>
+                        <option>Compañero</option>
+                        <option>Maestro</option>
+                        <option>Grados Superiores</option>
+                    </select>
                 </div>
             </div>
 
             <!-- Documents List -->
             <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-                <x-card image="https://picsum.photos/seed/archive-card1/800/600" title="Fundación de la Gran Logia" subtitle="Un recorrido por los eventos y personajes que dieron origen a nuestra Gran Logia." type="Historia" link="#">
+                <x-card-image image="https://picsum.photos/seed/archive-card1/800/600" title="Fundación de la Gran Logia" subtitle="Un recorrido por los eventos y personajes que dieron origen a nuestra Gran Logia." type="Historia" link="#">
                     <div class="mt-8 flex items-center gap-x-4 text-xs">
                         <time datetime="2020-03-16" class="text-gray-500">16 Mar, 2020</time>
                     </div>
-                </x-card>
-                <x-card image="https://picsum.photos/seed/archive-card2/800/600" title="El Ritual del Compañero" subtitle="Análisis simbólico de los elementos y juramentos del segundo grado." type="Ritual" link="#">
+                </x-card-image>
+                <x-card-image image="https://picsum.photos/seed/archive-card2/800/600" title="El Ritual del Compañero" subtitle="Análisis simbólico de los elementos y juramentos del segundo grado." type="Ritual" link="#">
                     <div class="mt-8 flex items-center gap-x-4 text-xs">
                         <time datetime="2021-05-20" class="text-gray-500">20 May, 2021</time>
                     </div>
-                </x-card>
-                <x-card image="https://picsum.photos/seed/archive-card3/800/600" title="Constitución de la G.L.R.V." subtitle="Documento fundamental que rige nuestra orden y sus principios." type="Administración" link="#">
+                </x-card-image>
+                <x-card-image image="https://picsum.photos/seed/archive-card3/800/600" title="Constitución de la G.L.R.V." subtitle="Documento fundamental que rige nuestra orden y sus principios." type="Administración" link="#">
                     <div class="mt-8 flex items-center gap-x-4 text-xs">
                         <time datetime="2019-01-10" class="text-gray-500">10 Ene, 2019</time>
                     </div>
-                </x-card>
-                <x-card image="https://picsum.photos/seed/archive-card4/800/600" title="La Influencia de la Ilustración" subtitle="Cómo los principios de la Ilustración moldearon la masonería moderna." type="Historia" link="#">
+                </x-card-image>
+                <x-card-image image="https://picsum.photos/seed/archive-card4/800/600" title="La Influencia de la Ilustración" subtitle="Cómo los principios de la Ilustración moldearon la masonería moderna." type="Historia" link="#">
                     <div class="mt-8 flex items-center gap-x-4 text-xs">
                         <time datetime="2022-11-30" class="text-gray-500">30 Nov, 2022</time>
                     </div>
-                </x-card>
+                </x-card-image>
             </div>
 
             <!-- Recent Documents List -->

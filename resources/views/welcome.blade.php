@@ -20,11 +20,9 @@
                     Un espacio para el encuentro, el conocimiento y la fraternidad de todas las Logias que conforman la Gran Zona 5 de la Gran Logia de la República de Venezuela.
                 </p>
                 <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-                    <div class="rounded-md shadow">
-                        <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 cta-button md:py-4 md:text-lg md:px-10">Conoce las Logias</a>
-                    </div>
-                    <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                        <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-gray-50 cta-button md:py-4 md:text-lg md:px-10">Explora el Archivo</a>
+                    <x-button href="#" size="md">Conoce las Logias</x-button>
+                    <div class="mt-3 sm:mt-0 sm:ml-3">
+                        <x-button href="#" variant="secondary" size="md">Explora el Archivo</x-button>
                     </div>
                 </div>
             </div>
@@ -39,21 +37,9 @@
                 <p class="mt-4 text-lg text-gray-500">Fomentando los valores que nos unen y nos hacen crecer.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <x-card title="Conocimiento" subtitle="Accede a un repositorio de planchas, trazados y documentos para el estudio y la reflexión." link="#">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                        <i class="ri-archive-line text-2xl"></i>
-                    </div>
-                </x-card>
-                <x-card title="Fraternidad" subtitle="Encuentra información sobre las logias de la zona y fortalece los lazos que nos unen." link="#">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-pink-500 text-white">
-                        <i class="ri-group-2-line text-2xl"></i>
-                    </div>
-                </x-card>
-                <x-card title="Comunidad" subtitle="Mantente al día con las últimas noticias, eventos y comunicados de la Gran Zona 5." link="#">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                        <i class="ri-calendar-event-line text-2xl"></i>
-                    </div>
-                </x-card>
+                <x-card-feature icon="ri-archive-line" title="Conocimiento" subtitle="Accede a un repositorio de planchas, trazados y documentos para el estudio y la reflexión." link="#" borderColor="border-primary-500" />
+                <x-card-feature icon="ri-group-2-line" title="Fraternidad" subtitle="Encuentra información sobre las logias de la zona y fortalece los lazos que nos unen." link="#" borderColor="border-pink-500" />
+                <x-card-feature icon="ri-calendar-event-line" title="Comunidad" subtitle="Mantente al día con las últimas noticias, eventos y comunicados de la Gran Zona 5." link="#" borderColor="border-green-500" />
             </div>
         </div>
     </div>
@@ -66,26 +52,24 @@
                 <p class="mt-4 text-lg text-gray-500">La actualidad de nuestra zona, al alcance de todos.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <x-card image="https://picsum.photos/seed/welcome-card1/800/600" title="Tenida de Solsticio de Invierno" subtitle="Invitamos a todos los QQ.`.`HH.`.` a la magna tenida que se celebrará en el Templo Principal." type="evento" link="#">
+                <x-card-image image="https://picsum.photos/seed/welcome-card1/800/600" title="Tenida de Solsticio de Invierno" subtitle="Invitamos a todos los QQ.`.`HH.`.` a la magna tenida que se celebrará en el Templo Principal." type="Evento" link="#" borderColor="border-blue-500">
                     <div class="mt-6 flex items-center">
                         <div class="text-sm text-gray-500">21 de Junio, 2025</div>
                     </div>
-                </x-card>
-                <x-card image="https://picsum.photos/seed/welcome-card2/800/600" title="Balance Anual de la Gran Zona 5" subtitle="El Gran Delegado Zonal presenta el balance de los trabajos y el crecimiento de la membresía." type="noticia" link="#">
+                </x-card-image>
+                <x-card-image image="https://picsum.photos/seed/welcome-card2/800/600" title="Balance Anual de la Gran Zona 5" subtitle="El Gran Delegado Zonal presenta el balance de los trabajos y el crecimiento de la membresía." type="noticia" link="#" borderColor="border-green-500">
                     <div class="mt-6 flex items-center">
                         <div class="text-sm text-gray-500">15 de Septiembre, 2025</div>
                     </div>
-                </x-card>
-                <x-card image="https://picsum.photos/seed/welcome-card3/800/600" title="Nueva Edición del Manual de Rito" subtitle="Ya se encuentra disponible en el repositorio la nueva edición revisada del manual del R.`.`E.`.`A.`.`A.`.`" type="comunicado" link="#">
+                </x-card-image>
+                <x-card-image image="https://picsum.photos/seed/welcome-card3/800/600" title="Nueva Edición del Manual de Rito" subtitle="Ya se encuentra disponible en el repositorio la nueva edición revisada del manual del R.`.`E.`.`A.`.`A.`.`" type="comunicado" link="#" borderColor="border-yellow-500">
                     <div class="mt-6 flex items-center">
                         <div class="text-sm text-gray-500">1 de Septiembre, 2025</div>
                     </div>
-                </x-card>
+                </x-card-image>
             </div>
         </div>
     </div>
-
-    <x-public.faq />
 
     <!-- CTA Section -->
     <div class="bg-primary-700">
@@ -95,7 +79,7 @@
                 <span class="block">Iluminando nuestro camino.</span>
             </h2>
             <p class="mt-4 text-lg leading-6 text-primary-200">¿Eres un hermano de visita? ¿Interesado en conocer más sobre nuestros trabajos? Contáctanos.</p>
-            <a href="#" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-primary-50 sm:w-auto">Ponerse en Contacto</a>
+            <x-button href="#" variant="secondary" class="mt-8 w-full sm:w-auto">Ponerse en Contacto</x-button>
         </div>
     </div>
 @endsection

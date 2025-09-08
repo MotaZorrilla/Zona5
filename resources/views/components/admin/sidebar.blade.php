@@ -1,12 +1,17 @@
 <!-- Sidebar -->
 <div class="fixed left-0 top-0 w-64 h-full bg-white p-4 z-50 shadow-lg transition-transform duration-300" :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
-    <a href="{{ route('admin.dashboard') }}" class="flex items-center pb-4 border-b">
-        <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white text-xl font-bold">Z5</div>
-        <span class="text-xl font-bold text-gray-800 ml-3">Gran Zona 5</span>
-    </a>
+    <div class="flex items-center justify-between pb-4 border-b">
+        <a href="{{ route('admin.dashboard') }}" class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white text-xl font-bold">Z5</div>
+            <span class="text-xl font-bold text-gray-800 ml-3">Gran Zona 5</span>
+        </a>
+        <button @click="sidebarOpen = false" class="text-gray-500 hover:text-gray-800">
+            <i class="ri-close-line text-2xl"></i>
+        </button>
+    </div>
     <ul class="mt-4">
         <li class="mb-1"><a href="{{ route('admin.dashboard') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i class="ri-dashboard-3-line mr-3"></i><span>Dashboard</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.content-manager') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.content-manager') ? 'active' : '' }}"><i class="ri-pencil-ruler-2-line mr-3"></i><span>Gestor de Contenido</span></a></li>
+        <li class="mb-1"><a href="{{ route('admin.content-manager.show', 'general') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.content-manager.*') ? 'active' : '' }}"><i class="ri-pencil-ruler-2-line mr-3"></i><span>Gestor de Contenido</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.lodges.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.lodges.index') ? 'active' : '' }}"><i class="ri-bank-line mr-3"></i><span>Logias</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.users.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}"><i class="ri-group-line mr-3"></i><span>Miembros</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.dignitaries') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.dignitaries') ? 'active' : '' }}"><i class="ri-user-star-line mr-3"></i><span>Dignatarios</span></a></li>

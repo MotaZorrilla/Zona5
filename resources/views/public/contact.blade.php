@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="sm:col-span-2">
-                    <button type="submit" class="w-full inline-flex items-center justify-center rounded-md border border-transparent bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">Enviar Mensaje</button>
+                    <x-button type="submit" class="w-full">Enviar Mensaje</x-button>
                 </div>
             </form>
 

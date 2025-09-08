@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ContentManagerController;
+use App\Http\Controllers\Public\LodgeController as PublicLodgeController;
 
 Route::view('/', 'welcome')->name('welcome');
 
@@ -25,13 +27,14 @@ Route::post('logout', function () {
 Route::name('public.')->group(function () {
     Route::view('/about-us', 'public.about-us')->name('about-us');
     Route::view('/lodges', 'public.lodges')->name('lodges');
-    Route::view('/lodges/dignitaries', 'public.lodge-dignitaries-show')->name('lodges.dignitaries');
+    Route::get('logias/{slug}', [PublicLodgeController::class, 'show'])->name('lodges.show');
     Route::view('/forums', 'public.forums')->name('forums');
     Route::view('/school', 'public.school')->name('school');
     Route::view('/archive', 'public.archive')->name('archive');
     Route::view('/news', 'public.news')->name('news');
     Route::view('/contact', 'public.contact')->name('contact');
     Route::view('/sitemap', 'public.sitemap')->name('sitemap');
+    Route::view('/faq', 'public.faq')->name('faq');
 });
 
 Route::view('/privacy-policy', 'public.privacy-policy')->name('privacy-policy');
@@ -51,7 +54,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::view('news', 'admin.news')->name('news');
     Route::view('settings', 'admin.settings')->name('settings');
     Route::view('help', 'admin.help')->name('help');
-    Route::view('content-manager', 'admin.content-manager')->name('content-manager');
+    Route::get('content-manager/{section?}', [ContentManagerController::class, 'show'])->name('content-manager.show');
 });
 
 // Ruta temporal para la previsualización de la plantilla de administración

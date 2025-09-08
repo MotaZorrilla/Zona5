@@ -34,7 +34,7 @@ Desarrollar el portal administrativo y público para la **Gran Zona 5 de la Gran
 
 ### Próximo Paso Inmediato (PRIORIDAD)
 
-*   Iniciar el desarrollo del backend para la **Fase 2: El Repositorio de Documentos**, comenzando por los modelos y la lógica de subida de archivos.
+*   Continuar con el desarrollo del backend para la **Fase 2: El Repositorio de Documentos**, comenzando por los modelos y la lógica de subida de archivos.
 
 ### Resumen del Progreso
 
