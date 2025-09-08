@@ -50,81 +50,50 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-                <!-- Sample Row 1 -->
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 flex-shrink-0">
-                                <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/150?u=hector" alt="">
+                @forelse ($users as $user)
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 flex-shrink-0">
+                                    <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/150?u={{ $user->email }}" alt="Avatar de {{ $user->name }}">
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-sm font-semibold text-gray-900">{{ $user->name }}</div>
+                                    <div class="text-xs text-gray-500">{{ $user->email }}</div>
+                                </div>
                             </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-semibold text-gray-900">Héctor Mota</div>
-                                <div class="text-xs text-gray-500">hector.mota@example.com</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Estrella de Oriente</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Maestro Masón (3)</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">
-                            SuperAdmin
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" class="text-primary-600 hover:text-primary-900 mr-4" title="Editar"><i class="ri-pencil-line text-lg"></i></a>
-                        <a href="#" class="text-red-600 hover:text-red-900" title="Eliminar"><i class="ri-delete-bin-line text-lg"></i></a>
-                    </td>
-                </tr>
-                <!-- Sample Row 2 -->
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 flex-shrink-0">
-                                <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/150?u=carlos" alt="">
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-semibold text-gray-900">Carlos Rodriguez</div>
-                                <div class="text-xs text-gray-500">carlos.rodriguez@example.com</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Domingo F. Sarmiento</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Compañero (2)</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-primary-100 text-primary-800">
-                            Admin
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" class="text-primary-600 hover:text-primary-900 mr-4" title="Editar"><i class="ri-pencil-line text-lg"></i></a>
-                        <a href="#" class="text-red-600 hover:text-red-900" title="Eliminar"><i class="ri-delete-bin-line text-lg"></i></a>
-                    </td>
-                </tr>
-                <!-- Sample Row 3 -->
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 flex-shrink-0">
-                                <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/150?u=juan" alt="">
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-semibold text-gray-900">Juan Perez</div>
-                                <div class="text-xs text-gray-500">juan.perez@example.com</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Sol de Guayana</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Aprendiz (1)</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center">
-                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                            Miembro
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" class="text-primary-600 hover:text-primary-900 mr-4" title="Editar"><i class="ri-pencil-line text-lg"></i></a>
-                        <a href="#" class="text-red-600 hover:text-red-900" title="Eliminar"><i class="ri-delete-bin-line text-lg"></i></a>
-                    </td>
-                </tr>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                            {{ $user->lodges->first()->name ?? 'Sin Logia' }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                            {{-- Placeholder for Grade --}}
+                            Grado no definido
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                            @foreach ($user->roles as $role)
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                    @if($role->name == 'SuperAdmin') bg-pink-100 text-pink-800 @elseif($role->name == 'Admin') bg-indigo-100 text-indigo-800 @else bg-gray-100 text-gray-800 @endif">
+                                    {{ $role->name }}
+                                </span>
+                            @endforeach
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <a href="{{ route('admin.users.edit', $user) }}" class="text-primary-600 hover:text-primary-900 mr-4" title="Editar"><i class="ri-pencil-line text-lg"></i></a>
+                            <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="inline-block" onsubmit="return confirm('¿Estás seguro de que quieres eliminar a este usuario?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:text-red-900" title="Eliminar"><i class="ri-delete-bin-line text-lg"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                            No hay usuarios registrados.
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

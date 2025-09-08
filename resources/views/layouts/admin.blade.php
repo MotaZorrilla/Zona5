@@ -59,54 +59,56 @@
 
     <!-- Main Content -->
     <main class="min-h-screen transition-all" :class="sidebarOpen ? 'md:w-[calc(100%-256px)] md:ml-64' : 'w-full'">
-        <!-- Top Navbar -->
-        <div class="py-2 px-6 bg-white flex items-center shadow-sm sticky top-0 left-0 z-30">
-            <button @click="sidebarOpen = !sidebarOpen" type="button" class="text-lg text-gray-600" x-show="!sidebarOpen">
-                <i class="ri-menu-2-line"></i>
-            </button>
-            <div class="ml-auto flex items-center" x-data="{ profileOpen: false, quickAddOpen: false }">
-                <div class="mr-4 relative">
-                    <button @click="quickAddOpen = !quickAddOpen" title="Crear Nuevo" class="text-white hover:bg-primary-600 w-8 h-8 flex items-center justify-center bg-primary-500 rounded-full shadow-md">
-                        <i class="ri-add-line"></i>
-                    </button>
-                    <div x-show="quickAddOpen" @click.away="quickAddOpen = false" class="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-xl py-1 z-20">
-                        <p class="px-4 py-2 text-xs text-gray-400">Crear Nuevo...</p>
-                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><i class="ri-user-add-line mr-2 text-primary-500"></i>Nuevo Miembro</a>
-                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><i class="ri-bank-line mr-2 text-primary-500"></i>Nueva Logia</a>
-                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><i class="ri-file-add-line mr-2 text-primary-500"></i>Nuevo Documento</a>
-                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><i class="ri-calendar-2-line mr-2 text-primary-500"></i>Nuevo Evento</a>
-                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><i class="ri-article-line mr-2 text-primary-500"></i>Nueva Noticia</a>
-                    </div>
-                </div>
-                <div class="relative" @click.away="profileOpen = false">
-                    <button @click="profileOpen = !profileOpen" type="button" class="flex items-center">
-                        <img src="https://i.pravatar.cc/32?u=admin" alt="" class="w-8 h-8 rounded-full object-cover">
-                    </button>
-                    <div x-show="profileOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl py-1 z-20">
-                        <div class="px-4 py-2 border-b">
-                            <p class="text-sm font-semibold">Héctor Mota</p>
-                            <p class="text-xs text-gray-500">SuperAdmin</p>
+        <div class="p-6">
+            <!-- Top Navbar -->
+            <div class="py-2 px-6 bg-white flex items-center shadow-sm rounded-lg sticky top-6 z-30">
+                <button @click="sidebarOpen = !sidebarOpen" type="button" class="text-lg text-gray-600" x-show="!sidebarOpen">
+                    <i class="ri-menu-2-line"></i>
+                </button>
+                <div class="ml-auto flex items-center" x-data="{ profileOpen: false, quickAddOpen: false }">
+                    <div class="mr-4 relative">
+                        <button @click="quickAddOpen = !quickAddOpen" title="Crear Nuevo" class="text-white hover:bg-primary-600 w-8 h-8 flex items-center justify-center bg-primary-500 rounded-full shadow-md">
+                            <i class="ri-add-line"></i>
+                        </button>
+                        <div x-show="quickAddOpen" @click.away="quickAddOpen = false" class="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-xl py-1 z-20">
+                            <p class="px-4 py-2 text-xs text-gray-400">Crear Nuevo...</p>
+                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><i class="ri-user-add-line mr-2 text-primary-500"></i>Nuevo Miembro</a>
+                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><i class="ri-bank-line mr-2 text-primary-500"></i>Nueva Logia</a>
+                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><i class="ri-file-add-line mr-2 text-primary-500"></i>Nuevo Documento</a>
+                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><i class="ri-calendar-2-line mr-2 text-primary-500"></i>Nuevo Evento</a>
+                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><i class="ri-article-line mr-2 text-primary-500"></i>Nueva Noticia</a>
                         </div>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mi Perfil</a>
-                        <hr class="my-1">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100">
-                                Cerrar Sesión
-                            </button>
-                        </form>
+                    </div>
+                    <div class="relative" @click.away="profileOpen = false">
+                        <button @click="profileOpen = !profileOpen" type="button" class="flex items-center">
+                            <img src="https://i.pravatar.cc/32?u=admin" alt="" class="w-8 h-8 rounded-full object-cover">
+                        </button>
+                        <div x-show="profileOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl py-1 z-20">
+                            <div class="px-4 py-2 border-b">
+                                <p class="text-sm font-semibold">Héctor Mota</p>
+                                <p class="text-xs text-gray-500">SuperAdmin</p>
+                            </div>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mi Perfil</a>
+                            <hr class="my-1">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100">
+                                    Cerrar Sesión
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End Top Navbar -->
+            <!-- End Top Navbar -->
 
-        <div class="p-6">
-            @yield('content')
+            <div class="mt-6">
+                @yield('content')
+            </div>
         </div>
     </main>
 
     <!-- AlpineJS for interactivity -->
-    <script src="//unpkg.com/alpinejs" defer></script>
+    @livewireScripts
 </body>
 </html>

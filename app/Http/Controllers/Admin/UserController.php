@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lodge;
+use App\Models\Position;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('roles', 'lodge')->get();
+        $users = User::with('roles', 'lodges')->get();
         return view('admin.users.index', compact('users'));
     }
 
@@ -21,7 +22,8 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $lodges = Lodge::all();
-        return view('admin.users.create', compact('roles', 'lodges'));
+        $positions = Position::all();
+        return view('admin.users.create', compact('roles', 'lodges', 'positions'));
     }
 
     public function store(Request $request)
@@ -50,7 +52,8 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $lodges = Lodge::all();
-        return view('admin.users.edit', compact('user', 'roles', 'lodges'));
+        $positions = Position::all();
+        return view('admin.users.edit', compact('user', 'roles', 'lodges', 'positions'));
     }
 
     public function update(Request $request, User $user)
@@ -59,14 +62,14 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8',
-            'roles' => 'required|array',
-            'lodge_id' => 'nullable|exists:lodges,id',
+            'roles' => 'sometimes|array',
+            'new_affiliation.lodge_id' => 'nullable|exists:lodges,id',
+            'new_affiliation.position_id' => 'nullable|exists:positions,id',
         ]);
 
         $userData = [
             'name' => $request->name,
             'email' => $request->email,
-            'lodge_id' => $request->lodge_id,
         ];
 
         if ($request->filled('password')) {
@@ -75,7 +78,17 @@ class UserController extends Controller
 
         $user->update($userData);
 
-        $user->roles()->sync($request->roles);
+        // Sync system roles
+        if ($request->has('roles')) {
+            $user->roles()->sync($request->roles);
+        }
+
+        // Add new affiliation if provided
+        if ($request->filled('new_affiliation.lodge_id') && $request->filled('new_affiliation.position_id')) {
+            $user->lodges()->attach($request->input('new_affiliation.lodge_id'), [
+                'position_id' => $request->input('new_affiliation.position_id')
+            ]);
+        }
 
         return redirect()->route('admin.users.index')->with('success', 'Usuario actualizado con éxito.');
     }

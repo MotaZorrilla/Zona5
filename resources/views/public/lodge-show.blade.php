@@ -1,12 +1,12 @@
 @extends('layouts.public')
 
-@section('title', $lodge['name'])
+@section('title', $lodge->name)
 
 @section('content')
     <x-public.hero 
-        :title="$lodge['name']" 
-        :subtitle="$lodge['valley']"
-        :imageUrl="$lodge['image']"
+        :title="$lodge->name" 
+        :subtitle="$lodge->oriente"
+        :imageUrl="$lodge->image_url ?? 'https://picsum.photos/seed/'. $lodge->slug .'/1920/1080'"
     />
 
     <div class="bg-white py-16 sm:py-24">
@@ -19,25 +19,25 @@
                     <div class="mb-12" data-scroll-reveal>
                         <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-serif border-b pb-4 mb-6">Nuestra Historia</h2>
                         <div class="prose prose-lg max-w-none text-gray-600 text-justify">
-                            <p>{{ $lodge['history'] }}</p>
+                            <p>{{ $lodge->history ?? 'La historia de esta logia aún no ha sido registrada.' }}</p>
                         </div>
                     </div>
 
-                    <!-- Próximos Eventos -->
+                    <!-- Próximos Eventos (Aún estático) -->
                     <div data-scroll-reveal>
                         <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-serif border-b pb-4 mb-6">Próximos Eventos</h2>
                         <div class="space-y-4">
-                            @forelse ($lodge['events'] as $event)
+                            {{-- @forelse ($lodge->events as $event) --}}
                                 <div class="bg-gray-50 rounded-lg p-4 flex items-center justify-between">
                                     <div>
-                                        <p class="font-semibold text-gray-800">{{ $event['name'] }}</p>
-                                        <p class="text-sm text-gray-500">Fecha: {{ \Carbon\Carbon::parse($event['date'])->isoFormat('LL') }}</p>
+                                        <p class="font-semibold text-gray-800">Tenida Ordinaria</p>
+                                        <p class="text-sm text-gray-500">Fecha: Próximamente</p>
                                     </div>
                                     <i class="ri-calendar-event-line text-primary-500 text-2xl"></i>
                                 </div>
-                            @empty
+                            {{-- @empty --}}
                                 <p class="text-gray-500">No hay eventos próximos programados.</p>
-                            @endforelse
+                            {{-- @endforelse --}}
                         </div>
                     </div>
                 </div>
@@ -48,19 +48,22 @@
                     <div data-scroll-reveal>
                         <h3 class="text-2xl font-bold text-gray-900 font-serif mb-4">Cuadro Logial</h3>
                         <ul class="space-y-3">
-                            @foreach ($lodge['dignitaries'] as $dignitary)
+                            @forelse ($lodge->users as $user)
                                 <li class="flex items-center p-3 bg-gray-50 rounded-md">
                                     <i class="ri-user-star-line text-primary-600 mr-3"></i>
                                     <div>
-                                        <p class="font-semibold text-sm text-gray-800">{{ $dignitary['role'] }}</p>
-                                        <p class="text-sm text-gray-600">{{ $dignitary['name'] }}</p>
+                                        {{-- Asumimos que el rol se manejará más adelante. Por ahora, un rol genérico --}}
+                                        <p class="font-semibold text-sm text-gray-800">{{ $user->getRoleDisplayName() ?? 'Miembro' }}</p>
+                                        <p class="text-sm text-gray-600">{{ $user->name }}</p>
                                     </div>
                                 </li>
-                            @endforeach
+                            @empty
+                                <li class="text-gray-500">No hay miembros registrados para esta logia.</li>
+                            @endforelse
                         </ul>
                     </div>
 
-                    <!-- Mapa -->
+                    <!-- Mapa (Aún estático) -->
                     <div data-scroll-reveal>
                         <h3 class="text-2xl font-bold text-gray-900 font-serif mb-4">Ubicación</h3>
                         <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-md">

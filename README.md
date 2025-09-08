@@ -34,11 +34,19 @@ Desarrollar el portal administrativo y público para la **Gran Zona 5 de la Gran
 
 ### Próximo Paso Inmediato (PRIORIDAD)
 
-*   Continuar con el desarrollo del backend para la **Fase 2: El Repositorio de Documentos**, comenzando por los modelos y la lógica de subida de archivos.
+*   **Dinamizar el contenido del sitio público**, comenzando por el módulo de **Noticias y Eventos**. Se creará el CRUD y se conectará la vista `public/news` a datos reales.
 
 ### Resumen del Progreso
 
-Se ha finalizado por completo la fase de diseño y maquetación estática tanto para el sitio público como para el panel de administración. Todas las vistas principales y secciones han sido construidas con un estilo visual unificado y adaptativo (responsive), incluyendo componentes interactivos con Alpine.js (modales). La base visual para la implementación del backend está completa y es sólida.
+Se ha finalizado una fase crucial de **fundación y estabilización del backend**. Después de una auditoría de frontend exhaustiva, se re-priorizó el plan de trabajo para solucionar inconsistencias y funcionalidades críticas antes de proceder con nuevas características.
+
+**Logros Clave de esta Fase:**
+1.  **Lógica de Sesión Corregida:** Se implementó un menú de navegación dinámico y basado en roles para los usuarios autenticados, diferenciando claramente entre usuarios normales y administradores.
+2.  **Perfil de Usuario Rediseñado:** La página de perfil de usuario (`/profile`) fue completamente rediseñada para ser visualmente consistente con el tema del panel de administración.
+3.  **CRUD de Admin Funcional:** Se verificó e implementó por completo el backend para la **Gestión de Logias** y la **Gestión de Miembros/Dignatarios** en el panel de administración. Las vistas del admin ahora son dinámicas y reflejan el estado real de la base de datos.
+4.  **Frontend Público Conectado:** La sección pública para visualizar una logia y sus miembros (`/lodges/{slug}`) ahora es completamente dinámica y funcional.
+
+La base de la aplicación es ahora significativamente más robusta y coherente.
 
 ### Plan de Trabajo Unificado (Checklist)
 
@@ -57,23 +65,22 @@ Se ha finalizado por completo la fase de diseño y maquetación estática tanto 
 *   [x] Aprobación de la línea de diseño final.
 *   [x] Creación de maquetas públicas para Foros y Escuela Virtual.
 
-### Fase 1: Fundación Esencial y Maquetación
+### Fase 1: Fundación Esencial y Backend Básico
 
 *   **Módulo de Presencia Pública (El Escaparate)**
     *   [/] Página de Inicio (`welcome`) *(Maquetación completa)*.
     *   [/] Página "Quiénes Somos" (`about-us`) con sección de Junta Directiva interactiva *(Maquetación completa)*.
-    *   [/] Listado de Logias (`lodges`) con enlace a vista de detalle *(Maquetación completa)*.
-    *   [/] Vista de detalle de Dignatarios de Logia (`lodge-dignitaries-show`) con modales interactivos *(Maquetación completa)*.
+    *   [x] Listado de Logias (`lodges`) y vista de detalle (`lodge-show`) *(Backend y frontend conectados y funcionales)*.
     *   [/] Formulario de Contacto (`contact`) *(Maquetación completa)*.
-    *   [/] Navegación completa y adaptativa para ambos sitios (público y admin) *(Maquetación completa)*.
-    *   [/] Integración de enlaces de Login/Registro en el layout público *(Maquetación completa)*.
+    *   [x] Navegación completa y adaptativa, con lógica de roles para usuarios autenticados.
+    *   [x] Integración de enlaces de Login/Registro en el layout público.
 *   **Módulo de Miembros y Comunidad (El Directorio Central)**
     *   [x] Creación de modelos y migraciones para `User`, `Role`, `Lodge`.
-    *   [/] Vista de Dignatarios en Admin (`dignitaries`) *(Maquetación completa)*.
-    *   [ ] Implementar sistema de Roles y Permisos (RBAC).
-    *   [ ] CRUD completo para la gestión de Logias.
-    *   [ ] CRUD completo para la gestión de Usuarios.
-    *   [ ] Registro y Perfiles de Miembro Básicos.
+    *   [x] CRUD completo para la gestión de Logias.
+    *   [x] CRUD completo para la gestión de Usuarios.
+    *   [x] Registro y Perfiles de Miembro con diseño personalizado.
+    *   [/] Implementar sistema de Roles y Permisos (RBAC) *(Base funcional implementada en CRUD de usuarios)*.
+    *   [/] Vista de Dignatarios en Admin (`dignitaries`) *(Funcional a través del CRUD de usuarios)*.
     *   [ ] Directorio de Miembros Privado y con Buscador.
 *   **Módulo de Comunicación (El Canal Oficial)**
     *   [/] Bandeja de Entrada de Mensajes en Admin (`messages`) *(Maquetación completa)*.

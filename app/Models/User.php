@@ -51,8 +51,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function lodge()
+    public function lodges()
     {
-        return $this->belongsTo(Lodge::class);
+        return $this->belongsToMany(Lodge::class, 'lodge_user')->withPivot('position_id')->withTimestamps();
     }
 }

@@ -14,8 +14,17 @@ export default {
         extend: {
             colors: {
                 primary: {
-                    ...colors.blue,
-                    DEFAULT: '#1D4ED8' // blue-700
+                    50: '#EBF4FF',
+                    100: '#DBEAFE',
+                    200: '#BFDBFE',
+                    300: '#93C5FD',
+                    400: '#60A5FA',
+                    500: '#3B82F6',
+                    600: '#2563EB',
+                    700: '#1D4ED8', // Tu color original
+                    800: '#1E40AF',
+                    900: '#1E3A8A',
+                    DEFAULT: '#1D4ED8' // Aseguramos que DEFAULT también esté aquí
                 }
             },
             fontFamily: {
