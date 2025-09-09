@@ -25,9 +25,10 @@ class LodgeController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'number' => 'required|integer|unique:lodges',
-            'oriente' => 'required|string|max:255',
+            'orient' => 'required|string|max:255',
             'history' => 'nullable|string',
             'image_url' => 'nullable|image|max:5120', // Validar como imagen, max 5MB
+            'address' => 'nullable|string|max:500',
         ]);
 
         $data = $request->all();
@@ -51,9 +52,10 @@ class LodgeController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'number' => 'required|integer|unique:lodges,number,' . $lodge->id,
-            'oriente' => 'required|string|max:255',
+            'orient' => 'required|string|max:255',
             'history' => 'nullable|string',
             'image_url' => 'nullable|image|max:5120', // Validar como imagen, max 5MB
+            'address' => 'nullable|string|max:500',
         ]);
 
         $data = $request->all();

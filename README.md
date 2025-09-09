@@ -30,7 +30,7 @@ Desarrollar el portal administrativo y público para la **Gran Zona 5 de la Gran
 
 ## 3. Plan de Desarrollo y Estado Actual
 
-*   **Última Actualización:** 8 de Septiembre, 2025.
+*   **Última Actualización:** 9 de Septiembre, 2025.
 
 ### Próximo Paso Inmediato (PRIORIDAD)
 
@@ -45,6 +45,8 @@ Se ha finalizado una fase crucial de **fundación y estabilización del backend*
 2.  **Perfil de Usuario Rediseñado:** La página de perfil de usuario (`/profile`) fue completamente rediseñada para ser visualmente consistente con el tema del panel de administración.
 3.  **CRUD de Admin Funcional:** Se verificó e implementó por completo el backend para la **Gestión de Logias** y la **Gestión de Miembros/Dignatarios** en el panel de administración. Las vistas del admin ahora son dinámicas y reflejan el estado real de la base de datos.
 4.  **Frontend Público Conectado:** La sección pública para visualizar una logia y sus miembros (`/lodges/{slug}`) ahora es completamente dinámica y funcional.
+5.  **Dashboard Dinámico:** Los indicadores clave (KPIs) para Miembros y Logias, así como el listado de "Miembros por Logia", ahora son dinámicos y muestran datos reales de la base de datos.
+6.  **Sistema de Actividad:** Se ha implementado un sistema de registro de actividad (`ActivityLog`) para rastrear eventos clave. El primer evento integrado es el registro de nuevos usuarios, que ya se muestra en el feed de "Actividad Reciente" del dashboard.
 
 La base de la aplicación es ahora significativamente más robusta y coherente.
 
@@ -89,7 +91,8 @@ La base de la aplicación es ahora significativamente más robusta y coherente.
 *   **Módulo de Gestión Documental (La Biblioteca Esencial)**
     *   [/] Repositorio de Documentos (`archive` y `admin/repository`) *(Maquetación completa)*.
 *   **Módulo de Analítica e Informes (El Puente de Mando - Inicial)**
-    *   [/] Dashboard Básico (`admin/dashboard`) *(Maquetación completa)*.
+    *   [x] Dashboard Básico (`admin/dashboard`) *(KPIs, widgets y feed de actividad funcionales)*.
+    *   [/] Sistema de Registro de Actividad (`ActivityLog`) *(Base implementada, registrando creación de usuarios)*.
 
 ### Fase 2: Crecimiento y Comunidad
 

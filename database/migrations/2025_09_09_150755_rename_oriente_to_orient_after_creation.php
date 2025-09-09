@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->timestamps();
+        Schema::table('lodges', function (Blueprint $table) {
+            $table->renameColumn('oriente', 'orient');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::table('lodges', function (Blueprint $table) {
+            $table->renameColumn('orient', 'oriente');
+        });
     }
 };

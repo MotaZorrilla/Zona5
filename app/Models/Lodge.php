@@ -13,9 +13,10 @@ class Lodge extends Model
         'name',
         'slug',
         'number',
-        'oriente',
+        'orient',
         'history',
         'image_url',
+        'address',
     ];
 
     public function users()

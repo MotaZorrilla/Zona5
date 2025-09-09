@@ -25,7 +25,7 @@
         <div class="flex items-center gap-4">
             <select class="bg-gray-50 border border-gray-200 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary-400">
                 <option>Filtrar por Logia</option>
-                <option>Estrella de Oriente</option>
+                L28: <option>Estrella de Orient</option>
                 <option>Domingo F. Sarmiento</option>
             </select>
             <select class="bg-gray-50 border border-gray-200 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary-400">

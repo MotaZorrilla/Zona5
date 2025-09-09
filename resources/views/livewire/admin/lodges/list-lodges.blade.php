@@ -15,13 +15,13 @@
     <div class="mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="relative w-full md:w-1/3">
             <i class="ri-search-line absolute top-1/2 -translate-y-1/2 left-3 text-gray-400"></i>
-            <input type="text" wire:model.live="search" class="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-400" placeholder="Buscar logia por nombre, número u oriente...">
+            <input type="text" wire:model.live="search" class="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-400" placeholder="Buscar logia por nombre, número u orient...">
         </div>
         <div class="flex items-center gap-4">
-            <select wire:model.live="filterOriente" class="bg-gray-50 border border-gray-200 rounded-lg py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-primary-400">
-                <option value="">Filtrar por Oriente</option>
-                @foreach ($orientes as $oriente)
-                    <option value="{{ $oriente }}">{{ $oriente }}</option>
+            <select wire:model.live="filterOrient" class="bg-gray-50 border border-gray-200 rounded-lg py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-primary-400">
+                <option value="">Filtrar por Orient</option>
+                @foreach ($orients as $orient)
+                    <option value="{{ $orient }}">{{ $orient }}</option>
                 @endforeach
             </select>
         </div>
@@ -42,8 +42,8 @@
                             <i class="ri-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-line ml-1"></i>
                         @endif
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" wire:click="sortBy('oriente')">Oriente
-                        @if ($sortField === 'oriente')
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer" wire:click="sortBy('orient')">Orient
+                        @if ($sortField === 'orient')
                             <i class="ri-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-line ml-1"></i>
                         @endif
                     </th>
@@ -70,7 +70,7 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $lodge->number }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $lodge->oriente }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $lodge->orient }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $lodge->users_count }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-center">
                             <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">

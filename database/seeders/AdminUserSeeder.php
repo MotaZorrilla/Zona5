@@ -28,26 +28,32 @@ class AdminUserSeeder extends Seeder
         $sz5Position = Position::where('name', 'Secretario de la Zona 5')->first();
 
         // Create Héctor Mota
-                $hector = User::create([
-            'name' => 'Héctor Mota',
-            'email' => 'hector@motazorrilla.com',
-            'password' => Hash::make('Baralo00.'),
-        ]);
-        $hector->roles()->attach($superAdminRole);
-        $hector->lodges()->attach($dfsLodge->id, ['position_id' => $vmPosition->id]);
-        $hector->lodges()->attach($hanhoushingLodge->id, ['position_id' => $pvPosition->id]);
+        $hector = User::firstOrCreate(
+            ['email' => 'hector@motazorrilla.com'],
+            [
+                'name' => 'Héctor Mota',
+                'password' => Hash::make('Baralo00.'),
+            ]
+        );
+        $hector->roles()->syncWithoutDetaching([$superAdminRole->id]);
+        if ($dfsLodge && $vmPosition) {
+            $hector->lodges()->syncWithoutDetaching([$dfsLodge->id => ['position_id' => $vmPosition->id]]);
+        }
+        if ($hanhoushingLodge && $pvPosition) {
+            $hector->lodges()->syncWithoutDetaching([$hanhoushingLodge->id => ['position_id' => $pvPosition->id]]);
+        }
 
         // Create Carlos Larreal
-        $carlos = User::create([
-            'name' => 'Carlos Larreal',
-            'email' => 'carlos.larreal@example.com',
-            'password' => Hash::make('password'), // Default password, should be changed
-        ]);
-        $carlos->roles()->attach($adminRole);
-        // No lodge affiliation yet, as per the request, but has a zonal position.
-        // This assumes a way to represent zonal positions, for now we can assign a special position.
-        // A better model might be a null lodge_id for zonal positions.
-        // For now, let's assign him to a lodge as an example.
-        $carlos->lodges()->attach($dfsLodge->id, ['position_id' => $sz5Position->id]);
+        $carlos = User::firstOrCreate(
+            ['email' => 'carlos.larreal@example.com'],
+            [
+                'name' => 'Carlos Larreal',
+                'password' => Hash::make('password'),
+            ]
+        );
+        $carlos->roles()->syncWithoutDetaching([$adminRole->id]);
+        if ($dfsLodge && $sz5Position) {
+            $carlos->lodges()->syncWithoutDetaching([$dfsLodge->id => ['position_id' => $sz5Position->id]]);
+        }
     }
 }

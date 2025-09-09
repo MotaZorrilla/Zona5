@@ -13,7 +13,7 @@ class ListLodges extends Component
     public $search = '';
     public $sortField = 'name';
     public $sortDirection = 'asc';
-    public $filterOriente = '';
+    public $filterOrient = '';
 
     public function sortBy($field)
     {
@@ -34,12 +34,12 @@ class ListLodges extends Component
             $query->where(function ($q) {
                 $q->where('name', 'like', '%' . $this->search . '%')
                   ->orWhere('number', 'like', '%' . $this->search . '%')
-                  ->orWhere('oriente', 'like', '%' . $this->search . '%');
+                  ->orWhere('orient', 'like', '%' . $this->search . '%');
             });
         }
 
-        if (!empty($this->filterOriente)) {
-            $query->where('oriente', $this->filterOriente);
+        if (!empty($this->filterOrient)) {
+            $query->where('orient', $this->filterOrient);
         }
 
         $lodges = $query->orderBy($this->sortField, $this->sortDirection)
@@ -47,7 +47,7 @@ class ListLodges extends Component
 
         return view('livewire.admin.lodges.list-lodges', [
             'lodges' => $lodges,
-            'orientes' => Lodge::distinct()->pluck('oriente'),
+            'orients' => Lodge::distinct()->pluck('orient'),
         ]);
     }
 }

@@ -44,33 +44,40 @@
             </div>
         </div>
 
-        <!-- Valores Section -->
+        <!-- Pilares Section -->
         <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8" data-scroll-reveal>
             <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestros Valores</h2>
-                <p class="mt-4 text-lg text-gray-500">Los pilares que guían nuestro trabajo y fortalecen nuestra fraternidad.</p>
+                <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestros Pilares</h2>
+                <p class="mt-4 text-lg text-gray-500">La Zona 5 se apoya en los cuatro pilares que promueven la Gran Logia de la República de Venezuela, guiando nuestro trabajo y fortaleciendo nuestra Augusta Institución.</p>
             </div>
-            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
                 <div class="text-center">
                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mx-auto mb-6">
-                        <i class="ri-scales-3-line text-4xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900">Tolerancia</h4>
-                    <p class="mt-2 text-gray-500">Respeto absoluto por las ideas y creencias de los demás.</p>
-                </div>
-                <div class="text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mx-auto mb-6">
-                        <i class="ri-group-2-line text-4xl"></i>
+                        <i class="ri-group-line text-4xl"></i>
                     </div>
                     <h4 class="text-xl font-bold text-gray-900">Fraternidad</h4>
-                    <p class="mt-2 text-gray-500">Lazos de hermandad y ayuda mutua que nos unen más allá de cualquier diferencia.</p>
+                    <p class="mt-2 text-gray-500">El lazo indisoluble que nos une como hermanos, fomentando el apoyo mutuo, la armonía y la comprensión más allá de cualquier diferencia.</p>
                 </div>
                 <div class="text-center">
                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mx-auto mb-6">
-                        <i class="ri-line-chart-line text-4xl"></i>
+                        <i class="ri-book-open-line text-4xl"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900">Progreso</h4>
-                    <p class="mt-2 text-gray-500">La búsqueda constante del perfeccionamiento individual y colectivo.</p>
+                    <h4 class="text-xl font-bold text-gray-900">Docencia</h4>
+                    <p class="mt-2 text-gray-500">La búsqueda incesante de la verdad y el conocimiento a través del estudio, la instrucción y el intercambio de ideas para el perfeccionamiento individual.</p>
+                </div>
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mx-auto mb-6">
+                        <i class="ri-hand-heart-line text-4xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900">Filantropía</h4>
+                    <p class="mt-2 text-gray-500">El amor a la humanidad manifestado en obras de caridad y beneficencia, trabajando activamente por el bienestar y el progreso de nuestra comunidad.</p>
+                </div>
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mx-auto mb-6">
+                        <i class="ri-shield-star-line text-4xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900">Sentido de Pertenencia</h4>
+                    <p class="mt-2 text-gray-500">El orgullo y compromiso que sentimos hacia nuestra Orden, Logia y Hermanos, fortaleciendo nuestra identidad y cohesión como institución.</p>
                 </div>
             </div>
         </div>

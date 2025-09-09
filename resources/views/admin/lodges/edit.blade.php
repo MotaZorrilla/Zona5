@@ -21,8 +21,12 @@
                 <input type="number" name="number" id="number" value="{{ $lodge->number }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm" required>
             </div>
             <div class="mb-4">
-                <label for="oriente" class="block text-sm font-medium text-gray-700">Oriente</label>
-                <input type="text" name="oriente" id="oriente" value="{{ $lodge->oriente }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm" required>
+                <label for="orient" class="block text-sm font-medium text-gray-700">Orient</label>
+                <input type="text" name="orient" id="orient" value="{{ $lodge->orient }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm" required>
+            </div>
+            <div class="mb-4">
+                <label for="address" class="block text-sm font-medium text-gray-700">Dirección Completa</label>
+                <textarea name="address" id="address" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">{{ $lodge->address }}</textarea>
             </div>
             <div class="mb-4">
                 <label for="history" class="block text-sm font-medium text-gray-700">Historia (para la página pública)</label>

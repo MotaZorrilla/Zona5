@@ -51,7 +51,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('forums', App\Http\Controllers\Admin\ForumController::class)->except(['show']);
     Route::view('repository', 'admin.repository')->name('repository');
     Route::view('events', 'admin.events')->name('events');
-    Route::view('news', 'admin.news')->name('news');
+    Route::resource('news', App\Http\Controllers\Admin\NewsController::class)->except(['show']);
     Route::view('settings', 'admin.settings')->name('settings');
     Route::view('help', 'admin.help')->name('help');
     Route::get('content-manager/{section?}', [ContentManagerController::class, 'show'])->name('content-manager.show');

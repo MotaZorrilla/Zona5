@@ -5,7 +5,7 @@
 @section('content')
     <x-public.hero 
         :title="$lodge->name" 
-        :subtitle="$lodge->oriente"
+        :subtitle="$lodge->orient"
         :imageUrl="$lodge->image_url ?? 'https://picsum.photos/seed/'. $lodge->slug .'/1920/1080'"
     />
 

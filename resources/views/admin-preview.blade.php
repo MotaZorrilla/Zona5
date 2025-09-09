@@ -70,7 +70,8 @@
                         <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4"><i class="ri-user-add-line text-blue-500"></i></div>
                         <div class="flex-1">
                             <p class="text-sm">Nuevo miembro <a href="#" class="font-medium text-primary-500">Juan Perez</a> fue aprobado.</p>
-                            <p class="text-xs text-gray-500">Logia: Estrella de Oriente</p>
+                            <p class="text-xs text-gray-500">L73: <p class="text-xs text-gray-500">Logia: Estrella de Orient</p>
+L94: <span>Estrella de Orient</span></p>
                         </div>
                         <span class="text-sm text-gray-500">Hace 4h</span>
                     </li>
