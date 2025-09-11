@@ -13,12 +13,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-                                                                                $this->call([
+        $this->call([
             RoleSeeder::class,
             PositionSeeder::class,
             LodgeSeeder::class,
             AdminUserSeeder::class,
-            UserSeeder::class,
+            DiosYPatriaLodgeSeeder::class,
+            Salmo133LodgeSeeder::class,
+            JesusValentinoLatanLaRosaLodgeSeeder::class,
+            AsiloDeLaPazLodgeSeeder::class,
+            JuanFranciscoGironLodgeSeeder::class,
+            HansHauschildtLodgeSeeder::class,
+            BolivarYSucreLodgeSeeder::class,
+            PedroCovaLodgeSeeder::class,
+            GranCadenaUniversalLodgeSeeder::class,
+            EstrellaGuzmanBlancoLodgeSeeder::class,
+            DallaCostaLodgeSeeder::class,
+            DrCesarObdulioIriarteLodgeSeeder::class,
+            RafaelCalabreseLodgeSeeder::class,
+            RestauradoresDelHonorXXIILodgeSeeder::class,
+            CarlosDanielFernandezLodgeSeeder::class,
+            SolDeGuayanaLodgeSeeder::class,
+            EstrellaDelRoraimaLodgeSeeder::class,
+            EstrellaDelSupamoLodgeSeeder::class,
+            LuzYReflexionLodgeSeeder::class,
+            AuroraDelYuruariLodgeSeeder::class,
+            CorreoDelOrinocoLodgeSeeder::class,
+            DomingoFaustinoSarmientoLodgeSeeder::class,
+            EstudiosTradicionalesLodgeSeeder::class,
+            ZoneDignitariesSeeder::class,
             ActivityLogSeeder::class, // Add this line
         ]);
 

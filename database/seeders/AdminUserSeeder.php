@@ -16,16 +16,9 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Find Roles, Lodges, Positions
+        // Find Roles
         $superAdminRole = Role::where('name', 'SuperAdmin')->first();
         $adminRole = Role::where('name', 'Admin')->first();
-
-        $dfsLodge = Lodge::where('name', 'Domingo Faustino Sarmiento')->first();
-        $hanhoushingLodge = Lodge::where('name', 'Hanhoushing')->first();
-
-        $vmPosition = Position::where('name', 'Venerable Maestro')->first();
-        $pvPosition = Position::where('name', 'Primer Vigilante')->first();
-        $sz5Position = Position::where('name', 'Secretario de la Zona 5')->first();
 
         // Create Héctor Mota
         $hector = User::firstOrCreate(
@@ -35,25 +28,16 @@ class AdminUserSeeder extends Seeder
                 'password' => Hash::make('Baralo00.'),
             ]
         );
-        $hector->roles()->syncWithoutDetaching([$superAdminRole->id]);
-        if ($dfsLodge && $vmPosition) {
-            $hector->lodges()->syncWithoutDetaching([$dfsLodge->id => ['position_id' => $vmPosition->id]]);
-        }
-        if ($hanhoushingLodge && $pvPosition) {
-            $hector->lodges()->syncWithoutDetaching([$hanhoushingLodge->id => ['position_id' => $pvPosition->id]]);
-        }
+        $hector->roles()->sync([$superAdminRole->id]);
 
         // Create Carlos Larreal
         $carlos = User::firstOrCreate(
-            ['email' => 'carlos.larreal@example.com'],
+            ['email' => 'carlosjoselarreal@gmail.com'],
             [
                 'name' => 'Carlos Larreal',
                 'password' => Hash::make('password'),
             ]
         );
-        $carlos->roles()->syncWithoutDetaching([$adminRole->id]);
-        if ($dfsLodge && $sz5Position) {
-            $carlos->lodges()->syncWithoutDetaching([$dfsLodge->id => ['position_id' => $sz5Position->id]]);
-        }
+        $carlos->roles()->sync([$adminRole->id]);
     }
 }

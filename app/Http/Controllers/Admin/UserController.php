@@ -99,4 +99,10 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')->with('success', 'Usuario eliminado con éxito.');
     }
+
+    public function show(User $user)
+    {
+        $user->load('lodges', 'roles'); // Eager load relationships
+        return view('admin.users.show', compact('user'));
+    }
 }

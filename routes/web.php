@@ -44,7 +44,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('lodges', App\Http\Controllers\Admin\LodgeController::class);
     Route::resource('users', App\Http\Controllers\Admin\UserController::class);
-    Route::view('dignitaries', 'admin.dignitaries')->name('dignitaries');
+    Route::resource('zone-dignitaries', App\Http\Controllers\Admin\ZoneDignitaryController::class);
     Route::view('messages', 'admin.messages')->name('messages');
     Route::resource('school', App\Http\Controllers\Admin\SchoolController::class)->except(['show']);
     Route::view('treasury', 'admin.treasury.index')->name('treasury');

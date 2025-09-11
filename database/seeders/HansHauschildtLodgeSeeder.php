@@ -10,83 +10,21 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UserSeeder extends Seeder
+class HansHauschildtLodgeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Find Roles, Lodges, Positions
-        $superAdminRole = Role::where('name', 'SuperAdmin')->first();
-        $adminRole = Role::where('name', 'Admin')->first();
-        $memberRole = Role::where('name', 'User')->first(); // Assuming 'User' role for general members
+        $memberRole = Role::where('name', 'User')->first();
+        $memberPosition = Position::where('name', 'Miembro')->first();
 
-        $vmPosition = Position::where('name', 'Venerable Maestro')->first();
-        $pvPosition = Position::where('name', 'Primer Vigilante')->first();
-        $sz5Position = Position::where('name', 'Secretario de la Zona 5')->first();
-        $memberPosition = Position::where('name', 'Miembro')->first(); // General member position
-
-        // --- Admin Users (from AdminUserSeeder) ---
-        // Logic moved to AdminUserSeeder.php
-
-        // --- Venerable Masters (from Lodge list) ---
-        $venerableMastersData = [
-            ['lodge_name' => 'Aurora del Yuruari', 'name' => 'Ricardo Brito', 'phone' => '04148111791'],
-            ['lodge_name' => 'Domingo Faustino Sarmiento', 'name' => 'José Alfredo Boada', 'phone' => '04249505718'],
-            ['lodge_name' => 'Hans Hauschildt', 'name' => 'José Sierra', 'phone' => '04127090198'],
-            ['lodge_name' => 'Dr Cesar Obdulio Iriarte', 'name' => 'Edgar Casanova', 'phone' => '04249267120'],
-            ['lodge_name' => 'Salmo 133', 'name' => 'Fidas Jaber', 'phone' => '04148957746'],
-            ['lodge_name' => 'Jesús Valentino Latan La Rosa', 'name' => 'Noel Lira', 'phone' => '04148916059'],
-            ['lodge_name' => 'Luz y Reflexión', 'name' => 'Jairo Torres', 'phone' => '04148751598'],
-            ['lodge_name' => 'Bolivar y Sucre', 'name' => 'Oscar Rodríguez', 'phone' => '04267920729'],
-            ['lodge_name' => 'Restauradores del Honor XXII', 'name' => 'Tomas Chacare', 'phone' => '04249012758'],
-            ['lodge_name' => 'Estudios Tradicionales', 'name' => 'Mervin Quiñones', 'phone' => '04148980698'],
-            ['lodge_name' => 'Carlos Daniel Fernández', 'name' => 'José Fernández', 'phone' => '04249476551'],
-            ['lodge_name' => 'Gran Cadena Universal', 'name' => 'Carlos Figueroa', 'phone' => '04124216891'],
-            // Logias de Ciudad Bolívar
-            ['lodge_name' => 'Asilo de la Paz', 'name' => 'Ramón Olivares', 'phone' => null],
-            ['lodge_name' => 'Sol de Guayana', 'name' => 'Antonio Sequera', 'phone' => null],
-            ['lodge_name' => 'DC Carlos Rodríguez Jiménez', 'name' => 'JESÚS Ortíz', 'phone' => null],
-            ['lodge_name' => 'Congreso de Angostura', 'name' => 'César Ruiz', 'phone' => null],
-            ['lodge_name' => 'Correo del Orinoco', 'name' => 'Cesar Iriarte', 'phone' => null],
-            ['lodge_name' => 'Justicia y Luz', 'name' => 'Tu Yunta', 'phone' => null],
-            ['lodge_name' => 'Rafael Calabrese', 'name' => 'Fernando Gómez', 'phone' => null],
-            ['lodge_name' => 'Humberto Camejo Arias', 'name' => 'Carlos Ávilez', 'phone' => null],
-            // Logias de Upata
-            ['lodge_name' => 'Cent Pedro Cova', 'name' => 'Yobel Morgan', 'phone' => '04129282135'],
-            ['lodge_name' => 'Juan Francisco Girón', 'name' => 'Mario Curcio', 'phone' => '04143884143'],
-            // Logias de El Palmar
-            ['lodge_name' => 'Sol de Imataca', 'name' => 'Miguel del Rosario', 'phone' => '04148610233'],
-            // Logias de El Manteco
-            ['lodge_name' => 'Estrella del Supamo', 'name' => 'Edgar Suárez', 'phone' => '04249652455'],
-        ];
-
-        foreach ($venerableMastersData as $vmData) {
-            $lodge = Lodge::where('name', $vmData['lodge_name'])->first();
-            if ($lodge) {
-                $vmUser = User::firstOrCreate(
-                    ['email' => Str::slug($vmData['name']) . '@example.com'], // Use slugged name for unique email
-                    [
-                        'name' => $vmData['name'],
-                        'password' => Hash::make('password'),
-                        'phone_number' => $vmData['phone'],
-                        'national_id' => null, 'birth_date' => null, 'initiation_date' => null, 'degree' => null, 'profession' => null,
-                    ]
-                );
-                $vmUser->roles()->syncWithoutDetaching([$memberRole->id]); // Assign general member role
-                if ($vmPosition) {
-                    $vmUser->lodges()->syncWithoutDetaching([$lodge->id => ['position_id' => $vmPosition->id]]);
-                }
-            }
-        }
-
-        // --- Members of R∴ L∴ NRO. 175 (Hans Hauschildt) ---
         $rl175Lodge = Lodge::where('name', 'Hans Hauschildt')->first();
         if ($rl175Lodge) {
             $membersData = [
                 ['Apellidos Nombres' => 'Carvajal Alfonzo Raúl Homero', 'Cédula' => '2.154.528', 'Fecha de Nacimiento' => '28/11/1941', 'Fecha de iniciación' => '09/02/1991', 'Ap∴' => 1, 'M∴ C∴' => 1, 'M∴ M∴' => 1, 'Teléfono' => '04249392409', 'CORREO' => 'rhoca868@gmail.com', 'PROFESION' => 'Ingeniero'],
-                ['Apellidos Nombres' => 'Sierra Palacios José Ramón', 'Cédula' => '5.335.725', 'Fecha de Nacimiento' => '17/03/1958', 'Fecha de iniciación' => '09/12/2000', 'Ap∴' => 1, 'M∴ C∴' => 1, 'M∴ M∴' => 1, 'Teléfono' => '04166873301', 'CORREO' => 'siejose@gmail.com', 'PROFESION' => 'T.S.U. Metalurgia'],
+                ['Apellidos Nombres' => 'José Ramón Sierra Palacios', 'Cédula' => '5335725', 'Fecha de Nacimiento' => '17/03/1958', 'Fecha de iniciación' => '09/12/2000', 'Ap∴' => 1, 'M∴ C∴' => 1, 'M∴ M∴' => 1, 'Teléfono' => '04166873301', 'CORREO' => 'siejose@gmail.com', 'PROFESION' => 'T.S.U. Metalurgia'],
                 ['Apellidos Nombres' => 'Medina Carlos Eduardo', 'Cédula' => '9.812.648', 'Fecha de Nacimiento' => '14/01/1967', 'Fecha de iniciación' => '28/10/2006', 'Ap∴' => 1, 'M∴ C∴' => 0, 'M∴ M∴' => 0, 'Teléfono' => '04148941429', 'CORREO' => 'carlosmedina1467@gmail.com', 'PROFESION' => 'Abogado'],
                 ['Apellidos Nombres' => 'Marín la Rosa Francisco Javier', 'Cédula' => '8.370.707', 'Fecha de Nacimiento' => '05/02/1963', 'Fecha de iniciación' => '05/05/1990', 'Ap∴' => 1, 'M∴ C∴' => 1, 'M∴ M∴' => 1, 'Teléfono' => '04148672971', 'CORREO' => 'marinlarosa@gmail.com', 'PROFESION' => 'Ingeniero'],
                 ['Apellidos Nombres' => 'Escorihuela Blanco Nelson Wilfredo', 'Cédula' => '3.627.857', 'Fecha de Nacimiento' => '18/04/1955', 'Fecha de iniciación' => '10/10/1992', 'Ap∴' => 1, 'M∴ C∴' => 1, 'M∴ M∴' => 1, 'Teléfono' => '04148971552', 'CORREO' => 'nescorihuela@gmail.com', 'PROFESION' => 'Comerciante'],
@@ -128,15 +66,17 @@ class UserSeeder extends Seeder
             foreach ($membersData as $memberData) {
                 $degree = 'Aprendiz';
                 if ($memberData['M∴ C∴'] == 1) $degree = 'Compañero';
-                if ($memberData['M∴ M∴'] == 1) $degree = 'Maestro Masón';
+                if ($memberData['M∴ M∴'] == 1) $degree = 'Maestro';
 
-                $email = $memberData['CORREO'] ?? Str::slug($memberData['Apellidos Nombres']) . '@example.com';
-                $nationalId = str_replace(['.', ','], '', $memberData['Cédula']); // Clean national_id
+                $email = $memberData['CORREO'] ?? null;
+                $nationalId = !empty($memberData['Cédula']) ? str_replace(['.', ','], '', $memberData['Cédula']) : null;
+                $name = $memberData['Apellidos Nombres'];
 
-                User::firstOrCreate(
-                    ['national_id' => $nationalId],
+                $user = User::firstOrCreate(
+                    $nationalId ? ['national_id' => $nationalId] : ['name' => $name],
                     [
-                        'name' => $memberData['Apellidos Nombres'],
+                        'name' => $name,
+                        'national_id' => $nationalId,
                         'email' => $email,
                         'password' => Hash::make('password'), // Default password for members
                         'birth_date' => \Carbon\Carbon::createFromFormat('d/m/Y', $memberData['Fecha de Nacimiento'])->format('Y-m-d'),

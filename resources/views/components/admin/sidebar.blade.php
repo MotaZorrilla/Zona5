@@ -15,7 +15,7 @@
         <hr class="my-2 border-gray-200">
         
         <li class="mb-1"><a href="{{ route('admin.users.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}"><i class="ri-group-line mr-3"></i><span>Miembros</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.dignitaries') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.dignitaries') ? 'active' : '' }}"><i class="ri-user-star-line mr-3"></i><span>Dignatarios</span></a></li>
+        <li class="mb-1"><a href="{{ route('admin.zone-dignitaries.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.zone-dignitaries.index') ? 'active' : '' }}"><i class="ri-user-star-line mr-3"></i><span>Dignatarios</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.lodges.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.lodges.index') ? 'active' : '' }}"><i class="ri-bank-line mr-3"></i><span>Logias</span></a></li>
 
         <hr class="my-2 border-gray-200">

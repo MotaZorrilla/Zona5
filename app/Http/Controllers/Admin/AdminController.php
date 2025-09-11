@@ -16,11 +16,12 @@ class AdminController extends Controller
         $memberCount = User::count();
         $lodgeCount = Lodge::count();
 
-        // Get top 5 lodges with most members
-        $lodgesWithMemberCount = Lodge::withCount('users')->orderBy('users_count', 'desc')->take(5)->get();
+        $apprenticeCount = User::where('degree', 'Aprendiz')->count();
+        $companionCount = User::where('degree', 'Compañero')->count();
+        $masterCount = User::where('degree', 'Maestro')->count();
 
-        // Find the max member count for progress bar calculation
-        $maxMembers = $lodgesWithMemberCount->max('users_count') ?? 0;
+        $sumOfDegrees = $apprenticeCount + $companionCount + $masterCount;
+        $differenceCount = $memberCount - $sumOfDegrees;
 
         // Get recent activities
         $recentActivities = ActivityLog::latest()->with('user', 'subject')->take(5)->get();
@@ -29,11 +30,11 @@ class AdminController extends Controller
 
         // 1. Pie Chart: Member distribution by degree
         $degreeDistributionData = [
-            'labels' => ['Aprendiz', 'Compañero', 'Maestro Masón'],
+            'labels' => ['Aprendiz', 'Compañero', 'Maestro'],
             'data' => [
                 User::where('degree', 'Aprendiz')->count(),
                 User::where('degree', 'Compañero')->count(),
-                User::where('degree', 'Maestro Masón')->count(),
+                User::where('degree', 'Maestro')->count(),
             ]
         ];
 
@@ -90,8 +91,10 @@ class AdminController extends Controller
         return view('admin.dashboard', compact(
             'memberCount', 
             'lodgeCount', 
-            'lodgesWithMemberCount', 
-            'maxMembers',
+            'apprenticeCount',
+            'companionCount',
+            'masterCount',
+            'differenceCount', // Added this line
             'recentActivities',
             'degreeDistributionData',
             'memberGrowthData',

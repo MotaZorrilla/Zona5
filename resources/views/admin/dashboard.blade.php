@@ -9,13 +9,6 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-6">
         <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center">
             <div>
-                <p class="text-sm text-gray-500">Miembros Totales</p>
-                <p class="text-3xl font-extrabold">{{ $memberCount }}</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-500"><i class="ri-group-2-line text-2xl"></i></div>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center">
-            <div>
                 <p class="text-sm text-gray-500">Logias Activas</p>
                 <p class="text-3xl font-extrabold">{{ $lodgeCount }}</p>
             </div>
@@ -24,23 +17,30 @@
         <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center">
             <div>
                 <p class="text-sm text-gray-500">Aprendices</p>
-                <p class="text-3xl font-extrabold">65</p>
+                <p class="text-3xl font-extrabold">{{ $apprenticeCount }}</p>
             </div>
             <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center text-sky-500"><i class="ri-user-star-line text-2xl"></i></div>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center">
             <div>
                 <p class="text-sm text-gray-500">Compañeros</p>
-                <p class="text-3xl font-extrabold">40</p>
+                <p class="text-3xl font-extrabold">{{ $companionCount }}</p>
             </div>
             <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center text-teal-500"><i class="ri-user-shared-line text-2xl"></i></div>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center">
             <div>
-                <p class="text-sm text-gray-500">Maestros Masones</p>
-                <p class="text-3xl font-extrabold">120</p>
+                <p class="text-sm text-gray-500">Maestros</p>
+                <p class="text-3xl font-extrabold">{{ $masterCount }}</p>
             </div>
             <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-500"><i class="ri-award-line text-2xl"></i></div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center">
+            <div>
+                <p class="text-sm text-gray-500">Miembros</p>
+                <p class="text-3xl font-extrabold">{{ $memberCount }} <span class="text-sm font-normal text-red-400">({{ $differenceCount }})</span></p>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-500"><i class="ri-group-2-line text-2xl"></i></div>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center">
             <div>
@@ -132,25 +132,7 @@
         </div>
         <div class="lg:col-span-1">
             <div class="bg-white p-6 rounded-lg shadow-sm h-full">
-                <h4 class="font-bold text-lg text-gray-800 mb-4">Miembros por Logia</h4>
-                <div class="space-y-4">
-                    @php
-                        $colors = ['#4f46e5', '#ec4899', '#f59e0b', '#38bdf8', '#14b8a6'];
-                    @endphp
-                    @forelse ($lodgesWithMemberCount as $lodge)
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span class="truncate">{{ $lodge->name }}</span>
-                                <span>{{ $lodge->users_count }}</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="h-2.5 rounded-full" style="width: {{ $maxMembers > 0 ? ($lodge->users_count / $maxMembers) * 100 : 0 }}%; background-color: {{ $colors[$loop->index % count($colors)] }}"></div>
-                            </div>
-                        </div>
-                    @empty
-                        <p class="text-sm text-gray-500">No hay datos de logias para mostrar.</p>
-                    @endforelse
-                </div>
+                <livewire:admin.lodge-members-overview />
             </div>
         </div>
     </div>
@@ -193,23 +175,25 @@
         </div>
     </div>
 
-    <!-- Third grid for charts -->
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6">
-        <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-sm">
+    <!-- Charts Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+        <div class="bg-white p-6 rounded-lg shadow-sm flex flex-col">
             <h4 class="font-bold text-lg text-gray-800 mb-4">Distribución por Grado</h4>
-            <canvas id="degreePieChart"></canvas>
+            <div class="flex-grow flex items-center justify-center max-h-80">
+                <canvas id="degreePieChart"></canvas>
+            </div>
         </div>
-        <div class="lg:col-span-3 bg-white p-6 rounded-lg shadow-sm">
+        <div class="bg-white p-6 rounded-lg shadow-sm flex flex-col">
             <h4 class="font-bold text-lg text-gray-800 mb-4">Crecimiento de Miembros (Últimos 6 Meses)</h4>
-            <canvas id="memberGrowthLineChart"></canvas>
+            <div class="flex-grow flex items-center justify-center">
+                <canvas id="memberGrowthLineChart"></canvas>
+            </div>
         </div>
-    </div>
-
-    <!-- Fourth grid for content growth chart -->
-    <div class="mt-6">
-        <div class="bg-white p-6 rounded-lg shadow-sm">
+        <div class="bg-white p-6 rounded-lg shadow-sm flex flex-col">
             <h4 class="font-bold text-lg text-gray-800 mb-4">Crecimiento de Contenido (Últimos 6 Meses)</h4>
-            <canvas id="contentGrowthLineChart"></canvas>
+            <div class="flex-grow flex items-center justify-center">
+                <canvas id="contentGrowthLineChart"></canvas>
+            </div>
         </div>
     </div>
 @endsection
@@ -240,7 +224,7 @@
                 responsive: true,
                 plugins: {
                     legend: {
-                        position: 'top',
+                        position: 'left',
                     }
                 }
             }

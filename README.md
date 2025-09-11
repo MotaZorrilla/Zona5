@@ -30,23 +30,36 @@ Desarrollar el portal administrativo y público para la **Gran Zona 5 de la Gran
 
 ## 3. Plan de Desarrollo y Estado Actual
 
-*   **Última Actualización:** 9 de Septiembre, 2025.
+*   **Última Actualización:** 11 de Septiembre, 2025.
 
 ### Próximo Paso Inmediato (PRIORIDAD)
 
-*   **Dinamizar el contenido del sitio público**, comenzando por el módulo de **Noticias y Eventos**. Se creará el CRUD y se conectará la vista `public/news` a datos reales.
+*   **URGENTE: Reparar la funcionalidad de ordenamiento y búsqueda en la tabla de Venerables Maestros.** La tabla no está funcionando como debería y es la máxima prioridad.
 
 ### Resumen del Progreso
 
 Se ha finalizado una fase crucial de **fundación y estabilización del backend**. Después de una auditoría de frontend exhaustiva, se re-priorizó el plan de trabajo para solucionar inconsistencias y funcionalidades críticas antes de proceder con nuevas características.
 
 **Logros Clave de esta Fase:**
+1.  **Mejoras Adicionales en Venerables Maestros:** Se ha corregido la funcionalidad de ordenamiento por nombre, logia y número de logia en la tabla de Venerables Maestros. Además, se ha ajustado el título de la columna "Número de Logia" a "Número" para mayor concisión.
+1.  **Funcionalidad de Edición de Venerables Maestros:** Se ha implementado un modal de edición en el componente Livewire de Venerables Maestros. Este modal permite actualizar los detalles de un Venerable Maestro (nombre, teléfono) y, crucialmente, cambiar el Venerable Maestro de una logia, asignando un nuevo miembro y actualizando la posición del anterior.
+1.  **Mejoras de UI/UX en Venerables Maestros:** Se ha refactorizado la tabla de "Venerables Maestros por Logia" a un componente Livewire, aplicando estilos visuales consistentes con el resto del panel de administración (colores, filas alternas, etc.). Se ha implementado la funcionalidad de ordenamiento por nombre y logia, y se muestra el número de logia junto al nombre, mejorando la usabilidad y presentación de los datos.
+1.  **Refactorización de Seeders:** Se ha realizado una refactorización completa de los seeders de la base de datos para eliminar conflictos y duplicados. Se eliminó el `UserSeeder` general y se consolidó la creación de todos los miembros, incluyendo los Venerables Maestros, dentro del seeder específico de cada logia. Esto asegura una única fuente de verdad para los datos de los miembros y mejora la integridad de la información.
+1.  **Corrección en Consulta de Dignatarios:** Se ha reparado y optimizado la consulta Eloquent en `ZoneDignitaryController` que obtiene los Venerables Maestros. La consulta anterior era incorrecta y no devolvía resultados, lo que impedía que la tabla se mostrara. La nueva consulta es más eficiente y funcional, asegurando que los datos se muestren correctamente.
+1.  **Consistencia de UI en Dignatarios:** Se ha rediseñado la página de "Directorio de Dignatarios" para alinearla con el estilo visual del resto del panel de administración. Se unificó el layout, se eliminaron los contenedores de ancho limitado y se consolidó la información en una única tarjeta principal, mejorando la coherencia de la experiencia de usuario.
+1.  **Estandarización de Seeders:** Se han auditado y corregido todos los seeders de la base de datos para eliminar la generación de correos electrónicos ficticios, asegurando que se asigne `null` cuando no se proporciona un email. Esto mejora la calidad y consistencia de los datos de prueba y previene posibles conflictos.
+1.  **Población de Datos Completada:** Se ha integrado y poblado la base de datos con la información completa de los miembros de la logia "Domingo Faustino Sarmiento N° 167", finalizando la carga inicial de datos de las logias de la jurisdicción.
 1.  **Lógica de Sesión Corregida:** Se implementó un menú de navegación dinámico y basado en roles para los usuarios autenticados, diferenciando claramente entre usuarios normales y administradores.
 2.  **Perfil de Usuario Rediseñado:** La página de perfil de usuario (`/profile`) fue completamente rediseñada para ser visualmente consistente con el tema del panel de administración.
 3.  **CRUD de Admin Funcional:** Se verificó e implementó por completo el backend para la **Gestión de Logias** y la **Gestión de Miembros/Dignatarios** en el panel de administración. Las vistas del admin ahora son dinámicas y reflejan el estado real de la base de datos.
 4.  **Frontend Público Conectado:** La sección pública para visualizar una logia y sus miembros (`/lodges/{slug}`) ahora es completamente dinámica y funcional.
 5.  **Dashboard Dinámico:** Los indicadores clave (KPIs) para Miembros y Logias, así como el listado de "Miembros por Logia", ahora son dinámicos y muestran datos reales de la base de datos.
 6.  **Sistema de Actividad:** Se ha implementado un sistema de registro de actividad (`ActivityLog`) para rastrear eventos clave. El primer evento integrado es el registro de nuevos usuarios, que ya se muestra en el feed de "Actividad Reciente" del dashboard.
+7.  **Consistencia de UI en Gestión:** Se han unificado los estilos de los botones y filtros en la sección de "Gestión de Miembros" para una experiencia de usuario más coherente y profesional.
+8.  **Mejoras en la Tabla de Miembros:** Se ha enriquecido la tabla de gestión de miembros añadiendo la columna "Grado" y mejorando el filtro de logias para mostrar su número, facilitando la identificación y el ordenamiento de los usuarios.
+9.  **Estandarización de Datos:** Se ha corregido y estandarizado el almacenamiento del grado de los miembros en la base de datos, asegurando que se guarde como "Maestro" en lugar de "Maestro Masón" para mantener la consistencia y prevenir errores.
+10. **Mejora Visual en Gestión de Miembros:** Se ha rediseñado la tabla de miembros y sus elementos de control con una paleta de colores más rica y funcional. Esto incluye una cabecera de tabla con el color primario, filas alternadas, distintivos de color para los grados, y una paginación, buscador y filtros estilizados para una experiencia de usuario más coherente y atractiva.
+11. **Consistencia Visual del CRUD de Miembros:** Se ha extendido el nuevo lenguaje de diseño a todas las vistas relacionadas con la gestión de miembros (Crear, Editar y Mostrar), asegurando una experiencia de usuario unificada, profesional y visualmente atractiva en todo el módulo.
 
 La base de la aplicación es ahora significativamente más robusta y coherente.
 
@@ -92,6 +105,16 @@ La base de la aplicación es ahora significativamente más robusta y coherente.
     *   [/] Repositorio de Documentos (`archive` y `admin/repository`) *(Maquetación completa)*.
 *   **Módulo de Analítica e Informes (El Puente de Mando - Inicial)**
     *   [x] Dashboard Básico (`admin/dashboard`) *(KPIs, widgets y feed de actividad funcionales)*.
+        *   **Mejoras Recientes:**
+            *   Reordenamiento de tarjetas de estadísticas (Logias Activas, Aprendices, Compañeros, Maestros, Miembros, Mensajes Nuevos).
+            *   Ajuste de la etiqueta "Maestros Masones" a "Maestros" en las tarjetas y en la lógica de conteo por grado.
+            *   Dinamización de tarjetas de grado (Aprendices, Compañeros, Maestros) para mostrar conteos reales.
+            *   Cambio de "Miembros Totales" a "Miembros" en la tarjeta principal.
+            *   Adición de un indicador de diferencia en la tarjeta "Miembros", mostrando el número de usuarios sin un grado específico asignado.
+            *   Alineación de los tres gráficos principales (Distribución por Grado, Crecimiento de Miembros, Crecimiento de Contenido) en una sola fila para una visualización más compacta.
+            *   Ajuste de la leyenda del gráfico "Distribución por Grado" a la izquierda para optimizar el espacio.
+            *   Centrado vertical de los gráficos de "Crecimiento de Miembros" y "Crecimiento de Contenido" dentro de sus tarjetas, manteniendo sus títulos alineados en la parte superior.
+            *   Ajuste del tamaño del gráfico "Distribución por Grado" para asegurar consistencia visual con los otros gráficos, haciéndolo ligeramente más grande que el tamaño inicial reducido.
     *   [/] Sistema de Registro de Actividad (`ActivityLog`) *(Base implementada, registrando creación de usuarios)*.
 
 ### Fase 2: Crecimiento y Comunidad

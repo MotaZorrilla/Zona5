@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('lodges', function (Blueprint $table) {
-            $table->renameColumn('oriente', 'orient');
+            $table->date('foundation_date')->nullable()->after('address');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('lodges', function (Blueprint $table) {
-            $table->renameColumn('orient', 'oriente');
+            $table->dropColumn('foundation_date');
         });
     }
 };
