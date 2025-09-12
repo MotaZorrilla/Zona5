@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Gran Zona 5')</title>
 
+    <x-favicon-link />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,7 +72,7 @@
                 <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
                     <a href="{{ route('welcome') }}" class="flex items-center">
-                        <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white text-xl font-bold">Z5</div>
+                        <x-application-logo class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary-500 text-xl font-bold" />
                         <span class="ml-3 text-2xl font-bold text-white">Gran Zona 5</span>
                     </a>
                 </div>

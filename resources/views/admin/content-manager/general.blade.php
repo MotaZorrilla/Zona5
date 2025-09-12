@@ -1,33 +1,5 @@
 <div class="p-4 sm:p-6 space-y-6">
-    <div class="bg-white shadow-md rounded-lg p-6">
-        <h3 class="text-xl font-bold text-slate-800 mb-4">Identidad y Marca</h3>
-        <div class="space-y-4">
-            <div>
-                <label for="site_name" class="block text-sm font-medium text-slate-700">Nombre del Sitio</label>
-                <input type="text" id="site_name" value="Gran Zona 5" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
-            </div>
-            <div>
-                <label for="theme_color" class="block text-sm font-medium text-slate-700">Color Principal del Tema</label>
-                <input type="color" id="theme_color" value="#3b82f6" class="mt-1 block w-20 h-10 rounded-md border-slate-300 shadow-sm">
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-slate-700">Logo del Sitio (Modo Claro)</label>
-                    <div class="mt-1 flex items-center">
-                        <img src="https://placehold.co/150x50/EFEFEF/AAAAAA&text=Logo" alt="Logo" class="h-12 mr-4 bg-slate-200 p-1 rounded">
-                        <input type="file" class="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-700">Favicon</label>
-                    <div class="mt-1 flex items-center">
-                        <img src="https://placehold.co/32x32/EFEFEF/AAAAAA&text=ico" alt="Favicon" class="h-8 w-8 mr-4">
-                        <input type="file" class="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @livewire('admin.content-manager.brand-identity')
 
     <div class="bg-white shadow-md rounded-lg p-6">
         <h3 class="text-xl font-bold text-slate-800 mb-4">Gestión de Navegación Principal</h3>

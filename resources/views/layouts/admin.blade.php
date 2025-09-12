@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Dashboard') - Gran Zona 5</title>
     
+    <x-favicon-link />
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,4 +132,11 @@
     @vite('resources/js/app.js')
     @stack('scripts')
 </body>
+<script>
+    document.addEventListener('livewire:initialized', () => {
+        Livewire.on('refresh-page', () => {
+            window.location.reload();
+        });
+    });
+</script>
 </html>

@@ -2,7 +2,7 @@
 <div class="fixed left-0 top-0 w-64 h-full bg-white p-4 z-50 shadow-lg transition-transform duration-300" :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
     <div class="flex items-center justify-between pb-4 border-b">
         <a href="{{ route('welcome') }}" target="_blank" rel="noopener" class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white text-xl font-bold">Z5</div>
+            <x-application-logo class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary-500 text-xl font-bold" />
             <span class="text-xl font-bold text-gray-800 ml-3">Gran Zona 5</span>
         </a>
         <button @click="sidebarOpen = false" class="text-gray-500 hover:text-gray-800">
