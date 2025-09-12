@@ -11,19 +11,19 @@
         <table class="min-w-full divide-y divide-gray-200 bg-white">
             <thead class="bg-primary-500">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider cursor-pointer" wire:click="sortBy('name')">Nombre
-                        @if ($sortBy === 'name')
-                            <i class="ri-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-line ml-1"></i>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider cursor-pointer" wire:click="order('name')">Nombre
+                        @if ($orderBy === 'name')
+                            <i class="ri-arrow-{{ $orderDirection === 'asc' ? 'up' : 'down' }}-line ml-1"></i>
                         @endif
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider cursor-pointer" wire:click="sortBy('lodge_name')">Logia
-                        @if ($sortBy === 'lodge_name')
-                            <i class="ri-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-line ml-1"></i>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider cursor-pointer" wire:click="order('lodge_name')">Logia
+                        @if ($orderBy === 'lodge_name')
+                            <i class="ri-arrow-{{ $orderDirection === 'asc' ? 'up' : 'down' }}-line ml-1"></i>
                         @endif
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider cursor-pointer" wire:click="sortBy('lodge_number')">Número
-                        @if ($sortBy === 'lodge_number')
-                            <i class="ri-arrow-{{ $sortDirection === 'asc' ? 'up' : 'down' }}-line ml-1"></i>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider cursor-pointer" wire:click="order('lodge_number')">Número
+                        @if ($orderBy === 'lodge_number')
+                            <i class="ri-arrow-{{ $orderDirection === 'asc' ? 'up' : 'down' }}-line ml-1"></i>
                         @endif
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Contacto</th>
@@ -37,10 +37,10 @@
                             <div class="text-sm font-semibold text-gray-900">{{ $vm->name }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                            {{ $vm->lodge_name }}
+                            {{ $vm->lodges->first()->name ?? 'N/A' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                            {{ $vm->lodge_number }}
+                            {{ $vm->lodges->first()->number ?? 'N/A' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $vm->phone_number ?? 'No disponible' }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

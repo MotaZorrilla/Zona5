@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ContentManagerController;
 use App\Http\Controllers\Public\LodgeController as PublicLodgeController;
+use App\Http\Controllers\Public\AboutUsController;
 
 Route::view('/', 'welcome')->name('welcome');
 
@@ -25,7 +26,9 @@ Route::post('logout', function () {
 })->name('logout');
 
 Route::name('public.')->group(function () {
-    Route::view('/about-us', 'public.about-us')->name('about-us');
+
+
+Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
     Route::view('/lodges', 'public.lodges')->name('lodges');
     Route::get('logias/{slug}', [PublicLodgeController::class, 'show'])->name('lodges.show');
     Route::view('/forums', 'public.forums')->name('forums');

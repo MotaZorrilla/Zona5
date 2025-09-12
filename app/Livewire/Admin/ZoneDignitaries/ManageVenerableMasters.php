@@ -13,8 +13,8 @@ class ManageVenerableMasters extends Component
 {
     use WithPagination;
 
-    public $sortBy = 'name';
-    public $sortDirection = 'asc';
+    public $orderBy = 'name';
+    public $orderDirection = 'asc';
     public $search = '';
 
     public $showEditModal = false;
@@ -32,14 +32,14 @@ class ManageVenerableMasters extends Component
         'selectedNewVmId' => 'nullable|exists:users,id',
     ];
 
-    public function sortBy($field)
+    public function order($field)
     {
-        if ($this->sortBy === $field) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        if ($this->orderBy === $field) {
+            $this->orderDirection = $this->orderDirection === 'asc' ? 'desc' : 'asc';
         } else {
-            $this->sortDirection = 'asc';
+            $this->orderDirection = 'asc';
         }
-        $this->sortBy = $field;
+        $this->orderBy = $field;
     }
 
     public function openEditModal($vmId)
@@ -129,55 +129,37 @@ class ManageVenerableMasters extends Component
     {
         $vmPositionId = Position::where('name', 'Venerable Maestro')->value('id');
 
-        $query = User::query();
+        $query = User::query()
+            ->select('users.*')
+            ->with(['lodges' => function ($query) use ($vmPositionId) {
+                $query->where('lodge_user.position_id', $vmPositionId);
+            }])
+            ->whereHas('lodges', function ($q) use ($vmPositionId) {
+                $q->where('lodge_user.position_id', $vmPositionId);
+            })
+            ->join('lodge_user', 'users.id', '=', 'lodge_user.user_id')
+            ->join('lodges', 'lodge_user.lodge_id', '=', 'lodges.id')
+            ->where('lodge_user.position_id', $vmPositionId);
 
-        // Apply the Venerable Master filter first
-        $query->whereHas('lodges', function ($q) use ($vmPositionId) {
-            $q->where('lodge_user.position_id', $vmPositionId);
-        });
-
-        // Apply search filter
         if ($this->search) {
             $query->where(function($q) {
-                $q->where('name', 'like', '%' . $this->search . '%')
-                  ->orWhereHas('lodges', function($q2) {
-                      $q2->where('name', 'like', '%' . $this->search . '%')
-                         ->orWhere('number', 'like', '%' . $this->search . '%');
-                  });
+                $q->where('users.name', 'like', '%' . $this->search . '%')
+                  ->orWhere('lodges.name', 'like', '%' . $this->search . '%');
             });
         }
 
-        // Apply Joins and Selects for Sorting by related fields
-        if (in_array($this->sortBy, ['lodge_name', 'lodge_number'])) {
-            $query->leftJoin('lodge_user', 'users.id', '=', 'lodge_user.user_id')
-                  ->leftJoin('lodges', 'lodge_user.lodge_id', '=', 'lodges.id')
-                  ->select('users.*', 'lodges.name as lodge_name', 'lodges.number as lodge_number');
+        if ($this->orderBy === 'lodge_name') {
+            $query->orderBy('lodges.name', $this->orderDirection);
+        } elseif ($this->orderBy === 'lodge_number') {
+            $query->orderBy('lodges.number', $this->orderDirection);
+        } else {
+            $query->orderBy('users.' . $this->orderBy, $this->orderDirection);
         }
 
-        // Apply sorting
-        if (in_array($this->sortBy, ['name', 'phone_number'])) {
-            $query->orderBy($this->sortBy, $this->sortDirection);
-        } elseif ($this->sortBy === 'lodge_name') {
-            $query->orderBy('lodge_name', $this->sortDirection);
-        } elseif ($this->sortBy === 'lodge_number') {
-            $query->orderBy('lodge_number', $this->sortDirection);
-        }
+        $venerableMasters = $query->paginate(10);
 
-        $venerableMasters = $query->with(['lodges' => function ($query) use ($vmPositionId) {
-            $query->where('lodge_user.position_id', $vmPositionId);
-        }])
-        ->paginate(10)
-        ->map(function ($user) {
-            $lodge = $user->lodges->first();
-            return (object) [
-                'id' => $user->id,
-                'name' => $user->name,
-                'lodge_name' => $lodge ? $lodge->name : 'N/A',
-                'lodge_number' => $lodge ? $lodge->number : 'N/A',
-                'phone_number' => $user->phone_number,
-            ];
-        });
-
-        return view('livewire.admin.zone-dignitaries.manage-venerable-masters', compact('venerableMasters'));
+        return view('livewire.admin.zone-dignitaries.manage-venerable-masters', [
+            'venerableMasters' => $venerableMasters,
+        ]);
     }
 }

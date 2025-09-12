@@ -89,57 +89,39 @@
                     <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestra Junta Directiva</h2>
                     <p class="mt-4 text-lg text-gray-500">El equipo que lidera y coordina los trabajos de la Gran Zona 5.</p>
                 </div>
-                @php
-                    $boardMembers = [
-                        [
-                            'name' => 'Luis Bartolo',
-                            'role' => 'Gran Maestro de Zona',
-                            'image' => 'https://picsum.photos/seed/board1/500/500',
-                            'bio' => 'Líder con más de 20 años de experiencia en la masonería, enfocado en el crecimiento y la fraternidad de la zona. Su gestión se centra en la modernización y la apertura de la institución a la sociedad.'
-                        ],
-                        [
-                            'name' => 'Carlos Larreal',
-                            'role' => 'Diputado Gran Maestro',
-                            'image' => 'https://picsum.photos/seed/board2/500/500',
-                            'bio' => 'Mano derecha del Gran Maestro, encargado de la supervisión de las logias y el cumplimiento de los reglamentos. Apasionado por la historia y la docencia masónica.'
-                        ],
-                        [
-                            'name' => 'Pedro González',
-                            'role' => 'Gran Secretario',
-                            'image' => 'https://picsum.photos/seed/board3/500/500',
-                            'bio' => 'Responsable de la comunicación oficial, la documentación y las actas de la Gran Zona. Su labor es fundamental para la organización y el registro histórico de nuestras actividades.'
-                        ],
-                        [
-                            'name' => 'José Fernández',
-                            'role' => 'Gran Tesorero',
-                            'image' => 'https://picsum.photos/seed/board4/500/500',
-                            'bio' => 'Guardián de las finanzas y los recursos de la Gran Zona. Administrador experimentado que asegura la sostenibilidad y el buen uso de los fondos para las obras de beneficencia y el mantenimiento.'
-                        ],
-                    ];
-                @endphp
-                <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16">
                     @foreach ($boardMembers as $member)
-                        <x-card-member :image="$member['image']" :name="$member['name']" :role="$member['role']" :slug="Str::slug($member['name'])" />
-
-                        <x-modal :name="Str::slug($member['name'])" maxWidth="lg">
-                            <div class="p-6">
-                                <div class="flex flex-col sm:flex-row items-center">
-                                    <img class="h-32 w-32 rounded-full object-cover shadow-lg flex-shrink-0" src="{{ $member['image'] }}" alt="">
-                                    <div class="mt-4 sm:mt-0 sm:ml-6 text-center sm:text-left">
-                                        <h3 class="text-2xl font-bold text-gray-900">{{ $member['name'] }}</h3>
-                                        <p class="text-lg text-primary-600 font-semibold">{{ $member['role'] }}</p>
-                                    </div>
-                                </div>
-                                <p class="mt-6 text-gray-600 text-justify">{{ $member['bio'] }}</p>
-                                <div class="mt-6 flex justify-end">
-                                    <x-secondary-button x-on:click="$dispatch('close-modal', '{{ Str::slug($member['name']) }}')">
-                                        Cerrar
-                                    </x-secondary-button>
-                                </div>
-                            </div>
-                        </x-modal>
+                        @php
+                            $slug = Str::slug($member->name);
+                            $imageUrl = "https://picsum.photos/seed/{$slug}/500/500";
+                        @endphp
+                        <x-card-member :image="$imageUrl" :name="$member->name" :role="$member->role" :slug="$slug" />
                     @endforeach
                 </div>
+
+                @foreach ($boardMembers as $member)
+                    @php
+                        $slug = Str::slug($member->name);
+                        $imageUrl = "https://picsum.photos/seed/{$slug}/500/500";
+                    @endphp
+                    <x-modal :name="$slug" maxWidth="lg">
+                        <div class="p-6">
+                            <div class="flex flex-col sm:flex-row items-center">
+                                <img class="h-32 w-32 rounded-full object-cover shadow-lg flex-shrink-0" src="{{ $imageUrl }}" alt="">
+                                <div class="mt-4 sm:mt-0 sm:ml-6 text-center sm:text-left">
+                                    <h3 class="text-2xl font-bold text-gray-900">{{ $member->name }}</h3>
+                                    <p class="text-lg text-primary-600 font-semibold">{{ $member->role }}</p>
+                                </div>
+                            </div>
+                            <p class="mt-6 text-gray-600 text-justify">{{ $member->bio ?? 'Biografía no disponible.' }}</p>
+                            <div class="mt-6 flex justify-end">
+                                <x-secondary-button x-on:click="$dispatch('close-modal', '{{ $slug }}')">
+                                    Cerrar
+                                </x-secondary-button>
+                            </div>
+                        </div>
+                    </x-modal>
+                @endforeach
             </div>
         </div>
     </div>

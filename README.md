@@ -34,13 +34,14 @@ Desarrollar el portal administrativo y público para la **Gran Zona 5 de la Gran
 
 ### Próximo Paso Inmediato (PRIORIDAD)
 
-*   **URGENTE: Reparar la funcionalidad de ordenamiento y búsqueda en la tabla de Venerables Maestros.** La tabla no está funcionando como debería y es la máxima prioridad.
+*   **CORREGIDO: Reparada la funcionalidad de ordenamiento y búsqueda en la tabla de Venerables Maestros.** Se refactorizó el componente Livewire `ManageVenerableMasters` para optimizar la consulta a la base de datos, utilizando `joins` para permitir el ordenamiento por columnas de tablas relacionadas (logia y número de logia) y simplificando la lógica de búsqueda. Se corrigieron varios errores de JavaScript y de sintaxis PHP que impedían que la funcionalidad operara correctamente.
 
 ### Resumen del Progreso
 
 Se ha finalizado una fase crucial de **fundación y estabilización del backend**. Después de una auditoría de frontend exhaustiva, se re-priorizó el plan de trabajo para solucionar inconsistencias y funcionalidades críticas antes de proceder con nuevas características.
 
 **Logros Clave de esta Fase:**
+1.  **Funcionalidad de Ordenamiento y Búsqueda Reparada en Venerables Maestros:** Se ha reparado y optimizado por completo la funcionalidad de ordenamiento y búsqueda en la tabla de Venerables Maestros. Se refactorizó la consulta del componente Livewire para usar `JOINs` de base de datos, permitiendo un ordenamiento eficiente por nombre, nombre de logia y número de logia. La lógica de búsqueda ahora también es más rápida y precisa. Se corrigieron una serie de errores de JavaScript y PHP que impedían el correcto funcionamiento.
 1.  **Mejoras Adicionales en Venerables Maestros:** Se ha corregido la funcionalidad de ordenamiento por nombre, logia y número de logia en la tabla de Venerables Maestros. Además, se ha ajustado el título de la columna "Número de Logia" a "Número" para mayor concisión.
 1.  **Funcionalidad de Edición de Venerables Maestros:** Se ha implementado un modal de edición en el componente Livewire de Venerables Maestros. Este modal permite actualizar los detalles de un Venerable Maestro (nombre, teléfono) y, crucialmente, cambiar el Venerable Maestro de una logia, asignando un nuevo miembro y actualizando la posición del anterior.
 1.  **Mejoras de UI/UX en Venerables Maestros:** Se ha refactorizado la tabla de "Venerables Maestros por Logia" a un componente Livewire, aplicando estilos visuales consistentes con el resto del panel de administración (colores, filas alternas, etc.). Se ha implementado la funcionalidad de ordenamiento por nombre y logia, y se muestra el número de logia junto al nombre, mejorando la usabilidad y presentación de los datos.
@@ -84,7 +85,7 @@ La base de la aplicación es ahora significativamente más robusta y coherente.
 
 *   **Módulo de Presencia Pública (El Escaparate)**
     *   [/] Página de Inicio (`welcome`) *(Maquetación completa)*.
-    *   [/] Página "Quiénes Somos" (`about-us`) con sección de Junta Directiva interactiva *(Maquetación completa)*.
+    *   [x] Página "Quiénes Somos" (`about-us`) con sección de Junta Directiva interactiva *(Backend y frontend conectados y funcionales, diseño de tarjetas de miembros actualizado y optimizado)*.
     *   [x] Listado de Logias (`lodges`) y vista de detalle (`lodge-show`) *(Backend y frontend conectados y funcionales)*.
     *   [/] Formulario de Contacto (`contact`) *(Maquetación completa)*.
     *   [x] Navegación completa y adaptativa, con lógica de roles para usuarios autenticados.
