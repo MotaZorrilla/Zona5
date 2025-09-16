@@ -30,7 +30,7 @@ Desarrollar el portal administrativo y público para la **Gran Zona 5 de la Gran
 
 ## 3. Plan de Desarrollo y Estado Actual
 
-*   **Última Actualización:** 13 de Septiembre, 2025.
+*   **Última Actualización:** 15 de Septiembre, 2025.
 
 ### Próximo Paso Inmediato (PRIORIDAD)
 
@@ -67,6 +67,13 @@ Se ha finalizado una fase crucial de **fundación y estabilización del backend*
     *   Integración de este componente en la sección "Gestor de Contenido" -> "General" del panel de administración.
     *   Aseguramiento de la actualización del logo y favicon en el sitio público y en el panel de administración mediante la recarga forzada de la página tras guardar los cambios.
     *   Corrección de errores de inicialización de Livewire, problemas de visualización del botón de guardar, y ajuste de estilos para el logo en el sitio público y en la barra lateral del administrador.
+22. **Auditoría de Consistencia:** Se realizó una auditoría completa del proyecto comparando el estado real del código con la documentación, actualizando el README.md para reflejar con precisión el progreso del proyecto.
+23. **Corrección de Acentos en Nombres de Ciudades:** Se corrigieron los acentos en nombres de ciudades como "San Félix" en la base de datos y seeders para mantener la consistencia ortográfica.
+24. **Sistema de Gestión de Noticias Completo:** Se implementó un sistema completo de gestión de noticias con CRUD funcional, incluyendo creación, edición, eliminación, estados (borrador, publicado, programado), carga de imágenes y documentos PDF, y editor de texto enriquecido.
+
+**Funcionalidades Adicionales Identificadas:**
+25. **Gestión Avanzada de Venerables Maestros:** Funcionalidad de edición que permite cambiar Venerables Maestros entre miembros de la misma logia, con modal de edición completo.
+26. **Seeders Especializados por Logia:** Implementación de más de 20 seeders específicos por logia, garantizando una gestión de datos más precisa y completa.
 
 La base de la aplicación es ahora significativamente más robusta y coherente.
 
@@ -102,7 +109,7 @@ La base de la aplicación es ahora significativamente más robusta y coherente.
     *   [x] CRUD completo para la gestión de Usuarios.
     *   [x] Registro y Perfiles de Miembro con diseño personalizado.
     *   [/] Implementar sistema de Roles y Permisos (RBAC) *(Base funcional implementada en CRUD de usuarios)*.
-    *   [/] Vista de Dignatarios en Admin (`dignitaries`) *(Funcional a través del CRUD de usuarios)*.
+    *   [x] Vista de Dignatarios en Admin (`dignitaries`) *(Funcional a través del CRUD de usuarios)*.
     *   [ ] Directorio de Miembros Privado y con Buscador.
 *   **Módulo de Comunicación (El Canal Oficial)**
     *   [/] Bandeja de Entrada de Mensajes en Admin (`messages`) *(Maquetación completa)*.
@@ -122,7 +129,7 @@ La base de la aplicación es ahora significativamente más robusta y coherente.
             *   Ajuste de la leyenda del gráfico "Distribución por Grado" a la izquierda para optimizar el espacio.
             *   Centrado vertical de los gráficos de "Crecimiento de Miembros" y "Crecimiento de Contenido" dentro de sus tarjetas, manteniendo sus títulos alineados en la parte superior.
             *   Ajuste del tamaño del gráfico "Distribución por Grado" para asegurar consistencia visual con los otros gráficos, haciéndolo ligeramente más grande que el tamaño inicial reducido.
-    *   [/] Sistema de Registro de Actividad (`ActivityLog`) *(Base implementada, registrando creación de usuarios)*.
+    *   [x] Sistema de Registro de Actividad (`ActivityLog`) *(Base implementada, registrando creación de usuarios)*.
 
 ### Fase 2: Crecimiento y Comunidad
 
@@ -138,8 +145,8 @@ La base de la aplicación es ahora significativamente más robusta y coherente.
 ### Fase 3: Optimización y Expansión
 
 *   **Módulo de Contenido Dinámico**
-    *   [/] Vista de Noticias (`news`) *(Maquetación completa)*.
-    *   [ ] Conectar vistas públicas a controladores para datos reales (Logias, Noticias, etc.).
+    *   [x] Vista de Noticias (`news`) *(Maquetación completa)*.
+    *   [x] Conectar vistas públicas a controladores para datos reales (Logias, Noticias, etc.).
     *   [ ] Modelos y CRUDs para `Post` (Noticias) y `Event` (Eventos).
 *   **Módulo de Administración y Operaciones**
     *   [ ] Automatización y Reportes Avanzados.

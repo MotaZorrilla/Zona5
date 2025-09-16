@@ -101,6 +101,7 @@ return new class extends Migration
             $table->text('excerpt');
             $table->longText('content');
             $table->string('image_path')->nullable();
+            $table->string('pdf_path')->nullable();
             $table->string('status')->default('draft'); // draft, pending, published, archived
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

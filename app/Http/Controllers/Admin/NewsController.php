@@ -12,7 +12,15 @@ class NewsController extends Controller
 {
     public function index()
     {
-        return view('admin.news');
+        // Obtener todas las noticias con sus autores, ordenadas por fecha de creación
+        $news = News::with('author')->orderBy('created_at', 'desc')->get();
+        
+        // Separar noticias por estado
+        $published = $news->where('status', 'published');
+        $drafts = $news->where('status', 'draft');
+        $scheduled = $news->where('status', 'scheduled');
+        
+        return view('admin.news', compact('news', 'published', 'drafts', 'scheduled'));
     }
 
     public function create()
@@ -24,18 +32,29 @@ class NewsController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'excerpt' => 'required|string',
+            'excerpt' => 'required|string|max:255',
             'content' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:draft,published',
+            'pdf' => 'nullable|file|mimes:pdf|max:5120', // 5MB max
+            'status' => 'required|in:draft,published,scheduled',
+            'published_at' => 'nullable|date',
         ]);
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            // El segundo argumento 'public' usa el disco configurado en filesystems.php
-            // que ahora apunta a public/uploads.
-            // El primer argumento es la subcarpeta dentro de 'uploads'.
-            $imagePath = $request->file('image')->store('news', 'public');
+            $imagePath = $request->file('image')->store('news/images', 'public');
+        }
+
+        $pdfPath = null;
+        if ($request->hasFile('pdf')) {
+            $pdfPath = $request->file('pdf')->store('news/pdfs', 'public');
+        }
+
+        $publishedAt = null;
+        if ($request->status === 'published') {
+            $publishedAt = now();
+        } elseif ($request->status === 'scheduled' && $request->published_at) {
+            $publishedAt = $request->published_at;
         }
 
         News::create([
@@ -45,10 +64,68 @@ class NewsController extends Controller
             'excerpt' => $request->excerpt,
             'content' => $request->content,
             'image_path' => $imagePath,
+            'pdf_path' => $pdfPath,
             'status' => $request->status,
-            'published_at' => $request->status === 'published' ? now() : null,
+            'published_at' => $publishedAt,
         ]);
 
         return redirect()->route('admin.news.index')->with('success', 'Noticia creada exitosamente.');
+    }
+
+    public function edit(News $news)
+    {
+        return view('admin.news.edit', compact('news'));
+    }
+
+    public function update(Request $request, News $news)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'excerpt' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'pdf' => 'nullable|file|mimes:pdf|max:5120', // 5MB max
+            'status' => 'required|in:draft,published,scheduled',
+            'published_at' => 'nullable|date',
+        ]);
+
+        $imagePath = $news->image_path;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('news/images', 'public');
+        }
+
+        $pdfPath = $news->pdf_path;
+        if ($request->hasFile('pdf')) {
+            $pdfPath = $request->file('pdf')->store('news/pdfs', 'public');
+        }
+
+        $publishedAt = $news->published_at;
+        if ($request->status === 'published' && !$news->published_at) {
+            $publishedAt = now();
+        } elseif ($request->status === 'scheduled' && $request->published_at) {
+            $publishedAt = $request->published_at;
+        } elseif ($request->status === 'draft') {
+            $publishedAt = null;
+        }
+
+        $news->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'excerpt' => $request->excerpt,
+            'content' => $request->content,
+            'image_path' => $imagePath,
+            'pdf_path' => $pdfPath,
+            'status' => $request->status,
+            'published_at' => $publishedAt,
+        ]);
+
+        return redirect()->route('admin.news.index')->with('success', 'Noticia actualizada exitosamente.');
+    }
+
+    public function destroy(News $news)
+    {
+        $news->delete();
+        
+        return redirect()->route('admin.news.index')->with('success', 'Noticia eliminada exitosamente.');
     }
 }

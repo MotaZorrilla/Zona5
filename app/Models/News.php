@@ -16,7 +16,17 @@ class News extends Model
         'excerpt',
         'content',
         'image_path',
+        'pdf_path',
         'status',
         'published_at',
     ];
+
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

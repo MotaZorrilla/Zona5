@@ -52,8 +52,11 @@
                                 <li class="flex items-center p-3 bg-gray-50 rounded-md">
                                     <i class="ri-user-star-line text-primary-600 mr-3"></i>
                                     <div>
-                                        {{-- Asumimos que el rol se manejará más adelante. Por ahora, un rol genérico --}}
-                                        <p class="font-semibold text-sm text-gray-800">{{ $user->getRoleDisplayName() ?? 'Miembro' }}</p>
+                                        @php
+                                            // Obtener la posición del usuario en esta logia
+                                            $position = $user->positions->firstWhere('pivot.lodge_id', $lodge->id);
+                                        @endphp
+                                        <p class="font-semibold text-sm text-gray-800">{{ $position->name ?? 'Miembro' }}</p>
                                         <p class="text-sm text-gray-600">{{ $user->name }}</p>
                                     </div>
                                 </li>

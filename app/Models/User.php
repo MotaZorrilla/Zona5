@@ -61,4 +61,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Lodge::class, 'lodge_user')->withPivot('position_id')->withTimestamps();
     }
+
+    public function positions()
+    {
+        return $this->belongsToMany(Position::class, 'lodge_user', 'user_id', 'position_id')
+                    ->withPivot('lodge_id')
+                    ->withTimestamps();
+    }
 }

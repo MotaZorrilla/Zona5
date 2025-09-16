@@ -30,7 +30,7 @@ Route::name('public.')->group(function () {
 
 Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
     Route::view('/lodges', 'public.lodges')->name('lodges');
-    Route::get('logias/{slug}', [PublicLodgeController::class, 'show'])->name('lodges.show');
+    Route::get('logias/{lodge}', [PublicLodgeController::class, 'show'])->name('lodges.show');
     Route::view('/forums', 'public.forums')->name('forums');
     Route::view('/school', 'public.school')->name('school');
     Route::view('/archive', 'public.archive')->name('archive');

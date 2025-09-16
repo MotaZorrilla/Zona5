@@ -24,7 +24,7 @@ class LodgeSeeder extends Seeder
             ['name' => 'Estrella Guzman Blanco', 'number' => 130, 'orient' => 'El Dorado', 'foundation_date' => '1800-06-13'],
             ['name' => 'Luz del Orinoco', 'number' => 161, 'orient' => 'Caicara del Orinoco'],
             ['name' => 'Manuel Piar', 'number' => 164, 'orient' => 'Ciudad Piar'],
-            ['name' => 'Domingo Faustino Sarmiento', 'number' => 167, 'orient' => 'Ciudad Guayana', 'history' => 'Fundada el 05 de Junio del 1.966(e∴v∴) e Instalada el 27 de Agosto de 1.966 (e∴v∴). Legalmente Constituida en Ciudad Guayana, Edo. Bolívar – Venezuela. Entidad Autónoma y Soberana, Federada a la Muy Resp∴ Gran Log∴ de la República de Venezuela', 'address' => 'Carrera el Palmar, Edificio Anacaona, Templo Armonía, Cdad. Guayana'],
+            ['name' => 'Domingo Faustino Sarmiento', 'number' => 167, 'orient' => 'Puerto Ordaz', 'history' => 'Fundada el 05 de Junio del 1.966(e∴v∴) e Instalada el 27 de Agosto de 1.966 (e∴v∴). Legalmente Constituida en Ciudad Guayana, Edo. Bolívar – Venezuela. Entidad Autónoma y Soberana, Federada a la Muy Resp∴ Gran Log∴ de la República de Venezuela', 'address' => 'Carrera el Palmar, Edificio Anacaona, Templo Armonía, Cdad. Guayana'],
             ['name' => 'Hans Hauschildt', 'number' => 175, 'orient' => 'Puerto Ordaz'],
             ['name' => 'Estrella de Roraima', 'number' => 188, 'orient' => 'Santa Elena de Uairen'],
             ['name' => 'Dr Cesar Obdulio Iriarte', 'number' => 202, 'orient' => 'Puerto Ordaz'],
@@ -36,7 +36,7 @@ class LodgeSeeder extends Seeder
             ['name' => 'Luz y Reflexión', 'number' => 223, 'orient' => 'Puerto Ordaz', 'foundation_date' => '1989-10-12'],
             ['name' => 'Congreso de Angostura', 'number' => 224, 'orient' => 'Ciudad Bolívar'],
             ['name' => 'Correo del Orinoco', 'number' => 227, 'orient' => 'Ciudad Bolívar', 'history' => 'Elección e Instalación de Dignidades y Oficiales: 29 de enero de 2022 (e.v.)', 'address' => 'Templo Masónico ubicado en la Sede del Hotel La Cumbre Or:. Ciudad Bolívar'],
-            ['name' => 'Bolivar y Sucre', 'number' => 228, 'orient' => 'San Felix', 'address' => 'Carrera 5 de Julio, sector El Roble por Fuera, San Félix estado Bolívar'],
+            ['name' => 'Bolivar y Sucre', 'number' => 228, 'orient' => 'San Félix', 'address' => 'Carrera 5 de Julio, sector El Roble por Fuera, San Félix estado Bolívar'],
             ['name' => 'Justicia y Luz', 'number' => 231, 'orient' => 'Ciudad Bolívar'],
             ['name' => 'Estrella del Supamo', 'number' => 232, 'orient' => 'El Manteco'],
             ['name' => 'Rafael Calabrese', 'number' => 241, 'orient' => 'Ciudad Bolívar'],
@@ -45,7 +45,7 @@ class LodgeSeeder extends Seeder
             ['name' => 'Estudios Tradicionales', 'number' => 262, 'orient' => 'Puerto Ordaz'],
             ['name' => 'Pedro Antonio Olivieri Grillasca', 'number' => 267, 'orient' => 'Tumeremo'],
             ['name' => 'Carlos Daniel Fernández', 'number' => 270, 'orient' => 'Casacoima', 'foundation_date' => '2019-01-08', 'address' => 'Av. Simón Bolívar, Sector Brisas del Triunfo I, Casa S/N°, Municipio Casacoima, Estado Delta Amacuro.'],
-            ['name' => 'Gran Cadena Universal', 'number' => 271, 'orient' => 'San Felix'],
+            ['name' => 'Gran Cadena Universal', 'number' => 271, 'orient' => 'San Félix'],
             ['name' => 'Union Fraternal', 'number' => 281, 'orient' => 'Guasipati'],
         ];
 

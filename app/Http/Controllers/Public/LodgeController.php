@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Public; // Nota: Namespace cambiado a Public
+namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
-use App\Models\Lodge; // Importar el modelo Lodge
+use App\Models\Lodge;
 use Illuminate\Http\Request;
 
 class LodgeController extends Controller
@@ -16,8 +16,8 @@ class LodgeController extends Controller
      */
     public function show(Lodge $lodge)
     {
-        // Cargar la relación de usuarios (dignatarios y miembros) de la logia.
-        $lodge->load('users');
+        // Cargar la relación de usuarios (dignatarios y miembros) de la logia con sus posiciones.
+        $lodge->load('users.positions');
 
         // Pasar la logia encontrada a la vista.
         return view('public.lodge-show', compact('lodge'));
