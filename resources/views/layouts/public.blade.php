@@ -65,10 +65,10 @@
             'bg-gray-800 shadow-md': scrolled || scrollingUp,
             'transform -translate-y-full opacity-0': scrollingDown
         }"
-        class="fixed top-0 left-0 w-full z-20 transition-all duration-300 ease-in-out"
->
+        class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out"
+    >
         <div class="relative max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <nav x-data="{ open: false }" class="w-full flex items-center justify-between">
+            <nav class="w-full flex items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
                     <a href="{{ route('welcome') }}" class="flex items-center">
@@ -122,7 +122,7 @@
         </div>
 
         <!-- Mobile Menu Panel -->
-        <div x-show="open" x-transition:enter="duration-200 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-20">
+        <div x-show="open" x-transition:enter="duration-200 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-40">
             <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
                 <div class="pt-5 pb-6 px-5">
                     <div class="flex items-center justify-between">
@@ -208,7 +208,7 @@
                 <!-- Logo and Copyright -->
                 <div class="space-y-4 md:col-span-1">
                     <a href="{{ route('welcome') }}" class="inline-flex items-center justify-center md:justify-start">
-                        <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white text-xl font-bold">Z5</div>
+                        <x-application-logo class="w-10 h-10 rounded-full flex items-center justify-center text-white text-xl font-bold" />
                         <span class="ml-3 text-2xl font-bold text-white">Gran Zona 5</span>
                     </a>
                     <p class="text-sm text-gray-400">

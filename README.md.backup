@@ -30,7 +30,7 @@ Desarrollar el portal administrativo y público para la **Gran Zona 5 de la Gran
 
 ## 3. Plan de Desarrollo y Estado Actual
 
-*   **Última Actualización:** 16 de Septiembre, 2025.
+*   **Última Actualización:** 15 de Septiembre, 2025.
 
 ### Próximo Paso Inmediato (PRIORIDAD)
 
@@ -70,21 +70,10 @@ Se ha finalizado una fase crucial de **fundación y estabilización del backend*
 22. **Auditoría de Consistencia:** Se realizó una auditoría completa del proyecto comparando el estado real del código con la documentación, actualizando el README.md para reflejar con precisión el progreso del proyecto.
 23. **Corrección de Acentos en Nombres de Ciudades:** Se corrigieron los acentos en nombres de ciudades como "San Félix" en la base de datos y seeders para mantener la consistencia ortográfica.
 24. **Sistema de Gestión de Noticias Completo:** Se implementó un sistema completo de gestión de noticias con CRUD funcional, incluyendo creación, edición, eliminación, estados (borrador, publicado, programado), carga de imágenes y documentos PDF, y editor de texto enriquecido.
-25. **Rediseño Completo de la Página de Inicio Pública:** Se implementó una nueva versión mejorada de la página de inicio con:
-    *   Sección de bienvenida más atractiva con llamados a la acción claros
-    *   Sección de presentación del portal público con información sobre la jurisdicción
-    *   Tarjetas de navegación rápida a secciones clave (Historia, Logias, Noticias)
-    *   Sección de noticias recientes con datos reales de la base de datos
-    *   Sección de logias destacadas con datos reales de la base de datos
-    *   Sección de autoridades de la zona con información real de la junta directiva
-    *   Sección de enlaces útiles con descripciones y diseño coherente
-    *   Llamado a la acción para contacto con diseño atractivo
-26. **Corrección de Navegación Móvil:** Se reparó el botón de hamburguesa en la barra de navegación móvil para que funcione correctamente en dispositivos móviles.
-27. **Corrección de Carga de Logos:** Se ajustó la ruta de carga de logos para que apunten a la carpeta pública (`public/uploads/logos`) en lugar de la carpeta de almacenamiento, resolviendo problemas de visualización de imágenes.
 
 **Funcionalidades Adicionales Identificadas:**
-28. **Gestión Avanzada de Venerables Maestros:** Funcionalidad de edición que permite cambiar Venerables Maestros entre miembros de la misma logia, con modal de edición completo.
-29. **Seeders Especializados por Logia:** Implementación de más de 20 seeders específicos por logia, garantizando una gestión de datos más precisa y completa.
+25. **Gestión Avanzada de Venerables Maestros:** Funcionalidad de edición que permite cambiar Venerables Maestros entre miembros de la misma logia, con modal de edición completo.
+26. **Seeders Especializados por Logia:** Implementación de más de 20 seeders específicos por logia, garantizando una gestión de datos más precisa y completa.
 
 La base de la aplicación es ahora significativamente más robusta y coherente.
 
@@ -108,7 +97,7 @@ La base de la aplicación es ahora significativamente más robusta y coherente.
 ### Fase 1: Fundación Esencial y Backend Básico
 
 *   **Módulo de Presencia Pública (El Escaparate)**
-    *   [x] Página de Inicio (`welcome`) *(Rediseñada y completamente funcional con datos reales)*.
+    *   [/] Página de Inicio (`welcome`) *(Maquetación completa)*.
     *   [x] Página "Quiénes Somos" (`about-us`) con sección de Junta Directiva interactiva *(Backend y frontend conectados y funcionales, diseño de tarjetas de miembros actualizado y optimizado)*.
     *   [x] Listado de Logias (`lodges`) y vista de detalle (`lodge-show`) *(Backend y frontend conectados y funcionales)*.
     *   [/] Formulario de Contacto (`contact`) *(Maquetación completa)*.

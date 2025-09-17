@@ -5,8 +5,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ContentManagerController;
 use App\Http\Controllers\Public\LodgeController as PublicLodgeController;
 use App\Http\Controllers\Public\AboutUsController;
+use App\Http\Controllers\Public\HomeController;
 
-Route::view('/', 'welcome')->name('welcome');
+Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

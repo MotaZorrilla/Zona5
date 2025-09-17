@@ -14,35 +14,20 @@ class PositionSeeder extends Seeder
     public function run(): void
     {
         $positions = [
-            'Venerable Maestro',
-            'Primer Vigilante',
-            'Segundo Vigilante',
-            'Orador Fiscal',
-            'Secretario Guarda Sello y Timbre',
-            'Tesorero',
-            'Guarda Templo Interior',
-            'Miembro',
-            'Hospitalario',
-            'Primer Experto',
-            'Segundo Experto',
-            'Primer Diácono',
-            'Segundo Diácono',
-            'Venerable Maestro Ad Vitam',
-            'Ex Venerable Maestro',
-            'Secretario Adjunto',
-            'Miembro Honorario',
-            'Orador Fiscal Adjunto',
-            'Primer Diputado',
-            'Segundo Diputado',
-            'Diputado Suplente',
-            'Primer Maestro de Ceremonias',
-            'Segundo Maestro de Ceremonias',
-            'Maestro Banquete',
-            'Secretario Guarda Sello y Timbre Adjunto',
+            ['name' => 'Presidente', 'description' => 'Presidente de la Gran Zona 5'],
+            ['name' => 'Vicepresidente', 'description' => 'Vicepresidente de la Gran Zona 5'],
+            ['name' => 'Secretario', 'description' => 'Secretario de la Gran Zona 5'],
+            ['name' => 'Tesorero', 'description' => 'Tesorero de la Gran Zona 5'],
+            ['name' => 'Venerable Maestro', 'description' => 'Venerable Maestro de una Logia'],
+            ['name' => 'Primer Vigilante', 'description' => 'Primer Vigilante de una Logia'],
+            ['name' => 'Segundo Vigilante', 'description' => 'Segundo Vigilante de una Logia'],
         ];
 
-        foreach ($positions as $position) {
-            Position::firstOrCreate(['name' => $position]);
+        foreach ($positions as $positionData) {
+            Position::updateOrCreate(
+                ['name' => $positionData['name']],
+                $positionData
+            );
         }
     }
 }
