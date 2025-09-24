@@ -14,12 +14,32 @@ class MessagesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // Obtener todos los usuarios
-        $users = User::all();
+        // Obtener todos los usuarios con email
+        $users = User::whereNotNull('email')->get();
         
         if ($users->count() < 2) {
-            echo "Se necesitan al menos 2 usuarios para crear mensajes de prueba.\n";
-            return;
+            // Si no hay suficientes usuarios con email, crear usuarios de prueba
+            $admin = User::firstOrCreate(
+                ['email' => 'admin@zonacinco.org.ve'],
+                [
+                    'name' => 'Administrador del Sistema',
+                    'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                    'national_id' => null,
+                    'degree' => 'Maestro',
+                ]
+            );
+            
+            $user = User::firstOrCreate(
+                ['email' => 'usuario@zonacinco.org.ve'],
+                [
+                    'name' => 'Usuario de Prueba',
+                    'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                    'national_id' => null,
+                    'degree' => 'Maestro',
+                ]
+            );
+            
+            $users = collect([$admin, $user]);
         }
 
         // Crear algunos mensajes de prueba entre usuarios
