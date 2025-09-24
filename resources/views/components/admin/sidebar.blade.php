@@ -28,7 +28,7 @@
 
         <hr class="my-2 border-gray-200">
 
-        <li class="mb-1"><a href="{{ route('admin.messages') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.messages') ? 'active' : '' }}"><i class="ri-mail-line mr-3"></i><span>Mensajes</span></a></li>
+        <li class="mb-1"><a href="{{ route('admin.messages.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.messages.*') ? 'active' : '' }}"><i class="ri-mail-line mr-3"></i><span>Mensajes</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.treasury') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.treasury') ? 'active' : '' }}"><i class="ri-scales-3-line mr-3"></i><span>Tesorería</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.content-manager.show', 'general') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.content-manager.*') ? 'active' : '' }}"><i class="ri-pencil-ruler-2-line mr-3"></i><span>Gestor de Contenido</span></a></li>
 

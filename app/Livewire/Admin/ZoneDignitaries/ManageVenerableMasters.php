@@ -18,6 +18,12 @@ class ManageVenerableMasters extends Component
     public $search = '';
 
     public $showEditModal = false;
+    public $showAddModal = false;
+    public $selectedLodgeId = null;
+    public $selectedUserId = null;
+    public $newVmName = '';
+    public $newVmPhoneNumber = '';
+    
     public $editingVmId;
     public $editingVmName;
     public $editingVmLodgeName;
@@ -30,6 +36,10 @@ class ManageVenerableMasters extends Component
         'editingVmName' => 'required|string|max:255',
         'editingVmPhoneNumber' => 'nullable|string|max:20',
         'selectedNewVmId' => 'nullable|exists:users,id',
+        'selectedLodgeId' => 'required|exists:lodges,id',
+        'selectedUserId' => 'required|exists:users,id',
+        'newVmName' => 'required|string|max:255',
+        'newVmPhoneNumber' => 'nullable|string|max:20',
     ];
 
     public function order($field)
@@ -40,6 +50,8 @@ class ManageVenerableMasters extends Component
             $this->orderDirection = 'asc';
         }
         $this->orderBy = $field;
+        
+        $this->dispatch('contentChanged');
     }
 
     public function openEditModal($vmId)
@@ -77,6 +89,37 @@ class ManageVenerableMasters extends Component
         $this->showEditModal = false;
         $this->resetValidation();
         $this->reset(['editingVmId', 'editingVmName', 'editingVmLodgeName', 'editingVmLodgeId', 'editingVmPhoneNumber', 'selectedNewVmId', 'lodgeMembers']);
+    }
+
+    public function openAddModal()
+    {
+        $this->showAddModal = true;
+        $this->reset(['selectedLodgeId', 'selectedUserId', 'newVmName', 'newVmPhoneNumber', 'lodgeMembers']);
+        $this->resetValidation();
+    }
+
+    public function closeAddModal()
+    {
+        $this->showAddModal = false;
+        $this->reset(['selectedLodgeId', 'selectedUserId', 'newVmName', 'newVmPhoneNumber', 'lodgeMembers']);
+        $this->resetValidation();
+    }
+
+    public function updatedSelectedLodgeId($value)
+    {
+        if ($value) {
+            // Get all members of the selected lodge
+            $this->lodgeMembers = User::whereHas('lodges', function ($query) use ($value) {
+                $query->where('lodges.id', $value);
+            })->get();
+        } else {
+            $this->lodgeMembers = [];
+        }
+        
+        // Reset selected user when lodge changes
+        $this->selectedUserId = null;
+        
+        $this->dispatch('contentChanged');
     }
 
     public function updateVenerableMaster()
@@ -125,6 +168,96 @@ class ManageVenerableMasters extends Component
         $this->closeEditModal();
     }
 
+    public function addVenerableMaster()
+    {
+        $this->validate([
+            'selectedLodgeId' => 'required|exists:lodges,id',
+            'selectedUserId' => 'required|exists:users,id',
+        ]);
+
+        $user = User::find($this->selectedUserId);
+        $lodge = Lodge::find($this->selectedLodgeId);
+        $vmPosition = Position::where('name', 'Venerable Maestro')->first();
+
+        if (!$user || !$lodge || !$vmPosition) {
+            session()->flash('error', 'Error: Usuario, Logia o posición no encontrada.');
+            return;
+        }
+
+        // Check if user is already a member of the lodge
+        if (!$user->lodges->contains($lodge->id)) {
+            // If not, attach the user to the lodge as a member first
+            $memberPosition = Position::where('name', 'Miembro')->first();
+            $user->lodges()->attach($lodge->id, [
+                'position_id' => $memberPosition ? $memberPosition->id : null
+            ]);
+        }
+
+        // Update user's position to Venerable Maestro
+        $user->lodges()->updateExistingPivot($lodge->id, ['position_id' => $vmPosition->id]);
+
+        session()->flash('message', 'Venerable Maestro agregado exitosamente.');
+        $this->closeAddModal();
+        $this->render();
+    }
+
+    public function createNewUserAndMakeVm()
+    {
+        $this->validate([
+            'selectedLodgeId' => 'required|exists:lodges,id',
+            'newVmName' => 'required|string|max:255',
+            'newVmPhoneNumber' => 'nullable|string|max:20',
+        ]);
+
+        // Create new user
+        $user = User::create([
+            'name' => $this->newVmName,
+            'phone_number' => $this->newVmPhoneNumber,
+            'email' => null, // Or generate a unique email
+            'password' => bcrypt('password'), // Default password, should be changed by user
+        ]);
+
+        $lodge = Lodge::find($this->selectedLodgeId);
+        $vmPosition = Position::where('name', 'Venerable Maestro')->first();
+
+        if (!$user || !$lodge || !$vmPosition) {
+            session()->flash('error', 'Error: No se pudo crear el usuario o encontrar la logia/posición.');
+            return;
+        }
+
+        // Attach user to lodge with Venerable Maestro position
+        $user->lodges()->attach($lodge->id, [
+            'position_id' => $vmPosition->id
+        ]);
+
+        session()->flash('message', 'Nuevo Venerable Maestro creado y agregado exitosamente.');
+        $this->closeAddModal();
+        $this->render();
+    }
+
+    public function removeVenerableMaster($vmId, $lodgeId)
+    {
+        $vm = User::find($vmId);
+        $vmPosition = Position::where('name', 'Venerable Maestro')->first();
+        $memberPosition = Position::where('name', 'Miembro')->first();
+
+        if (!$vm || !$vmPosition) {
+            session()->flash('error', 'Error: Venerable Maestro o posición no encontrada.');
+            return;
+        }
+
+        // Change VM's position to member
+        if ($memberPosition) {
+            $vm->lodges()->updateExistingPivot($lodgeId, ['position_id' => $memberPosition->id]);
+        } else {
+            // If member position doesn't exist, detach the user from the lodge
+            $vm->lodges()->detach($lodgeId);
+        }
+
+        session()->flash('message', 'Venerable Maestro removido exitosamente.');
+        $this->render();
+    }
+
     public function render()
     {
         $vmPositionId = Position::where('name', 'Venerable Maestro')->value('id');
@@ -160,6 +293,7 @@ class ManageVenerableMasters extends Component
 
         return view('livewire.admin.zone-dignitaries.manage-venerable-masters', [
             'venerableMasters' => $venerableMasters,
+            'lodges' => Lodge::all(),
         ]);
     }
 }

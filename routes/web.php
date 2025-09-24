@@ -9,10 +9,6 @@ use App\Http\Controllers\Public\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
@@ -27,16 +23,15 @@ Route::post('logout', function () {
 })->name('logout');
 
 Route::name('public.')->group(function () {
-
-
-Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
+    Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
     Route::view('/lodges', 'public.lodges')->name('lodges');
     Route::get('logias/{lodge}', [PublicLodgeController::class, 'show'])->name('lodges.show');
     Route::view('/forums', 'public.forums')->name('forums');
     Route::view('/school', 'public.school')->name('school');
     Route::view('/archive', 'public.archive')->name('archive');
     Route::view('/news', 'public.news')->name('news');
-    Route::view('/contact', 'public.contact')->name('contact');
+    Route::get('/contact', [App\Http\Controllers\Public\ContactController::class, 'show'])->name('contact');
+    Route::post('/contact', [App\Http\Controllers\Public\ContactController::class, 'store'])->name('contact.store');
     Route::view('/sitemap', 'public.sitemap')->name('sitemap');
     Route::view('/faq', 'public.faq')->name('faq');
 });
@@ -44,12 +39,15 @@ Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 Route::view('/privacy-policy', 'public.privacy-policy')->name('privacy-policy');
 Route::view('/terms-of-service', 'public.terms-of-service')->name('terms-of-service');
 
+// Área de administración
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('lodges', App\Http\Controllers\Admin\LodgeController::class);
     Route::resource('users', App\Http\Controllers\Admin\UserController::class);
     Route::resource('zone-dignitaries', App\Http\Controllers\Admin\ZoneDignitaryController::class);
-    Route::view('messages', 'admin.messages')->name('messages');
+    Route::resource('messages', App\Http\Controllers\Admin\MessageController::class);
+    Route::post('messages/{message}/archive', [App\Http\Controllers\Admin\MessageController::class, 'archive'])->name('messages.archive');
+    Route::post('messages/{message}/unread', [App\Http\Controllers\Admin\MessageController::class, 'unread'])->name('messages.unread');
     Route::resource('school', App\Http\Controllers\Admin\SchoolController::class)->except(['show']);
     Route::view('treasury', 'admin.treasury.index')->name('treasury');
     Route::resource('forums', App\Http\Controllers\Admin\ForumController::class)->except(['show']);
@@ -61,8 +59,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('content-manager/{section?}', [ContentManagerController::class, 'show'])->name('content-manager.show');
 });
 
-// Ruta temporal para la previsualización de la plantilla de administración
-Route::view('/admin-preview', 'admin-preview')->name('admin-preview');
+// Ruta principal del dashboard (redirige al dashboard de administración)
+Route::get('dashboard', function () {
+    return redirect()->route('admin.dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Ruta temporal para la previsualización del sitio público
+// Rutas temporales para previsualización
+Route::view('/admin-preview', 'admin-preview')->name('admin-preview');
 Route::view('/public-preview', 'public-preview')->name('public-preview');
