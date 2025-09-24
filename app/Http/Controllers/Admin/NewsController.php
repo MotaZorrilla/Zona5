@@ -10,12 +10,41 @@ use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Obtener todas las noticias con sus autores, ordenadas por fecha de creación
-        $news = News::with('author')->orderBy('created_at', 'desc')->get();
+        // Only allow SuperAdmin and Admin users to see all news
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        // Separar noticias por estado
+        $query = News::with('author');
+
+        // Apply search filter
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'LIKE', "%{$search}%")
+                  ->orWhere('excerpt', 'LIKE', "%{$search}%")
+                  ->orWhere('content', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // Apply status filter
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // Apply date filter
+        if ($request->filled('date_from') || $request->filled('date_to')) {
+            if ($request->filled('date_from')) {
+                $query->where('created_at', '>=', $request->date_from . ' 00:00:00');
+            }
+            if ($request->filled('date_to')) {
+                $query->where('created_at', '<=', $request->date_to . ' 23:59:59');
+            }
+        }
+
+        $news = $query->orderBy('created_at', 'desc')->paginate(10)->appends(request()->query());
+        
+        // Separar noticias por estado para mostrar en las pestañas
         $published = $news->where('status', 'published');
         $drafts = $news->where('status', 'draft');
         $scheduled = $news->where('status', 'scheduled');
@@ -25,11 +54,17 @@ class NewsController extends Controller
 
     public function create()
     {
+        // Only allow SuperAdmin and Admin users to create news
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         return view('admin.news.create');
     }
 
     public function store(Request $request)
     {
+        // Only allow SuperAdmin and Admin users to create news
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $request->validate([
             'title' => 'required|string|max:255',
             'excerpt' => 'required|string|max:255',
@@ -74,11 +109,17 @@ class NewsController extends Controller
 
     public function edit(News $news)
     {
+        // Only allow SuperAdmin and Admin users to edit news
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         return view('admin.news.edit', compact('news'));
     }
 
     public function update(Request $request, News $news)
     {
+        // Only allow SuperAdmin and Admin users to update news
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $request->validate([
             'title' => 'required|string|max:255',
             'excerpt' => 'required|string|max:255',
@@ -124,8 +165,18 @@ class NewsController extends Controller
 
     public function destroy(News $news)
     {
+        // Only allow SuperAdmin and Admin users to delete news
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $news->delete();
         
         return redirect()->route('admin.news.index')->with('success', 'Noticia eliminada exitosamente.');
+    }
+    
+    protected function authorizeRole($roles)
+    {
+        if (!Auth::user() || !Auth::user()->roles()->whereIn('name', $roles)->exists()) {
+            abort(403, 'No tienes permiso para acceder a esta sección.');
+        }
     }
 }

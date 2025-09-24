@@ -9,17 +9,53 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::with('roles', 'lodges')->get();
-        return view('admin.users.index', compact('users'));
+        // Only allow SuperAdmin and Admin users to see all users
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
+        $query = User::with('roles', 'lodges');
+
+        // Apply search filter
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('email', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // Apply role filter
+        if ($request->filled('role')) {
+            $query->whereHas('roles', function($q) use ($request) {
+                $q->where('id', $request->role);
+            });
+        }
+
+        // Apply lodge filter
+        if ($request->filled('lodge')) {
+            $query->whereHas('lodges', function($q) use ($request) {
+                $q->where('id', $request->lodge);
+            });
+        }
+
+        $users = $query->get();
+
+        $roles = Role::all();
+        $lodges = Lodge::all();
+
+        return view('admin.users.index', compact('users', 'roles', 'lodges'));
     }
 
     public function create()
     {
+        // Only allow SuperAdmin and Admin users to create users
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $roles = Role::all();
         $lodges = Lodge::all();
         $positions = Position::all();
@@ -28,6 +64,9 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        // Only allow SuperAdmin and Admin users to create users
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -50,6 +89,9 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        // Only allow SuperAdmin and Admin users to edit users
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $roles = Role::all();
         $lodges = Lodge::all();
         $positions = Position::all();
@@ -58,6 +100,9 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        // Only allow SuperAdmin and Admin users to update users
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
@@ -95,6 +140,9 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        // Only allow SuperAdmin and Admin users to delete users 
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $user->delete();
 
         return redirect()->route('admin.users.index')->with('success', 'Usuario eliminado con éxito.');
@@ -102,7 +150,19 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        // Users can view their own profile, SuperAdmin and Admin can view any user
+        if (Auth::id() !== $user->id && !Auth::user()->roles()->whereIn('name', ['SuperAdmin', 'Admin'])->exists()) {
+            abort(403, 'No tienes permiso para ver este perfil.');
+        }
+        
         $user->load('lodges', 'roles'); // Eager load relationships
         return view('admin.users.show', compact('user'));
+    }
+    
+    protected function authorizeRole($roles)
+    {
+        if (!Auth::user() || !Auth::user()->roles()->whereIn('name', $roles)->exists()) {
+            abort(403, 'No tienes permiso para acceder a esta sección.');
+        }
     }
 }

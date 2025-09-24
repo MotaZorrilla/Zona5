@@ -16,6 +16,46 @@
         </a>
     </div>
 
+    <!-- Filters Section -->
+    <div class="bg-gray-50 p-4 rounded-lg mb-6">
+        <form method="GET" action="{{ route('admin.zone-dignitaries.index') }}" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <!-- Search -->
+            <div class="md:col-span-2">
+                <label class="block text-xs font-medium text-gray-700 mb-1">Buscar</label>
+                <div class="relative">
+                    <i class="ri-search-line absolute top-1/2 -translate-y-1/2 left-3 text-gray-400"></i>
+                    <input type="search" name="search" value="{{ request('search') }}" placeholder="Buscar dignatarios..." class="w-full bg-white border-2 border-gray-200 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" />
+                </div>
+            </div>
+            
+            <!-- Role Filter -->
+            <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Cargo</label>
+                <select name="role" class="w-full bg-white border-2 border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                    <option value="">Todos los cargos</option>
+                    @php
+                        $roles = collect($dignitaries)->pluck('role')->unique();
+                    @endphp
+                    @foreach ($roles as $role)
+                        <option value="{{ $role }}" {{ request('role') == $role ? 'selected' : '' }}>{{ $role }}</option>
+                    @endforeach
+                </select>
+            </div>
+            
+            <!-- Apply Filters Button -->
+            <div class="flex items-end">
+                <div class="w-full flex space-x-2">
+                    <button type="submit" class="flex-1 bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors">
+                        Filtrar
+                    </button>
+                    <a href="{{ route('admin.zone-dignitaries.index') }}" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-lg shadow-md transition-colors">
+                        Limpiar
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <div class="mb-12">
         <h2 class="text-2xl font-bold text-gray-700 mb-6">Junta Directiva de la Zona 5</h2>
         <div class="overflow-x-auto rounded-lg border border-gray-200">

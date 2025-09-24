@@ -7,15 +7,36 @@ use App\Models\ZoneDignitary;
 use App\Models\User;
 use App\Models\Position;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ZoneDignitaryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dignitaries = ZoneDignitary::all();
+        // Only allow SuperAdmin and Admin users to see all zone dignitaries
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
+        $query = ZoneDignitary::query();
+
+        // Apply search filter
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('role', 'LIKE', "%{$search}%")
+                  ->orWhere('bio', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // Apply role filter
+        if ($request->filled('role')) {
+            $query->where('role', $request->role);
+        }
+
+        $dignitaries = $query->get();
 
         $vmPositionId = Position::where('name', 'Venerable Maestro')->value('id');
 
@@ -41,6 +62,9 @@ class ZoneDignitaryController extends Controller
      */
     public function create()
     {
+        // Only allow SuperAdmin and Admin users to create zone dignitaries
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         return view('admin.zone-dignitaries.create');
     }
 
@@ -49,6 +73,9 @@ class ZoneDignitaryController extends Controller
      */
     public function store(Request $request)
     {
+        // Only allow SuperAdmin and Admin users to create zone dignitaries
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'role' => 'required|string|max:255',
@@ -74,6 +101,9 @@ class ZoneDignitaryController extends Controller
      */
     public function edit(ZoneDignitary $zoneDignitary)
     {
+        // Only allow SuperAdmin and Admin users to edit zone dignitaries
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         return view('admin.zone-dignitaries.edit', compact('zoneDignitary'));
     }
 
@@ -82,6 +112,9 @@ class ZoneDignitaryController extends Controller
      */
     public function update(Request $request, ZoneDignitary $zoneDignitary)
     {
+        // Only allow SuperAdmin and Admin users to update zone dignitaries
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'role' => 'required|string|max:255',
@@ -99,8 +132,18 @@ class ZoneDignitaryController extends Controller
      */
     public function destroy(ZoneDignitary $zoneDignitary)
     {
+        // Only allow SuperAdmin and Admin users to delete zone dignitaries
+        $this->authorizeRole(['SuperAdmin', 'Admin']);
+        
         $zoneDignitary->delete();
 
         return redirect()->route('admin.zone-dignitaries.index')->with('success', 'Dignatario eliminado exitosamente.');
+    }
+    
+    protected function authorizeRole($roles)
+    {
+        if (!Auth::user() || !Auth::user()->roles()->whereIn('name', $roles)->exists()) {
+            abort(403, 'No tienes permiso para acceder a esta sección.');
+        }
     }
 }

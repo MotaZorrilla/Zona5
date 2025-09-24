@@ -22,7 +22,7 @@
 
         <li class="mb-1"><a href="{{ route('admin.news.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.news.*') ? 'active' : '' }}"><i class="ri-newspaper-line mr-3"></i><span>Noticias</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.events') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.events') ? 'active' : '' }}"><i class="ri-calendar-todo-line mr-3"></i><span>Eventos</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.repository') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.repository') ? 'active' : '' }}"><i class="ri-archive-2-line mr-3"></i><span>Repositorio</span></a></li>
+        <li class="mb-1"><a href="{{ route('admin.repository.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.repository.*') ? 'active' : '' }}"><i class="ri-archive-2-line mr-3"></i><span>Repositorio</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.school.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.school.*') ? 'active' : '' }}"><i class="ri-book-open-line mr-3"></i><span>Escuela Virtual</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.forums.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.forums.*') ? 'active' : '' }}"><i class="ri-discuss-line mr-3"></i><span>Foros</span></a></li>
 

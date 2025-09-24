@@ -52,8 +52,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::resource('forums', App\Http\Controllers\Admin\ForumController::class)->except(['show']);
         Route::resource('school', App\Http\Controllers\Admin\SchoolController::class)->except(['show']);
         Route::view('treasury', 'admin.treasury.index')->name('treasury');
-        Route::resource('repository', App\Http\Controllers\Admin\RepositoryController::class);
-        Route::get('repository/{repository}/download', [App\Http\Controllers\Admin\RepositoryController::class, 'download'])->name('repository.download');
+        Route::resource('repository', App\\Http\\Controllers\\Admin\\RepositoryController::class);
         Route::view('events', 'admin.events')->name('events');
         Route::view('settings', 'admin.settings')->name('settings');
         Route::get('content-manager/{section?}', [ContentManagerController::class, 'show'])->name('content-manager.show');

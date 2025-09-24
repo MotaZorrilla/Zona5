@@ -16,6 +16,53 @@
         </a>
     </div>
 
+    <!-- Filters Section -->
+    <div class="bg-gray-50 p-4 rounded-lg mb-6">
+        <form method="GET" action="{{ route('admin.news.index') }}" class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <!-- Search -->
+            <div class="md:col-span-2">
+                <label class="block text-xs font-medium text-gray-700 mb-1">Buscar</label>
+                <div class="relative">
+                    <i class="ri-search-line absolute top-1/2 -translate-y-1/2 left-3 text-gray-400"></i>
+                    <input type="search" name="search" value="{{ request('search') }}" placeholder="Buscar noticias..." class="w-full bg-white border-2 border-gray-200 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" />
+                </div>
+            </div>
+            
+            <!-- Status Filter -->
+            <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Estado</label>
+                <select name="status" class="w-full bg-white border-2 border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                    <option value="">Todos</option>
+                    <option value="published" {{ request('status') == 'published' ? 'selected' : '' }}>Publicadas</option>
+                    <option value="draft" {{ request('status') == 'draft' ? 'selected' : '' }}>Borradores</option>
+                    <option value="scheduled" {{ request('status') == 'scheduled' ? 'selected' : '' }}>Programadas</option>
+                </select>
+            </div>
+            
+            <!-- Date Range -->
+            <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Desde</label>
+                <input type="date" name="date_from" value="{{ request('date_from') }}" class="w-full bg-white border-2 border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" />
+            </div>
+            
+            <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Hasta</label>
+                <input type="date" name="date_to" value="{{ request('date_to') }}" class="w-full bg-white border-2 border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" />
+            </div>
+            
+            <div class="flex items-end">
+                <div class="w-full flex space-x-2">
+                    <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors">
+                        Filtrar
+                    </button>
+                    <a href="{{ route('admin.news.index') }}" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-lg shadow-md transition-colors">
+                        Limpiar
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    
     <!-- Tabs for filtering -->
     <div class="mb-6 border-b border-gray-200">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500">
@@ -93,13 +140,8 @@
     </div>
 
     <!-- Pagination -->
-    <div class="mt-6 flex justify-between items-center">
-        <div class="text-sm text-gray-600">
-            Mostrando <span class="font-bold">{{ $news->count() }}</span> resultados
-        </div>
-        <div class="flex items-center">
-            <!-- Aquí iría la paginación real cuando se implemente -->
-        </div>
+    <div class="mt-6">
+        {{ $news->links() }}
     </div>
 </div>
 
@@ -107,7 +149,6 @@
     // Script simple para manejar los tabs
     document.addEventListener('DOMContentLoaded', function() {
         const tabs = document.querySelectorAll('[data-tab]');
-        const rows = document.querySelectorAll('tbody tr');
         
         tabs.forEach(tab => {
             tab.addEventListener('click', function(e) {
@@ -123,19 +164,19 @@
                 this.classList.remove('border-transparent', 'hover:text-gray-600', 'hover:border-gray-300');
                 this.classList.add('border-primary-500', 'text-primary-600', 'active');
                 
-                // Filtrar filas según el tab seleccionado
+                // Actualizar el filtro de estado en la URL
                 const tabType = this.getAttribute('data-tab');
-                rows.forEach(row => {
-                    if (tabType === 'published') {
-                        row.style.display = row.querySelector('.bg-green-100') ? 'table-row' : 'none';
-                    } else if (tabType === 'drafts') {
-                        row.style.display = row.querySelector('.bg-yellow-100') ? 'table-row' : 'none';
-                    } else if (tabType === 'scheduled') {
-                        row.style.display = row.querySelector('.bg-blue-100') ? 'table-row' : 'none';
-                    } else {
-                        row.style.display = 'table-row';
-                    }
-                });
+                const currentUrl = new URL(window.location);
+                if (tabType) {
+                    currentUrl.searchParams.set('status', tabType);
+                } else {
+                    currentUrl.searchParams.delete('status');
+                }
+                
+                // Cambiar parámetros de página si es necesario
+                currentUrl.searchParams.delete('page');
+                
+                window.location.href = currentUrl.toString();
             });
         });
     });

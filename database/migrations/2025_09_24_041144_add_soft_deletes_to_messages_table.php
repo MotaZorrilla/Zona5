@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->string('pdf_path')->nullable()->after('image_path');
+        Schema::table('messages', function (Blueprint $table) {
+            $table->softDeletes()->after('updated_at');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->dropColumn('pdf_path');
+        Schema::table('messages', function (Blueprint $table) {
+            $table->dropSoftDeletes();
         });
     }
 };

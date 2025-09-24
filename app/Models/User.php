@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -67,5 +68,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Position::class, 'lodge_user', 'user_id', 'position_id')
                     ->withPivot('lodge_id')
                     ->withTimestamps();
+    }
+    
+    /**
+     * Get the user's unread notifications.
+     */
+    public function unreadNotifications()
+    {
+        return $this->notifications()->whereNull('read_at');
     }
 }
