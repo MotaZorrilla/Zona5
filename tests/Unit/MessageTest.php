@@ -65,8 +65,9 @@ class MessageTest extends TestCase
 
         $message->archive();
         
-        $this->assertEquals('archived', $message->fresh()->status);
-        $this->assertNotNull($message->fresh()->archived_at);
+        $freshMessage = $message->fresh();
+        $this->assertEquals('archived', $freshMessage->status);
+        $this->assertNotNull($freshMessage->archived_at);
     }
 
     public function test_message_can_be_marked_as_read()
@@ -86,9 +87,10 @@ class MessageTest extends TestCase
 
         $message->markAsRead();
         
-        $this->assertEquals('read', $message->fresh()->status);
-        $this->assertNotNull($message->fresh()->read_at);
-        $this->assertFalse($message->fresh()->isUnread());
+        $freshMessage = $message->fresh();
+        $this->assertEquals('read', $freshMessage->status);
+        $this->assertNotNull($freshMessage->read_at);
+        $this->assertFalse($freshMessage->isUnread());
     }
 
     public function test_message_can_be_marked_as_unread()

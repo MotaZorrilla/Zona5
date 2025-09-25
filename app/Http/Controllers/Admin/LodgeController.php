@@ -3,13 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LodgeFormRequest;
 use App\Models\Lodge;
+use App\Services\LodgeService;
+use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage; // Añadir esta línea
 use Illuminate\Support\Facades\Auth;
 
 class LodgeController extends Controller
 {
+    use PaginationTrait;
+
+    protected $lodgeService;
+
+    public function __construct(LodgeService $lodgeService)
+    {
+        $this->lodgeService = $lodgeService;
+    }
+
     public function index(Request $request)
     {
         // Only allow SuperAdmin and Admin users to see all lodges
@@ -17,23 +28,14 @@ class LodgeController extends Controller
         
         $query = Lodge::withCount('users');
 
-        // Apply search filter
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('name', 'LIKE', "%{$search}%")
-                  ->orWhere('number', 'LIKE', "%{$search}%")
-                  ->orWhere('orient', 'LIKE', "%{$search}%")
-                  ->orWhere('address', 'LIKE', "%{$search}%");
-            });
-        }
-
-        // Apply number filter
-        if ($request->filled('number')) {
-            $query->where('number', $request->number);
-        }
-
-        $lodges = $query->get();
+        $lodges = $this->paginateWithSearchAndFilters(
+            $query,
+            ['name', 'number', 'orient', 'address'], // searchable fields
+            ['number'], // filterable fields
+            $request,
+            'created_at',
+            'desc'
+        );
 
         return view('admin.lodges.index', compact('lodges'));
     }
@@ -46,27 +48,17 @@ class LodgeController extends Controller
         return view('admin.lodges.create');
     }
 
-    public function store(Request $request)
+    public function store(LodgeFormRequest $request)
     {
         // Only allow SuperAdmin and Admin users to create lodges
         $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'number' => 'required|integer|unique:lodges',
-            'orient' => 'required|string|max:255',
-            'history' => 'nullable|string',
-            'image_url' => 'nullable|image|max:5120', // Validar como imagen, max 5MB
-            'address' => 'nullable|string|max:500',
-        ]);
-
-        $data = $request->all();
-
+        $files = [];
         if ($request->hasFile('image_url')) {
-            $data['image_url'] = $request->file('image_url')->store('lodges', 'public');
+            $files['image_url'] = $request->file('image_url');
         }
 
-        Lodge::create($data);
+        $this->lodgeService->create($request->validated(), $files);
 
         return redirect()->route('admin.lodges.index')->with('success', 'Logia creada con éxito.');
     }
@@ -79,31 +71,17 @@ class LodgeController extends Controller
         return view('admin.lodges.edit', compact('lodge'));
     }
 
-    public function update(Request $request, Lodge $lodge)
+    public function update(LodgeFormRequest $request, Lodge $lodge)
     {
         // Only allow SuperAdmin and Admin users to update lodges
         $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'number' => 'required|integer|unique:lodges,number,' . $lodge->id,
-            'orient' => 'required|string|max:255',
-            'history' => 'nullable|string',
-            'image_url' => 'nullable|image|max:5120', // Validar como imagen, max 5MB
-            'address' => 'nullable|string|max:500',
-        ]);
-
-        $data = $request->all();
-
+        $files = [];
         if ($request->hasFile('image_url')) {
-            // Eliminar la imagen anterior si existe
-            if ($lodge->image_url) {
-                Storage::disk('public')->delete($lodge->image_url);
-            }
-            $data['image_url'] = $request->file('image_url')->store('lodges', 'public');
+            $files['image_url'] = $request->file('image_url');
         }
 
-        $lodge->update($data);
+        $this->lodgeService->update($lodge->id, $request->validated(), $files);
 
         return redirect()->route('admin.lodges.index')->with('success', 'Logia actualizada con éxito.');
     }
@@ -113,7 +91,7 @@ class LodgeController extends Controller
         // Only allow SuperAdmin and Admin users to delete lodges 
         $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        $lodge->delete();
+        $this->lodgeService->delete($lodge->id);
 
         return redirect()->route('admin.lodges.index')->with('success', 'Logia eliminada con éxito.');
     }

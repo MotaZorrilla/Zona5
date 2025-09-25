@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RepositoryFormRequest;
 use App\Models\Repository;
+use App\Services\RepositoryService;
+use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -11,6 +14,15 @@ use Illuminate\Support\Str;
 
 class RepositoryController extends Controller
 {
+    use PaginationTrait;
+
+    protected $repositoryService;
+
+    public function __construct(RepositoryService $repositoryService)
+    {
+        $this->repositoryService = $repositoryService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -21,27 +33,14 @@ class RepositoryController extends Controller
         
         $query = Repository::with('uploader');
 
-        // Apply search filter
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('title', 'LIKE', "%{$search}%")
-                  ->orWhere('description', 'LIKE', "%{$search}%")
-                  ->orWhere('category', 'LIKE', "%{$search}%");
-            });
-        }
-
-        // Apply category filter
-        if ($request->filled('category')) {
-            $query->where('category', $request->category);
-        }
-
-        // Apply grade level filter
-        if ($request->filled('grade_level')) {
-            $query->where('grade_level', $request->grade_level);
-        }
-
-        $repositories = $query->orderBy('created_at', 'desc')->paginate(10);
+        $repositories = $this->paginateWithSearchAndFilters(
+            $query,
+            ['title', 'description', 'category'], // searchable fields
+            ['category', 'grade_level'], // filterable fields
+            $request,
+            'created_at',
+            'desc'
+        );
 
         return view('admin.repository', compact('repositories'));
     }
@@ -60,34 +59,17 @@ class RepositoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RepositoryFormRequest $request)
     {
         // Only allow SuperAdmin and Admin users to store repository entries
         $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'document' => 'required|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,txt,jpg,jpeg,png|max:10240', // 10MB max
-            'category' => 'nullable|string|max:100',
-            'grade_level' => 'nullable|in:Aprendiz,Compañero,Maestro,Todos',
-        ]);
+        $files = [];
+        if ($request->hasFile('document')) {
+            $files['document'] = $request->file('document');
+        }
 
-        $file = $request->file('document');
-        $filePath = $file->store('repository', 'public');
-        
-        Repository::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'file_path' => $filePath,
-            'file_name' => $file->getClientOriginalName(),
-            'file_type' => $file->getClientOriginalExtension(),
-            'category' => $request->category,
-            'grade_level' => $request->grade_level ?? 'Todos',
-            'uploaded_by' => Auth::id(),
-            'uploaded_at' => now(),
-            'file_size' => $file->getSize(),
-        ]);
+        $this->repositoryService->create($request->validated(), $files);
 
         return redirect()->route('admin.repository.index')->with('success', 'Documento subido exitosamente al repositorio.');
     }
@@ -117,43 +99,17 @@ class RepositoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Repository $repository)
+    public function update(RepositoryFormRequest $request, Repository $repository)
     {
         // Only allow SuperAdmin and Admin users to update repository entries
         $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'document' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,txt,jpg,jpeg,png|max:10240', // 10MB max
-            'category' => 'nullable|string|max:100',
-            'grade_level' => 'nullable|in:Aprendiz,Compañero,Maestro,Todos',
-        ]);
-
-        $data = [
-            'title' => $request->title,
-            'description' => $request->description,
-            'category' => $request->category,
-            'grade_level' => $request->grade_level ?? 'Todos',
-        ];
-
-        // Handle file upload if provided
+        $files = [];
         if ($request->hasFile('document')) {
-            $file = $request->file('document');
-            
-            // Delete old file
-            if ($repository->file_path) {
-                Storage::disk('public')->delete($repository->file_path);
-            }
-            
-            $filePath = $file->store('repository', 'public');
-            $data['file_path'] = $filePath;
-            $data['file_name'] = $file->getClientOriginalName();
-            $data['file_type'] = $file->getClientOriginalExtension();
-            $data['file_size'] = $file->getSize();
+            $files['document'] = $request->file('document');
         }
 
-        $repository->update($data);
+        $this->repositoryService->update($repository->id, $request->validated(), $files);
 
         return redirect()->route('admin.repository.index')->with('success', 'Documento actualizado exitosamente.');
     }
@@ -166,12 +122,7 @@ class RepositoryController extends Controller
         // Only allow SuperAdmin and Admin users to delete repository entries
         $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        // Delete the file from storage
-        if ($repository->file_path) {
-            Storage::disk('public')->delete($repository->file_path);
-        }
-
-        $repository->delete();
+        $this->repositoryService->delete($repository->id);
 
         return redirect()->route('admin.repository.index')->with('success', 'Documento eliminado exitosamente del repositorio.');
     }

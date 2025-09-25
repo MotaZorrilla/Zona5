@@ -3,13 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewsFormRequest;
 use App\Models\News;
+use App\Services\NewsService;
+use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
+    use PaginationTrait;
+
+    protected $newsService;
+
+    public function __construct(NewsService $newsService)
+    {
+        $this->newsService = $newsService;
+    }
+
     public function index(Request $request)
     {
         // Only allow SuperAdmin and Admin users to see all news
@@ -17,32 +28,14 @@ class NewsController extends Controller
         
         $query = News::with('author');
 
-        // Apply search filter
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('title', 'LIKE', "%{$search}%")
-                  ->orWhere('excerpt', 'LIKE', "%{$search}%")
-                  ->orWhere('content', 'LIKE', "%{$search}%");
-            });
-        }
-
-        // Apply status filter
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
-        }
-
-        // Apply date filter
-        if ($request->filled('date_from') || $request->filled('date_to')) {
-            if ($request->filled('date_from')) {
-                $query->where('created_at', '>=', $request->date_from . ' 00:00:00');
-            }
-            if ($request->filled('date_to')) {
-                $query->where('created_at', '<=', $request->date_to . ' 23:59:59');
-            }
-        }
-
-        $news = $query->orderBy('created_at', 'desc')->paginate(10)->appends(request()->query());
+        $news = $this->paginateWithSearchAndFilters(
+            $query,
+            ['title', 'excerpt', 'content'], // searchable fields
+            ['status'], // filterable fields
+            $request,
+            'created_at',
+            'desc'
+        );
         
         // Separar noticias por estado para mostrar en las pestañas
         $published = $news->where('status', 'published');
@@ -60,49 +53,20 @@ class NewsController extends Controller
         return view('admin.news.create');
     }
 
-    public function store(Request $request)
+    public function store(NewsFormRequest $request)
     {
         // Only allow SuperAdmin and Admin users to create news
         $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'excerpt' => 'required|string|max:255',
-            'content' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pdf' => 'nullable|file|mimes:pdf|max:5120', // 5MB max
-            'status' => 'required|in:draft,published,scheduled',
-            'published_at' => 'nullable|date',
-        ]);
-
-        $imagePath = null;
+        $files = [];
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('news/images', 'public');
+            $files['image'] = $request->file('image');
         }
-
-        $pdfPath = null;
         if ($request->hasFile('pdf')) {
-            $pdfPath = $request->file('pdf')->store('news/pdfs', 'public');
+            $files['pdf'] = $request->file('pdf');
         }
 
-        $publishedAt = null;
-        if ($request->status === 'published') {
-            $publishedAt = now();
-        } elseif ($request->status === 'scheduled' && $request->published_at) {
-            $publishedAt = $request->published_at;
-        }
-
-        News::create([
-            'user_id' => Auth::id(),
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'excerpt' => $request->excerpt,
-            'content' => $request->content,
-            'image_path' => $imagePath,
-            'pdf_path' => $pdfPath,
-            'status' => $request->status,
-            'published_at' => $publishedAt,
-        ]);
+        $this->newsService->create($request->validated(), $files);
 
         return redirect()->route('admin.news.index')->with('success', 'Noticia creada exitosamente.');
     }
@@ -115,50 +79,20 @@ class NewsController extends Controller
         return view('admin.news.edit', compact('news'));
     }
 
-    public function update(Request $request, News $news)
+    public function update(NewsFormRequest $request, News $news)
     {
         // Only allow SuperAdmin and Admin users to update news
         $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'excerpt' => 'required|string|max:255',
-            'content' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pdf' => 'nullable|file|mimes:pdf|max:5120', // 5MB max
-            'status' => 'required|in:draft,published,scheduled',
-            'published_at' => 'nullable|date',
-        ]);
-
-        $imagePath = $news->image_path;
+        $files = [];
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('news/images', 'public');
+            $files['image'] = $request->file('image');
         }
-
-        $pdfPath = $news->pdf_path;
         if ($request->hasFile('pdf')) {
-            $pdfPath = $request->file('pdf')->store('news/pdfs', 'public');
+            $files['pdf'] = $request->file('pdf');
         }
 
-        $publishedAt = $news->published_at;
-        if ($request->status === 'published' && !$news->published_at) {
-            $publishedAt = now();
-        } elseif ($request->status === 'scheduled' && $request->published_at) {
-            $publishedAt = $request->published_at;
-        } elseif ($request->status === 'draft') {
-            $publishedAt = null;
-        }
-
-        $news->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'excerpt' => $request->excerpt,
-            'content' => $request->content,
-            'image_path' => $imagePath,
-            'pdf_path' => $pdfPath,
-            'status' => $request->status,
-            'published_at' => $publishedAt,
-        ]);
+        $this->newsService->update($news->id, $request->validated(), $files);
 
         return redirect()->route('admin.news.index')->with('success', 'Noticia actualizada exitosamente.');
     }

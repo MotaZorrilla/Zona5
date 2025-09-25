@@ -3,16 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserFormRequest;
 use App\Models\Lodge;
 use App\Models\Position;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\UserService;
+use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    use PaginationTrait;
+
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function index(Request $request)
     {
         // Only allow SuperAdmin and Admin users to see all users
@@ -20,30 +31,14 @@ class UserController extends Controller
         
         $query = User::with('roles', 'lodges');
 
-        // Apply search filter
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('name', 'LIKE', "%{$search}%")
-                  ->orWhere('email', 'LIKE', "%{$search}%");
-            });
-        }
-
-        // Apply role filter
-        if ($request->filled('role')) {
-            $query->whereHas('roles', function($q) use ($request) {
-                $q->where('id', $request->role);
-            });
-        }
-
-        // Apply lodge filter
-        if ($request->filled('lodge')) {
-            $query->whereHas('lodges', function($q) use ($request) {
-                $q->where('id', $request->lodge);
-            });
-        }
-
-        $users = $query->get();
+        $users = $this->paginateWithSearchAndFilters(
+            $query,
+            ['name', 'email'], // searchable fields
+            [], // filterable fields will be handled separately
+            $request,
+            'created_at',
+            'desc'
+        );
 
         $roles = Role::all();
         $lodges = Lodge::all();
@@ -62,27 +57,12 @@ class UserController extends Controller
         return view('admin.users.create', compact('roles', 'lodges', 'positions'));
     }
 
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
         // Only allow SuperAdmin and Admin users to create users
         $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'roles' => 'required|array',
-            'lodge_id' => 'nullable|exists:lodges,id',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'lodge_id' => $request->lodge_id,
-        ]);
-
-        $user->roles()->sync($request->roles);
+        $this->userService->create($request->validated());
 
         return redirect()->route('admin.users.index')->with('success', 'Usuario creado con éxito.');
     }
@@ -98,41 +78,20 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user', 'roles', 'lodges', 'positions'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(UserFormRequest $request, User $user)
     {
         // Only allow SuperAdmin and Admin users to update users
         $this->authorizeRole(['SuperAdmin', 'Admin']);
         
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8',
-            'roles' => 'sometimes|array',
-            'new_affiliation.lodge_id' => 'nullable|exists:lodges,id',
-            'new_affiliation.position_id' => 'nullable|exists:positions,id',
-        ]);
-
-        $userData = [
-            'name' => $request->name,
-            'email' => $request->email,
-        ];
-
-        if ($request->filled('password')) {
-            $userData['password'] = Hash::make($request->password);
-        }
-
-        $user->update($userData);
-
-        // Sync system roles
-        if ($request->has('roles')) {
-            $user->roles()->sync($request->roles);
-        }
+        $this->userService->update($user->id, $request->validated());
 
         // Add new affiliation if provided
         if ($request->filled('new_affiliation.lodge_id') && $request->filled('new_affiliation.position_id')) {
-            $user->lodges()->attach($request->input('new_affiliation.lodge_id'), [
-                'position_id' => $request->input('new_affiliation.position_id')
-            ]);
+            $this->userService->assignAffiliation(
+                $user->id,
+                $request->input('new_affiliation.lodge_id'),
+                $request->input('new_affiliation.position_id')
+            );
         }
 
         return redirect()->route('admin.users.index')->with('success', 'Usuario actualizado con éxito.');
