@@ -3,12 +3,12 @@
 @section('title', 'Bandeja de Entrada')
 
 @section('content')
-<div class="bg-white p-6 rounded-xl shadow-lg">
+<div class="bg-white p-8 rounded-xl shadow-lg">
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-gray-800">Bandeja de Entrada</h1>
-            <p class="text-sm text-gray-500 mt-1">Gestiona tus mensajes y comunicaciones.</p>
+            <h1 class="text-3xl font-bold text-primary-600 mb-2">Bandeja de Entrada</h1>
+            <p class="text-sm text-gray-500">Gestiona tus mensajes y comunicaciones.</p>
         </div>
         <a href="{{ route('admin.messages.create') }}" class="flex items-center bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
             <i class="ri-add-line mr-2"></i>
@@ -167,7 +167,10 @@
                             </button>
                         </form>
                         
-                        <form action="{{ route('admin.messages.unread', $message) }}" method="POST" class="inline-block">
+                        <form action="{{ route('admin.messages.unread', $message) }}" method="POST" class="inline-block" x-data x-on:submit.prevent="() => {
+                            $wire.$dispatch('notificationRead');
+                            $event.target.submit();
+                        }">
                             @csrf
                             <button type="submit" class="p-2 rounded-full bg-primary-100 text-primary-700 hover:bg-primary-200 hover:scale-110 transition-all" title="Marcar como no leído">
                                 <i class="ri-mail-unread-line text-lg"></i>

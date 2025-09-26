@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ContentManagerController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Public\LodgeController as PublicLodgeController;
 use App\Http\Controllers\Public\AboutUsController;
 use App\Http\Controllers\Public\HomeController;
@@ -15,8 +16,9 @@ Route::view('profile', 'profile')
 
 require __DIR__.'/auth.php';
 
+// Logout route - required for the application
 Route::post('logout', function () {
-    auth()->logout();
+    \Illuminate\Support\Facades\Auth::logout();
     session()->invalidate();
     session()->regenerateToken();
     return redirect('/');
@@ -27,9 +29,9 @@ Route::name('public.')->group(function () {
     Route::view('/lodges', 'public.lodges')->name('lodges');
     Route::get('logias/{lodge}', [PublicLodgeController::class, 'show'])->name('lodges.show');
     Route::view('/forums', 'public.forums')->name('forums');
-    Route::view('/school', 'public.school')->name('school');
+    Route::get('/school', [App\Http\Controllers\Public\SchoolController::class, 'index'])->name('school');
     Route::view('/archive', 'public.archive')->name('archive');
-    Route::view('/news', 'public.news')->name('news');
+    Route::get('/news', [App\Http\Controllers\Public\NewsController::class, 'index'])->name('news');
     Route::get('/contact', [App\Http\Controllers\Public\ContactController::class, 'show'])->name('contact');
     Route::post('/contact', [App\Http\Controllers\Public\ContactController::class, 'store'])->name('contact.store');
     Route::view('/sitemap', 'public.sitemap')->name('sitemap');
@@ -51,12 +53,20 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::resource('news', App\Http\Controllers\Admin\NewsController::class)->except(['show']);
         Route::resource('forums', App\Http\Controllers\Admin\ForumController::class)->except(['show']);
         Route::resource('school', App\Http\Controllers\Admin\SchoolController::class)->except(['show']);
-        Route::view('treasury', 'admin.treasury.index')->name('treasury');
+        Route::resource('treasury', App\Http\Controllers\Admin\TreasuryController::class);
         Route::resource('repository', App\Http\Controllers\Admin\RepositoryController::class);
         Route::get('repository/{repository}/download', [App\Http\Controllers\Admin\RepositoryController::class, 'download'])->name('repository.download');
-        Route::view('events', 'admin.events')->name('events');
-        Route::view('settings', 'admin.settings')->name('settings');
+        Route::resource('events', App\Http\Controllers\Admin\EventController::class);
+        Route::get('settings', [App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings');
+        Route::post('settings', [App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('settings.update');
         Route::get('content-manager/{section?}', [ContentManagerController::class, 'show'])->name('content-manager.show');
+        
+        // Rutas de reportes
+        Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+        Route::post('reports/generate', [ReportController::class, 'generate'])->name('reports.generate');
+        Route::post('reports/get-task-status', [ReportController::class, 'getTaskStatus'])->name('reports.get-task-status');
+        Route::get('reports/download/{filename}', [ReportController::class, 'download'])->name('reports.download');
+        Route::get('reports/task-logs', [ReportController::class, 'getTaskLogs'])->name('reports.task-logs');
     });
     
     // User, Admin and SuperAdmin access (all logged-in users)

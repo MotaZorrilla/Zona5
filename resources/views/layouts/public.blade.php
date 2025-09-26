@@ -20,10 +20,10 @@
 
     <style>
         :root {
-            --primary-color: #2C3E50; /* Masonic Blue */
-            --primary-hover: #34495E; /* Lighter Masonic Blue */
-            --secondary-color: #EC4899; /* Pink 500 */
-            --light-bg: #F9FAFB; /* Gray 50 */
+            --primary-color: #2C3E50; /* Masonic Blue original */
+            --primary-hover: #34495E; /* Lighter Masonic Blue original */
+            --secondary-color: #EC4899; /* Pink 500 original */
+            --light-bg: #F9FAFB; /* Gray 50 original */
             --font-sans: 'Inter', sans-serif;
             --font-serif: 'Merriweather', serif;
         }
@@ -81,13 +81,13 @@
                 <div class="hidden md:flex flex-grow justify-center">
                     <!-- Desktop Menu -->
                     <div class="flex items-center space-x-8">
-                        <a href="{{ route('welcome') }}" class="text-base font-medium text-white hover:text-primary-200">Inicio</a>
-                        <a href="{{ route('public.about-us') }}" class="text-base font-medium text-white hover:text-primary-200">Quiénes Somos</a>
-                        <a href="{{ route('public.lodges') }}" class="text-base font-medium text-white hover:text-primary-200">Logias</a>
+                        <a href="{{ route('welcome') }}" class="text-base font-medium text-white hover:text-yellow-200">Inicio</a> <!-- Yellow as requested -->
+                        <a href="{{ route('public.about-us') }}" class="text-base font-medium text-white hover:text-yellow-200">Quiénes Somos</a> <!-- Yellow as requested -->
+                        <a href="{{ route('public.lodges') }}" class="text-base font-medium text-white hover:text-yellow-200">Logias</a> <!-- Yellow as requested -->
 
                         <!-- Dropdown "Recursos" -->
                         <div x-data="{ dropdownOpen: false }" class="relative">
-                            <button @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="flex items-center text-base font-medium text-white hover:text-primary-200 focus:outline-none">
+                            <button @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="flex items-center text-base font-medium text-white hover:text-yellow-200 focus:outline-none"> <!-- Yellow as requested -->
                                 <span>Recursos</span>
                                 <i class="ri-arrow-down-s-line ml-1"></i>
                             </button>
@@ -98,8 +98,8 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('public.news') }}" class="text-base font-medium text-white hover:text-primary-200">Actualidad</a>
-                        <a href="{{ route('public.contact') }}" class="text-base font-medium text-white hover:text-primary-200">Contacto</a>
+                        <a href="{{ route('public.news') }}" class="text-base font-medium text-white hover:text-yellow-200">Actualidad</a> <!-- Yellow as requested -->
+                        <a href="{{ route('public.contact') }}" class="text-base font-medium text-white hover:text-yellow-200">Contacto</a> <!-- Yellow as requested -->
                     </div>
 
                     <!-- Login/Register Buttons (Desktop) -->

@@ -17,7 +17,7 @@
                 <div class="lg:col-span-2">
                     <!-- Historia -->
                     <div class="mb-12" data-scroll-reveal>
-                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-serif border-b pb-4 mb-6">Nuestra Historia</h2>
+                        <h2 class="text-3xl font-bold tracking-tight text-primary-600 font-serif border-b pb-4 mb-6">Nuestra Historia</h2>
                         <div class="prose prose-lg max-w-none text-gray-600 text-justify">
                             <p>{{ $lodge->history ?? 'La historia de esta logia aún no ha sido registrada.' }}</p>
                         </div>
@@ -25,7 +25,7 @@
 
                     <!-- Próximos Eventos (Aún estático) -->
                     <div data-scroll-reveal>
-                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-serif border-b pb-4 mb-6">Próximos Eventos</h2>
+                        <h2 class="text-3xl font-bold tracking-tight text-primary-600 font-serif border-b pb-4 mb-6">Próximos Eventos</h2>
                         <div class="space-y-4">
                             {{-- @forelse ($lodge->events as $event) --}}
                                 <div class="bg-gray-50 rounded-lg p-4 flex items-center justify-between">

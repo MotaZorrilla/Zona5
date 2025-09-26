@@ -22,7 +22,7 @@
         <div class="lg:grid lg:grid-cols-12 lg:gap-8">
 
             <!-- Forum Content -->
-            <div class="lg:col-span-9">
+            <div class="lg:col-span-8 xl:col-span-9">
 
                 <!-- Search and Actions -->
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-8 border-b border-gray-200" data-scroll-reveal>
@@ -69,30 +69,40 @@
                 <div class="bg-white shadow overflow-hidden sm:rounded-md" data-scroll-reveal>
                     <ul role="list" class="divide-y divide-gray-200">
                         <!-- Pinned Topic Example -->
-                        <li>
-                            <a href="#" class="block hover:bg-gray-50">
-                                <div class="px-4 py-4 sm:px-6">
-                                    <div class="flex items-center justify-between">
-                                        <p class="text-sm font-medium text-primary-600 truncate">
+                        <li class="hover:bg-gray-50 transition-colors duration-200">
+                            <a href="#" class="block">
+                                <div class="px-4 py-4 sm:px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center">
                                             <i class="ri-pushpin-2-fill mr-2 text-yellow-500"></i>
-                                            Normas y Anuncios del Foro
-                                        </p>
-                                        <div class="ml-2 flex-shrink-0 flex">
-                                            <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">2 Respuestas</p>
-                                            <p class="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">1.2k Vistas</p>
+                                            <p class="text-sm font-medium text-primary-600 truncate">
+                                                Normas y Anuncios del Foro
+                                            </p>
                                         </div>
-                                    </div>
-                                    <div class="mt-2 sm:flex sm:justify-between">
-                                        <div class="sm:flex">
-                                            <p class="flex items-center text-sm text-gray-500">
+                                        <div class="mt-2 sm:hidden text-sm text-gray-500">
+                                            <p class="flex items-center">
                                                 <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
                                                 Admin
                                             </p>
-                                        </div>
-                                        <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-                                            <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                            <p>
+                                            <p class="mt-1 flex items-center">
+                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
                                                 Última actividad <time datetime="2025-09-05">hace 2 días</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="hidden sm:flex flex-col items-end sm:ml-4">
+                                        <div class="flex space-x-2">
+                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">2 Respuestas</p>
+                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">1.2k Vistas</p>
+                                        </div>
+                                        <div class="mt-1 flex text-sm text-gray-500">
+                                            <p class="flex items-center">
+                                                <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
+                                                Admin
+                                            </p>
+                                            <p class="ml-3 flex items-center">
+                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
+                                                <time datetime="2025-09-05">hace 2 días</time>
                                             </p>
                                         </div>
                                     </div>
@@ -101,27 +111,35 @@
                         </li>
 
                         <!-- Regular Topic Example 1 -->
-                        <li>
-                            <a href="#" class="block hover:bg-gray-50">
-                                <div class="px-4 py-4 sm:px-6">
-                                    <div class="flex items-center justify-between">
+                        <li class="hover:bg-gray-50 transition-colors duration-200">
+                            <a href="#" class="block">
+                                <div class="px-4 py-4 sm:px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                                    <div class="flex-1 min-w-0">
                                         <p class="text-sm font-medium text-gray-900 truncate">Reflexiones sobre el Simbolismo del Primer Grado</p>
-                                        <div class="ml-2 flex-shrink-0 flex">
-                                            <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">15 Respuestas</p>
-                                            <p class="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">3.4k Vistas</p>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 sm:flex sm:justify-between">
-                                        <div class="sm:flex">
-                                            <p class="flex items-center text-sm text-gray-500">
+                                        <div class="mt-2 sm:hidden text-sm text-gray-500">
+                                            <p class="flex items-center">
                                                 <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
                                                 V.`.`H.`.` Juan Pérez
                                             </p>
-                                        </div>
-                                        <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-                                            <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                            <p>
+                                            <p class="mt-1 flex items-center">
+                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
                                                 Última actividad <time datetime="2025-09-07">hace 3 horas</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="hidden sm:flex flex-col items-end sm:ml-4">
+                                        <div class="flex space-x-2">
+                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">15 Respuestas</p>
+                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">3.4k Vistas</p>
+                                        </div>
+                                        <div class="mt-1 flex text-sm text-gray-500">
+                                            <p class="flex items-center">
+                                                <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
+                                                V.`.`H.`.` Juan Pérez
+                                            </p>
+                                            <p class="ml-3 flex items-center">
+                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
+                                                <time datetime="2025-09-07">hace 3 horas</time>
                                             </p>
                                         </div>
                                     </div>
@@ -130,27 +148,35 @@
                         </li>
 
                         <!-- Regular Topic Example 2 -->
-                        <li>
-                            <a href="#" class="block hover:bg-gray-50">
-                                <div class="px-4 py-4 sm:px-6">
-                                    <div class="flex items-center justify-between">
+                        <li class="hover:bg-gray-50 transition-colors duration-200">
+                            <a href="#" class="block">
+                                <div class="px-4 py-4 sm:px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                                    <div class="flex-1 min-w-0">
                                         <p class="text-sm font-medium text-gray-900 truncate">Propuesta de Caridad para el Solsticio de Invierno</p>
-                                        <div class="ml-2 flex-shrink-0 flex">
-                                            <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">8 Respuestas</p>
-                                            <p class="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">980 Vistas</p>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 sm:flex sm:justify-between">
-                                        <div class="sm:flex">
-                                            <p class="flex items-center text-sm text-gray-500">
+                                        <div class="mt-2 sm:hidden text-sm text-gray-500">
+                                            <p class="flex items-center">
                                                 <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
                                                 Q.`.`H.`.` Carlos Gómez
                                             </p>
-                                        </div>
-                                        <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-                                            <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                            <p>
+                                            <p class="mt-1 flex items-center">
+                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
                                                 Última actividad <time datetime="2025-09-06">ayer</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="hidden sm:flex flex-col items-end sm:ml-4">
+                                        <div class="flex space-x-2">
+                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">8 Respuestas</p>
+                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">980 Vistas</p>
+                                        </div>
+                                        <div class="mt-1 flex text-sm text-gray-500">
+                                            <p class="flex items-center">
+                                                <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
+                                                Q.`.`H.`.` Carlos Gómez
+                                            </p>
+                                            <p class="ml-3 flex items-center">
+                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
+                                                <time datetime="2025-09-06">ayer</time>
                                             </p>
                                         </div>
                                     </div>
@@ -188,7 +214,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="lg:col-span-3 mt-8 lg:mt-0">
+            <div class="lg:col-span-4 xl:col-span-3 mt-8 lg:mt-0">
                 <div class="space-y-6">
                     <!-- Categories -->
                     <div class="bg-white p-6 shadow rounded-lg" data-scroll-reveal>
@@ -207,23 +233,23 @@
                         <h3 class="text-lg font-medium text-gray-900 font-serif">Actividad Reciente</h3>
                         <ul class="mt-4 space-y-4">
                             <li class="flex items-start">
-                                <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/40?u=1" alt="">
-                                <div class="ml-3">
-                                    <p class="text-sm text-gray-700">Q.`.`H.`.` Carlos comentó en <a href="#" class="font-medium text-primary-600 hover:underline">Propuesta de Caridad...</a></p>
+                                <img class="h-10 w-10 rounded-full flex-shrink-0" src="https://i.pravatar.cc/40?u=1" alt="">
+                                <div class="ml-3 min-w-0">
+                                    <p class="text-sm text-gray-700 break-words">Q.`.`H.`.` Carlos comentó en <a href="#" class="font-medium text-primary-600 hover:underline">Propuesta de Caridad...</a></p>
                                     <p class="text-xs text-gray-500">hace 5 minutos</p>
                                 </div>
                             </li>
                             <li class="flex items-start">
-                                <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/40?u=2" alt="">
-                                <div class="ml-3">
-                                    <p class="text-sm text-gray-700">V.`.`H.`.` Juan creó un nuevo tema: <a href="#" class="font-medium text-primary-600 hover:underline">La influencia de la geometría...</a></p>
+                                <img class="h-10 w-10 rounded-full flex-shrink-0" src="https://i.pravatar.cc/40?u=2" alt="">
+                                <div class="ml-3 min-w-0">
+                                    <p class="text-sm text-gray-700 break-words">V.`.`H.`.` Juan creó un nuevo tema: <a href="#" class="font-medium text-primary-600 hover:underline">La influencia de la geometría...</a></p>
                                     <p class="text-xs text-gray-500">hace 1 hora</p>
                                 </div>
                             </li>
                             <li class="flex items-start">
-                                <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/40?u=3" alt="">
-                                <div class="ml-3">
-                                    <p class="text-sm text-gray-700">Admin comentó en <a href="#" class="font-medium text-primary-600 hover:underline">Normas y Anuncios...</a></p>
+                                <img class="h-10 w-10 rounded-full flex-shrink-0" src="https://i.pravatar.cc/40?u=3" alt="">
+                                <div class="ml-3 min-w-0">
+                                    <p class="text-sm text-gray-700 break-words">Admin comentó en <a href="#" class="font-medium text-primary-600 hover:underline">Normas y Anuncios...</a></p>
                                     <p class="text-xs text-gray-500">hace 2 horas</p>
                                 </div>
                             </li>

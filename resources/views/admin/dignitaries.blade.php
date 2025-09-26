@@ -7,7 +7,7 @@
     <!-- Directorio de Dignatarios de la Zona 5 -->
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-gray-800">Directorio de Dignatarios</h1>
+            <h1 class="text-3xl font-bold text-primary-600">Directorio de Dignatarios</h1>
             <p class="text-sm text-gray-500 mt-1">Gestiona los dignatarios de la Zona 5 y visualiza los Venerables Maestros de cada logia.</p>
         </div>
         <a href="{{ route('admin.zone-dignitaries.create') }}" class="inline-flex items-center bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors ease-in-out duration-150">

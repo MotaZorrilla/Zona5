@@ -8,8 +8,7 @@
 $baseClasses = 'inline-flex items-center justify-center rounded-md border border-transparent font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-300 ease-in-out';
 
 $variantClasses = [
-    'primary' => 'bg-primary text-white hover:bg-primary-700 focus:ring-primary-500',
-        'primary' => 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500',
+    'primary' => 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500',
     'secondary' => 'bg-white text-primary-600 hover:bg-gray-50 focus:ring-primary-500',
     'danger' => 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
 ][$variant] ?? 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500';

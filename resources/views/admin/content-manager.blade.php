@@ -1,12 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-
+<div class="bg-white p-8 rounded-xl shadow-lg">
     <!-- Page header -->
     <div class="mb-8">
-        <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Gestor de Contenido del Sitio</h1>
-        <p class="text-slate-500">Administra y personaliza el contenido de las páginas públicas de tu sitio web.</p>
+        <h1 class="text-3xl font-bold text-primary-600 mb-2">Gestor de Contenido del Sitio</h1>
+        <p class="text-sm text-gray-500">Administra y personaliza el contenido de las páginas públicas de tu sitio web.</p>
     </div>
 
     <div class="bg-white shadow-lg rounded-sm">
@@ -27,6 +26,5 @@
         </div>
 
     </div>
-
 </div>
 @endsection

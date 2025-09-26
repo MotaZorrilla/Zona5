@@ -12,18 +12,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         $this->call([
             RoleSeeder::class,
+            AdminUserSeeder::class,
             PositionSeeder::class,
             LodgeSeeder::class,
-            
+            UserSeeder::class,
+            NewsSeeder::class,
+            MessagesTableSeeder::class,
+            EventSeeder::class,
+            ContactMessagesTableSeeder::class,
+            LogoSettingsSeeder::class,
+            TreasurySeeder::class,
+            CourseSeeder::class,
+            SettingsSeeder::class,
             // Lodge-specific seeders
             AsiloDeLaPazLodgeSeeder::class,
             AuroraDelYuruariLodgeSeeder::class,
@@ -48,14 +50,8 @@ class DatabaseSeeder extends Seeder
             RestauradoresDelHonorXXIILodgeSeeder::class,
             Salmo133LodgeSeeder::class,
             SolDeGuayanaLodgeSeeder::class,
-            
-            UserSeeder::class,
-            AdminUserSeeder::class,
             ZoneDignitariesSeeder::class,
-            MessagesTableSeeder::class,
-            ContactMessagesTableSeeder::class,
             ActivityLogSeeder::class,
-            LogoSettingsSeeder::class,
         ]);
     }
 }

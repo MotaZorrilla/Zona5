@@ -29,39 +29,29 @@
     </div>
 
     <div class="bg-white shadow-md rounded-lg p-6">
-        <h3 class="text-xl font-bold text-slate-800 mb-4">Pie de Página y Contacto</h3>
-        <div class="space-y-4">
+        <h3 class="text-xl font-bold text-slate-800 mb-4">Redes Sociales</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-                <label for="footer_copyright" class="block text-sm font-medium text-slate-700">Texto de Copyright</label>
-                <input type="text" id="footer_copyright" value="© 2025 Gran Zona 5. Todos los derechos reservados." class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
+                <label for="social_facebook" class="block text-sm font-medium text-slate-700">URL de Facebook</label>
+                <input type="url" id="social_facebook" placeholder="https://facebook.com/usuario" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm sm:text-sm">
             </div>
             <div>
-                <label for="footer_email" class="block text-sm font-medium text-slate-700">Email de Contacto General</label>
-                <input type="email" id="footer_email" value="contacto@granzona5.org" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
+                <label for="social_twitter" class="block text-sm font-medium text-slate-700">URL de Twitter / X</label>
+                <input type="url" id="social_twitter" placeholder="https://twitter.com/usuario" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm sm:text-sm">
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label for="social_facebook" class="block text-sm font-medium text-slate-700">URL de Facebook</label>
-                    <input type="url" id="social_facebook" placeholder="https://facebook.com/usuario" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm sm:text-sm">
-                </div>
-                <div>
-                    <label for="social_twitter" class="block text-sm font-medium text-slate-700">URL de Twitter / X</label>
-                    <input type="url" id="social_twitter" placeholder="https://twitter.com/usuario" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm sm:text-sm">
-                </div>
-                <div>
-                    <label for="social_instagram" class="block text-sm font-medium text-slate-700">URL de Instagram</label>
-                    <input type="url" id="social_instagram" placeholder="https://instagram.com/usuario" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm sm:text-sm">
-                </div>
-                <div>
-                    <label for="social_youtube" class="block text-sm font-medium text-slate-700">URL de YouTube</label>
-                    <input type="url" id="social_youtube" placeholder="https://youtube.com/c/canal" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm sm:text-sm">
-                </div>
+            <div>
+                <label for="social_instagram" class="block text-sm font-medium text-slate-700">URL de Instagram</label>
+                <input type="url" id="social_instagram" placeholder="https://instagram.com/usuario" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm sm:text-sm">
+            </div>
+            <div>
+                <label for="social_youtube" class="block text-sm font-medium text-slate-700">URL de YouTube</label>
+                <input type="url" id="social_youtube" placeholder="https://youtube.com/c/canal" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm sm:text-sm">
             </div>
         </div>
     </div>
 
     <div class="bg-white shadow-md rounded-lg p-6">
-        <h3 class="text-xl font-bold text-slate-800 mb-4">SEO y Ajustes Avanzados</h3>
+        <h3 class="text-xl font-bold text-slate-800 mb-4">SEO</h3>
         <div class="space-y-4">
             <div>
                 <label for="seo_title" class="block text-sm font-medium text-slate-700">Meta Título Global</label>

@@ -47,7 +47,7 @@
         <!-- Header Logo -->
         <header class="absolute top-0 left-0 w-full z-10 p-6">
             <a href="/" wire:navigate class="flex items-center">
-                <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white text-xl font-bold">Z5</div>
+                <x-application-logo class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary-500 text-xl font-bold" />
                 <span class="ml-3 text-2xl font-bold text-white">Gran Zona 5</span>
             </a>
         </header>
@@ -59,7 +59,9 @@
 
         <!-- Footer -->
         <footer class="relative z-10 w-full py-4">
-            <p class="text-center text-sm text-gray-300">&copy; 2025 Gran Zona 5, G.`.`L.`.`R.`.`V.`.` Todos los derechos reservados.</p>
+            <p class="text-center text-base text-gray-300 font-medium">&copy; {{ date('Y') }} Gran Zona 5 - Todos los derechos reservados</p>
+            <p class="text-center text-base text-gray-300 font-medium mt-1">Jurisdiccionada a la <a href="https://www.granlogiadevenezuela.com" target="_blank" class="font-bold text-white hover:text-primary-200 transition-colors">Gran Logia de la República de Venezuela</a></p>
+            <p class="text-center text-base text-gray-300 font-medium mt-3">Desarrollado por <a href="https://motazorrilla.com" target="_blank" class="font-bold text-white hover:text-primary-200 transition-colors">@MotaZorrilla</a></p>
         </footer>
     </div>
     @livewireScripts

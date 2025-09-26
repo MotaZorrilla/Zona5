@@ -2,10 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Message;
-use App\Models\User;
-use App\Observers\MessageObserver;
-use App\Observers\UserObserver;
+use App\Services\DebugService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,7 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Registrar el servicio de depuración
+        $this->app->singleton('debug.service', function ($app) {
+            return new DebugService(config('app.debug', false));
+        });
     }
 
     /**
@@ -23,8 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        User::observe(UserObserver::class);
-        Message::observe(MessageObserver::class);
+        //
     }
-}
 
+}

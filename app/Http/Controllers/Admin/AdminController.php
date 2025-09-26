@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Lodge;
+use App\Models\News;
+use App\Models\Event;
+use App\Models\Repository;
 use App\Models\User;
+use App\Models\Treasury;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -26,6 +30,27 @@ class AdminController extends Controller
         // Get recent activities
         $recentActivities = ActivityLog::latest()->with('user', 'subject')->take(5)->get();
 
+        // KPIs específicos para el dashboard
+        $newsCount = News::count();
+        $eventCount = Event::count();
+        $repositoryCount = Repository::count();
+        $treasuryIncome = Treasury::where('type', 'income')->sum('amount');
+        $treasuryExpense = Treasury::where('type', 'expense')->sum('amount');
+        $treasuryBalance = $treasuryIncome - $treasuryExpense;
+        
+        // KPIs adicionales de tesorería para mejor información financiera
+        $currentMonthIncome = Treasury::where('type', 'income')
+            ->whereMonth('transaction_date', now()->month)
+            ->whereYear('transaction_date', now()->year)
+            ->sum('amount');
+        
+        $currentMonthExpense = Treasury::where('type', 'expense')
+            ->whereMonth('transaction_date', now()->month)
+            ->whereYear('transaction_date', now()->year)
+            ->sum('amount');
+        
+        $currentMonthBalance = $currentMonthIncome - $currentMonthExpense;
+
         // --- Chart Data ---
 
         // 1. Pie Chart: Member distribution by degree
@@ -38,10 +63,27 @@ class AdminController extends Controller
             ]
         ];
 
-        // 2. Line Chart: Member growth (Fake data for now)
+        // 2. Line Chart: Member growth (real data for last 6 months)
         $lineChartLabels = [];
+        $apprenticeData = [];
+        $companionData = [];
+        $masterData = [];
+
         for ($i = 5; $i >= 0; $i--) {
-            $lineChartLabels[] = Carbon::now()->subMonths($i)->format('M');
+            $date = Carbon::now()->subMonths($i);
+            $monthStart = $date->copy()->startOfMonth();
+            $monthEnd = $date->copy()->endOfMonth();
+
+            $lineChartLabels[] = $date->format('M Y');
+            $apprenticeData[] = User::where('degree', 'Aprendiz')
+                ->whereBetween('created_at', [$monthStart, $monthEnd])
+                ->count();
+            $companionData[] = User::where('degree', 'Compañero')
+                ->whereBetween('created_at', [$monthStart, $monthEnd])
+                ->count();
+            $masterData[] = User::where('degree', 'Maestro')
+                ->whereBetween('created_at', [$monthStart, $monthEnd])
+                ->count();
         }
 
         $memberGrowthData = [
@@ -49,41 +91,68 @@ class AdminController extends Controller
             'datasets' => [
                 [
                     'label' => 'Aprendices',
-                    'data' => [1, 3, 2, 4, 5, 8], // Fake data
+                    'data' => $apprenticeData,
                     'borderColor' => '#38bdf8', // sky-400
                 ],
                 [
                     'label' => 'Compañeros',
-                    'data' => [0, 1, 1, 2, 3, 5], // Fake data
+                    'data' => $companionData,
                     'borderColor' => '#2dd4bf', // teal-400
                 ],
                 [
                     'label' => 'Maestros',
-                    'data' => [5, 6, 8, 9, 11, 12], // Fake data
+                    'data' => $masterData,
                     'borderColor' => '#facc15', // yellow-400
                 ],
             ]
         ];
 
-        // 3. Line Chart: Content growth (Fake data for now)
+        // 3. Line Chart: Content growth (real data for last 6 months)
+        $contentGrowthLabels = $lineChartLabels; // Reuse the same month labels
+        $newsData = [];
+        $eventData = [];
+        $repositoryData = [];
+        $treasuryIncomeData = [];
+        $treasuryExpenseData = [];
+
+        for ($i = 5; $i >= 0; $i--) {
+            $date = Carbon::now()->subMonths($i);
+            $monthStart = $date->copy()->startOfMonth();
+            $monthEnd = $date->copy()->endOfMonth();
+
+            $newsData[] = News::whereBetween('created_at', [$monthStart, $monthEnd])->count();
+            $eventData[] = Event::whereBetween('created_at', [$monthStart, $monthEnd])->count();
+            $repositoryData[] = Repository::whereBetween('created_at', [$monthStart, $monthEnd])->count();
+            $treasuryIncomeData[] = Treasury::where('type', 'income')
+                ->whereBetween('transaction_date', [$monthStart, $monthEnd])
+                ->sum('amount');
+            $treasuryExpenseData[] = Treasury::where('type', 'expense')
+                ->whereBetween('transaction_date', [$monthStart, $monthEnd])
+                ->sum('amount');
+        }
+
         $contentGrowthData = [
-            'labels' => $lineChartLabels, // Reuse the same month labels
+            'labels' => $contentGrowthLabels,
             'datasets' => [
                 [
                     'label' => 'Noticias',
-                    'data' => [5, 7, 8, 10, 15, 22], // Fake data
+                    'data' => $newsData,
                 ],
                 [
                     'label' => 'Eventos',
-                    'data' => [1, 2, 2, 3, 5, 6], // Fake data
+                    'data' => $eventData,
                 ],
                 [
-                    'label' => 'Cursos',
-                    'data' => [0, 1, 2, 2, 3, 4], // Fake data
+                    'label' => 'Documentos',
+                    'data' => $repositoryData,
                 ],
-                 [
-                    'label' => 'Foros',
-                    'data' => [1, 1, 2, 3, 3, 4], // Fake data
+                [
+                    'label' => 'Ingresos Tesorería',
+                    'data' => $treasuryIncomeData,
+                ],
+                [
+                    'label' => 'Egresos Tesorería',
+                    'data' => $treasuryExpenseData,
                 ],
             ]
         ];
@@ -98,7 +167,14 @@ class AdminController extends Controller
             'recentActivities',
             'degreeDistributionData',
             'memberGrowthData',
-            'contentGrowthData'
+            'contentGrowthData',
+            'newsCount',
+            'eventCount',
+            'repositoryCount',
+            'treasuryBalance',
+            'currentMonthIncome',
+            'currentMonthExpense',
+            'currentMonthBalance'
         ));
     }
 }

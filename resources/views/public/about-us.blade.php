@@ -18,78 +18,111 @@
     {{-- Contenido Principal --}}
     <div class="bg-white" x-data="{ activeModal: null }">
         <!-- Historia Section -->
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8" data-scroll-reveal>
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestra Historia</h2>
-                <p class="mt-4 text-lg text-gray-500">La Masonería en la región de Guayana tiene raíces profundas, entrelazadas con el desarrollo social, cultural y político del Estado Bolívar. Desde la fundación de las primeras logias, los hermanos masones han sido pilares en la construcción de una sociedad más justa, educada y fraterna.</p>
-            </div>
-            <div class="mt-12 text-center">
-                <blockquote class="inline-block p-8 bg-gray-50 rounded-xl">
-                    <p class="text-xl font-medium text-gray-700">"Buscamos hacer de hombres buenos, mejores hombres. Hombres comprometidos con su entorno, su familia y su país."</p>
-                </blockquote>
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 py-16" data-scroll-reveal>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-extrabold text-primary-600 font-serif mb-8">Nuestra Historia</h2>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-8 border border-blue-100">
+                        <p class="text-lg text-gray-700 mb-6 text-justify">
+                            La Masonería en la región de Guayana tiene raíces profundas, entrelazadas con el desarrollo social, cultural y político del Estado Bolívar. Desde la fundación de las primeras logias, los hermanos masones han sido pilares en la construcción de una sociedad más justa, educada y fraterna.
+                        </p>
+                        <p class="text-lg text-gray-700 text-justify">
+                            Las Grandes Zonas surgieron a partir de un decreto emitido por el Venerable Gran Maestro de la Gran Logia de la República de Venezuela, con el objetivo de otorgar un orden estructural y jerárquico a todas las zonas a nivel nacional. Este decreto buscaba fortalecer la coordinación entre las logias y optimizar la administración de los asuntos masónicos en cada región del país, garantizando la unidad de criterios y la eficiencia en los trabajos de la Augusta Institución.
+                        </p>
+                    </div>
+                    <blockquote class="p-8 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-xl border border-blue-200 flex items-center justify-center">
+                        <div>
+                            <p class="text-xl font-medium text-blue-800 italic text-center">"Buscamos hacer de hombres buenos, mejores hombres. Hombres comprometidos con su entorno, su familia y su país."</p>
+                            <div class="mt-4 text-blue-600 font-semibold text-center">— Sabiduría Masónica</div>
+                        </div>
+                    </blockquote>
+                </div>
             </div>
         </div>
 
         <!-- Misión y Visión Section -->
-        <div class="bg-gray-50" data-scroll-reveal>
-            <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h3 class="text-2xl font-extrabold text-gray-900 font-serif mb-4">Misión</h3>
-                    <p class="text-gray-600 text-lg">Preservar y transmitir los principios universales de la Francmasonería: Libertad, Igualdad y Fraternidad. Fomentamos el estudio filosófico, el desarrollo moral y la práctica de la filantropía entre nuestros miembros.</p>
+        <div class="bg-gradient-to-br from-gray-50 to-blue-50 py-16" data-scroll-reveal>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-extrabold text-primary-600 font-serif">Misión y Visión</h2>
+                    <p class="mt-4 text-lg text-gray-500">Nuestro propósito y rumbo como institución masónica</p>
                 </div>
-                <div class="border-t-4 border-primary-500 pt-6">
-                    <h3 class="text-2xl font-extrabold text-gray-900 font-serif mb-4">Visión</h3>
-                    <p class="text-gray-600 text-lg">Aspiramos a ser una institución relevante y respetada, reconocida por su contribución positiva al progreso de la sociedad guayanesa, formando líderes éticos y ciudadanos ejemplares que trabajen por el bienestar común.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-blue-500 hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-extrabold text-gray-900 font-serif mb-6 flex items-center">
+                            <i class="ri-focus-3-line text-blue-500 text-2xl mr-3"></i>
+                            <span class="font-semibold">Misión</span>
+                        </h3>
+                        <p class="text-gray-700 text-lg leading-relaxed">
+                            Preservar y transmitir los principios universales de la Francmasonería: Libertad, Igualdad y Fraternidad. Fomentamos el estudio filosófico, el desarrollo moral y la práctica de la filantropía entre nuestros miembros, fortaleciendo así la identidad masónica.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-green-500 hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-extrabold text-gray-900 font-serif mb-6 flex items-center">
+                            <i class="ri-eye-line text-green-500 text-2xl mr-3"></i>
+                            <span class="font-semibold">Visión</span>
+                        </h3>
+                        <p class="text-gray-700 text-lg leading-relaxed">
+                            Aspiramos a ser una institución relevante y respetada, reconocida por su contribución positiva al progreso de la sociedad guayanesa, formando líderes éticos y ciudadanos ejemplares que trabajen por el bienestar común y el fortalecimiento de la Gran Logia de Venezuela.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Pilares Section -->
         <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8" data-scroll-reveal>
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestros Pilares</h2>
-                <p class="mt-4 text-lg text-gray-500">La Zona 5 se apoya en los cuatro pilares que promueven la Gran Logia de la República de Venezuela, guiando nuestro trabajo y fortaleciendo nuestra Augusta Institución.</p>
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-primary-600 font-serif">Nuestros Pilares</h2>
+                <p class="mt-4 text-lg text-gray-500">La Gran Logia de la República de Venezuela se sustenta en las cuatro columnas fundamentales que han fortalecido la Masonería Nacional: Amor Fraternal, Sentido de Pertenencia, Filantropía y Docencia Masónica, guiando nuestro trabajo y compromiso como MRGM.</p>
             </div>
-            <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-                <div class="text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mx-auto mb-6">
-                        <i class="ri-group-line text-4xl"></i>
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 shadow-lg border border-blue-100 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-blue-600 mx-auto mb-6">
+                        <i class="ri-heart-line text-4xl"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900">Fraternidad</h4>
-                    <p class="mt-2 text-gray-500">El lazo indisoluble que nos une como hermanos, fomentando el apoyo mutuo, la armonía y la comprensión más allá de cualquier diferencia.</p>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Amor Fraternal</h4>
+                    <p class="text-gray-600 text-sm">Lazos de unión entre los Queridos Hermanos que fortalecen la fraternidad y el respeto mutuo.</p>
                 </div>
-                <div class="text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mx-auto mb-6">
+                
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-8 shadow-lg border border-green-100 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-600 mx-auto mb-6">
                         <i class="ri-book-open-line text-4xl"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900">Docencia</h4>
-                    <p class="mt-2 text-gray-500">La búsqueda incesante de la verdad y el conocimiento a través del estudio, la instrucción y el intercambio de ideas para el perfeccionamiento individual.</p>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Docencia Masónica</h4>
+                    <p class="text-gray-600 text-sm">La búsqueda incesante de la verdad y el conocimiento para el perfeccionamiento masónico.</p>
                 </div>
-                <div class="text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mx-auto mb-6">
+                
+                <div class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-8 shadow-lg border border-yellow-100 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-amber-100 text-amber-600 mx-auto mb-6">
                         <i class="ri-hand-heart-line text-4xl"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900">Filantropía</h4>
-                    <p class="mt-2 text-gray-500">El amor a la humanidad manifestado en obras de caridad y beneficencia, trabajando activamente por el bienestar y el progreso de nuestra comunidad.</p>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Filantropía</h4>
+                    <p class="text-gray-600 text-sm">El amor a la humanidad manifestado en obras de caridad y beneficencia.</p>
                 </div>
-                <div class="text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mx-auto mb-6">
+                
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-8 shadow-lg border border-purple-100 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-purple-100 text-purple-600 mx-auto mb-6">
                         <i class="ri-shield-star-line text-4xl"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900">Sentido de Pertenencia</h4>
-                    <p class="mt-2 text-gray-500">El orgullo y compromiso que sentimos hacia nuestra Orden, Logia y Hermanos, fortaleciendo nuestra identidad y cohesión como institución.</p>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Sentido de Pertenencia</h4>
+                    <p class="text-gray-600 text-sm">El orgullo y compromiso hacia nuestra Orden, Logia y Hermanos.</p>
                 </div>
             </div>
         </div>
 
         <!-- Junta Directiva Section -->
-        <div class="bg-gray-50" data-scroll-reveal>
-            <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8">
-                <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestra Junta Directiva</h2>
+        <div class="bg-gradient-to-br from-gray-50 to-blue-50 py-16" data-scroll-reveal>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl font-extrabold text-primary-600 font-serif">Nuestra Junta Directiva</h2>
                     <p class="mt-4 text-lg text-gray-500">El equipo que lidera y coordina los trabajos de la Gran Zona 5.</p>
                 </div>
-                <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16">
+                <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     @foreach ($boardMembers as $member)
                         @php
                             $slug = Str::slug($member->name);

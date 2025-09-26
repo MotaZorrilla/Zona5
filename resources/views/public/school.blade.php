@@ -3,12 +3,11 @@
 @section('title', 'Escuela Virtual - Gran Zona 5')
 
 @section('content')
-<x-under-construction-overlay>
     <div>
         <!-- Hero Section -->
-        <div class="relative bg-primary-800">
+        <div class="relative bg-gradient-to-r from-primary-800 to-blue-900">
             <div class="absolute inset-0">
-                <img class="w-full h-full object-cover" src="https://picsum.photos/seed/school-hero/1920/1080" alt="Escuela Virtual de la Gran Zona 5">
+                <img class="w-full h-full object-cover opacity-30" src="https://picsum.photos/seed/school-hero/1920/1080" alt="Escuela Virtual de la Gran Zona 5">
                 <div class="absolute inset-0 bg-primary-800 mix-blend-multiply" aria-hidden="true"></div>
             </div>
             <div class="relative max-w-4xl mx-auto text-center py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
@@ -26,81 +25,60 @@
         </div>
 
         <!-- Main Content -->
-        <div class="py-16 sm:py-24 lg:py-32">
+        <div class="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-primary-50 to-blue-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <!-- Upcoming Live Classes -->
                 <div class="text-center" data-scroll-reveal>
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-serif">Próximas Clases en Vivo</h2>
+                    <h2 class="text-3xl font-extrabold text-primary-600 sm:text-4xl font-serif">Próximas Clases en Vivo</h2>
                     <p class="mt-4 text-lg text-gray-500">Participa en nuestras sesiones interactivas y comparte en tiempo real con instructores y hermanos.</p>
                 </div>
                 <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    <x-card-event 
-                        image="https://picsum.photos/seed/event-rhetoric/800/600"
-                        title="La Retórica en el Arte Real" 
-                        subtitle="Un análisis profundo sobre el uso de la palabra y la persuasión en la vida masónica." 
-                        date="2025-09-20" 
-                        time="19:00"
-                        instructorName="V.`.`H.`.` Ricardo Salas"
-                        instructorRole="Orador de la G.`.`L.`.`R.`.`V.`."
-                        instructorImage="https://i.pravatar.cc/40?u=4"
-                        status="upcoming"
-                        link="#"
-                    />
-                    <x-card-event 
-                        image="https://picsum.photos/seed/event-treasury/800/600"
-                        title="Manejo de Tesorería en Logia" 
-                        subtitle="Principios de contabilidad y administración para una tesorería eficiente y transparente." 
-                        date="2025-09-27" 
-                        time="19:30"
-                        instructorName="Q.`.`H.`.` Alberto Ríos"
-                        instructorRole="Gran Tesorero Adjunto"
-                        instructorImage="https://i.pravatar.cc/40?u=5"
-                        status="upcoming"
-                        link="#"
-                    />
-                    <x-card-event 
-                        image="https://picsum.photos/seed/event-liturgy/800/600"
-                        title="Taller de Liturgia y Ritual" 
-                        subtitle="Un espacio para perfeccionar la ejecución del ritual y comprender su profundo significado." 
-                        date="2025-10-15" 
-                        status="closed"
-                        instructorName="Por Anunciar"
-                        instructorRole="Comisión de Liturgia"
-                        link="#"
-                    />
+                    @forelse($upcomingSessions as $session)
+                        <x-card-event 
+                            :image="$session->course->image_url ?? 'https://picsum.photos/seed/event-' . $loop->index . '/800/600'"
+                            :title="$session->title ?? $session->course->title"
+                            :subtitle="$session->description ?? $session->course->subtitle"
+                            :date="$session->start_time->format('Y-m-d')"
+                            :time="$session->start_time->format('H:i')"
+                            :instructorName="$session->instructor_name ?? $session->course->instructor_name"
+                            :instructorRole="$session->instructor_role ?? $session->course->instructor_role"
+                            :instructorImage="$session->instructor_image ?? $session->course->instructor_image"
+                            :status="$session->status"
+                            :link="$session->link ?? '#'"
+                        />
+                    @empty
+                        <div class="col-span-3 text-center py-12">
+                            <i class="ri-calendar-todo-line text-6xl text-gray-300 mb-4"></i>
+                            <h3 class="text-xl font-medium text-gray-500 mb-2">No hay clases programadas</h3>
+                            <p class="text-gray-400">Próximamente anunciaremos nuevas sesiones en vivo.</p>
+                        </div>
+                    @endforelse
                 </div>
 
                 <!-- Asynchronous Courses -->
                 <div class="mt-24 text-center" data-scroll-reveal>
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-serif">Catálogo de Cursos Asíncronos</h2>
+                    <h2 class="text-3xl font-extrabold text-primary-600 sm:text-4xl font-serif">Catálogo de Cursos Asíncronos</h2>
                     <p class="mt-4 text-lg text-gray-500">Aprende a tu propio ritmo con nuestra biblioteca de cursos disponibles 24/7.</p>
                 </div>
                 <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    <x-card-course 
-                        image="https://picsum.photos/seed/school-card1/800/600" 
-                        title="Historia y Filosofía de la Masonería" 
-                        subtitle="Un recorrido desde los antiguos constructores hasta la masonería especulativa moderna." 
-                        grade="Primer Grado" 
-                        link="#"
-                    />
-                    <x-card-course 
-                        image="https://picsum.photos/seed/school-card2/800/600" 
-                        title="Las 7 Artes Liberales y el Compañero" 
-                        subtitle="Explora la gramática, retórica, lógica, aritmética, geometría, música y astronomía." 
-                        grade="Segundo Grado" 
-                        link="#"
-                    />
-                    <x-card-course 
-                        image="https://picsum.photos/seed/school-card3/800/600" 
-                        title="Liderazgo y Dirección de Logia" 
-                        subtitle="Herramientas prácticas para Venerables Maestros y oficiales en la conducción de una logia." 
-                        grade="Tercer Grado" 
-                        link="#"
-                    />
+                    @forelse($asynchronousCourses as $course)
+                        <x-card-course 
+                            :image="$course->image_url ?? 'https://picsum.photos/seed/course-' . $loop->index . '/800/600'" 
+                            :title="$course->title" 
+                            :subtitle="$course->subtitle" 
+                            :grade="$course->grade_level" 
+                            :link="$course->link ?? '#'"
+                        />
+                    @empty
+                        <div class="col-span-3 text-center py-12">
+                            <i class="ri-book-open-line text-6xl text-gray-300 mb-4"></i>
+                            <h3 class="text-xl font-medium text-gray-500 mb-2">No hay cursos disponibles</h3>
+                            <p class="text-gray-400">Estamos trabajando en nuevos contenidos para nuestra escuela virtual.</p>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>
     </div>
-</x-under-construction-overlay>
 @endsection

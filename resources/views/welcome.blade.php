@@ -39,7 +39,7 @@
     <div class="py-16 bg-white" data-scroll-reveal>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Bienvenido al Portal Público</h2>
+                <h2 class="text-3xl font-extrabold text-primary-600 font-serif">Bienvenido al Portal Público</h2>
                 <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-500">
                     En este espacio encontrará información sobre nuestra jurisdicción, nuestras logias y actividades relacionadas. 
                     Algunos recursos requieren registro e inicio de sesión para acceder a todos los beneficios.
@@ -60,8 +60,8 @@
                         </x-button>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-600 mx-auto">
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"> <!-- Green as requested -->
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-600 mx-auto"> <!-- Green as requested -->
                         <i class="ri-group-line text-3xl"></i>
                     </div>
                     <h3 class="mt-6 text-xl font-bold text-gray-900 text-center">Nuestras Logias</h3>
@@ -74,8 +74,8 @@
                         </x-button>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-amber-100 text-amber-600 mx-auto">
+                <div class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"> <!-- Yellow as requested -->
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 text-yellow-600 mx-auto"> <!-- Yellow as requested -->
                         <i class="ri-calendar-event-line text-3xl"></i>
                     </div>
                     <h3 class="mt-6 text-xl font-bold text-gray-900 text-center">Eventos y Noticias</h3>
@@ -96,7 +96,7 @@
     <div class="bg-gradient-to-br from-gray-50 to-blue-50 py-16" data-scroll-reveal>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Últimas Noticias y Eventos</h2>
+                <h2 class="text-3xl font-extrabold text-primary-600 font-serif">Últimas Noticias y Eventos</h2>
                 <p class="mt-4 text-lg text-gray-500">La actualidad de nuestra zona, al alcance de todos</p>
             </div>
             <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -107,13 +107,19 @@
                         title="{{ $news->title }}" 
                         subtitle="{{ Str::limit($news->excerpt, 100) }}" 
                         type="{{ $news->status === 'published' ? 'Noticia' : ucfirst($news->status) }}" 
-                        link="#" 
-                        borderColor="border-blue-100"
-                        typeBgColor="bg-blue-100"
-                        typeTextColor="text-blue-800"
+                        link="{{ route('public.news') }}"
+                        typeBgColor="bg-green-100"
+                        typeTextColor="text-green-800"
+                        borderColor="border-green-500"
                     >
                         <div class="mt-6 flex items-center">
-                            <div class="text-sm text-gray-500">{{ $news->published_at ? $news->published_at->format('d M, Y') : 'Fecha no disponible' }}</div>
+                            <div class="text-sm text-gray-500">
+                                @if($news->published_at)
+                                    {{ \Carbon\Carbon::parse($news->published_at)->format('d M, Y') }}
+                                @else
+                                    Fecha no disponible
+                                @endif
+                            </div>
                         </div>
                     </x-card-image>
                 </div>
@@ -133,7 +139,7 @@
     <div class="bg-white py-16" data-scroll-reveal>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Nuestras Logias</h2>
+                <h2 class="text-3xl font-extrabold text-primary-600 font-serif">Nuestras Logias</h2>
                 <p class="mt-4 text-lg text-gray-500">Descubre las logias que conforman nuestra zona</p>
             </div>
             <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -158,7 +164,7 @@
     <div class="bg-gradient-to-br from-primary-50 to-blue-50 py-16" data-scroll-reveal>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Autoridades de la Gran Zona 5</h2>
+                <h2 class="text-3xl font-extrabold text-primary-600 font-serif">Autoridades de la Gran Zona 5</h2>
                 <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
                     Conoce a los dignatarios que lideran nuestra jurisdicción
                 </p>
@@ -210,59 +216,67 @@
     <div class="bg-gray-100 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-serif">Enlaces Útiles</h2>
+                <h2 class="text-3xl font-extrabold text-primary-600 font-serif">Enlaces Útiles</h2>
                 <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
                     Accede rápidamente a información importante sobre nuestra organización
                 </p>
             </div>
             <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-blue-600 mx-auto">
                         <i class="ri-map-2-line text-2xl"></i>
                     </div>
-                    <h3 class="mt-4 text-lg font-bold text-gray-900">Mapa del Sitio</h3>
-                    <p class="mt-2 text-gray-600 text-sm">
+                    <h3 class="mt-6 text-xl font-bold text-gray-900 text-center">Mapa del Sitio</h3>
+                    <p class="mt-4 text-gray-600 text-center">
                         Navega fácilmente por todas las secciones de nuestro portal
                     </p>
-                    <a href="{{ route('public.sitemap') }}" class="mt-4 inline-block text-primary-600 hover:text-primary-800 font-medium text-sm">
-                        Explorar <i class="ri-arrow-right-line ml-1"></i>
-                    </a>
+                    <div class="mt-6 text-center">
+                        <x-button href="{{ route('public.sitemap') }}" variant="primary" size="sm">
+                            Explorar <i class="ri-arrow-right-line ml-1"></i>
+                        </x-button>
+                    </div>
                 </div>
-                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-600 mx-auto">
                         <i class="ri-question-line text-2xl"></i>
                     </div>
-                    <h3 class="mt-4 text-lg font-bold text-gray-900">Preguntas Frecuentes</h3>
-                    <p class="mt-2 text-gray-600 text-sm">
+                    <h3 class="mt-6 text-xl font-bold text-gray-900 text-center">Preguntas Frecuentes</h3>
+                    <p class="mt-4 text-gray-600 text-center">
                         Encuentra respuestas a las dudas más comunes sobre nuestra organización
                     </p>
-                    <a href="{{ route('public.faq') }}" class="mt-4 inline-block text-primary-600 hover:text-primary-800 font-medium text-sm">
-                        Ver preguntas <i class="ri-arrow-right-line ml-1"></i>
-                    </a>
+                    <div class="mt-6 text-center">
+                        <x-button href="{{ route('public.faq') }}" variant="primary" size="sm">
+                            Ver preguntas <i class="ri-arrow-right-line ml-1"></i>
+                        </x-button>
+                    </div>
                 </div>
-                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-amber-100 text-amber-600 mx-auto">
                         <i class="ri-lock-line text-2xl"></i>
                     </div>
-                    <h3 class="mt-4 text-lg font-bold text-gray-900">Política de Privacidad</h3>
-                    <p class="mt-2 text-gray-600 text-sm">
+                    <h3 class="mt-6 text-xl font-bold text-gray-900 text-center">Política de Privacidad</h3>
+                    <p class="mt-4 text-gray-600 text-center">
                         Conoce cómo protegemos y manejamos tu información personal
                     </p>
-                    <a href="{{ route('privacy-policy') }}" class="mt-4 inline-block text-primary-600 hover:text-primary-800 font-medium text-sm">
-                        Leer política <i class="ri-arrow-right-line ml-1"></i>
-                    </a>
+                    <div class="mt-6 text-center">
+                        <x-button href="{{ route('privacy-policy') }}" variant="primary" size="sm">
+                            Leer política <i class="ri-arrow-right-line ml-1"></i>
+                        </x-button>
+                    </div>
                 </div>
-                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-purple-100 text-purple-600 mx-auto">
                         <i class="ri-file-text-line text-2xl"></i>
                     </div>
-                    <h3 class="mt-4 text-lg font-bold text-gray-900">Términos de Servicio</h3>
-                    <p class="mt-2 text-gray-600 text-sm">
+                    <h3 class="mt-6 text-xl font-bold text-gray-900 text-center">Términos de Servicio</h3>
+                    <p class="mt-4 text-gray-600 text-center">
                         Conoce las condiciones de uso de nuestro portal y servicios
                     </p>
-                    <a href="{{ route('terms-of-service') }}" class="mt-4 inline-block text-primary-600 hover:text-primary-800 font-medium text-sm">
-                        Ver términos <i class="ri-arrow-right-line ml-1"></i>
-                    </a>
+                    <div class="mt-6 text-center">
+                        <x-button href="{{ route('terms-of-service') }}" variant="primary" size="sm">
+                            Ver términos <i class="ri-arrow-right-line ml-1"></i>
+                        </x-button>
+                    </div>
                 </div>
             </div>
         </div>

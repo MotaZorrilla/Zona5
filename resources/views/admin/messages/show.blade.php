@@ -58,7 +58,10 @@
                     </button>
                 </form>
                 
-                <form action="{{ route('admin.messages.unread', $message) }}" method="POST" class="inline">
+                <form action="{{ route('admin.messages.unread', $message) }}" method="POST" class="inline" x-data x-on:submit.prevent="() => {
+                    $wire.$dispatch('notificationRead');
+                    $event.target.submit();
+                }">
                     @csrf
                     <button type="submit" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-masonic-gold transition-all">
                         <i class="ri-mail-unread-line mr-2"></i> Marcar como no leído

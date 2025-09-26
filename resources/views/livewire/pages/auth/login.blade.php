@@ -26,6 +26,11 @@ new #[Layout('layouts.guest')] class extends Component
 
 <div>
     <div class="text-center mb-8">
+        <!-- Logo -->
+        <div class="flex justify-center mb-6">
+            <x-application-logo class="w-32 h-32 rounded-full flex items-center justify-center text-primary-500 text-6xl font-bold shadow-lg" />
+        </div>
+        
         <h2 class="text-2xl font-bold font-serif text-gray-900">Acceso de Miembros</h2>
         <p class="text-sm text-gray-600">Ingresa tus credenciales para continuar</p>
     </div>

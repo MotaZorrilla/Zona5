@@ -3,11 +3,11 @@
 @section('title', 'Centro de Ayuda')
 
 @section('content')
-<div class="max-w-4xl mx-auto">
+<div class="bg-white p-8 rounded-xl shadow-lg">
     <!-- Header -->
     <div class="text-center mb-12">
         <i class="ri-question-line text-6xl text-primary-500"></i>
-        <h1 class="text-4xl font-bold text-gray-800 mt-4">Centro de Ayuda</h1>
+        <h1 class="text-4xl font-bold text-primary-600 mt-4">Centro de Ayuda</h1>
         <p class="text-lg text-gray-500 mt-2">¿Cómo podemos ayudarte?</p>
         <div class="mt-6 relative w-full max-w-lg mx-auto">
             <i class="ri-search-line absolute top-1/2 -translate-y-1/2 left-4 text-gray-400"></i>

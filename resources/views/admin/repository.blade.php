@@ -7,8 +7,8 @@
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-gray-800">Repositorio de Documentos</h1>
-            <p class="text-sm text-gray-500 mt-1">Gestiona el material de estudio y administrativo.</p>
+            <h1 class="text-3xl font-bold text-primary-600 mb-2">Repositorio de Documentos</h1>
+            <p class="text-sm text-gray-500">Gestiona el material de estudio y administrativo.</p>
         </div>
         <a href="{{ route('admin.repository.create') }}" class="flex items-center bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
             <i class="ri-upload-cloud-2-line mr-2"></i>
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Search and Filters -->
-    <div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl mb-6 shadow-md">
         <form method="GET" action="{{ route('admin.repository.index') }}" class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <!-- Search -->
             <div class="md:col-span-2">
