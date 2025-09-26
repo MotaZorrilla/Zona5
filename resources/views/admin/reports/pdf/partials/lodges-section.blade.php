@@ -1,7 +1,7 @@
 <div class="section">
-    <h2 class="section-title">Directorio de Logias</h2>
+    <div class="section-title">Directorio de Logias</div>
 
-    <h3 class="subsection-title">Resumen de Logias</h3>
+    <div class="subsection-title">Resumen de Logias</div>
     
     <div class="kpi-grid">
         <div class="kpi-row">
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <h3 class="subsection-title">Logias por Oriente</h3>
+    <div class="subsection-title">Logias por Oriente</div>
     
     <table class="data-table">
         <thead>
@@ -41,7 +41,7 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Directorio Completo de Logias</h3>
+    <div class="subsection-title">Directorio Completo de Logias</div>
     
     <table class="data-table">
         <thead>

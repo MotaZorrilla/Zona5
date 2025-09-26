@@ -1,0 +1,25 @@
+{
+    "id": "0929eb4c-deb5-465c-94c5-ed8f48621d68",
+    "type": "report_generation",
+    "status": "processing",
+    "progress": 20,
+    "data": {
+        "period": "1_month",
+        "start_date": null,
+        "end_date": null,
+        "lodge_filter": null,
+        "include_charts": true
+    },
+    "result": null,
+    "error": null,
+    "created_at": "2025-09-26T19:22:20.544307Z",
+    "updated_at": "2025-09-26T19:22:20.729102Z",
+    "started_at": "2025-09-26T19:22:20.552340Z",
+    "completed_at": null,
+    "user_id": 1,
+    "user_name": "H\u00e9ctor Mota",
+    "timeout_at": "2025-09-26T19:32:20.544588Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Procesando datos del reporte..."
+}

@@ -1,0 +1,32 @@
+{
+    "id": "d55f1266-1adc-45de-b059-30bf04f96213",
+    "type": "pdf_report",
+    "status": "processing",
+    "progress": 20,
+    "data": {
+        "dateRange": {
+            "start": "2025-08-26T00:00:00.000000Z",
+            "end": "2025-09-26T23:59:59.999999Z"
+        },
+        "options": {
+            "include_charts": true,
+            "lodge_filter": null
+        },
+        "period": "1_month",
+        "start_date": null,
+        "end_date": null,
+        "progress_tracker_task_id": "1d7e13aa-38f1-456a-9853-0fcfb0f6cf8f"
+    },
+    "result": null,
+    "error": null,
+    "created_at": "2025-09-26T16:53:03.494543Z",
+    "updated_at": "2025-09-26T16:53:03.690043Z",
+    "started_at": "2025-09-26T16:53:03.680230Z",
+    "completed_at": null,
+    "user_id": 1,
+    "user_name": "H\u00e9ctor Mota",
+    "timeout_at": "2025-09-26T17:03:03.495187Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Recopilando datos..."
+}

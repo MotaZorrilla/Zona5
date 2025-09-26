@@ -1,0 +1,29 @@
+{
+    "id": "18d067bb-d980-4b82-884f-3b815386c7ed",
+    "type": "pdf_report_test",
+    "status": "completed",
+    "progress": 100,
+    "data": {
+        "dateRange": {
+            "start": "2025-03-26T00:00:00.000000Z",
+            "end": "2025-09-26T23:59:59.999999Z"
+        },
+        "options": {
+            "include_charts": true
+        }
+    },
+    "result": {
+        "test": "completed"
+    },
+    "error": null,
+    "created_at": "2025-09-26T16:21:24.447998Z",
+    "updated_at": "2025-09-26T16:21:24.461378Z",
+    "started_at": "2025-09-26T16:21:24.456300Z",
+    "completed_at": "2025-09-26T16:21:24.461325Z",
+    "user_id": null,
+    "user_name": "Usuario An\u00f3nimo",
+    "timeout_at": "2025-09-26T16:31:24.448099Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Progreso de prueba"
+}

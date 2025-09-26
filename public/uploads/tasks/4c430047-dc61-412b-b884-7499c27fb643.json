@@ -1,0 +1,32 @@
+{
+    "id": "4c430047-dc61-412b-b884-7499c27fb643",
+    "type": "pdf_report",
+    "status": "processing",
+    "progress": 10,
+    "data": {
+        "dateRange": {
+            "start": "2025-08-26T00:00:00.000000Z",
+            "end": "2025-09-26T23:59:59.999999Z"
+        },
+        "options": {
+            "include_charts": true,
+            "lodge_filter": null
+        },
+        "period": "1_month",
+        "start_date": null,
+        "end_date": null,
+        "progress_tracker_task_id": "350df7a3-c315-4fa4-a97c-17cc95edb52b"
+    },
+    "result": null,
+    "error": null,
+    "created_at": "2025-09-26T18:25:38.332379Z",
+    "updated_at": "2025-09-26T18:25:38.531779Z",
+    "started_at": "2025-09-26T18:25:38.531851Z",
+    "completed_at": null,
+    "user_id": 1,
+    "user_name": "H\u00e9ctor Mota",
+    "timeout_at": "2025-09-26T18:35:38.332855Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Iniciando procesamiento..."
+}

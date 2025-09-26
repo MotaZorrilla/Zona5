@@ -1,0 +1,37 @@
+{
+    "id": "9924d2f7-f840-4a33-a982-cf7153f64ec4",
+    "type": "report_generation",
+    "status": "failed",
+    "progress": 50,
+    "data": {
+        "period": "1_month",
+        "start_date": null,
+        "end_date": null,
+        "lodge_filter": null,
+        "include_charts": true,
+        "sections": [
+            "kpis",
+            "members",
+            "finance",
+            "events",
+            "repository",
+            "messages",
+            "lodges",
+            "dignitaries",
+            "school",
+            "activity"
+        ]
+    },
+    "result": null,
+    "error": "Undefined variable $financial_status (View: C:\\xampp\\htdocs\\Zona5\\resources\\views\\admin\\reports\\pdf\\partials\\financial-status.blade.php)",
+    "created_at": "2025-09-26T19:47:12.416387Z",
+    "updated_at": "2025-09-26T19:47:12.639919Z",
+    "started_at": "2025-09-26T19:47:12.424945Z",
+    "completed_at": null,
+    "user_id": 1,
+    "user_name": "H\u00e9ctor Mota",
+    "timeout_at": "2025-09-26T19:57:12.416723Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Recopilando datos..."
+}

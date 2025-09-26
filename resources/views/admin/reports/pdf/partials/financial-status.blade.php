@@ -1,7 +1,7 @@
 <div class="section">
-    <h2 class="section-title">Estado Financiero - Tesorería</h2>
+    <div class="section-title">Estado Financiero - Tesorería</div>
 
-    <h3 class="subsection-title">Resumen Financiero</h3>
+    <div class="subsection-title">Resumen Financiero</div>
     
     <div class="kpi-grid">
         <div class="kpi-row">
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <h3 class="subsection-title">Movimientos del Mes Actual</h3>
+    <div class="subsection-title">Movimientos del Mes Actual</div>
     
     <div class="kpi-grid">
         <div class="kpi-row">
@@ -44,12 +44,73 @@
     </div>
 
     @if($charts_data)
-    <div class="chart-placeholder">
-        Gráfico de Barras: Ingresos vs Egresos por Mes
+    <div style="margin: 20px 0; padding: 20px; border: 1px solid #e5e7eb; background: #f8fafc;">
+        <h4 style="margin: 0 0 15px 0; color: #1e40af; font-size: 14px; font-weight: bold;">Ingresos vs Egresos por Mes (Últimos 6 Meses)</h4>
+
+        <div style="margin-bottom: 15px;">
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 15px; height: 15px; background: #059669; margin-right: 10px; border-radius: 2px;"></div>
+                <span style="font-size: 11px;">Ingresos</span>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <div style="width: 15px; height: 15px; background: #dc2626; margin-right: 10px; border-radius: 2px;"></div>
+                <span style="font-size: 11px;">Egresos</span>
+            </div>
+        </div>
+
+        @php
+            // Get the last 6 months data
+            $monthlyData = [];
+            for ($i = 5; $i >= 0; $i--) {
+                $date = \Carbon\Carbon::now()->subMonths($i);
+                $monthStart = $date->copy()->startOfMonth();
+                $monthEnd = $date->copy()->endOfMonth();
+
+                $income = \App\Models\Treasury::where('type', 'income')
+                    ->whereBetween('transaction_date', [$monthStart, $monthEnd])
+                    ->sum('amount');
+
+                $expense = \App\Models\Treasury::where('type', 'expense')
+                    ->whereBetween('transaction_date', [$monthStart, $monthEnd])
+                    ->sum('amount');
+
+                $monthlyData[] = [
+                    'month' => $date->format('M Y'),
+                    'income' => $income,
+                    'expense' => $expense
+                ];
+            }
+
+            $maxValue = collect($monthlyData)->max(function($item) {
+                return max($item['income'], $item['expense']);
+            });
+            $maxValue = $maxValue > 0 ? $maxValue : 1000;
+        @endphp
+
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 10px;">
+            <tr>
+                @foreach($monthlyData as $data)
+                <td style="text-align: center; padding: 2px; border: 1px solid #e5e7eb;">
+                    <div style="font-weight: bold; margin-bottom: 3px;">{{ $data['month'] }}</div>
+                    <div style="color: #059669;">Ing: ${{ number_format($data['income'], 0) }}</div>
+                    <div style="color: #dc2626;">Egr: ${{ number_format($data['expense'], 0) }}</div>
+                </td>
+                @endforeach
+            </tr>
+        </table>
+
+        <div style="margin-top: 15px; font-size: 10px; color: #64748b;">
+            <p style="margin: 0;"><strong>Resumen:</strong></p>
+            <ul style="margin: 5px 0; padding-left: 20px;">
+                <li>Ingresos totales (6 meses): ${{ number_format(collect($monthlyData)->sum('income'), 2) }}</li>
+                <li>Egresos totales (6 meses): ${{ number_format(collect($monthlyData)->sum('expense'), 2) }}</li>
+                <li>Balance neto: ${{ number_format(collect($monthlyData)->sum('income') - collect($monthlyData)->sum('expense'), 2) }}</li>
+            </ul>
+        </div>
     </div>
     @endif
 
-    <h3 class="subsection-title">Movimientos Recientes (Últimos 20)</h3>
+    <div class="subsection-title">Movimientos Recientes (Últimos 20)</div>
     
     <table class="data-table">
         <thead>
@@ -84,12 +145,12 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Análisis por Categorías</h3>
+    <div class="subsection-title">Análisis por Categorías</div>
     
     <div style="display: table; width: 100%; margin-bottom: 20px;">
         <div style="display: table-row;">
             <div style="display: table-cell; width: 50%; padding-right: 10px;">
-                <h4 style="font-size: 12px; font-weight: bold; color: #10B981; margin-bottom: 10px;">Ingresos por Categoría</h4>
+                <div class="subsection-title" style="font-size: 12px; color: #27AE60; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px;">Ingresos por Categoría</div>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -118,7 +179,7 @@
                 </table>
             </div>
             <div style="display: table-cell; width: 50%; padding-left: 10px;">
-                <h4 style="font-size: 12px; font-weight: bold; color: #EF4444; margin-bottom: 10px;">Egresos por Categoría</h4>
+                <div class="subsection-title" style="font-size: 12px; color: #C1272D; margin-bottom: 10px; padding-bottom: 5px; padding-top: 5px;">Egresos por Categoría</div>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -150,7 +211,7 @@
     </div>
 
     @if($financial_status['movements_by_lodge']->count() > 0)
-    <h3 class="subsection-title">Movimientos por Logia</h3>
+    <div class="subsection-title">Movimientos por Logia</div>
     
     <table class="data-table">
         <thead>
@@ -182,7 +243,7 @@
     </table>
     @endif
 
-    <h3 class="subsection-title">Indicadores Financieros</h3>
+    <div class="subsection-title">Indicadores Financieros</div>
     
     <table class="data-table">
         <thead>

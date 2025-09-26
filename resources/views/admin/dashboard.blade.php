@@ -319,9 +319,7 @@
                     }
                 }
             }
-        </div>
-            </div>
-        </div>
+        });
     });
 </script>
 @endpush

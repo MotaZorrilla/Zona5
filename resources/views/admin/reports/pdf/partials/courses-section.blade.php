@@ -1,7 +1,7 @@
 <div class="section">
-    <h2 class="section-title">Escuela Virtual y Cursos</h2>
+    <div class="section-title">Escuela Virtual y Cursos</div>
 
-    <h3 class="subsection-title">Resumen de Cursos</h3>
+    <div class="subsection-title">Resumen de Cursos</div>
     
     <div class="kpi-grid">
         <div class="kpi-row">
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <h3 class="subsection-title">Cursos por Grado</h3>
+    <div class="subsection-title">Cursos por Grado</div>
     
     <table class="data-table">
         <thead>
@@ -41,7 +41,7 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Cursos por Estado</h3>
+    <div class="subsection-title">Cursos por Estado</div>
     
     <table class="data-table">
         <thead>
@@ -62,7 +62,7 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Cursos por Tipo</h3>
+    <div class="subsection-title">Cursos por Tipo</div>
     
     <table class="data-table">
         <thead>
@@ -83,7 +83,7 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Cursos Activos</h3>
+    <div class="subsection-title">Cursos Activos</div>
     
     <table class="data-table">
         <thead>

@@ -1,0 +1,31 @@
+{
+    "id": "f203bf36-3fde-40ed-9cac-3279ae7f9501",
+    "type": "report_generation",
+    "status": "completed",
+    "progress": 100,
+    "data": {
+        "period": "1_month",
+        "start_date": null,
+        "end_date": null,
+        "lodge_filter": null,
+        "include_charts": false,
+        "sections": [
+            "finance"
+        ]
+    },
+    "result": {
+        "download_url": "http:\/\/127.0.0.1:8000\/uploads\/reports\/report_f203bf36-3fde-40ed-9cac-3279ae7f9501.pdf"
+    },
+    "error": null,
+    "created_at": "2025-09-26T21:19:41.417297Z",
+    "updated_at": "2025-09-26T21:19:41.984766Z",
+    "started_at": "2025-09-26T21:19:41.425421Z",
+    "completed_at": "2025-09-26T21:19:41.984652Z",
+    "user_id": 1,
+    "user_name": "H\u00e9ctor Mota",
+    "timeout_at": "2025-09-26T21:29:41.417561Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Reporte completado",
+    "auto_delete_at": "2025-09-26T21:24:41.989262Z"
+}

@@ -1,7 +1,7 @@
 <div class="section">
-    <h2 class="section-title">Gestión de Eventos</h2>
+    <div class="section-title">Gestión de Eventos</div>
 
-    <h3 class="subsection-title">Resumen de Eventos</h3>
+    <div class="subsection-title">Resumen de Eventos</div>
     
     <div class="kpi-grid">
         <div class="kpi-row">
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <h3 class="subsection-title">Eventos por Tipo</h3>
+    <div class="subsection-title">Eventos por Tipo</div>
     
     <table class="data-table">
         <thead>
@@ -42,7 +42,7 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Eventos Públicos vs Privados</h3>
+    <div class="subsection-title">Eventos Públicos vs Privados</div>
     
     <table class="data-table">
         <thead>
@@ -64,7 +64,7 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Próximos Eventos (Siguientes 10)</h3>
+    <div class="subsection-title">Próximos Eventos (Siguientes 10)</div>
     
     <table class="data-table">
         <thead>
@@ -99,7 +99,7 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Eventos Recientes</h3>
+    <div class="subsection-title">Eventos Recientes</div>
     
     <table class="data-table">
         <thead>

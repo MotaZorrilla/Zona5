@@ -1,0 +1,38 @@
+{
+    "id": "35f1acc6-28c3-46c9-a4b6-584545b86afc",
+    "type": "report_generation",
+    "status": "failed",
+    "progress": 60,
+    "data": {
+        "period": "1_month",
+        "start_date": null,
+        "end_date": null,
+        "lodge_filter": "10",
+        "include_charts": true,
+        "sections": [
+            "kpis",
+            "members",
+            "finance",
+            "events",
+            "repository",
+            "messages",
+            "lodges",
+            "dignitaries",
+            "school",
+            "activity",
+            "system"
+        ]
+    },
+    "result": null,
+    "error": "Division by zero (View: C:\\xampp\\htdocs\\Zona5\\resources\\views\\admin\\reports\\pdf\\partials\\membership-stats.blade.php)",
+    "created_at": "2025-09-26T21:39:22.536212Z",
+    "updated_at": "2025-09-26T21:39:22.781745Z",
+    "started_at": "2025-09-26T21:39:22.545042Z",
+    "completed_at": null,
+    "user_id": 1,
+    "user_name": "H\u00e9ctor Mota",
+    "timeout_at": "2025-09-26T21:49:22.537204Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Generando contenido del reporte..."
+}

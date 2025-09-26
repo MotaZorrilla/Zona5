@@ -43,6 +43,9 @@ Route::view('/terms-of-service', 'public.terms-of-service')->name('terms-of-serv
 
 // Área de administración
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard');
+    });
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     
     // SuperAdmin and Admin access
@@ -65,8 +68,18 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
         Route::post('reports/generate', [ReportController::class, 'generate'])->name('reports.generate');
         Route::post('reports/get-task-status', [ReportController::class, 'getTaskStatus'])->name('reports.get-task-status');
+        Route::post('reports/start-processing', [ReportController::class, 'startProcessing'])->name('reports.start-processing');
         Route::get('reports/download/{filename}', [ReportController::class, 'download'])->name('reports.download');
         Route::get('reports/task-logs', [ReportController::class, 'getTaskLogs'])->name('reports.task-logs');
+        Route::delete('reports/delete/{filename}', [ReportController::class, 'delete'])->name('reports.delete');
+        
+        // Rutas de seguimiento de progreso en tiempo real
+        Route::prefix('progress-tracker')->name('progress-tracker.')->group(function () {
+            Route::post('get-progress', [App\Http\Controllers\Admin\ProgressTrackerController::class, 'getProgress'])->name('get-progress');
+            Route::post('get-detailed-logs', [App\Http\Controllers\Admin\ProgressTrackerController::class, 'getDetailedLogs'])->name('get-detailed-logs');
+            Route::post('export-data', [App\Http\Controllers\Admin\ProgressTrackerController::class, 'exportProgressData'])->name('export-data');
+            Route::get('stats', [App\Http\Controllers\Admin\ProgressTrackerController::class, 'getTrackerStats'])->name('stats');
+        });
     });
     
     // User, Admin and SuperAdmin access (all logged-in users)

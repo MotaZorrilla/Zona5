@@ -59,16 +59,7 @@
                         </select>
                     </div>
 
-                    <!-- Opciones del Reporte -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-3">Opciones del Reporte</label>
-                        <div class="space-y-2">
-                            <label class="flex items-center">
-                                <input type="checkbox" name="include_charts" value="1" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50">
-                                <span class="ml-2 text-sm text-gray-700">Incluir gráficos y visualizaciones</span>
-                            </label>
-                        </div>
-                    </div>
+
 
                     <!-- Botón de Generación -->
                     <div class="pt-4">
@@ -81,90 +72,154 @@
             </div>
         </div>
 
-        <!-- Panel de Información -->
+        <!-- Panel de Información y Selección de Secciones -->
         <div class="lg:col-span-1">
             <div class="bg-gradient-to-br from-gray-50 to-blue-50 p-6 rounded-xl shadow-md">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">Contenido del Reporte</h3>
-                
-                <div class="space-y-3 text-sm text-gray-600">
-                    <div class="flex items-center">
-                        <i class="ri-check-line text-green-500 mr-2"></i>
-                        <span>Resumen ejecutivo con KPIs</span>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Secciones del Reporte</h3>
+                <p class="text-sm text-gray-600 mb-4">Selecciona las secciones que deseas incluir en tu reporte personalizado.</p>
+
+                <form id="sectionsForm">
+                    <div class="space-y-2 mb-4">
+                        <label class="flex items-center text-sm">
+                            <input type="checkbox" name="sections[]" value="kpis" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Resumen Ejecutivo con KPIs</span>
+                        </label>
+                        <label class="flex items-center text-sm">
+                            <input type="checkbox" name="sections[]" value="members" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Estadísticas de Membresía</span>
+                        </label>
+                        <label class="flex items-center text-sm">
+                            <input type="checkbox" name="sections[]" value="finance" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Estado Financiero</span>
+                        </label>
+                        <label class="flex items-center text-sm">
+                            <input type="checkbox" name="sections[]" value="events" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Eventos y Actividades</span>
+                        </label>
+                        <label class="flex items-center text-sm">
+                            <input type="checkbox" name="sections[]" value="repository" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Repositorio de Documentos</span>
+                        </label>
+                        <label class="flex items-center text-sm">
+                            <input type="checkbox" name="sections[]" value="messages" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Sistema de Mensajería</span>
+                        </label>
+                        <label class="flex items-center text-sm">
+                            <input type="checkbox" name="sections[]" value="lodges" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Directorio de Logias</span>
+                        </label>
+                        <label class="flex items-center text-sm">
+                            <input type="checkbox" name="sections[]" value="dignitaries" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Dignatarios de Zona</span>
+                        </label>
+                        <label class="flex items-center text-sm">
+                            <input type="checkbox" name="sections[]" value="school" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Escuela Virtual y Cursos</span>
+                        </label>
+                        <label class="flex items-center text-sm border-t pt-2 mt-2">
+                            <input type="checkbox" name="sections[]" value="activity" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Actividad del Sistema</span>
+                        </label>
+                        <label class="flex items-center text-sm">
+                            <input type="checkbox" name="sections[]" value="system" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Estadísticas de Uso del Sistema</span>
+                        </label>
+                        <label class="flex items-center text-sm font-medium">
+                            <input type="checkbox" name="include_charts" value="1" checked class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 mr-2">
+                            <span>Incluir gráficos y visualizaciones</span>
+                        </label>
                     </div>
-                    <div class="flex items-center">
-                        <i class="ri-check-line text-green-500 mr-2"></i>
-                        <span>Estadísticas de membresía</span>
+
+                    <div class="flex gap-2 mb-4">
+                        <button type="button" id="selectAllBtn" class="text-xs bg-primary-500 hover:bg-primary-600 text-white px-3 py-2 rounded flex-1">
+                            Seleccionar Todo
+                        </button>
+                        <button type="button" id="deselectAllBtn" class="text-xs bg-gray-500 hover:bg-gray-600 text-white px-3 py-2 rounded flex-1">
+                            Deseleccionar Todo
+                        </button>
                     </div>
-                    <div class="flex items-center">
-                        <i class="ri-check-line text-green-500 mr-2"></i>
-                        <span>Estado financiero completo</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="ri-check-line text-green-500 mr-2"></i>
-                        <span>Gestión de eventos</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="ri-check-line text-green-500 mr-2"></i>
-                        <span>Repositorio de documentos</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="ri-check-line text-green-500 mr-2"></i>
-                        <span>Sistema de mensajería</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="ri-check-line text-green-500 mr-2"></i>
-                        <span>Directorio de logias</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="ri-check-line text-green-500 mr-2"></i>
-                        <span>Dignatarios de zona</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="ri-check-line text-green-500 mr-2"></i>
-                        <span>Escuela virtual y cursos</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="ri-check-line text-green-500 mr-2"></i>
-                        <span>Actividad reciente del sistema</span>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta de Consejos e Información -->
+    <div class="mt-6">
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl shadow-md">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="ri-lightbulb-line text-blue-400 text-lg"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="text-sm font-semibold text-blue-800 mb-1">Consejo de Optimización</h4>
+                            <p class="text-sm text-blue-700">
+                                Selecciona solo las secciones que necesitas para generar reportes más enfocados y rápidos. Menos secciones = generación más veloz.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
                     <div class="flex">
                         <div class="flex-shrink-0">
-                            <i class="ri-information-line text-yellow-400"></i>
+                            <i class="ri-time-line text-yellow-400 text-lg"></i>
                         </div>
                         <div class="ml-3">
+                            <h4 class="text-sm font-semibold text-yellow-800 mb-1">Datos en Tiempo Real</h4>
                             <p class="text-sm text-yellow-700">
-                                El reporte incluye datos actualizados hasta el momento de la generación.
+                                El reporte incluye datos actualizados hasta el momento exacto de la generación. Los números reflejan el estado actual del sistema.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Reportes Recientes -->
-            @if($recentReports->count() > 0)
-            <div class="mt-6 bg-white p-6 rounded-xl shadow-md">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">Reportes Recientes</h3>
-                <div class="space-y-3">
-                    @foreach($recentReports->take(5) as $report)
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                        <div class="flex items-center">
-                            <i class="ri-file-pdf-2-line text-red-500 mr-3"></i>
-                            <div>
-                                <p class="text-sm font-medium text-gray-900">{{ $report['filename'] }}</p>
-                                <p class="text-xs text-gray-500">{{ \Carbon\Carbon::createFromTimestamp($report['created_at'])->diffForHumans() }}</p>
-                            </div>
-                        <a href="{{ $report['url'] }}" target="_blank" class="text-primary-600 hover:text-primary-800">
-                            <i class="ri-download-line"></i>
-                        </a>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-            @endif
         </div>
+    </div>
+</div>
+
+<!-- Recent Reports Section -->
+<div class="mt-6">
+    <div class="bg-white p-6 rounded-xl shadow-lg">
+        <h3 class="text-xl font-bold text-gray-800 mb-4">Reportes Recientes</h3>
+        @if($recentReports->count() > 0)
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Archivo</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tamaño</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach($recentReports->take(10) as $report)
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            <i class="ri-file-pdf-2-line text-red-500 mr-2"></i>{{ $report['filename'] }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ number_format($report['size'] / 1024, 2) }} KB</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ \Carbon\Carbon::createFromTimestamp($report['created_at'], 'UTC')->setTimezone(config('app.timezone'))->format('d/m/Y H:i') }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <a href="{{ $report['url'] }}" target="_blank" class="text-primary-600 hover:text-primary-900 mr-4">Descargar</a>
+                            <form method="POST" action="{{ route('admin.reports.delete', $report['filename']) }}" class="inline" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este reporte?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:text-red-900">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @else
+        <p class="text-gray-500">No hay reportes recientes.</p>
+        @endif
     </div>
 </div>
 
@@ -216,12 +271,17 @@
 @endsection
 
 @push('scripts')
+<script src="{{ asset('js/seguimiento-progreso-reporte.js') }}"></script>
 <script>
-// Sistema de tareas asíncronas
+// Sistema de tareas asíncronas con seguimiento en tiempo real
 let currentTaskId = null;
 let pollingInterval = null;
+let progressTracker = null;
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar el tracker global
+    progressTracker = window.seguimientoProgresoReporte;
+    
     const periodSelect = document.getElementById('period');
     const customDates = document.getElementById('customDates');
     const reportForm = document.getElementById('reportForm');
@@ -237,6 +297,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Funcionalidad de seleccionar/deseleccionar todo
+    const selectAllBtn = document.getElementById('selectAllBtn');
+    const deselectAllBtn = document.getElementById('deselectAllBtn');
+    const sectionCheckboxes = document.querySelectorAll('#sectionsForm input[name="sections[]"]');
+    const chartsCheckbox = document.querySelector('#sectionsForm input[name="include_charts"]');
+
+    if (selectAllBtn) {
+        selectAllBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            sectionCheckboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            if (chartsCheckbox) {
+                chartsCheckbox.checked = true;
+            }
+        });
+    }
+
+    if (deselectAllBtn) {
+        deselectAllBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            sectionCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            if (chartsCheckbox) {
+                chartsCheckbox.checked = false;
+            }
+        });
+    }
+
     // Event listener para el botón de cerrar modal
     const closeProgressModalBtn = document.getElementById('closeProgressModalBtn');
     if (closeProgressModalBtn) {
@@ -246,7 +336,38 @@ document.addEventListener('DOMContentLoaded', function() {
     // Manejar envío del formulario para usar el sistema asíncrono
     reportForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
+        // Copiar valores de checkboxes del panel lateral al formulario principal
+        const sectionCheckboxes = document.querySelectorAll('#sectionsForm input[name="sections[]"]:checked');
+        const sectionsValues = Array.from(sectionCheckboxes).map(cb => cb.value);
+
+        // Copiar valor del checkbox de gráficos
+        const chartsCheckbox = document.querySelector('#sectionsForm input[name="include_charts"]');
+
+        // Limpiar inputs existentes en el formulario principal
+        const existingSections = this.querySelectorAll('input[name="sections[]"]');
+        existingSections.forEach(input => input.remove());
+        const existingCharts = this.querySelector('input[name="include_charts"]');
+        if (existingCharts) existingCharts.remove();
+
+        // Agregar los valores seleccionados al formulario principal
+        sectionsValues.forEach(value => {
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'sections[]';
+            hiddenInput.value = value;
+            this.appendChild(hiddenInput);
+        });
+
+        // Agregar el valor de gráficos
+        if (chartsCheckbox) {
+            const chartsInput = document.createElement('input');
+            chartsInput.type = 'hidden';
+            chartsInput.name = 'include_charts';
+            chartsInput.value = chartsCheckbox.checked ? '1' : '0';
+            this.appendChild(chartsInput);
+        }
+
         // Mostrar modal de carga durante el envío inicial
         loadingModal.classList.remove('hidden');
         generateBtn.disabled = true;
@@ -271,8 +392,39 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (data.success) {
                 currentTaskId = data.task_id;
-                showProgressModal();
-                startPolling();
+
+                // Iniciar el procesamiento real
+                fetch('{{ route("admin.reports.start-processing") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({ task_id: currentTaskId })
+                })
+                .then(response => response.json())
+                .then(startData => {
+                    if (!startData.success) {
+                        console.error('Error starting processing:', startData.message);
+                        showNotification('Error al iniciar procesamiento: ' + startData.message, 'error');
+                        return;
+                    }
+
+                    // Iniciar seguimiento en tiempo real si está disponible
+                    if (progressTracker) {
+                        progressTracker.iniciarSeguimiento(currentTaskId, {
+                            pollInterval: 2000, // Polling más frecuente para mejor seguimiento
+                            maxRetries: 150     // Aumentar reintentos para procesos largos
+                        });
+                    }
+
+                    showProgressModal();
+                    startPolling();
+                })
+                .catch(error => {
+                    console.error('Error starting processing:', error);
+                    showNotification('Error al iniciar procesamiento', 'error');
+                });
             } else {
                 showNotification(data.message, 'error');
             }
@@ -292,13 +444,19 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(pollingInterval);
         }
         
-        // Iniciar nuevo polling cada 5 segundos
-        pollingInterval = setInterval(checkTaskStatus, 5000);
+        // Iniciar nuevo polling cada 2 segundos para mejor seguimiento
+        pollingInterval = setInterval(checkTaskStatus, 2000);
         checkTaskStatus(); // Primera verificación inmediata
     }
 
-    function checkTaskStatus() {
+    async function checkTaskStatus() {
         if (!currentTaskId) return;
+        
+        // Use the progress tracker if available, otherwise use the original method
+        if (progressTracker) {
+            // The progress tracker handles status updates independently
+            // This function is kept for backward compatibility
+        }
         
         fetch('{{ route("admin.reports.get-task-status") }}', {
             method: 'POST',
@@ -340,6 +498,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (progressMessage) {
             progressMessage.textContent = task.message || 'Procesando...';
         }
+        
+        // Log detallado en consola para seguimiento en tiempo real
+        console.log(`%cPROGRESO: ${progressPercent}% - ${task.message || 'Procesando...'}`, 
+            'color: #007bff; font-weight: bold;');
+        
+        if (progressTracker) {
+            progressTracker.registroATracker('info', [`PROGRESO ACTUALIZADO: ${progressPercent}%`, task]);
+        }
     }
 
     function handleTaskCompletion(task) {
@@ -366,6 +532,11 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             window.location.reload();
         }, 2000);
+        
+        // Detener el seguimiento cuando se completa
+        if (progressTracker) {
+            progressTracker.detenerSeguimiento();
+        }
     }
 
     function handleTaskFailure(task) {
@@ -379,6 +550,11 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             hideProgressModal();
             showNotification('Error al generar el reporte: ' + (task.error || 'Tarea fallida'), 'error');
+            
+            // Detener el seguimiento cuando falla
+            if (progressTracker) {
+                progressTracker.detenerSeguimiento();
+            }
         }, 2000);
     }
 
@@ -407,6 +583,11 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(pollingInterval);
         }
         currentTaskId = null;
+        
+        // Detener seguimiento si existe
+        if (progressTracker) {
+            progressTracker.detenerSeguimiento();
+        }
     }
 
     function showNotification(message, type) {

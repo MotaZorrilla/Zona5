@@ -1,0 +1,31 @@
+{
+    "id": "a6327814-6c8e-4c9c-8794-09181e8af704",
+    "type": "report_generation",
+    "status": "completed",
+    "progress": 100,
+    "data": {
+        "period": "1_month",
+        "start_date": null,
+        "end_date": null,
+        "lodge_filter": null,
+        "include_charts": true,
+        "sections": [
+            "lodges"
+        ]
+    },
+    "result": {
+        "download_url": "http:\/\/127.0.0.1:8000\/uploads\/reports\/report_a6327814-6c8e-4c9c-8794-09181e8af704.pdf"
+    },
+    "error": null,
+    "created_at": "2025-09-26T21:11:05.455060Z",
+    "updated_at": "2025-09-26T21:11:06.316709Z",
+    "started_at": "2025-09-26T21:11:05.464195Z",
+    "completed_at": "2025-09-26T21:11:06.316647Z",
+    "user_id": 1,
+    "user_name": "H\u00e9ctor Mota",
+    "timeout_at": "2025-09-26T21:21:05.455341Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Reporte completado",
+    "auto_delete_at": "2025-09-26T21:16:06.318858Z"
+}

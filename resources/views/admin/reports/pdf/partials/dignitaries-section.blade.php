@@ -1,7 +1,7 @@
 <div class="section">
-    <h2 class="section-title">Dignatarios de Zona</h2>
+    <div class="section-title">Dignatarios de Zona</div>
 
-    <h3 class="subsection-title">Estructura Directiva</h3>
+    <div class="subsection-title">Directorio de Dignatarios</div>
     
     <table class="data-table">
         <thead>

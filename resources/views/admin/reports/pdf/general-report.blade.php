@@ -10,12 +10,12 @@
             @top-center {
                 content: "{{ $report_info['title'] }}";
                 font-size: 10px;
-                color: #666;
+                color: #2C3E50;
             }
             @bottom-center {
                 content: "Página " counter(page) " de " counter(pages);
                 font-size: 10px;
-                color: #666;
+                color: #2C3E50;
             }
         }
 
@@ -23,7 +23,7 @@
             font-family: 'DejaVu Sans', Arial, sans-serif;
             font-size: 11px;
             line-height: 1.4;
-            color: #333;
+            color: #2C3E50;
             margin: 0;
             padding: 0;
         }
@@ -32,31 +32,39 @@
             text-align: center;
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 3px solid #D4AF37;
+            border-bottom: 3px solid #1A472A; /* Dark green (masonic color) */
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             margin: 0 auto 15px;
         }
 
         .title {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            color: #D4AF37;
+            color: #1A472A; /* Dark green (masonic color) */
             margin-bottom: 10px;
         }
 
         .subtitle {
+            font-size: 16px;
+            color: #2C3E50; /* Dark blue-black */
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .jurisdiction {
             font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
+            color: #C1272D; /* Red */
+            margin-bottom: 10px;
+            font-style: italic;
         }
 
         .report-info {
             font-size: 10px;
-            color: #888;
+            color: #2C3E50;
         }
 
         .section {
@@ -65,18 +73,18 @@
         }
 
         .section-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            color: #D4AF37;
+            color: #1A472A; /* Dark green (primary masonic color) */
             margin-bottom: 15px;
             padding-bottom: 5px;
-            border-bottom: 2px solid #D4AF37;
+            border-bottom: 2px solid #C1272D; /* Red accent */
         }
 
         .subsection-title {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
-            color: #4F46E5;
+            color: #2C3E50; /* Dark blue-black */
             margin: 15px 0 10px 0;
         }
 
@@ -95,20 +103,20 @@
             width: 33.33%;
             padding: 15px;
             text-align: center;
-            border: 1px solid #E5E7EB;
-            background-color: #F9FAFB;
+            border: 1px solid #D6D6D6;
+            background-color: #F8F9FA;
         }
 
         .kpi-value {
             font-size: 24px;
             font-weight: bold;
-            color: #D4AF37;
+            color: #1A472A; /* Dark green */
             display: block;
         }
 
         .kpi-label {
             font-size: 10px;
-            color: #666;
+            color: #2C3E50;
             margin-top: 5px;
         }
 
@@ -120,28 +128,34 @@
         }
 
         .data-table th {
-            background-color: #D4AF37;
+            background-color: #1A472A; /* Dark green */
             color: white;
-            padding: 8px;
+            padding: 10px;
             text-align: left;
             font-weight: bold;
         }
 
+        .data-table th.secondary {
+            background-color: #C1272D; /* Red */
+        }
+
         .data-table td {
-            padding: 6px 8px;
-            border-bottom: 1px solid #E5E7EB;
+            padding: 8px 10px;
+            border-bottom: 1px solid #D6D6D6;
         }
 
         .data-table tr:nth-child(even) {
-            background-color: #F9FAFB;
+            background-color: #F8F9FA;
         }
 
         .text-center { text-align: center; }
         .text-right { text-align: right; }
         .font-bold { font-weight: bold; }
-        .text-green { color: #10B981; }
-        .text-red { color: #EF4444; }
-        .text-blue { color: #3B82F6; }
+        .text-green { color: #27AE60; } /* Green accent */
+        .text-red { color: #C1272D; } /* Red */
+        .text-blue { color: #2980B9; } /* Blue */
+        .text-yellow { color: #F39C12; } /* Yellow accent */
+        .text-black { color: #2C3E50; } /* Dark black-blue */
 
         .page-break {
             page-break-before: always;
@@ -154,28 +168,44 @@
         .chart-placeholder {
             width: 100%;
             height: 200px;
-            background-color: #F3F4F6;
-            border: 2px dashed #D1D5DB;
+            background-color: #F8F9FA;
+            border: 2px dashed #D6D6D6;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6B7280;
+            color: #7F8C8D;
             font-style: italic;
             margin: 15px 0;
         }
 
         .summary-box {
-            background-color: #EFF6FF;
-            border: 1px solid #DBEAFE;
-            border-left: 4px solid #3B82F6;
+            background-color: #E8F4FD;
+            border: 1px solid #AED6F1;
+            border-left: 4px solid #2980B9; /* Blue */
             padding: 15px;
             margin: 15px 0;
         }
 
         .warning-box {
-            background-color: #FFFBEB;
-            border: 1px solid #FED7AA;
-            border-left: 4px solid #F59E0B;
+            background-color: #FDF2E9;
+            border: 1px solid #F8C4A0;
+            border-left: 4px solid #F39C12; /* Yellow */
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .danger-box {
+            background-color: #FDEDEC;
+            border: 1px solid #F5B7B1;
+            border-left: 4px solid #C1272D; /* Red */
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .success-box {
+            background-color: #E9F7EF;
+            border: 1px solid #A9DFBF;
+            border-left: 4px solid #27AE60; /* Green */
             padding: 15px;
             margin: 15px 0;
         }
@@ -183,10 +213,17 @@
         .footer {
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid #E5E7EB;
+            border-top: 1px solid #D6D6D6;
             font-size: 10px;
-            color: #666;
+            color: #2C3E50;
             text-align: center;
+        }
+
+        .index-item {
+            margin: 5px 0;
+            padding: 2px 0;
+            border-left: 3px solid #1A472A;
+            padding-left: 10px;
         }
     </style>
 </head>
@@ -208,6 +245,10 @@
     <!-- Gestión de Eventos -->
     <div class="page-break"></div>
     @include('admin.reports.pdf.partials.events-section')
+
+    <!-- Noticias y Publicaciones -->
+    <div class="page-break"></div>
+    @include('admin.reports.pdf.partials.news-section')
 
     <!-- Repositorio de Documentos -->
     <div class="page-break"></div>

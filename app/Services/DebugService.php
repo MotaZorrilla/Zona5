@@ -39,7 +39,9 @@ class DebugService
             $this->log("=========================================");
             
             if ($initialMessage) {
-                $this->log("INFO: {$initialMessage}");
+                // Handle both string and array messages
+                $messageStr = is_array($initialMessage) ? json_encode($initialMessage) : $initialMessage;
+                $this->log("INFO: {$messageStr}");
             }
             
             $this->log("Tiempo de inicio: " . now()->format('Y-m-d H:i:s.u'));

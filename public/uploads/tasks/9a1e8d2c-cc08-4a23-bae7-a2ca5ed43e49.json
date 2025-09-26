@@ -1,0 +1,41 @@
+{
+    "id": "9a1e8d2c-cc08-4a23-bae7-a2ca5ed43e49",
+    "type": "report_generation",
+    "status": "completed",
+    "progress": 100,
+    "data": {
+        "period": "1_month",
+        "start_date": null,
+        "end_date": null,
+        "lodge_filter": null,
+        "include_charts": true,
+        "sections": [
+            "kpis",
+            "members",
+            "finance",
+            "events",
+            "repository",
+            "messages",
+            "lodges",
+            "dignitaries",
+            "school",
+            "activity",
+            "system"
+        ]
+    },
+    "result": {
+        "download_url": "http:\/\/127.0.0.1:8000\/uploads\/reports\/report_9a1e8d2c-cc08-4a23-bae7-a2ca5ed43e49.pdf"
+    },
+    "error": null,
+    "created_at": "2025-09-26T21:18:58.600479Z",
+    "updated_at": "2025-09-26T21:19:00.312530Z",
+    "started_at": "2025-09-26T21:18:58.609227Z",
+    "completed_at": "2025-09-26T21:19:00.312460Z",
+    "user_id": 1,
+    "user_name": "H\u00e9ctor Mota",
+    "timeout_at": "2025-09-26T21:28:58.601123Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Reporte completado",
+    "auto_delete_at": "2025-09-26T21:24:00.315570Z"
+}

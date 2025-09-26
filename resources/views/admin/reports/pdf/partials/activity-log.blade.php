@@ -1,8 +1,8 @@
 
 <div class="section">
-    <h2 class="section-title">Actividad Reciente del Sistema</h2>
+    <div class="section-title">Actividad Reciente del Sistema</div>
 
-    <h3 class="subsection-title">Actividades Recientes (Últimas 20)</h3>
+    <div class="subsection-title">Registros de Actividad Reciente</div>
     
     <table class="data-table">
         <thead>
@@ -27,7 +27,7 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Usuarios Más Activos</h3>
+    <div class="subsection-title">Usuarios Más Activos</div>
     
     <table class="data-table">
         <thead>

@@ -1,12 +1,10 @@
 <div class="section">
-    <h2 class="section-title">Resumen Ejecutivo</h2>
-    
+    <div class="section-title">Resumen Ejecutivo</div>
+
     <div class="summary-box">
-        <p><strong>Este reporte presenta un análisis completo del estado administrativo de la Gran Zona 5, incluyendo estadísticas de membresía, estado financiero, gestión de eventos, repositorio de documentos y actividad general del sistema.</strong></p>
+        <p><strong>La Gran Zona 5 de la Francmasonería Venezolana presenta este reporte administrativo integral, ofreciendo una visión comprehensiva del estado organizacional, financiero y operativo de nuestra jurisdicción masónica. Este documento ejecutivo proporciona las bases para la toma de decisiones estratégicas y el seguimiento institucional.</strong></p>
     </div>
 
-    <h3 class="subsection-title">Indicadores Clave de Rendimiento (KPIs)</h3>
-    
     <div class="kpi-grid">
         <div class="kpi-row">
             <div class="kpi-item">
@@ -58,7 +56,7 @@
         </div>
     </div>
 
-    <h3 class="subsection-title">Resumen de Actividad</h3>
+    <div class="subsection-title">Resumen de Actividad</div>
     
     <table class="data-table">
         <thead>

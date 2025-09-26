@@ -1,0 +1,37 @@
+{
+    "id": "e71e0b3d-5205-4d4c-a61e-c0f8eec35df2",
+    "type": "report_generation",
+    "status": "failed",
+    "progress": 50,
+    "data": {
+        "period": "1_month",
+        "start_date": null,
+        "end_date": null,
+        "lodge_filter": null,
+        "include_charts": true,
+        "sections": [
+            "kpis",
+            "members",
+            "finance",
+            "events",
+            "repository",
+            "messages",
+            "lodges",
+            "dignitaries",
+            "school",
+            "activity"
+        ]
+    },
+    "result": null,
+    "error": "Undefined variable $executive_summary (View: C:\\xampp\\htdocs\\Zona5\\resources\\views\\admin\\reports\\pdf\\partials\\executive-summary.blade.php)",
+    "created_at": "2025-09-26T19:42:58.186471Z",
+    "updated_at": "2025-09-26T19:42:58.480921Z",
+    "started_at": "2025-09-26T19:42:58.197999Z",
+    "completed_at": null,
+    "user_id": 1,
+    "user_name": "H\u00e9ctor Mota",
+    "timeout_at": "2025-09-26T19:52:58.189274Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Recopilando datos..."
+}

@@ -1,7 +1,7 @@
 <div class="section">
-    <h2 class="section-title">Repositorio de Documentos</h2>
+    <div class="section-title">Repositorio de Documentos</div>
 
-    <h3 class="subsection-title">Resumen del Repositorio</h3>
+    <div class="subsection-title">Resumen del Repositorio</div>
     
     <div class="kpi-grid">
         <div class="kpi-row">
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <h3 class="subsection-title">Documentos por Categoría</h3>
+    <div class="subsection-title">Documentos por Categoría</div>
     
     <table class="data-table">
         <thead>
@@ -41,7 +41,7 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Documentos por Grado</h3>
+    <div class="subsection-title">Documentos por Grado</div>
     
     <table class="data-table">
         <thead>
@@ -62,7 +62,7 @@
         </tbody>
     </table>
 
-    <h3 class="subsection-title">Documentos Recientes (Últimos 15)</h3>
+    <div class="subsection-title">Documentos Recientes (Últimos 15)</div>
     
     <table class="data-table">
         <thead>

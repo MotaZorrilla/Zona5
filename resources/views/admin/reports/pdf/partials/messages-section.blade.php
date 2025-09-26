@@ -1,7 +1,7 @@
 <div class="section">
-    <h2 class="section-title">Sistema de Mensajería</h2>
+    <div class="section-title">Sistema de Mensajería</div>
 
-    <h3 class="subsection-title">Estadísticas de Mensajes</h3>
+    <div class="subsection-title">Estadísticas de Mensajes</div>
     
     <div class="kpi-grid">
         <div class="kpi-row">
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <h3 class="subsection-title">Actividad Mensual de Mensajería</h3>
+    <div class="subsection-title">Actividad Mensual de Mensajería</div>
     
     <table class="data-table">
         <thead>

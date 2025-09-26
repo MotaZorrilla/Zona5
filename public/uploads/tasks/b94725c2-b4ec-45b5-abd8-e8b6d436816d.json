@@ -1,0 +1,27 @@
+{
+    "id": "b94725c2-b4ec-45b5-abd8-e8b6d436816d",
+    "type": "report_generation",
+    "status": "completed",
+    "progress": 100,
+    "data": {
+        "period": "1_month",
+        "start_date": null,
+        "end_date": null,
+        "lodge_filter": null,
+        "include_charts": true
+    },
+    "result": {
+        "download_url": "http:\/\/127.0.0.1:8000\/admin\/reports\/download\/report_b94725c2-b4ec-45b5-abd8-e8b6d436816d.pdf"
+    },
+    "error": null,
+    "created_at": "2025-09-26T19:25:38.479359Z",
+    "updated_at": "2025-09-26T19:25:40.726147Z",
+    "started_at": "2025-09-26T19:25:38.487993Z",
+    "completed_at": "2025-09-26T19:25:40.726076Z",
+    "user_id": 1,
+    "user_name": "H\u00e9ctor Mota",
+    "timeout_at": "2025-09-26T19:35:38.479637Z",
+    "retry_count": 0,
+    "max_retries": 3,
+    "message": "Reporte completado"
+}

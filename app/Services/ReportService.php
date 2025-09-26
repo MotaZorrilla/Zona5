@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Auth;
 class ReportService
 {
     protected $debug;
+    protected $progressTracker;
 
-    public function __construct(DebugService $debug = null)
+    public function __construct(DebugService $debug = null, $progressTracker = null)
     {
         $this->debug = $debug ?: new DebugService(false); // Deshabilitado si no se proporciona
+        $this->progressTracker = $progressTracker ?: new \App\Services\RealTimeProgressTracker();
     }
 
     /**
@@ -31,10 +33,18 @@ class ReportService
     public function generateReportData($dateRange, $options = [])
     {
         $this->debug->startTask('generateReportData', 'Iniciando generación de datos del reporte');
+        $this->progressTracker->startTask('generateReportData', 'Iniciando generación de datos del reporte');
 
+        $this->progressTracker->step('Iniciando generación de reporte', 5);
         $this->debug->step('Iniciando generación de reporte', 5);
         $this->debug->info('Rango de fechas', json_encode($dateRange));
         $this->debug->info('Opciones', json_encode($options));
+
+        $this->progressTracker->info('Iniciando generación de reporte', [
+            'date_range' => $dateRange,
+            'options' => $options,
+            'sections_count' => 12
+        ]);
 
         $data = [
             'report_info' => $this->getReportInfo($dateRange),
@@ -42,6 +52,7 @@ class ReportService
             'membership_stats' => $this->getMembershipStats($dateRange),
             'financial_status' => $this->getFinancialStatus($dateRange),
             'events_data' => $this->getEventsData($dateRange),
+            'news_data' => $this->getNewsData($dateRange),
             'repository_data' => $this->getRepositoryData($dateRange),
             'messages_data' => $this->getMessagesData($dateRange),
             'lodges_data' => $this->getLodgesData(),
@@ -51,8 +62,16 @@ class ReportService
             'charts_data' => $options['include_charts'] ? $this->getChartsData($dateRange) : null
         ];
 
+        $this->progressTracker->step('Finalizando generación de reporte', 100, 'Todos los datos del reporte generados');
         $this->debug->step('Finalizando generación de reporte', 95);
         $this->debug->endTask(true, 'Reporte generado exitosamente');
+
+        $summary = [
+            'total_sections' => count($data),
+            'data_size' => strlen(json_encode($data)),
+            'date_range' => $dateRange
+        ];
+        $this->progressTracker->endTask(true, $summary);
 
         return $data;
     }
@@ -79,28 +98,48 @@ class ReportService
     private function getExecutiveSummary()
     {
         $this->debug->step('Generando resumen ejecutivo', 15);
+        $this->progressTracker->step('Generando resumen ejecutivo', 15, 'Iniciando conteo de datos para resumen ejecutivo');
         $this->debug->info('Iniciando conteo de datos para resumen ejecutivo');
+
+        $this->progressTracker->info('Iniciando conteo de datos para resumen ejecutivo', [
+            'start_time' => now()->toISOString()
+        ]);
 
         $totalLodges = Lodge::count();
         $this->debug->query('Lodge::count()', [], null);
+        $this->progressTracker->query('Lodge::count()', [], null);
+
         $totalMembers = User::count();
         $this->debug->query('User::count()', [], null);
+        $this->progressTracker->query('User::count()', [], null);
+
         $treasuryIncome = Treasury::where('type', 'income')->sum('amount');
         $this->debug->query("Treasury::where('type', 'income')->sum('amount')", [], null);
+        $this->progressTracker->query("Treasury::where('type', 'income')->sum('amount')", [], null);
+
         $treasuryExpense = Treasury::where('type', 'expense')->sum('amount');
         $this->debug->query("Treasury::where('type', 'expense')->sum('amount')", [], null);
+        $this->progressTracker->query("Treasury::where('type', 'expense')->sum('amount')", [], null);
+
         $upcomingEvents = Event::where('start_time', '>', now())->count();
         $this->debug->query("Event::where('start_time', '>', now())->count()", [], null);
+        $this->progressTracker->query("Event::where('start_time', '>', now())->count()", [], null);
+
         $totalDocuments = Repository::count();
         $this->debug->query('Repository::count()', [], null);
+        $this->progressTracker->query('Repository::count()', [], null);
+
         $unreadMessages = Message::where('status', 'unread')->count();
         $this->debug->query("Message::where('status', 'unread')->count()", [], null);
+        $this->progressTracker->query("Message::where('status', 'unread')->count()", [], null);
+
         $activeCourses = Course::where('status', 'active')->count();
         $this->debug->query("Course::where('status', 'active')->count()", [], null);
+        $this->progressTracker->query("Course::where('status', 'active')->count()", [], null);
 
         $this->debug->info('Datos obtenidos', "Logias: {$totalLodges}, Miembros: {$totalMembers}, Ingresos: {$treasuryIncome}, Egresos: {$treasuryExpense}");
 
-        return [
+        $executiveSummaryData = [
             'total_lodges' => $totalLodges,
             'total_members' => $totalMembers,
             'treasury_balance' => $treasuryIncome - $treasuryExpense,
@@ -109,6 +148,15 @@ class ReportService
             'unread_messages' => $unreadMessages,
             'active_courses' => $activeCourses
         ];
+
+        $this->progressTracker->info('Resumen ejecutivo generado', [
+            'total_lodges' => $totalLodges,
+            'total_members' => $totalMembers,
+            'treasury_balance' => $treasuryIncome - $treasuryExpense,
+            'end_time' => now()->toISOString()
+        ]);
+
+        return $executiveSummaryData;
     }
 
     /**
@@ -117,20 +165,35 @@ class ReportService
     private function getMembershipStats($dateRange)
     {
         $this->debug->step('Generando estadísticas de membresía', 20);
+        $this->progressTracker->step('Generando estadísticas de membresía', 20, 'Procesando datos de membresía');
         $this->debug->info('Rango de fechas para membresía', json_encode($dateRange));
+
+        $this->progressTracker->info('Iniciando procesamiento de estadísticas de membresía', [
+            'date_range' => $dateRange,
+            'start_time' => now()->toISOString()
+        ]);
 
         // Distribución por grado
         $this->debug->info('Obteniendo distribución por grado');
+        $this->progressTracker->info('Obteniendo distribución por grado', [
+            'query_start' => now()->toISOString()
+        ]);
+        
         $degreeDistribution = User::select('degree', DB::raw('count(*) as count'))
             ->whereNotNull('degree')
             ->groupBy('degree')
             ->get()
             ->keyBy('degree');
         $this->debug->query('User::select(degree, count(*))', [], null);
+        $this->progressTracker->query('User::select(degree, count(*))', [], null);
         $this->debug->info('Distribución por grado obtenida', $degreeDistribution->count() . ' grados encontrados');
 
         // Miembros por logia
         $this->debug->info('Obteniendo miembros por logia');
+        $this->progressTracker->info('Obteniendo miembros por logia', [
+            'query_start' => now()->toISOString()
+        ]);
+        
         $membersByLodge = Lodge::withCount('users')
             ->with(['users' => function($query) {
                 $query->select('users.id', 'degree')
@@ -148,11 +211,18 @@ class ReportService
                 ];
             });
         $this->debug->query('Lodge::withCount(users)->with(users)', [], null);
+        $this->progressTracker->query('Lodge::withCount(users)->with(users)', [], null);
         $this->debug->info('Miembros por logia obtenidos', $membersByLodge->count() . ' logias encontradas');
 
         // Crecimiento de membresía (últimos 6 meses)
         $this->debug->info('Calculando crecimiento de membresía');
+        $this->progressTracker->info('Calculando crecimiento de membresía', [
+            'period_months' => 6,
+            'start_time' => now()->toISOString()
+        ]);
+        
         $membershipGrowth = [];
+        $totalProcessed = 0;
         for ($i = 5; $i >= 0; $i--) {
             $date = Carbon::now()->subMonths($i);
             $monthStart = $date->copy()->startOfMonth();
@@ -170,10 +240,19 @@ class ReportService
                 'companions' => $companions,
                 'masters' => $masters
             ];
+            
+            $totalProcessed += $newMembers;
+            
+            // Actualizar progreso para crecimiento de membresía
+            $progress = 20 + (5 * (5-$i) / 6); // Distribuir el 5% de progreso entre los 6 meses
+            $this->progressTracker->step("Calculando crecimiento de membresía - Mes {$date->format('M Y')}", 
+                $progress, 
+                "{$newMembers} nuevos miembros"
+            );
         }
         $this->debug->info('Crecimiento de membresía calculado', count($membershipGrowth) . ' meses analizados');
 
-        return [
+        $membershipStatsData = [
             'degree_distribution' => $degreeDistribution,
             'members_by_lodge' => $membersByLodge,
             'membership_growth' => $membershipGrowth,
@@ -181,6 +260,16 @@ class ReportService
             'total_companions' => $degreeDistribution->get('Compañero')->count ?? 0,
             'total_masters' => $degreeDistribution->get('Maestro')->count ?? 0
         ];
+
+        $this->progressTracker->info('Estadísticas de membresía completadas', [
+            'total_lodges_processed' => $membersByLodge->count(),
+            'total_degrees' => $degreeDistribution->count(),
+            'growth_months_tracked' => count($membershipGrowth),
+            'total_new_members_processed' => $totalProcessed,
+            'end_time' => now()->toISOString()
+        ]);
+
+        return $membershipStatsData;
     }
 
     /**
@@ -438,6 +527,45 @@ class ReportService
         $this->debug->info('Datos para gráficos', 'Gráficos se manejarán en el frontend');
 
         return null;
+    }
+
+    /**
+     * Datos de noticias
+     */
+    private function getNewsData($dateRange)
+    {
+        $this->debug->step('Generando datos de noticias', 30);
+        $this->progressTracker->step('Generando datos de noticias', 30, 'Obteniendo noticias publicadas');
+        $this->debug->info('Rango de fechas para noticias', json_encode($dateRange));
+
+        $this->debug->info('Obteniendo noticias publicadas recientemente');
+        $recentNews = News::published()
+            ->whereBetween('published_at', [$dateRange['start'], $dateRange['end']])
+            ->with('author')
+            ->orderBy('published_at', 'desc')
+            ->take(10)
+            ->get();
+
+        $this->debug->info('Obteniendo estadísticas de noticias');
+        $newsStats = [
+            'total_published' => News::published()
+                ->whereBetween('published_at', [$dateRange['start'], $dateRange['end']])
+                ->count(),
+            'total_draft' => News::where('status', 'draft')
+                ->whereBetween('created_at', [$dateRange['start'], $dateRange['end']])
+                ->count(),
+            'total_scheduled' => News::where('status', 'scheduled')
+                ->whereBetween('created_at', [$dateRange['start'], $dateRange['end']])
+                ->count()
+        ];
+
+        $this->debug->info('Datos de noticias', "Recientes: {$recentNews->count()}, Publicadas: {$newsStats['total_published']}");
+
+        return [
+            'recent_news' => $recentNews,
+            'news_statistics' => $newsStats,
+            'total_news' => News::whereBetween('published_at', [$dateRange['start'], $dateRange['end']])->count()
+        ];
     }
 
     /**
