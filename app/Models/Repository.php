@@ -37,11 +37,12 @@ class Repository extends Model
         'grade_level',
         'uploaded_by',
         'uploaded_at',
+        'image_url',
     ];
 
     protected $dates = ['uploaded_at'];
 
-    public function uploader(): BelongsTo
+    public function uploader()
     {
         return $this->belongsTo(User::class, 'uploaded_by');
     }

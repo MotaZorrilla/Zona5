@@ -28,9 +28,12 @@ Route::name('public.')->group(function () {
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
     Route::view('/lodges', 'public.lodges')->name('lodges');
     Route::get('logias/{lodge}', [PublicLodgeController::class, 'show'])->name('lodges.show');
-    Route::view('/forums', 'public.forums')->name('forums');
+    Route::get('/forums', [App\Http\Controllers\Public\ForumController::class, 'index'])->name('forums');
+    Route::get('/forums/{forum}', [App\Http\Controllers\Public\ForumController::class, 'show'])->name('forums.show');
+    Route::post('/forums/{forum}/posts', [App\Http\Controllers\Public\ForumController::class, 'storePost'])->name('forums.store-post');
+    Route::post('/forums/posts/{post}/vote', [App\Http\Controllers\Public\ForumController::class, 'vote'])->name('forums.vote');
     Route::get('/school', [App\Http\Controllers\Public\SchoolController::class, 'index'])->name('school');
-    Route::view('/archive', 'public.archive')->name('archive');
+    Route::get('/archive', [App\Http\Controllers\Public\ArchiveController::class, 'index'])->name('archive');
     Route::get('/news', [App\Http\Controllers\Public\NewsController::class, 'index'])->name('news');
     Route::get('/contact', [App\Http\Controllers\Public\ContactController::class, 'show'])->name('contact');
     Route::post('/contact', [App\Http\Controllers\Public\ContactController::class, 'store'])->name('contact.store');
@@ -60,9 +63,14 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::resource('repository', App\Http\Controllers\Admin\RepositoryController::class);
         Route::get('repository/{repository}/download', [App\Http\Controllers\Admin\RepositoryController::class, 'download'])->name('repository.download');
         Route::resource('events', App\Http\Controllers\Admin\EventController::class);
+        Route::resource('faqs', App\Http\Controllers\Admin\FaqController::class);
+        Route::patch('faqs/{faq}/toggle', [App\Http\Controllers\Admin\FaqController::class, 'toggle'])->name('faqs.toggle');
+        Route::resource('forums', App\Http\Controllers\Admin\ForumController::class);
+        Route::patch('forums/{forum}/toggle', [App\Http\Controllers\Admin\ForumController::class, 'toggle'])->name('forums.toggle');
         Route::get('settings', [App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings');
         Route::post('settings', [App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('settings.update');
         Route::get('content-manager/{section?}', [ContentManagerController::class, 'show'])->name('content-manager.show');
+        Route::post('content-manager/contact', [ContentManagerController::class, 'updateContact'])->name('content-manager.contact.update');
         
         // Rutas de reportes
         Route::get('reports', [ReportController::class, 'index'])->name('reports.index');

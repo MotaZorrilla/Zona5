@@ -25,12 +25,14 @@
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div class="bg-white rounded-xl shadow-lg p-8 border border-blue-100">
-                        <p class="text-lg text-gray-700 mb-6 text-justify">
-                            La Masonería en la región de Guayana tiene raíces profundas, entrelazadas con el desarrollo social, cultural y político del Estado Bolívar. Desde la fundación de las primeras logias, los hermanos masones han sido pilares en la construcción de una sociedad más justa, educada y fraterna.
-                        </p>
-                        <p class="text-lg text-gray-700 text-justify">
-                            Las Grandes Zonas surgieron a partir de un decreto emitido por el Venerable Gran Maestro de la Gran Logia de la República de Venezuela, con el objetivo de otorgar un orden estructural y jerárquico a todas las zonas a nivel nacional. Este decreto buscaba fortalecer la coordinación entre las logias y optimizar la administración de los asuntos masónicos en cada región del país, garantizando la unidad de criterios y la eficiencia en los trabajos de la Augusta Institución.
-                        </p>
+                        <div class="text-lg text-gray-700 leading-relaxed text-center">
+                            <p class="mb-6" style="text-indent: 2rem;">
+                                La Masonería en la región de Guayana tiene raíces profundas, entrelazadas con el desarrollo social, cultural y político del Estado Bolívar. Desde la fundación de las primeras logias, los hermanos masones han sido pilares en la construcción de una sociedad más justa, educada y fraterna.
+                            </p>
+                            <p style="text-indent: 2rem;">
+                                Las Grandes Zonas surgieron a partir de un decreto emitido por el Venerable Gran Maestro de la Gran Logia de la República de Venezuela, con el objetivo de otorgar un orden estructural y jerárquico a todas las zonas a nivel nacional. Este decreto buscaba fortalecer la coordinación entre las logias y optimizar la administración de los asuntos masónicos en cada región del país, garantizando la unidad de criterios y la eficiencia en los trabajos de la Augusta Institución.
+                            </p>
+                        </div>
                     </div>
                     <blockquote class="p-8 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-xl border border-blue-200 flex items-center justify-center">
                         <div>

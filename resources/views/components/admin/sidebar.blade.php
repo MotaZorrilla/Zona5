@@ -25,6 +25,7 @@
         <li class="mb-1"><a href="{{ route('admin.repository.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.repository.*') ? 'active' : '' }}"><i class="ri-archive-2-line mr-3 text-primary-500"></i><span class="text-primary-600 font-sans">Repositorio</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.school.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.school.*') ? 'active' : '' }}"><i class="ri-book-open-line mr-3 text-primary-500"></i><span class="text-primary-600 font-sans">Escuela Virtual</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.forums.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.forums.*') ? 'active' : '' }}"><i class="ri-discuss-line mr-3 text-primary-500"></i><span class="text-primary-600 font-sans">Foros</span></a></li>
+        <li class="mb-1"><a href="{{ route('admin.faqs.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}"><i class="ri-question-line mr-3 text-primary-500"></i><span class="text-primary-600 font-sans">FAQ</span></a></li>
 
         <hr class="my-2 border-gray-200">
 

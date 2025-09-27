@@ -1,264 +1,313 @@
 @extends('layouts.public')
 
-@section('title', 'Foros - Gran Zona 5')
+@section('title', $pageSettings['title'] . ' - Gran Zona 5')
 
 @section('content')
-<div class="bg-gray-50">
+    <x-public.hero
+        title="{{ $pageSettings['title'] }}"
+        subtitle="{{ $pageSettings['subtitle'] }}"
+        imageUrl="{{ $pageSettings['banner_image'] }}"
+    />
 
-    <!-- Hero Section -->
-    <div class="relative bg-primary-600">
-        <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" src="https://picsum.photos/seed/forums-hero/1920/1080" alt="Foro de la Gran Zona 5">
-            <div class="absolute inset-0 bg-primary-600 mix-blend-multiply" aria-hidden="true"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl font-serif">Foros de Debate</h1>
-            <p class="mt-6 text-xl text-primary-100 max-w-3xl mx-auto">Un espacio para el diálogo constructivo, el intercambio de ideas y el fortalecimiento de la fraternidad.</p>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        <div class="lg:grid lg:grid-cols-12 lg:gap-8">
-
-            <!-- Forum Content -->
-            <div class="lg:col-span-8 xl:col-span-9">
-
-                <!-- Search and Actions -->
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-8 border-b border-gray-200" data-scroll-reveal>
-                    <div class="relative flex-1">
-                        <input type="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Buscar un tema...">
+    <!-- Enhanced Forum Container -->
+    <div class="py-12 sm:py-16">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <!-- Forum Header with Search and Filters -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 sm:p-6 mb-6 sm:mb-8">
+                <div class="flex flex-col gap-4">
+                    <!-- Search Bar -->
+                    <div class="relative">
+                        <label for="forumSearch" class="sr-only">Buscar foros</label>
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="ri-search-line text-gray-400"></i>
+                            <i class="ri-search-line text-gray-400" aria-hidden="true"></i>
                         </div>
+                        <input type="text"
+                               id="forumSearch"
+                               placeholder="Buscar foros..."
+                               aria-label="Buscar foros"
+                               class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200 text-base">
                     </div>
-                    <div class="mt-4 sm:mt-0 sm:ml-4">
-                        @guest
-                            <p class="text-sm text-gray-600">Para iniciar un nuevo tema, por favor <a href="{{ route('login') }}" class="underline font-semibold text-primary-600 hover:text-primary-500" wire:navigate>inicia sesión</a> o <a href="{{ route('register') }}" class="underline font-semibold text-primary-600 hover:text-primary-500" wire:navigate>regístrate</a>.</p>
-                        @endguest
-                        @auth
-                            <button type="button" class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 cta-button">
-                                <i class="ri-add-circle-line -ml-1 mr-2"></i>
-                                Iniciar un Nuevo Tema
-                            </button>
-                        @endauth
+
+                    <!-- Filter Tabs -->
+                    <div class="flex items-center gap-2 overflow-x-auto pb-2" role="tablist" aria-label="Filtros de foros">
+                        <button data-filter="all"
+                                class="filter-btn active px-3 sm:px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-medium whitespace-nowrap"
+                                role="tab"
+                                aria-selected="true"
+                                aria-controls="forums-container">
+                            Todos
+                        </button>
+                        <button data-filter="featured"
+                                class="filter-btn px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors whitespace-nowrap"
+                                role="tab"
+                                aria-selected="false"
+                                aria-controls="forums-container">
+                            Destacados
+                        </button>
+                        <button data-filter="popular"
+                                class="filter-btn px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors whitespace-nowrap"
+                                role="tab"
+                                aria-selected="false"
+                                aria-controls="forums-container">
+                            Populares
+                        </button>
+                        <button data-filter="recent"
+                                class="filter-btn px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors whitespace-nowrap"
+                                role="tab"
+                                aria-selected="false"
+                                aria-controls="forums-container">
+                            Recientes
+                        </button>
                     </div>
                 </div>
+            </div>
 
-                <!-- Breadcrumbs -->
-                <nav class="flex py-5" aria-label="Breadcrumb">
-                    <ol role="list" class="flex items-center space-x-4">
-                        <li>
-                            <div>
-                                <a href="#" class="text-gray-400 hover:text-gray-500">
-                                    <i class="ri-home-4-fill flex-shrink-0 h-5 w-5"></i>
-                                    <span class="sr-only">Foros</span>
+            <!-- Category Navigation -->
+            @if($categories->isNotEmpty())
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Categorías</h3>
+                    <div class="flex flex-wrap gap-3" role="group" aria-label="Categorías de foros">
+                        <button data-category="all"
+                                class="category-btn active px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-medium hover:bg-primary-200 transition-colors"
+                                aria-pressed="true">
+                            Todas las categorías
+                        </button>
+                        @foreach($categories as $category)
+                            <button data-category="{{ $category }}"
+                                    class="category-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors"
+                                    aria-pressed="false">
+                                {{ $category }}
+                            </button>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
+            <!-- Forums Grid -->
+            <div id="forumsContainer"
+                 class="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2 xl:grid-cols-3"
+                 data-scroll-reveal
+                 role="main"
+                 aria-label="Lista de foros">
+                @forelse($forums as $forum)
+                    <div class="forum-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg hover:border-primary-200 transition-all duration-300"
+                         data-category="{{ $forum->category }}"
+                         data-featured="{{ $forum->is_featured ? 'true' : 'false' }}"
+                         data-popular="{{ $forum->views_count > 50 ? 'true' : 'false' }}"
+                         role="article"
+                         aria-labelledby="forum-title-{{ $forum->id }}">
+
+                        <!-- Forum Header -->
+                        <div class="p-4 sm:p-6 pb-3 sm:pb-4">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center gap-3 flex-1 min-w-0">
+                                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl {{ $forum->color ? 'bg-[' . $forum->color . ']' : 'bg-primary-100' }} flex items-center justify-center flex-shrink-0">
+                                        <i class="{{ $forum->icon ?: 'ri-discuss-line' }} text-white text-sm sm:text-base"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h3 id="forum-title-{{ $forum->id }}" class="font-bold text-gray-900 text-base sm:text-lg leading-tight mb-1 truncate">{{ $forum->title }}</h3>
+                                        @if($forum->category)
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                                                {{ $forum->category }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 sm:gap-2 ml-2 flex-shrink-0">
+                                    @if($forum->is_pinned)
+                                        <span class="px-1.5 sm:px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">
+                                            <i class="ri-pushpin-line mr-1"></i>
+                                            <span class="hidden sm:inline">Pineado</span>
+                                        </span>
+                                    @endif
+                                    @if($forum->is_featured)
+                                        <span class="px-1.5 sm:px-2 py-1 bg-gradient-to-r from-orange-400 to-pink-400 text-white rounded-full text-xs font-medium">
+                                            <i class="ri-star-line mr-1"></i>
+                                            <span class="hidden sm:inline">Destacado</span>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            @if($forum->excerpt || $forum->description)
+                                <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-2">
+                                    {{ $forum->excerpt ?: Str::limit($forum->description, 120) }}
+                                </p>
+                            @endif
+                        </div>
+
+                        <!-- Forum Stats -->
+                        <div class="px-4 sm:px-6 pb-3 sm:pb-4">
+                            <div class="flex items-center justify-between text-xs sm:text-sm text-gray-500">
+                                <div class="flex items-center gap-3 sm:gap-4">
+                                    <span class="flex items-center gap-1">
+                                        <i class="ri-chat-1-line"></i>
+                                        {{ $forum->posts_count }} posts
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i class="ri-eye-line"></i>
+                                        {{ number_format($forum->views_count) }} vistas
+                                    </span>
+                                </div>
+                                @if($forum->latestPost)
+                                    <span class="text-xs hidden sm:block">
+                                        {{ $forum->latestPost->created_at->diffForHumans() }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Forum Footer -->
+                        <div class="px-4 sm:px-6 pb-4 sm:pb-6">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2 text-xs text-gray-400">
+                                    @if($forum->creator)
+                                        <span class="hidden sm:inline">por {{ $forum->creator->name }}</span>
+                                    @endif
+                                    @if($forum->last_activity_at)
+                                        <span class="hidden sm:inline">•</span>
+                                        <span>Activo {{ $forum->last_activity_at->diffForHumans() }}</span>
+                                    @endif
+                                </div>
+                                <a href="{{ route('public.forums.show', $forum) }}"
+                                   class="inline-flex items-center px-3 sm:px-4 py-2 bg-primary-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200"
+                                   aria-label="Ver foro {{ $forum->title }}">
+                                    <span class="hidden sm:inline">Explorar</span>
+                                    <span class="sm:hidden">Ver</span>
+                                    <i class="ri-arrow-right-line ml-1 sm:ml-2" aria-hidden="true"></i>
                                 </a>
                             </div>
-                        </li>
-                        <li>
-                            <div class="flex items-center">
-                                <i class="ri-arrow-right-s-line flex-shrink-0 h-5 w-5 text-gray-400"></i>
-                                <a href="#" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Categorías</a>
+                        </div>
+                    </div>
+                @empty
+                    <!-- Empty State -->
+                    <div class="col-span-full text-center py-16">
+                        <div class="mx-auto max-w-md">
+                            <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="ri-discuss-line text-4xl text-gray-400"></i>
                             </div>
-                        </li>
-                    </ol>
-                </nav>
-
-                <!-- Topics List -->
-                <div class="bg-white shadow overflow-hidden sm:rounded-md" data-scroll-reveal>
-                    <ul role="list" class="divide-y divide-gray-200">
-                        <!-- Pinned Topic Example -->
-                        <li class="hover:bg-gray-50 transition-colors duration-200">
-                            <a href="#" class="block">
-                                <div class="px-4 py-4 sm:px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center">
-                                            <i class="ri-pushpin-2-fill mr-2 text-yellow-500"></i>
-                                            <p class="text-sm font-medium text-primary-600 truncate">
-                                                Normas y Anuncios del Foro
-                                            </p>
-                                        </div>
-                                        <div class="mt-2 sm:hidden text-sm text-gray-500">
-                                            <p class="flex items-center">
-                                                <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                Admin
-                                            </p>
-                                            <p class="mt-1 flex items-center">
-                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                Última actividad <time datetime="2025-09-05">hace 2 días</time>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="hidden sm:flex flex-col items-end sm:ml-4">
-                                        <div class="flex space-x-2">
-                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">2 Respuestas</p>
-                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">1.2k Vistas</p>
-                                        </div>
-                                        <div class="mt-1 flex text-sm text-gray-500">
-                                            <p class="flex items-center">
-                                                <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                Admin
-                                            </p>
-                                            <p class="ml-3 flex items-center">
-                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                <time datetime="2025-09-05">hace 2 días</time>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <!-- Regular Topic Example 1 -->
-                        <li class="hover:bg-gray-50 transition-colors duration-200">
-                            <a href="#" class="block">
-                                <div class="px-4 py-4 sm:px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate">Reflexiones sobre el Simbolismo del Primer Grado</p>
-                                        <div class="mt-2 sm:hidden text-sm text-gray-500">
-                                            <p class="flex items-center">
-                                                <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                V.`.`H.`.` Juan Pérez
-                                            </p>
-                                            <p class="mt-1 flex items-center">
-                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                Última actividad <time datetime="2025-09-07">hace 3 horas</time>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="hidden sm:flex flex-col items-end sm:ml-4">
-                                        <div class="flex space-x-2">
-                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">15 Respuestas</p>
-                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">3.4k Vistas</p>
-                                        </div>
-                                        <div class="mt-1 flex text-sm text-gray-500">
-                                            <p class="flex items-center">
-                                                <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                V.`.`H.`.` Juan Pérez
-                                            </p>
-                                            <p class="ml-3 flex items-center">
-                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                <time datetime="2025-09-07">hace 3 horas</time>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <!-- Regular Topic Example 2 -->
-                        <li class="hover:bg-gray-50 transition-colors duration-200">
-                            <a href="#" class="block">
-                                <div class="px-4 py-4 sm:px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate">Propuesta de Caridad para el Solsticio de Invierno</p>
-                                        <div class="mt-2 sm:hidden text-sm text-gray-500">
-                                            <p class="flex items-center">
-                                                <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                Q.`.`H.`.` Carlos Gómez
-                                            </p>
-                                            <p class="mt-1 flex items-center">
-                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                Última actividad <time datetime="2025-09-06">ayer</time>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="hidden sm:flex flex-col items-end sm:ml-4">
-                                        <div class="flex space-x-2">
-                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">8 Respuestas</p>
-                                            <p class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">980 Vistas</p>
-                                        </div>
-                                        <div class="mt-1 flex text-sm text-gray-500">
-                                            <p class="flex items-center">
-                                                <i class="ri-user-3-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                Q.`.`H.`.` Carlos Gómez
-                                            </p>
-                                            <p class="ml-3 flex items-center">
-                                                <i class="ri-calendar-line mr-1.5 h-5 w-5 text-gray-400"></i>
-                                                <time datetime="2025-09-06">ayer</time>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        <!-- More topics... -->
-                    </ul>
-                </div>
-
-                <!-- Pagination -->
-                <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-4 rounded-md" aria-label="Pagination" data-scroll-reveal>
-                    <div class="hidden sm:block">
-                        <p class="text-sm text-gray-700">
-                            Mostrando
-                            <span class="font-medium">1</span>
-                            a
-                            <span class="font-medium">10</span>
-                            de
-                            <span class="font-medium">97</span>
-                            resultados
-                        </p>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">No hay foros disponibles</h3>
+                            <p class="text-gray-500 mb-6">Los foros de discusión estarán disponibles próximamente. ¡Sé el primero en crear uno!</p>
+                            @auth
+                                <a href="#" class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors">
+                                    <i class="ri-add-line mr-2"></i>
+                                    Crear Foro
+                                </a>
+                            @endauth
+                        </div>
                     </div>
-                    <div class="flex-1 flex justify-between sm:justify-end">
-                        <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                            Anterior
-                        </a>
-                        <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                            Siguiente
-                        </a>
-                    </div>
-                </nav>
-
+                @endforelse
             </div>
 
-            <!-- Sidebar -->
-            <div class="lg:col-span-4 xl:col-span-3 mt-8 lg:mt-0">
-                <div class="space-y-6">
-                    <!-- Categories -->
-                    <div class="bg-white p-6 shadow rounded-lg" data-scroll-reveal>
-                        <h3 class="text-lg font-medium text-gray-900 font-serif">Categorías</h3>
-                        <ul class="mt-4 space-y-2">
-                            <li><a href="#" class="flex justify-between items-center text-gray-600 hover:text-primary-600 font-medium"><span>Discusión General</span> <span class="bg-gray-200 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">42</span></a></li>
-                            <li><a href="#" class="flex justify-between items-center text-primary-600 hover:text-primary-800 font-bold"><span>Simbolismo y Filosofía</span> <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2.5 py-0.5 rounded-full">15</span></a></li>
-                            <li><a href="#" class="flex justify-between items-center text-gray-600 hover:text-primary-600 font-medium"><span>Historia Masónica</span> <span class="bg-gray-200 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">23</span></a></li>
-                            <li><a href="#" class="flex justify-between items-center text-gray-600 hover:text-primary-600 font-medium"><span>Administración y Logias</span> <span class="bg-gray-200 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">8</span></a></li>
-                            <li><a href="#" class="flex justify-between items-center text-gray-600 hover:text-primary-600 font-medium"><span>Eventos y Caridad</span> <span class="bg-gray-200 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">9</span></a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Recent Activity -->
-                    <div class="bg-white p-6 shadow rounded-lg" data-scroll-reveal>
-                        <h3 class="text-lg font-medium text-gray-900 font-serif">Actividad Reciente</h3>
-                        <ul class="mt-4 space-y-4">
-                            <li class="flex items-start">
-                                <img class="h-10 w-10 rounded-full flex-shrink-0" src="https://i.pravatar.cc/40?u=1" alt="">
-                                <div class="ml-3 min-w-0">
-                                    <p class="text-sm text-gray-700 break-words">Q.`.`H.`.` Carlos comentó en <a href="#" class="font-medium text-primary-600 hover:underline">Propuesta de Caridad...</a></p>
-                                    <p class="text-xs text-gray-500">hace 5 minutos</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <img class="h-10 w-10 rounded-full flex-shrink-0" src="https://i.pravatar.cc/40?u=2" alt="">
-                                <div class="ml-3 min-w-0">
-                                    <p class="text-sm text-gray-700 break-words">V.`.`H.`.` Juan creó un nuevo tema: <a href="#" class="font-medium text-primary-600 hover:underline">La influencia de la geometría...</a></p>
-                                    <p class="text-xs text-gray-500">hace 1 hora</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <img class="h-10 w-10 rounded-full flex-shrink-0" src="https://i.pravatar.cc/40?u=3" alt="">
-                                <div class="ml-3 min-w-0">
-                                    <p class="text-sm text-gray-700 break-words">Admin comentó en <a href="#" class="font-medium text-primary-600 hover:underline">Normas y Anuncios...</a></p>
-                                    <p class="text-xs text-gray-500">hace 2 horas</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            <!-- Pagination -->
+            @if($forums->hasPages())
+                <div class="mt-12 flex justify-center">
+                    {{ $forums->links() }}
                 </div>
-            </div>
-
+            @endif
         </div>
     </div>
-</div>
+
+    <!-- Enhanced JavaScript -->
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Forum Search Functionality
+            const searchInput = document.getElementById('forumSearch');
+            const forumCards = document.querySelectorAll('.forum-card');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+
+            // Search functionality
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase();
+
+                    forumCards.forEach(card => {
+                        const title = card.querySelector('h3').textContent.toLowerCase();
+                        const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+                        const category = card.dataset.category?.toLowerCase() || '';
+
+                        if (title.includes(searchTerm) || description.includes(searchTerm) || category.includes(searchTerm)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Filter functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active', 'bg-primary-600', 'text-white'));
+                    this.classList.add('active', 'bg-primary-600', 'text-white');
+
+                    // Filter cards
+                    forumCards.forEach(card => {
+                        switch(filter) {
+                            case 'featured':
+                                card.style.display = card.dataset.featured === 'true' ? 'block' : 'none';
+                                break;
+                            case 'popular':
+                                card.style.display = card.dataset.popular === 'true' ? 'block' : 'none';
+                                break;
+                            case 'recent':
+                                // Show all for recent (you might want to implement actual date filtering)
+                                card.style.display = 'block';
+                                break;
+                            default:
+                                card.style.display = 'block';
+                        }
+                    });
+                });
+            });
+
+            // Category filter functionality
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.dataset.category;
+
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active', 'bg-primary-100', 'text-primary-800'));
+                    this.classList.add('active', 'bg-primary-100', 'text-primary-800');
+
+                    // Filter cards
+                    forumCards.forEach(card => {
+                        if (category === 'all' || card.dataset.category === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Animate forum cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            forumCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+    @endpush
 @endsection
