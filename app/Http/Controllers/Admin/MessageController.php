@@ -98,6 +98,51 @@ class MessageController extends Controller
 
         return view('admin.messages.deleted', compact('messages', 'unreadMessagesCount'));
     }
+    
+    public function starred(Request $request)
+    {
+        $query = Message::with('recipient')
+            ->where(function($q) {
+                $q->where('recipient_id', Auth::id())
+                  ->orWhereNull('recipient_id') // Incluir mensajes del sitio público
+                  ->orWhere('sender_email', Auth::user()->email); // Incluir mensajes enviados por el usuario
+            })
+            ->where('is_starred', true) // Solo mostrar mensajes destacados
+            ->whereIn('status', ['unread', 'read']); // Solo mostrar mensajes no eliminados
+
+        $messages = $this->paginateWithSearchAndFilters(
+            $query,
+            ['subject', 'content', 'sender_name'], // searchable fields
+            [], // filterable fields
+            $request,
+            'created_at',
+            'desc'
+        );
+
+        $unreadMessagesCount = Message::where('recipient_id', Auth::id())->unread()->count();
+
+        return view('admin.messages.starred', compact('messages', 'unreadMessagesCount'));
+    }
+    
+    public function sent(Request $request)
+    {
+        $query = Message::with('recipient')
+            ->where('sender_email', Auth::user()->email) // Solo mostrar mensajes enviados por el usuario
+            ->whereIn('status', ['unread', 'read']); // Solo mostrar mensajes no eliminados
+
+        $messages = $this->paginateWithSearchAndFilters(
+            $query,
+            ['subject', 'content', 'recipient_name'], // searchable fields
+            [], // filterable fields
+            $request,
+            'created_at',
+            'desc'
+        );
+
+        $unreadMessagesCount = Message::where('recipient_id', Auth::id())->unread()->count();
+
+        return view('admin.messages.sent', compact('messages', 'unreadMessagesCount'));
+    }
 
     public function show(Message $message)
     {

@@ -3,13 +3,16 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
-    <div class="bg-white p-8 rounded-xl shadow-lg">
-        <div class="flex justify-between items-center mb-8">
-            <div>
-                <h1 class="text-3xl font-bold text-primary-600 mb-2">Dashboard</h1>
-                <p class="text-sm text-gray-500">Panel de control y métricas generales de la Gran Zona 5.</p>
+    <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-xl overflow-hidden border-gray-10 p-1">
+        <div class="p-6 border-b border-gray-100 bg-gradient-to-r from-white to-indigo-50 sticky top-0 bg-white z-10 shadow-sm rounded-t-xl">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-indigo-800 mb-2">Dashboard</h1>
+                    <p class="text-sm text-gray-600">Panel de control y métricas generales de la Gran Zona 5.</p>
+                </div>
             </div>
         </div>
+        <div class="pb-6"></div> <!-- Separación entre la tarjeta principal y las tarjetas KPI -->
 
         <!-- 📊 MÉTRICAS PRINCIPALES - Primera fila con paleta original -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-6">
@@ -17,9 +20,9 @@
             @php
                 $unreadMessages = \App\Models\Message::where('status', 'unread')->count();
             @endphp
-            <a href="{{ route('admin.messages.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-red-200">
+            <a href="{{ route('admin.messages.index') }}" class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group border border-gray-100 hover:border-red-200 hover:bg-gradient-to-r hover:from-red-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500 group-hover:text-red-600 transition-colors">Mensajes Nuevos</p>
+                    <p class="text-sm text-gray-600 group-hover:text-red-600 transition-colors">Mensajes Nuevos</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $unreadMessages }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 group-hover:bg-red-200 transition-colors">
@@ -61,12 +64,12 @@
             </a>
 
             <!-- Balance del Mes (MORADO) -->
-            <a href="{{ route('admin.treasury.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-purple-300">
+            <a href="{{ route('admin.treasury.index') }}" class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group border border-gray-100 hover:border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500 group-hover:text-purple-600 transition-colors">Balance (Mes)</p>
+                    <p class="text-sm text-gray-600 group-hover:text-purple-600 transition-colors">Balance (Mes)</p>
                     <p class="text-3xl font-extrabold text-gray-800">$ {{ number_format($currentMonthBalance, 0) }}</p>
                 </div>
-                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-200 transition-colors">
+                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-500 group-hover:bg-purple-200 transition-colors">
                     <i class="ri-balance-line text-2xl"></i>
                 </div>
             </a>
@@ -86,9 +89,9 @@
         <!-- 📚 CONTENIDO Y COMUNIDAD - Segunda fila -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
             <!-- Documentos (AZUL) -->
-            <a href="{{ route('admin.repository.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-blue-200">
+            <a href="{{ route('admin.repository.index') }}" class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group border border-gray-100 hover:border-blue-200 hover:bg-gradient-to-r hover:from-blue-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500 group-hover:text-blue-600 transition-colors">Documentos</p>
+                    <p class="text-sm text-gray-600 group-hover:text-blue-600 transition-colors">Documentos</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $repositoryCount }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 group-hover:bg-blue-200 transition-colors">
@@ -97,9 +100,9 @@
             </a>
 
             <!-- Noticias (VERDE) -->
-            <a href="{{ route('admin.news.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-green-200">
+            <a href="{{ route('admin.news.index') }}" class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group border border-gray-100 hover:border-green-200 hover:bg-gradient-to-r hover:from-green-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500 group-hover:text-green-600 transition-colors">Noticias</p>
+                    <p class="text-sm text-gray-600 group-hover:text-green-600 transition-colors">Noticias</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $newsCount }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-500 group-hover:bg-green-200 transition-colors">
@@ -108,9 +111,9 @@
             </a>
 
             <!-- Eventos (AMARILLO) -->
-            <a href="{{ route('admin.events.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-yellow-200">
+            <a href="{{ route('admin.events.index') }}" class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group border border-gray-100 hover:border-yellow-200 hover:bg-gradient-to-r hover:from-yellow-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500 group-hover:text-yellow-600 transition-colors">Eventos</p>
+                    <p class="text-sm text-gray-600 group-hover:text-yellow-600 transition-colors">Eventos</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $eventCount }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-500 group-hover:bg-yellow-200 transition-colors">
@@ -122,9 +125,9 @@
             @php
                 $courseCount = \App\Models\Course::count();
             @endphp
-            <a href="{{ route('admin.school.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-purple-200">
+            <a href="{{ route('admin.school.index') }}" class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group border border-gray-100 hover:border-purple-200 hover:bg-gradient-to-r hover:from-purple-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500 group-hover:text-purple-600 transition-colors">Cursos</p>
+                    <p class="text-sm text-gray-600 group-hover:text-purple-600 transition-colors">Cursos</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $courseCount }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-500 group-hover:bg-purple-200 transition-colors">
@@ -133,9 +136,9 @@
             </a>
 
             <!-- Logias Activas (MORADO) -->
-            <a href="{{ route('admin.lodges.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-purple-300">
+            <a href="{{ route('admin.lodges.index') }}" class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group border border-gray-100 hover:border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500 group-hover:text-purple-600 transition-colors">Logias</p>
+                    <p class="text-sm text-gray-600 group-hover:text-purple-600 transition-colors">Logias</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $lodgeCount }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-200 transition-colors">
@@ -147,9 +150,9 @@
             @php
                 $forumCount = \App\Models\Forum::count();
             @endphp
-            <a href="{{ route('admin.forums.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-red-300">
+            <a href="{{ route('admin.forums.index') }}" class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group border border-gray-100 hover:border-red-300 hover:bg-gradient-to-r hover:from-red-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500 group-hover:text-red-600 transition-colors">Foros</p>
+                    <p class="text-sm text-gray-600 group-hover:text-red-600 transition-colors">Foros</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $forumCount }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600 group-hover:bg-red-200 transition-colors">
@@ -161,11 +164,11 @@
         <!-- 📈 ESTADÍSTICAS DETALLADAS - Tercera fila -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
             <!-- Aprendices (VERDE) -->
-            <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center border border-gray-100">
+            <div class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center border border-gray-100 hover:bg-gradient-to-r hover:from-green-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500">Aprendices</p>
+                    <p class="text-sm text-gray-600">Aprendices</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $apprenticeCount }}</p>
-                    <p class="text-xs text-gray-400">{{ number_format(($apprenticeCount / max($memberCount, 1)) * 100, 1) }}% del total</p>
+                    <p class="text-xs text-gray-500">{{ number_format(($apprenticeCount / max($memberCount, 1)) * 100, 1) }}% del total</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-500">
                     <i class="ri-user-star-line text-2xl"></i>
@@ -173,11 +176,11 @@
             </div>
 
             <!-- Compañeros (AMARILLO) -->
-            <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center border border-gray-100">
+            <div class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center border border-gray-100 hover:bg-gradient-to-r hover:from-yellow-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500">Compañeros</p>
+                    <p class="text-sm text-gray-600">Compañeros</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $companionCount }}</p>
-                    <p class="text-xs text-gray-400">{{ number_format(($companionCount / max($memberCount, 1)) * 100, 1) }}% del total</p>
+                    <p class="text-xs text-gray-500">{{ number_format(($companionCount / max($memberCount, 1)) * 100, 1) }}% del total</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-500">
                     <i class="ri-user-shared-line text-2xl"></i>
@@ -185,11 +188,11 @@
             </div>
 
             <!-- Maestros (ROSA) -->
-            <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center border border-gray-100">
+            <div class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center border border-gray-100 hover:bg-gradient-to-r hover:from-pink-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500">Maestros</p>
+                    <p class="text-sm text-gray-600">Maestros</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $masterCount }}</p>
-                    <p class="text-xs text-gray-400">{{ number_format(($masterCount / max($memberCount, 1)) * 100, 1) }}% del total</p>
+                    <p class="text-xs text-gray-500">{{ number_format(($masterCount / max($memberCount, 1)) * 100, 1) }}% del total</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-500">
                     <i class="ri-award-line text-2xl"></i>
@@ -197,11 +200,11 @@
             </div>
 
             <!-- Visitantes Hoy (AZUL) -->
-            <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center border border-gray-100">
+            <div class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center border border-gray-100 hover:bg-gradient-to-r hover:from-blue-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500">Visitantes Hoy</p>
+                    <p class="text-sm text-gray-600">Visitantes Hoy</p>
                     <p class="text-3xl font-extrabold text-gray-800">1.2k</p>
-                    <p class="text-xs text-gray-400">Tráfico del día</p>
+                    <p class="text-xs text-gray-500">Tráfico del día</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
                     <i class="ri-eye-line text-2xl"></i>
@@ -209,11 +212,11 @@
             </div>
 
             <!-- Tickets Soporte (VERDE) -->
-            <a href="{{ route('admin.messages.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-green-300">
+            <a href="{{ route('admin.messages.index') }}" class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group border border-gray-100 hover:border-green-300 hover:bg-gradient-to-r hover:from-green-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500 group-hover:text-green-600 transition-colors">Tickets Soporte</p>
+                    <p class="text-sm text-gray-600 group-hover:text-green-600 transition-colors">Tickets Soporte</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $unreadMessages }}</p>
-                    <p class="text-xs text-gray-400">Pendientes</p>
+                    <p class="text-xs text-gray-500">Pendientes</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 group-hover:bg-green-200 transition-colors">
                     <i class="ri-lifebuoy-line text-2xl"></i>
@@ -224,11 +227,11 @@
             @php
                 $urgentActions = $unreadMessages; // Por ahora usamos los mensajes no leídos como acciones urgentes
             @endphp
-            <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center border border-gray-100">
+            <div class="bg-white p-6 rounded-xl shadow-md stat-card flex justify-between items-center border border-gray-100 hover:bg-gradient-to-r hover:from-red-50 to-white">
                 <div>
-                    <p class="text-sm text-gray-500">Acciones Urgentes</p>
+                    <p class="text-sm text-gray-600">Acciones Urgentes</p>
                     <p class="text-3xl font-extrabold text-gray-800">{{ $urgentActions }}</p>
-                    <p class="text-xs text-gray-400">Requieren atención</p>
+                    <p class="text-xs text-gray-500">Requieren atención</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
                     <i class="ri-error-warning-line text-2xl"></i>
@@ -239,34 +242,36 @@
     <!-- Main grid with spacing -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
         <div class="lg:col-span-2">
-            <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl shadow-lg h-full p-6">
+            <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl shadow-lg h-full p-6 flex flex-col">
                 <h4 class="font-bold text-lg text-primary-600 mb-4">Actividad Reciente</h4>
-                <ul class="divide-y divide-gray-200">
-                    @forelse ($recentActivities as $activity)
-                        <li class="py-4 flex items-center">
-                            @php
-                                $icon = 'ri-question-mark';
-                                $color = 'gray';
-                                if ($activity->subject_type === App\Models\User::class) {
-                                    $icon = 'ri-user-add-line';
-                                    $color = 'primary';
-                                }
-                            @endphp
-                            <div class="w-10 h-10 rounded-full bg-{{$color}}-100 flex items-center justify-center mr-4">
-                                <i class="{{ $icon }} text-{{$color}}-500"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-sm">{{ $activity->description }}</p>
-                                @if ($activity->user)
-                                <p class="text-xs text-gray-500">Por: {{ $activity->user->name }}</p>
-                                @endif
-                            </div>
-                            <span class="text-sm text-gray-500">{{ $activity->created_at->diffForHumans() }}</span>
-                        </li>
-                    @empty
-                        <li class="py-4 text-sm text-gray-500">No hay actividad reciente para mostrar.</li>
-                    @endforelse
-                </ul>
+                <div class="flex-grow overflow-y-auto">
+                    <ul class="divide-y divide-gray-200">
+                        @forelse ($recentActivities as $activity)
+                            <li class="py-4 flex items-center">
+                                @php
+                                    $icon = 'ri-question-mark';
+                                    $color = 'gray';
+                                    if ($activity->subject_type === App\Models\User::class) {
+                                        $icon = 'ri-user-add-line';
+                                        $color = 'primary';
+                                    }
+                                @endphp
+                                <div class="w-10 h-10 rounded-full bg-{{$color}}-100 flex items-center justify-center mr-4">
+                                    <i class="{{ $icon }} text-{{$color}}-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">{{ $activity->description }}</p>
+                                    @if ($activity->user)
+                                    <p class="text-xs text-gray-500">Por: {{ $activity->user->name }}</p>
+                                    @endif
+                                </div>
+                                <span class="text-sm text-gray-500">{{ $activity->created_at->diffForHumans() }}</span>
+                            </li>
+                        @empty
+                            <li class="py-4 text-sm text-gray-500">No hay actividad reciente para mostrar.</li>
+                        @endforelse
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="lg:col-span-1">

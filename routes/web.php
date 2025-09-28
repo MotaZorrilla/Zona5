@@ -97,6 +97,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::post('/', [App\Http\Controllers\Admin\MessageController::class, 'store'])->name('store');
         Route::get('/archived', [App\Http\Controllers\Admin\MessageController::class, 'archived'])->name('archived');
         Route::get('/deleted', [App\Http\Controllers\Admin\MessageController::class, 'deleted'])->name('deleted');
+        Route::get('/starred', [App\Http\Controllers\Admin\MessageController::class, 'starred'])->name('starred');
+        Route::get('/sent', [App\Http\Controllers\Admin\MessageController::class, 'sent'])->name('sent');
         Route::get('/{message}', [App\Http\Controllers\Admin\MessageController::class, 'show'])->name('show');
         Route::get('/{message}/edit', [App\Http\Controllers\Admin\MessageController::class, 'edit'])->name('edit');
         Route::put('/{message}', [App\Http\Controllers\Admin\MessageController::class, 'update'])->name('update');
