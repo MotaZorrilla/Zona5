@@ -1,9 +1,9 @@
 <div class="mr-4 relative" x-data="{ notificationsOpen: false }">
-    <button @click="notificationsOpen = !notificationsOpen" class="relative p-1 text-gray-600 hover:text-gray-900">
+    <button @click="notificationsOpen = !notificationsOpen" class="relative p-2 text-gray-600 hover:text-primary-600 transition-colors duration-200">
         <i class="ri-notification-3-line text-xl"></i>
         @if($unreadCount > 0)
-            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                {{ $unreadCount }}
+            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-lg border-2 border-white animate-pulse">
+                {{ min($unreadCount, 99) }}
             </span>
         @endif
     </button>

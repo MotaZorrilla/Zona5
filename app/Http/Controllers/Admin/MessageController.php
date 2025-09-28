@@ -25,7 +25,11 @@ class MessageController extends Controller
     public function index(Request $request)
     {
         $query = Message::with('recipient')
-            ->where('recipient_id', Auth::id())
+            ->where(function($q) {
+                $q->where('recipient_id', Auth::id())
+                  ->orWhereNull('recipient_id') // Incluir mensajes del sitio público
+                  ->orWhere('sender_email', Auth::user()->email); // Incluir mensajes enviados por el usuario
+            })
             ->whereIn('status', ['unread', 'read']); // Solo mostrar mensajes no eliminados
 
         // Apply status filter specifically for inbox
@@ -42,13 +46,19 @@ class MessageController extends Controller
             'desc'
         );
 
-        return view('admin.messages.index', compact('messages'));
+        $unreadMessagesCount = Message::where('recipient_id', Auth::id())->unread()->count();
+
+        return view('admin.messages.inbox', compact('messages', 'unreadMessagesCount'));
     }
 
     public function archived(Request $request)
     {
         $query = Message::with('recipient')
-            ->where('recipient_id', Auth::id())
+            ->where(function($q) {
+                $q->where('recipient_id', Auth::id())
+                  ->orWhereNull('recipient_id') // Incluir mensajes del sitio público
+                  ->orWhere('sender_email', Auth::user()->email); // Incluir mensajes enviados por el usuario
+            })
             ->archived();
 
         $messages = $this->paginateWithSearchAndFilters(
@@ -60,13 +70,19 @@ class MessageController extends Controller
             'desc'
         );
 
-        return view('admin.messages.archived', compact('messages'));
+        $unreadMessagesCount = Message::where('recipient_id', Auth::id())->unread()->count();
+
+        return view('admin.messages.archived', compact('messages', 'unreadMessagesCount'));
     }
 
     public function deleted(Request $request)
     {
         $query = Message::with('recipient')
-            ->where('recipient_id', Auth::id())
+            ->where(function($q) {
+                $q->where('recipient_id', Auth::id())
+                  ->orWhereNull('recipient_id') // Incluir mensajes del sitio público
+                  ->orWhere('sender_email', Auth::user()->email); // Incluir mensajes enviados por el usuario
+            })
             ->onlyTrashed();
 
         $messages = $this->paginateWithSearchAndFilters(
@@ -78,18 +94,20 @@ class MessageController extends Controller
             'desc'
         );
 
-        return view('admin.messages.deleted', compact('messages'));
+        $unreadMessagesCount = Message::where('recipient_id', Auth::id())->unread()->count();
+
+        return view('admin.messages.deleted', compact('messages', 'unreadMessagesCount'));
     }
 
     public function show(Message $message)
     {
-        // Verificar que el mensaje sea para el usuario actual
-        if ($message->recipient_id !== Auth::id()) {
+        // Verificar que el mensaje sea para el usuario actual, del sitio público, o enviado por el usuario
+        if ($message->recipient_id !== Auth::id() && $message->recipient_id !== null && $message->sender_email !== Auth::user()->email) {
             return redirect()->route('admin.messages.index')->with('error', 'No tienes permiso para ver este mensaje.');
         }
 
         // Marcar el mensaje como leído si es para el usuario actual
-        if ($message->isUnread()) {
+        if ($message->isUnread() && $message->recipient_id === Auth::id()) {
             $message->markAsRead();
         }
 

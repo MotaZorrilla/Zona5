@@ -3,130 +3,148 @@
 @section('title', 'Mensajes Archivados')
 
 @section('content')
-<div class="bg-white p-6 rounded-xl shadow-lg">
-    <!-- Header -->
-    <div class="flex justify-between items-center mb-8">
-        <div>
-            <h1 class="text-3xl font-bold text-gray-800">Mensajes Archivados</h1>
-            <p class="text-sm text-gray-500 mt-1">Lista de mensajes archivados.</p>
+<div class="flex h-[calc(100vh-150px)] bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-xl overflow-hidden border-gray-10">
+
+    <!-- Sidebar de Navegación -->
+    <aside class="w-72 bg-gradient-to-b from-indigo-700 to-purple-800 text-white p-5 flex-shrink-0 shadow-lg">
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold flex items-center gap-2">
+                <i class="ri-mail-line text-xl"></i> Mensajes
+            </h2>
         </div>
-        <a href="{{ route('admin.messages.index') }}" class="flex items-center bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
-            <i class="ri-arrow-left-line mr-2"></i>
-            <span>Volver a la bandeja</span>
-        </a>
+        
+        <div class="mb-6">
+            <a href="{{ route('admin.messages.create') }}" class="w-full flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-5 rounded-xl shadow-lg transition-all transform hover:scale-105 duration-300 flex items-center gap-2">
+                <i class="ri-add-line text-lg"></i>
+                <span>Nuevo Mensaje</span>
+            </a>
+        </div>
+        
+        <nav class="space-y-1 mt-6">
+            <a href="{{ route('admin.messages.index') }}" class="flex items-center px-4 py-3 text-indigo-100 hover:bg-indigo-60 rounded-xl transition-all duration-300 hover:text-white group">
+                <i class="ri-inbox-line mr-3 text-xl group-hover:text-blue-300 transition-colors"></i>
+                <span>Entrada</span>
+                <span class="ml-auto bg-gray-200 text-gray-600 text-sm font-bold rounded-full h-7 w-7 flex items-center justify-center">{{ $unreadMessagesCount }}</span>
+            </a>
+            <a href="#" class="flex items-center px-4 py-3 text-indigo-100 hover:bg-indigo-600 rounded-xl transition-all duration-30 hover:text-white group">
+                <i class="ri-star-line mr-3 text-xl group-hover:text-yellow-300 transition-colors"></i>
+                <span>Destacados</span>
+            </a>
+            <a href="#" class="flex items-center px-4 py-3 text-indigo-100 hover:bg-indigo-600 rounded-xl transition-all duration-300 hover:text-white group">
+                <i class="ri-send-plane-line mr-3 text-xl group-hover:text-green-300 transition-colors"></i>
+                <span>Enviados</span>
+            </a>
+            <a href="{{ route('admin.messages.archived') }}" class="flex items-center px-4 py-3 text-white font-semibold bg-indigo-600 rounded-xl mb-1 transition-all duration-300 hover:bg-indigo-500 shadow-md">
+                <i class="ri-archive-line mr-3 text-xl"></i>
+                <span>Archivados</span>
+            </a>
+            <a href="{{ route('admin.messages.deleted') }}" class="flex items-center px-4 py-3 text-indigo-100 hover:bg-indigo-600 rounded-xl transition-all duration-300 hover:text-white group">
+                <i class="ri-delete-bin-line mr-3 text-xl group-hover:text-red-300 transition-colors"></i>
+                <span>Eliminados</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Lista de Mensajes -->
+    <div class="w-2/5 border-r border-gray-200 flex flex-col bg-white shadow-inner">
+        <div class="p-5 border-b border-gray-100 bg-gradient-to-r from-white to-indigo-50 sticky top-0 bg-white z-10 shadow-sm">
+            <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+                <i class="ri-archive-line"></i> Archivados
+            </h1>
+            <div class="relative mt-4">
+                <i class="ri-search-line absolute top-1/2 -translate-y-1/2 left-3 text-gray-400 text-lg"></i>
+                <input type="search" name="search" placeholder="Buscar en archivados..." class="w-full bg-gray-50 border-2 border-gray-200 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition-all shadow-sm focus:shadow-md" />
+            </div>
+        <div class="overflow-y-auto flex-grow">
+            @forelse ($messages as $message)
+                <a href="{{ route('admin.messages.show', $message) }}" class="block p-4 border-b border-gray-100 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 transition-all duration-300 border-l-4 border-transparent group relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-2">
+                        <p class="text-base font-bold text-gray-800 truncate">{{ $message->sender_name }}</p>
+                    </div>
+                    <p class="text-sm font-semibold text-indigo-700 truncate mb-1">{{ $message->subject }}</p>
+                    <p class="text-xs text-gray-600 mt-1 line-clamp-2">{{ Str::limit(strip_tags($message->content), 100) }}</p>
+                    <div class="flex justify-between items-center mt-3 text-xs text-gray-500">
+                        <span>{{ $message->archived_at->diffForHumans() }}</span>
+                        <div class="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity absolute right-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-1 shadow-md">
+                            <form action="{{ route('admin.messages.restore', $message) }}" method="POST" class="inline-block">
+                                @csrf
+                                <button type="submit" title="Restaurar" class="p-2 rounded-full hover:bg-green-100 text-gray-500 hover:text-green-600"><i class="ri-inbox-unarchive-line"></i></button>
+                            </form>
+                            <form action="{{ route('admin.messages.destroy', $message) }}" method="POST" class="inline-block" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este mensaje permanentemente?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" title="Eliminar Permanentemente" class="p-2 rounded-full hover:bg-red-10 text-gray-500 hover:text-red-600"><i class="ri-delete-bin-2-line"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </a>
+            @empty
+                <div class="p-10 text-center h-full flex flex-col justify-center items-center">
+                    <div class="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-archive-drawer-line text-4xl text-indigo-400"></i>
+                    </div>
+                    <h3 class="mt-2 text-xl font-bold text-gray-70">No hay mensajes archivados</h3>
+                    <p class="mt-1 text-gray-500">Cuando archives un mensaje, aparecerá aquí.</p>
+                </div>
+            @endforelse
+        </div>
+        <div class="p-4 border-t border-gray-100 bg-gray-50">
+            {{ $messages->links() }}
+        </div>
     </div>
 
-    @if(session('success'))
-        <div class="mb-6 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg shadow-md" role="alert">
-            <p class="font-bold">Éxito</p>
-            <p>{{ session('success') }}</p>
-        </div>
-    @endif
-
-    @if(session('error'))
-        <div class="mb-6 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg shadow-md" role="alert">
-            <p class="font-bold">Error</p>
-            <p>{{ session('error') }}</p>
-        </div>
-    @endif
-
-    <!-- Filters Section -->
-    <div class="bg-gray-50 p-4 rounded-lg mb-6">
-        <form method="GET" action="{{ route('admin.messages.archived') }}" class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <!-- Search -->
-            <div>
-                <label class="block text-xs font-medium text-gray-700 mb-1">Buscar</label>
-                <div class="relative">
-                    <i class="ri-search-line absolute top-1/2 -translate-y-1/2 left-3 text-gray-400"></i>
-                    <input type="search" name="search" value="{{ request('search') }}" placeholder="Buscar en mensajes..." class="w-full bg-white border-2 border-gray-200 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" />
+    <!-- Panel de Lectura -->
+    <div class="w-3/5 flex flex-col bg-gradient-to-b from-gray-50 to-indigo-50 shadow-inner">
+        @if(isset($selectedMessage))
+            <div class="p-6 border-b border-gray-200 bg-white shadow-sm">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-80">{{ $selectedMessage->subject }}</h2>
+                        <div class="flex items-center mt-3">
+                            <div class="w-12 h-12 flex-shrink-0 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full flex items-center justify-center mr-4 shadow-md">
+                                <i class="ri-user-star-line text-indigo-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-base font-semibold text-gray-800">{{ $selectedMessage->sender_name }}</div>
+                                <div class="text-sm text-gray-500">{{ $selectedMessage->sender_email }}</div>
+                            </div>
+                        </div>
+                    <div class="text-sm text-gray-500 text-right">
+                        Archivado: {{ $selectedMessage->archived_at->format('d M Y, H:i A') }}
+                    </div>
+                </div>
+            <div class="p-8 overflow-y-auto flex-grow bg-white bg-opacity-50">
+                <div class="prose max-w-none bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                    <div class="whitespace-pre-line text-gray-700 leading-relaxed text-base">
+                        {!! $selectedMessage->content !!}
+                    </div>
+                </div>
+            <div class="p-5 border-t border-gray-200 bg-white shadow-sm">
+                <div class="flex items-center justify-end space-x-4">
+                    <form action="{{ route('admin.messages.restore', $selectedMessage) }}" method="POST" class="inline-block">
+                        @csrf
+                        <button type="submit" class="flex items-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                            <i class="ri-inbox-unarchive-line mr-2"></i> Restaurar
+                        </button>
+                    </form>
+                    <form action="{{ route('admin.messages.destroy', $selectedMessage) }}" method="POST" class="inline-block" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este mensaje permanentemente?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="p-3 rounded-full bg-gray-100 hover:bg-red-100 text-gray-600 hover:text-red-600 shadow-sm hover:shadow-md transition-all" title="Eliminar Permanentemente"><i class="ri-delete-bin-2-line text-lg"></i></button>
+                    </form>
                 </div>
             </div>
-            
-            <!-- Date Range -->
-            <div>
-                <label class="block text-xs font-medium text-gray-700 mb-1">Desde</label>
-                <input type="date" name="date_from" value="{{ request('date_from') }}" class="w-full bg-white border-2 border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" />
-            </div>
-            
-            <div>
-                <label class="block text-xs font-medium text-gray-700 mb-1">Hasta</label>
-                <input type="date" name="date_to" value="{{ request('date_to') }}" class="w-full bg-white border-2 border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" />
-            </div>
-            
-            <!-- Apply Filters Button -->
-            <div class="flex items-end">
-                <div class="w-full flex space-x-2">
-                    <button type="submit" class="flex-1 bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors">
-                        Filtrar
-                    </button>
-                    <a href="{{ route('admin.messages.archived') }}" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-lg shadow-md transition-colors">
-                        Limpiar
-                    </a>
+        @else
+            <div class="flex items-center justify-center h-full bg-gradient-to-br from-indigo-50 to-purple-50 p-8">
+                <div class="text-center max-w-md">
+                    <div class="w-32 h-32 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="ri-archive-line text-5xl text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-80 mb-3">Selecciona un mensaje</h3>
+                    <p class="text-gray-600">Elige un mensaje de la lista para leerlo aquí.</p>
                 </div>
             </div>
-        </form>
-    </div>
-
-    <div class="overflow-x-auto rounded-lg border border-gray-200">
-        <table class="min-w-full divide-y divide-gray-200 bg-white">
-            <thead class="bg-primary-500">
-                <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Nombre</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Asunto</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Fecha Archivado</th>
-                    <th scope="col" class="px-6 py-3 text-right text-xs font-bold text-white uppercase tracking-wider">Acciones</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-                @forelse ($messages as $message)
-                    <tr class="odd:bg-white even:bg-primary-50 hover:bg-primary-100 transition-colors duration-200">
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex-shrink-0 bg-primary-100 rounded-full flex items-center justify-center mr-4">
-                                    <i class="ri-user-star-line text-primary-500"></i>
-                                </div>
-                                <div>
-                                    <div class="text-sm font-semibold text-gray-900">{{ $message->sender_name }}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $message->subject }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $message->archived_at ? $message->archived_at->diffForHumans() : 'N/A' }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <div class="flex items-center justify-end gap-2">
-                                <form action="{{ route('admin.messages.restore', $message) }}" method="POST" class="inline-block" onsubmit="return confirm('¿Estás seguro de que quieres restaurar este mensaje?');">
-                                    @csrf
-                                    <button type="submit" class="p-2 rounded-full bg-primary-100 text-primary-700 hover:bg-primary-200 hover:scale-110 transition-all" title="Restaurar">
-                                        <i class="ri-refresh-line text-lg"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="px-6 py-12 whitespace-nowrap text-center">
-                            <div class="text-center">
-                                <i class="ri-archive-line text-6xl text-gray-300 mb-4"></i>
-                                <h3 class="mt-2 text-sm font-medium text-gray-900">No se encontraron mensajes archivados</h3>
-                                <p class="mt-1 text-sm text-gray-500">Tu bandeja de mensajes archivados está vacía.</p>
-                                <div class="mt-6">
-                                    <a href="{{ route('admin.messages.index') }}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                                        <i class="ri-arrow-left-line mr-2"></i>
-                                        Volver a la bandeja de entrada
-                                    </a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Pagination -->
-    <div class="mt-6">
-        {{ $messages->links() }}
+        @endif
     </div>
 </div>
 @endsection

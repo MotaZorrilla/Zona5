@@ -51,7 +51,7 @@ class SettingsController extends Controller
             case 'footer':
                 return $this->updateFooterSettings($request);
             default:
-                return redirect()->route('admin.settings')->with('error', 'Sección no válida');
+                return redirect()->route('admin.settings.index')->with('error', 'Sección no válida');
         }
     }
 
@@ -80,7 +80,7 @@ class SettingsController extends Controller
             Setting::set('site_logo', $logoPath);
         }
 
-        return redirect()->route('admin.settings')->with('success', 'Configuración general actualizada correctamente');
+        return redirect()->route('admin.settings.index')->with('success', 'Configuración general actualizada correctamente');
     }
 
     private function updateContactSettings(Request $request)
@@ -97,7 +97,7 @@ class SettingsController extends Controller
         Setting::set('contact_address', $request->contact_address);
         Setting::set('contact_hours', $request->contact_hours);
 
-        return redirect()->route('admin.settings')->with('success', 'Configuración de contacto actualizada correctamente');
+        return redirect()->route('admin.settings.index')->with('success', 'Configuración de contacto actualizada correctamente');
     }
 
     private function updateFooterSettings(Request $request)
@@ -127,6 +127,6 @@ class SettingsController extends Controller
         Setting::set('footer_copyright', $request->footer_copyright);
         Setting::set('footer_links', $footerLinks);
 
-        return redirect()->route('admin.settings')->with('success', 'Configuración de pie de página actualizada correctamente');
+        return redirect()->route('admin.settings.index')->with('success', 'Configuración de pie de página actualizada correctamente');
     }
 }

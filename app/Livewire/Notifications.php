@@ -37,8 +37,16 @@ class Notifications extends Component
         if (!Auth::check()) {
             return 0;
         }
-        
-        return Auth::user()->unreadNotifications()->count();
+
+        // Contar mensajes no leídos (tanto del usuario como del sitio público)
+        $userMessages = \App\Models\Message::where('recipient_id', Auth::id())
+            ->where('status', 'unread')
+            ->count();
+        $publicMessages = \App\Models\Message::whereNull('recipient_id')
+            ->where('status', 'unread')
+            ->count();
+
+        return $userMessages + $publicMessages;
     }
 
     public function render()

@@ -1,5 +1,4 @@
 <div>
-    <h4 class="font-bold text-lg text-gray-800 mb-4">Miembros por Logia</h4>
     <div class="flex justify-between mb-4">
         <button wire:click="sort('name')" class="px-3 py-1 text-sm font-medium rounded-md focus:outline-none
             {{ $sortBy === 'name' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">

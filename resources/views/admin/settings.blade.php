@@ -13,7 +13,7 @@
         <!-- Settings Navigation -->
         <aside class="w-full lg:w-1/4">
             <ul class="space-y-2">
-                <li><a href="{{ route('admin.settings') }}" class="flex items-center gap-3 p-3 rounded-lg {{ request()->routeIs('admin.settings') ? 'bg-primary-100 text-primary-600 font-bold' : 'hover:bg-gray-100' }}"><i class="ri-settings-3-line text-xl"></i><span>General</span></a></li>
+                <li><a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 p-3 rounded-lg {{ request()->routeIs('admin.settings.index') ? 'bg-primary-100 text-primary-600 font-bold' : 'hover:bg-gray-100' }}"><i class="ri-settings-3-line text-xl"></i><span>General</span></a></li>
                 <li><a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100"><i class="ri-palette-line text-xl"></i><span>Apariencia</span></a></li>
                 <li><a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100"><i class="ri-shield-keyhole-line text-xl"></i><span>Seguridad</span></a></li>
                 <li><a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100"><i class="ri-mail-send-line text-xl"></i><span>Correo</span></a></li>

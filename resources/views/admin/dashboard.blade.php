@@ -11,126 +11,233 @@
             </div>
         </div>
 
-        <!-- KPI Row 1: Members & Degrees -->
+        <!-- 📊 MÉTRICAS PRINCIPALES - Primera fila con paleta original -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-6">
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-primary-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Logias Activas</p>
-                <p class="text-3xl font-extrabold">42</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-500"><i class="ri-bank-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-green-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Aprendices</p>
-                <p class="text-3xl font-extrabold">128</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-500"><i class="ri-user-star-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-blue-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Compañeros</p>
-                <p class="text-3xl font-extrabold">95</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500"><i class="ri-user-shared-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-amber-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Maestros</p>
-                <p class="text-3xl font-extrabold">67</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-500"><i class="ri-award-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-primary-50 to-blue-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-primary-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Miembros</p>
-                <p class="text-3xl font-extrabold">290 <span class="text-sm font-normal text-green-500">(+12)</span></p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-500"><i class="ri-group-2-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-red-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Mensajes Nuevos</p>
-                <p class="text-3xl font-extrabold">4</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500"><i class="ri-mail-unread-line text-2xl"></i></div>
-        </div>
-    </div>
+            <!-- Mensajes Nuevos (ROJO) -->
+            @php
+                $unreadMessages = \App\Models\Message::where('status', 'unread')->count();
+            @endphp
+            <a href="{{ route('admin.messages.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-red-200">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-red-600 transition-colors">Mensajes Nuevos</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $unreadMessages }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 group-hover:bg-red-200 transition-colors">
+                    <i class="ri-mail-unread-line text-2xl"></i>
+                </div>
+            </a>
 
-    <!-- KPI Row 2: Content -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-6">
-        <div class="bg-gradient-to-br from-primary-50 to-blue-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-primary-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Documentos</p>
-                <p class="text-3xl font-extrabold">{{ $repositoryCount }}</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-500"><i class="ri-archive-2-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-green-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Noticias</p>
-                <p class="text-3xl font-extrabold">{{ $newsCount }}</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-500"><i class="ri-newspaper-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-blue-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Eventos</p>
-                <p class="text-3xl font-extrabold">{{ $eventCount }}</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500"><i class="ri-calendar-event-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-amber-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Cursos</p>
-                <p class="text-3xl font-extrabold">8</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-500"><i class="ri-book-open-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-purple-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Foros</p>
-                <p class="text-3xl font-extrabold">5</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-500"><i class="ri-discuss-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-blue-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Saldo Tesorería</p>
-                <p class="text-3xl font-extrabold">$ {{ number_format($treasuryBalance, 2) }}</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500"><i class="ri-hand-coin-line text-2xl"></i></div>
-        </div>
-    </div>
+            <!-- Saldo Tesorería (AZUL) -->
+            <a href="{{ route('admin.treasury.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-blue-200">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-blue-600 transition-colors">Saldo Tesorería</p>
+                    <p class="text-3xl font-extrabold text-gray-800">$ {{ number_format($treasuryBalance, 0) }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 group-hover:bg-blue-200 transition-colors">
+                    <i class="ri-hand-coin-line text-2xl"></i>
+                </div>
+            </a>
 
-    <!-- KPI Row 3: Treasury -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-        <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-green-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Ingresos (Mes Actual)</p>
-                <p class="text-3xl font-extrabold text-green-600">$ {{ number_format($currentMonthIncome, 2) }}</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-500"><i class="ri-arrow-up-circle-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-red-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Egresos (Mes Actual)</p>
-                <p class="text-3xl font-extrabold text-red-600">$ {{ number_format($currentMonthExpense, 2) }}</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500"><i class="ri-arrow-down-circle-line text-2xl"></i></div>
-        </div>
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-blue-500 flex justify-between items-center p-6">
-            <div>
-                <p class="text-sm text-gray-500">Balance (Mes Actual)</p>
-                <p class="text-3xl font-extrabold text-primary-600">$ {{ number_format($currentMonthBalance, 2) }}</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500"><i class="ri-balance-line text-2xl"></i></div>
-        </div>
-    </div>
-    </div>
+            <!-- Ingresos del Mes (VERDE) -->
+            <a href="{{ route('admin.treasury.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-green-200">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-green-600 transition-colors">Ingresos (Mes)</p>
+                    <p class="text-3xl font-extrabold text-gray-800">$ {{ number_format($currentMonthIncome, 0) }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-500 group-hover:bg-green-200 transition-colors">
+                    <i class="ri-arrow-up-circle-line text-2xl"></i>
+                </div>
+            </a>
 
-    <!-- Main grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Egresos del Mes (NARANJA) -->
+            <a href="{{ route('admin.treasury.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-orange-200">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-orange-600 transition-colors">Egresos (Mes)</p>
+                    <p class="text-3xl font-extrabold text-gray-800">$ {{ number_format($currentMonthExpense, 0) }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-500 group-hover:bg-orange-200 transition-colors">
+                    <i class="ri-arrow-down-circle-line text-2xl"></i>
+                </div>
+            </a>
+
+            <!-- Balance del Mes (MORADO) -->
+            <a href="{{ route('admin.treasury.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-purple-300">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-purple-600 transition-colors">Balance (Mes)</p>
+                    <p class="text-3xl font-extrabold text-gray-800">$ {{ number_format($currentMonthBalance, 0) }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-200 transition-colors">
+                    <i class="ri-balance-line text-2xl"></i>
+                </div>
+            </a>
+
+            <!-- Miembros Totales (AMARILLO) -->
+            <a href="{{ route('admin.users.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-yellow-300">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-yellow-600 transition-colors">Miembros</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $memberCount }} <span class="text-sm font-normal text-green-500">(+{{ $differenceCount }})</span></p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 group-hover:bg-yellow-200 transition-colors">
+                    <i class="ri-group-2-line text-2xl"></i>
+                </div>
+            </a>
+        </div>
+
+        <!-- 📚 CONTENIDO Y COMUNIDAD - Segunda fila -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
+            <!-- Documentos (AZUL) -->
+            <a href="{{ route('admin.repository.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-blue-200">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-blue-600 transition-colors">Documentos</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $repositoryCount }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 group-hover:bg-blue-200 transition-colors">
+                    <i class="ri-archive-2-line text-2xl"></i>
+                </div>
+            </a>
+
+            <!-- Noticias (VERDE) -->
+            <a href="{{ route('admin.news.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-green-200">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-green-600 transition-colors">Noticias</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $newsCount }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-500 group-hover:bg-green-200 transition-colors">
+                    <i class="ri-newspaper-line text-2xl"></i>
+                </div>
+            </a>
+
+            <!-- Eventos (AMARILLO) -->
+            <a href="{{ route('admin.events.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-yellow-200">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-yellow-600 transition-colors">Eventos</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $eventCount }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-500 group-hover:bg-yellow-200 transition-colors">
+                    <i class="ri-calendar-event-line text-2xl"></i>
+                </div>
+            </a>
+
+            <!-- Cursos (MORADO) -->
+            @php
+                $courseCount = \App\Models\Course::count();
+            @endphp
+            <a href="{{ route('admin.school.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-purple-200">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-purple-600 transition-colors">Cursos</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $courseCount }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-500 group-hover:bg-purple-200 transition-colors">
+                    <i class="ri-book-open-line text-2xl"></i>
+                </div>
+            </a>
+
+            <!-- Logias Activas (MORADO) -->
+            <a href="{{ route('admin.lodges.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-purple-300">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-purple-600 transition-colors">Logias</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $lodgeCount }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-200 transition-colors">
+                    <i class="ri-bank-line text-2xl"></i>
+                </div>
+            </a>
+
+            <!-- Foros (ROJO) -->
+            @php
+                $forumCount = \App\Models\Forum::count();
+            @endphp
+            <a href="{{ route('admin.forums.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-red-300">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-red-600 transition-colors">Foros</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $forumCount }}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600 group-hover:bg-red-200 transition-colors">
+                    <i class="ri-discuss-line text-2xl"></i>
+                </div>
+            </a>
+        </div>
+
+        <!-- 📈 ESTADÍSTICAS DETALLADAS - Tercera fila -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
+            <!-- Aprendices (VERDE) -->
+            <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center border border-gray-100">
+                <div>
+                    <p class="text-sm text-gray-500">Aprendices</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $apprenticeCount }}</p>
+                    <p class="text-xs text-gray-400">{{ number_format(($apprenticeCount / max($memberCount, 1)) * 100, 1) }}% del total</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-500">
+                    <i class="ri-user-star-line text-2xl"></i>
+                </div>
+            </div>
+
+            <!-- Compañeros (AMARILLO) -->
+            <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center border border-gray-100">
+                <div>
+                    <p class="text-sm text-gray-500">Compañeros</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $companionCount }}</p>
+                    <p class="text-xs text-gray-400">{{ number_format(($companionCount / max($memberCount, 1)) * 100, 1) }}% del total</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-500">
+                    <i class="ri-user-shared-line text-2xl"></i>
+                </div>
+            </div>
+
+            <!-- Maestros (ROSA) -->
+            <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center border border-gray-100">
+                <div>
+                    <p class="text-sm text-gray-500">Maestros</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $masterCount }}</p>
+                    <p class="text-xs text-gray-400">{{ number_format(($masterCount / max($memberCount, 1)) * 100, 1) }}% del total</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-500">
+                    <i class="ri-award-line text-2xl"></i>
+                </div>
+            </div>
+
+            <!-- Visitantes Hoy (AZUL) -->
+            <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center border border-gray-100">
+                <div>
+                    <p class="text-sm text-gray-500">Visitantes Hoy</p>
+                    <p class="text-3xl font-extrabold text-gray-800">1.2k</p>
+                    <p class="text-xs text-gray-400">Tráfico del día</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                    <i class="ri-eye-line text-2xl"></i>
+                </div>
+            </div>
+
+            <!-- Tickets Soporte (VERDE) -->
+            <a href="{{ route('admin.messages.index') }}" class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 group border border-gray-100 hover:border-green-300">
+                <div>
+                    <p class="text-sm text-gray-500 group-hover:text-green-600 transition-colors">Tickets Soporte</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $unreadMessages }}</p>
+                    <p class="text-xs text-gray-400">Pendientes</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 group-hover:bg-green-200 transition-colors">
+                    <i class="ri-lifebuoy-line text-2xl"></i>
+                </div>
+            </a>
+
+            <!-- Acciones Urgentes (ROJO) -->
+            @php
+                $urgentActions = $unreadMessages; // Por ahora usamos los mensajes no leídos como acciones urgentes
+            @endphp
+            <div class="bg-white p-6 rounded-lg shadow-sm stat-card flex justify-between items-center border border-gray-100">
+                <div>
+                    <p class="text-sm text-gray-500">Acciones Urgentes</p>
+                    <p class="text-3xl font-extrabold text-gray-800">{{ $urgentActions }}</p>
+                    <p class="text-xs text-gray-400">Requieren atención</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+                    <i class="ri-error-warning-line text-2xl"></i>
+                </div>
+            </div>
+        </div>
+
+    <!-- Main grid with spacing -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
         <div class="lg:col-span-2">
             <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl shadow-lg h-full p-6">
                 <h4 class="font-bold text-lg text-primary-600 mb-4">Actividad Reciente</h4>
@@ -170,43 +277,6 @@
         </div>
     </div>
 
-    <!-- Second grid for summaries -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg p-6">
-            <h4 class="font-bold text-lg text-primary-600 mb-4">Resumen de Mensajes</h4>
-            <div class="flex justify-around text-center">
-                <div>
-                    <p class="text-3xl font-extrabold">15</p>
-                    <p class="text-sm text-gray-500">En Bandeja</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-extrabold text-red-500">4</p>
-                    <p class="text-sm text-gray-500">Sin Responder</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-extrabold text-green-500">11</p>
-                    <p class="text-sm text-gray-500">Respondidos</p>
-                </div>
-            </div>
-        </div>
-        <div class="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl shadow-lg p-6">
-            <h4 class="font-bold text-lg text-primary-600 mb-4">Resumen de Tesorería</h4>
-            <div class="flex justify-around text-center">
-                <div>
-                    <p class="text-2xl font-bold text-green-600">$ {{ number_format($currentMonthIncome, 2) }}</p>
-                    <p class="text-sm text-gray-500">Ingresos (Mes)</p>
-                </div>
-                <div>
-                    <p class="text-2xl font-bold text-red-600">$ {{ number_format($currentMonthExpense, 2) }}</p>
-                    <p class="text-sm text-gray-500">Egresos (Mes)</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-extrabold text-primary-600">$ {{ number_format($currentMonthBalance, 2) }}</p>
-                    <p class="text-sm text-gray-500">Balance (Mes)</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Charts Row -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">

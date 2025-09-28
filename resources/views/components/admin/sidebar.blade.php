@@ -36,7 +36,7 @@
         <hr class="my-4 border-gray-200">
 
         <li class="mb-1"><a href="{{ route('admin.reports.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}"><i class="ri-file-chart-line mr-3 text-primary-500"></i><span class="text-primary-600 font-sans">Reportes</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.settings') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}"><i class="ri-settings-3-line mr-3 text-primary-500"></i><span class="text-primary-600 font-sans">Configuración</span></a></li>
+        <li class="mb-1"><a href="{{ route('admin.settings.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.settings.index') ? 'active' : '' }}"><i class="ri-settings-3-line mr-3 text-primary-500"></i><span class="text-primary-600 font-sans">Configuración</span></a></li>
         <li class="mb-1"><a href="{{ route('admin.help') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link {{ request()->routeIs('admin.help') ? 'active' : '' }}"><i class="ri-question-line mr-3 text-primary-500"></i><span class="text-primary-600 font-sans">Ayuda</span></a></li>
     </ul>
 </div>

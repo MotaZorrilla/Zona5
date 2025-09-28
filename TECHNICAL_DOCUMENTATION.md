@@ -1182,3 +1182,135 @@ public function scopePublished($query)
 *Última actualización: 27 de Septiembre, 2025*
 *Auditoría Técnica: Kilo Code - Senior Software Architect*
 *Versión: 4.0 - Auditada, Consolidada + Nuevas Funcionalidades*
+
+---
+
+## 12. Nuevos Estándares Visuales del Portal Administrativo
+
+### 12.1 Paleta de Colores Oficial (Actualizado Septiembre 2025)
+
+#### Colores Primarios
+- **Indigo Oscuro**: `#4F46E5` (Fondo de sidebar, elementos destacados)
+- **Indigo Medio**: `#6366F1` (Botones principales, hover states)
+- **Indigo Claro**: `#818CF8` (Bordes, elementos secundarios)
+- **Púrpura Oscuro**: `#7C3AED` (Gradientes, elementos secundarios)
+- **Púrpura Medio**: `#A78BFA` (Textos secundarios, iconos)
+- **Cian**: `#06B6D4` (Botones de acción, highlights)
+- **Azul**: `#3B82F6` (Botones de acción secundarios)
+
+#### Colores de Estado
+- **Verde (Éxito)**: `#10B981` (Acciones exitosas, restauración)
+- **Rojo (Peligro)**: `#EF444` (Acciones de eliminación)
+- **Amarillo (Advertencia)**: `#F59E0B` (Acciones de alerta)
+- **Verde Esmeralda**: `#059669` (Acciones de restauración)
+
+#### Colores Neutros
+- **Blanco**: `#FFFFFF` (Fondos de contenido)
+- **Gris Claro**: `#F3F4F6` (Fondos de secciones)
+- **Gris Medio**: `#E5E7EB` (Bordes, separadores)
+- **Gris Oscuro**: `#6B7280` (Textos secundarios)
+- **Negro**: `#1F2937` (Textos principales)
+
+### 12.2 Estándares de Componentes Visuales
+
+#### Sidebar de Navegación
+- **Ancho**: `w-72` (288px)
+- **Fondo**: Gradiente de `from-indigo-700 to-purple-800`
+- **Texto**: Blanco con hover a `text-indigo-100`
+- **Botones**: `rounded-xl` con hover `bg-indigo-600`
+- **Sombra**: `shadow-lg`
+
+#### Botones Principales
+- **Estilo**: `rounded-xl` con degradado de fondo
+- **Padding**: `px-5 py-2.5` o `px-4 py-2` según tamaño
+- **Sombra**: `shadow-md` con hover `shadow-lg`
+- **Efecto**: `transform hover:-translate-y-0.5` para efecto de elevación
+- **Transición**: `transition-all` para animaciones suaves
+
+#### Tarjetas y Contenedores
+- **Bordes**: `border-gray-100` o `border-gray-200` según contexto
+- **Sombra**: `shadow-sm` con hover `shadow-md` o `shadow-lg`
+- **Bordes Redondeados**: `rounded-xl` o `rounded-2xl` para contenedores principales
+- **Fondos**: Gradientes suaves como `from-white to-indigo-50`
+
+#### Formularios y Campos
+- **Inputs**: `rounded-xl` con `border-2` y hover `focus:ring-2 focus:ring-indigo-300`
+- **Búsqueda**: Icono con `absolute` y `translate-y-1/2` para centrado vertical
+- **Botones de acción**: `p-3 rounded-full` con hover `bg-indigo-100`
+
+### 12.3 Estructura de Layout Común
+
+#### Layout Principal de Administración
+```html
+<div class="flex h-[calc(100vh-150px)] bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-xl overflow-hidden border-gray-10">
+
+    <!-- Sidebar de Navegación -->
+    <aside class="w-72 bg-gradient-to-b from-indigo-700 to-purple-800 text-white p-5 flex-shrink-0 shadow-lg">
+        <!-- Contenido del sidebar -->
+    </aside>
+
+    <!-- Contenido Principal -->
+    <div class="flex-grow flex flex-col bg-white shadow-inner">
+        <!-- Encabezado de sección -->
+        <div class="p-5 border-b border-gray-100 bg-gradient-to-r from-white to-indigo-50 sticky top-0 bg-white z-10 shadow-sm">
+            <!-- Título y búsqueda -->
+        </div>
+        <!-- Lista de elementos -->
+        <div class="overflow-y-auto flex-grow p-4">
+            <!-- Contenido de la lista -->
+        </div>
+    </div>
+</div>
+```
+
+#### Estilo de Elementos de Lista
+- **Padding**: `p-4` para cada elemento
+- **Bordes**: `border-b border-gray-100` para separación
+- **Hover**: `hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50`
+- **Transición**: `transition-all duration-300` para efectos suaves
+- **Bordes izquierdos**: `border-l-4 border-indigo-50` para elementos activos
+
+### 12.4 Tipografía y Espaciado
+
+#### Jerarquía de Texto
+- **Títulos Principales**: `text-2xl font-bold text-indigo-800`
+- **Títulos Secundarios**: `text-xl font-semibold text-gray-800`
+- **Textos Destacados**: `text-base font-bold text-gray-800`
+- **Textos Secundarios**: `text-sm text-gray-600` o `text-xs text-gray-500`
+
+#### Espaciado
+- **Padding Principal**: `p-5` o `p-6` para secciones importantes
+- **Padding Interno**: `p-4` para elementos de lista
+- **Margen Superior**: `mt-4` para separación de elementos
+- **Espaciado entre elementos**: `space-x-4` o `space-y-1` según contexto
+
+### 12.5 Iconografía y Elementos Visuales
+
+#### Iconos Utilizados
+- **Remix Icon (ri)**: Biblioteca principal de iconos
+- **Tamaño**: `text-lg` para iconos en botones, `text-xl` para iconos principales
+- **Colores**: `text-indigo-500`, `text-purple-500`, `text-gray-500` según contexto
+
+#### Elementos de Estado Visual
+- **Indicadores de No Leído**: `h-3 w-3 rounded-full bg-indigo-500 animate-pulse`
+- **Botones de Acción**: `p-2 rounded-full` con hover `bg-indigo-10` o colores específicos
+- **Contadores y Etiquetas**: `bg-white text-indigo-700 text-sm font-bold rounded-full h-7 w-7 flex items-center justify-center`
+
+### 12.6 Aplicación en Vistas Administrativas
+
+#### Vistas de Mensajes
+Las vistas de mensajes (`inbox`, `archived`, `deleted`) sirven como ejemplo base para todas las demás vistas administrativas, implementando:
+- Estructura de tres columnas (sidebar, lista, panel de lectura)
+- Gradientes de fondo consistentes
+- Efectos de hover y transiciones suaves
+- Consistencia en botones y controles
+- Tipografía jerárquica clara
+
+#### Principios de Aplicación
+1. **Consistencia**: Todos los componentes deben seguir los mismos estándares visuales
+2. **Cohesión**: Colores, espaciados y tipografías deben ser uniformes
+3. **Experiencia de Usuario**: Efectos visuales deben mejorar la usabilidad, no solo la estética
+4. **Accesibilidad**: Contraste adecuado y tamaños legibles
+5. **Responsividad**: Estilos deben adaptarse a diferentes tamaños de pantalla
+
+Estos estándares visuales deben aplicarse a todas las vistas administrativas del portal Gran Zona 5 para garantizar una experiencia de usuario cohesiva y profesional.

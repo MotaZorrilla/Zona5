@@ -3,75 +3,89 @@
 @section('title', 'Mensaje - ' . $message->subject)
 
 @section('content')
-<div class="bg-white p-6 rounded-xl shadow-lg">
-    <!-- Header -->
+<div class="bg-white p-8 rounded-xl shadow-lg">
+    <!-- Header mejorado -->
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-gray-800">Mensaje</h1>
-            <p class="text-sm text-gray-500 mt-1">Detalles del mensaje seleccionado.</p>
+            <h1 class="text-3xl font-bold text-red-600 mb-2">Mensaje</h1>
+            <p class="text-sm text-gray-500">Detalles del mensaje seleccionado.</p>
         </div>
-        <a href="{{ route('admin.messages.index') }}" class="flex items-center bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
-            <i class="ri-arrow-left-line mr-2"></i>
-            <span>Volver a la bandeja</span>
-        </a>
+        <div class="flex space-x-3">
+            <a href="{{ route('admin.messages.index') }}" class="flex items-center bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
+                <i class="ri-arrow-left-line mr-2"></i>
+                <span>Volver a la bandeja</span>
+            </a>
+            <a href="{{ route('admin.messages.create') }}" class="flex items-center bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
+                <i class="ri-add-line mr-2"></i>
+                <span>Nuevo Mensaje</span>
+            </a>
+        </div>
     </div>
 
-    <div class="bg-white rounded-lg overflow-hidden">
-        <!-- Cabecera del Mensaje -->
-        <div class="p-6 border-b bg-white">
+    <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+        <!-- Cabecera del Mensaje mejorada -->
+        <div class="p-6 border-b bg-gradient-to-r from-gray-50 to-blue-50">
             <div class="flex justify-between items-start">
-                <div>
-                    <h1 class="text-2xl font-bold text-gray-900">{{ $message->subject }}</h1>
-                    <div class="mt-4 flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-masonic-gold bg-opacity-20 flex items-center justify-center mr-4">
-                            <i class="ri-user-star-line text-masonic-gold text-2xl"></i>
-                        </div>
-                        <div>
-                            <div class="text-sm font-semibold text-gray-900">{{ $message->sender_name }}</div>
-                            <div class="text-sm text-gray-600">{{ $message->sender_email }}</div>
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-400 to-red-500 flex items-center justify-center mr-4">
+                        <i class="ri-user-star-line text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">{{ $message->subject }}</h2>
+                        <div class="flex items-center mt-2">
+                            <div>
+                                <div class="text-sm font-semibold text-gray-900">{{ $message->sender_name }}</div>
+                                @if($message->sender_email)
+                                    <div class="text-sm text-gray-600">{{ $message->sender_email }}</div>
+                                @endif
+                            </div>
+                            @if($message->recipient_id === null)
+                                <span class="ml-3 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    <i class="ri-global-line mr-1"></i> Sitio Web
+                                </span>
+                            @endif
                         </div>
                     </div>
                 </div>
-                <div class="text-sm text-gray-500 text-right">
-                    <div class="font-medium">{{ $message->created_at->format('d M Y') }}</div>
-                    <div>{{ $message->created_at->format('H:i') }}</div>
+                <div class="text-right">
+                    <div class="text-sm font-medium text-gray-700">{{ $message->created_at->format('d M Y') }}</div>
+                    <div class="text-xs text-gray-500">{{ $message->created_at->format('H:i') }}</div>
                 </div>
             </div>
         </div>
 
-        <!-- Cuerpo del Mensaje -->
+        <!-- Cuerpo del Mensaje mejorado -->
         <div class="p-6">
             <div class="prose max-w-none">
-                <div class="whitespace-pre-line text-gray-700 leading-relaxed">
-                    {{ $message->content }}
+                <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-red-500">
+                    <div class="whitespace-pre-line text-gray-700 leading-relaxed">
+                        {{ $message->content }}
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Acciones -->
-        <div class="p-6 border-t bg-gray-50">
+        <!-- Acciones mejoradas -->
+        <div class="p-6 border-t bg-gradient-to-r from-gray-50 to-blue-50">
             <div class="flex flex-wrap items-center justify-end gap-3">
-                <form action="{{ route('admin.messages.archive', $message) }}" method="POST" class="inline">
+                <form action="{{ route('admin.messages.archive', $message) }}" method="POST" class="inline-block">
                     @csrf
-                    <button type="submit" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-masonic-gold transition-all">
+                    <button type="submit" class="flex items-center px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-sm font-bold rounded-lg shadow-md transition-all duration-200 transform hover:scale-105">
                         <i class="ri-archive-line mr-2"></i> Archivar
                     </button>
                 </form>
-                
-                <form action="{{ route('admin.messages.unread', $message) }}" method="POST" class="inline" x-data x-on:submit.prevent="() => {
-                    $wire.$dispatch('notificationRead');
-                    $event.target.submit();
-                }">
+
+                <form action="{{ route('admin.messages.unread', $message) }}" method="POST" class="inline-block">
                     @csrf
-                    <button type="submit" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-masonic-gold transition-all">
-                        <i class="ri-mail-unread-line mr-2"></i> Marcar como no leído
+                    <button type="submit" class="flex items-center px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white text-sm font-bold rounded-lg shadow-md transition-all duration-200 transform hover:scale-105">
+                        <i class="ri-mail-unread-line mr-2"></i> Marcar No Leído
                     </button>
                 </form>
-                
-                <form action="{{ route('admin.messages.destroy', $message) }}" method="POST" class="inline" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este mensaje?');">
+
+                <form action="{{ route('admin.messages.destroy', $message) }}" method="POST" class="inline-block" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este mensaje?');">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="flex items-center px-4 py-2 text-sm font-medium text-red-700 bg-white border border-red-300 rounded-lg shadow-sm hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all">
+                    <button type="submit" class="flex items-center px-4 py-2 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white text-sm font-bold rounded-lg shadow-md transition-all duration-200 transform hover:scale-105">
                         <i class="ri-delete-bin-line mr-2"></i> Eliminar
                     </button>
                 </form>

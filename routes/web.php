@@ -67,7 +67,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::patch('faqs/{faq}/toggle', [App\Http\Controllers\Admin\FaqController::class, 'toggle'])->name('faqs.toggle');
         Route::resource('forums', App\Http\Controllers\Admin\ForumController::class);
         Route::patch('forums/{forum}/toggle', [App\Http\Controllers\Admin\ForumController::class, 'toggle'])->name('forums.toggle');
-        Route::get('settings', [App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings');
+        Route::get('settings', [App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings.index');
         Route::post('settings', [App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('settings.update');
         Route::get('content-manager/{section?}', [ContentManagerController::class, 'show'])->name('content-manager.show');
         Route::post('content-manager/contact', [ContentManagerController::class, 'updateContact'])->name('content-manager.contact.update');
@@ -90,13 +90,21 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         });
     });
     
-    // User, Admin and SuperAdmin access (all logged-in users)
-    Route::resource('messages', App\Http\Controllers\Admin\MessageController::class);
-    Route::post('messages/{message}/archive', [App\Http\Controllers\Admin\MessageController::class, 'archive'])->name('messages.archive');
-    Route::post('messages/{message}/unread', [App\Http\Controllers\Admin\MessageController::class, 'unread'])->name('messages.unread');
-    Route::get('messages/archived', [App\Http\Controllers\Admin\MessageController::class, 'archived'])->name('messages.archived');
-    Route::get('messages/deleted', [App\Http\Controllers\Admin\MessageController::class, 'deleted'])->name('messages.deleted');
-    Route::post('messages/{message}/restore', [App\Http\Controllers\Admin\MessageController::class, 'restore'])->name('messages.restore');
+    // Messages - Available to all authenticated users
+    Route::prefix('messages')->name('messages.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\MessageController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Admin\MessageController::class, 'create'])->name('create');
+        Route::post('/', [App\Http\Controllers\Admin\MessageController::class, 'store'])->name('store');
+        Route::get('/archived', [App\Http\Controllers\Admin\MessageController::class, 'archived'])->name('archived');
+        Route::get('/deleted', [App\Http\Controllers\Admin\MessageController::class, 'deleted'])->name('deleted');
+        Route::get('/{message}', [App\Http\Controllers\Admin\MessageController::class, 'show'])->name('show');
+        Route::get('/{message}/edit', [App\Http\Controllers\Admin\MessageController::class, 'edit'])->name('edit');
+        Route::put('/{message}', [App\Http\Controllers\Admin\MessageController::class, 'update'])->name('update');
+        Route::post('/{message}/archive', [App\Http\Controllers\Admin\MessageController::class, 'archive'])->name('archive');
+        Route::post('/{message}/unread', [App\Http\Controllers\Admin\MessageController::class, 'unread'])->name('unread');
+        Route::post('/{message}/restore', [App\Http\Controllers\Admin\MessageController::class, 'restore'])->name('restore');
+        Route::delete('/{message}', [App\Http\Controllers\Admin\MessageController::class, 'destroy'])->name('destroy');
+    });
     
     Route::view('help', 'admin.help')->name('help');
 });
