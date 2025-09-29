@@ -69,8 +69,8 @@
                     <p class="text-sm text-gray-600 group-hover:text-purple-600 transition-colors">Balance (Mes)</p>
                     <p class="text-3xl font-extrabold text-gray-800">$ {{ number_format($currentMonthBalance, 0) }}</p>
                 </div>
-                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-500 group-hover:bg-purple-200 transition-colors">
-                    <i class="ri-balance-line text-2xl"></i>
+                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-60 group-hover:bg-purple-200 transition-colors">
+                    <i class="ri-wallet-3-line text-2xl text-purple-600"></i>
                 </div>
             </a>
 
@@ -242,8 +242,8 @@
     <!-- Main grid with spacing -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
         <div class="lg:col-span-2">
-            <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl shadow-lg h-full p-6 flex flex-col">
-                <h4 class="font-bold text-lg text-primary-600 mb-4">Actividad Reciente</h4>
+            <div class="bg-gradient-to-br from-gray-50 to-purple-50 rounded-xl shadow-lg h-full p-6 flex flex-col transition-all duration-200 hover:shadow-lg hover:scale-[1.02] border border-gray-100 hover:border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 to-white">
+                <h4 class="font-bold text-lg text-indigo-600 mb-4">Actividad Reciente</h4>
                 <div class="flex-grow overflow-y-auto">
                     <ul class="divide-y divide-gray-200">
                         @forelse ($recentActivities as $activity)
@@ -275,8 +275,8 @@
             </div>
         </div>
         <div class="lg:col-span-1">
-            <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl shadow-lg h-full p-6">
-                <h4 class="font-bold text-lg text-primary-600 mb-4">Miembros por Logia</h4>
+            <div class="bg-gradient-to-br from-gray-50 to-purple-50 rounded-xl shadow-lg h-full p-6 transition-all duration-200 hover:shadow-lg hover:scale-[1.02] border border-gray-100 hover:border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 to-white">
+                <h4 class="font-bold text-lg text-indigo-600 mb-4">Miembros por Logia</h4>
                 <livewire:admin.lodge-members-overview />
             </div>
         </div>
@@ -285,20 +285,20 @@
 
     <!-- Charts Row -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-        <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl shadow-lg p-6 flex flex-col">
-            <h4 class="font-bold text-lg text-primary-600 mb-4">Distribución por Grado</h4>
+        <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-lg p-6 flex-col transition-all duration-200 hover:shadow-lg hover:scale-[1.02] border border-gray-100 hover:border-indigo-300 hover:bg-gradient-to-r hover:from-indigo-50 to-white">
+            <h4 class="font-bold text-lg text-indigo-600 mb-4">Distribución por Grado</h4>
             <div class="flex-grow flex items-center justify-center max-h-80">
                 <canvas id="degreePieChart"></canvas>
             </div>
         </div>
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg p-6 flex flex-col">
-            <h4 class="font-bold text-lg text-primary-600 mb-4">Crecimiento de Miembros (Últimos 6 Meses)</h4>
+        <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-lg p-6 flex-col transition-all duration-200 hover:shadow-lg hover:scale-[1.02] border border-gray-100 hover:border-indigo-300 hover:bg-gradient-to-r hover:from-indigo-50 to-white">
+            <h4 class="font-bold text-lg text-indigo-600 mb-4">Crecimiento de Miembros (Últimos 6 Meses)</h4>
             <div class="flex-grow flex items-center justify-center">
                 <canvas id="memberGrowthLineChart"></canvas>
             </div>
         </div>
-        <div class="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl shadow-lg p-6 flex flex-col">
-            <h4 class="font-bold text-lg text-primary-600 mb-4">Crecimiento de Contenido (Últimos 6 Meses)</h4>
+        <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-lg p-6 flex-col transition-all duration-200 hover:shadow-lg hover:scale-[1.02] border border-gray-100 hover:border-indigo-300 hover:bg-gradient-to-r hover:from-indigo-50 to-white">
+            <h4 class="font-bold text-lg text-indigo-600 mb-4">Crecimiento de Contenido (Últimos 6 Meses)</h4>
             <div class="flex-grow flex items-center justify-center">
                 <canvas id="contentGrowthLineChart"></canvas>
             </div>

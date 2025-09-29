@@ -469,7 +469,7 @@ public function scopePublished($query)
 {
     return $query->where('status', NewsStatusEnum::PUBLISHED)
         ->whereNotNull('published_at')
-        ->where('published_at', '<=', now());
+        ->where('published_at', '<', now());
 }
 ```
 
@@ -514,7 +514,7 @@ public function scopePublished($query)
 {
     return $query->where('status', NewsStatusEnum::PUBLISHED)
         ->whereNotNull('published_at')
-        ->where('published_at', '<=', now());
+        ->where('published_at', '<', now());
 }
 
 public function scopeDraft($query)
@@ -1044,7 +1044,7 @@ public function scopePublished($query)
 {
     return $query->where('status', NewsStatusEnum::PUBLISHED)
         ->whereNotNull('published_at')
-        ->where('published_at', '<=', now());
+        ->where('published_at', '<', now());
 }
 ```
 
@@ -1314,3 +1314,44 @@ Las vistas de mensajes (`inbox`, `archived`, `deleted`) sirven como ejemplo base
 5. **Responsividad**: Estilos deben adaptarse a diferentes tamaños de pantalla
 
 Estos estándares visuales deben aplicarse a todas las vistas administrativas del portal Gran Zona 5 para garantizar una experiencia de usuario cohesiva y profesional.
+
+
+---
+
+## 13. ACTUALIZACIÓN OCTUBRE 2025 - REFACTORIZACIÓN DE MENSAJERÍA
+
+### 13.1 Resumen de la Refactorización
+El módulo de mensajería interna ha sido completamente refactorizado para mejorar drásticamente la experiencia de usuario (UX), especialmente en dispositivos móviles, y para modernizar su arquitectura técnica. Se migró de una vista tradicional de Blade a un componente interactivo de Livewire de página completa.
+
+### 13.2 Cambio Arquitectónico Principal
+- **De Blade a Livewire:** La lógica y la presentación ahora son manejadas por el componente `App\Livewire\Admin\Messages\MessageCenter`, permitiendo una interfaz reactiva y dinámica sin recargas de página completas para acciones como la selección y filtrado de mensajes.
+
+### 13.3 Componentes y Archivos Modificados
+
+#### **Nuevos Componentes Livewire Creados**
+- **Clase:** `app/Livewire/Admin/Messages/MessageCenter.php`
+  - **Responsabilidad:** Gestiona el estado completo del centro de mensajes, incluyendo el filtrado de la bandeja de entrada (Entrada, Enviados, Archivados, etc.), la paginación, y la selección del mensaje activo. Marca los mensajes como leídos de forma reactiva.
+- **Vista:** `resources/views/livewire/admin/messages/message-center.blade.php`
+  - **Descripción:** Contiene toda la lógica de la interfaz de usuario (UI) utilizando Alpine.js para controlar el estado visual en móviles.
+  - **Características Clave:**
+    - **Diseño Totalmente Adaptable:** Mantiene la vista de 3 columnas en escritorio (`lg` y superior) y se transforma en una vista de columna única en dispositivos más pequeños.
+    - **Navegación Móvil Inferior:** En vistas móviles, reemplaza la barra lateral por una barra de navegación fija en la parte inferior para una UX nativa.
+    - **Ocultación de Paneles:** En móvil, muestra la lista de mensajes o el panel de lectura, pero nunca ambos, optimizando el espacio.
+
+#### **Vistas Principales Modificadas**
+- `resources/views/admin/messages/inbox.blade.php`
+  - **Cambio:** El archivo fue simplificado drásticamente. Ahora su única responsabilidad es cargar el componente `@livewire('admin.messages.message-center')`.
+
+#### **Correcciones de Layout Global**
+- `resources/views/layouts/admin.blade.php`
+  - **Mejora:** Se añadió un fondo sombreado (backdrop) para el menú lateral en móvil, mejorando la UX y solucionando problemas de superposición de capas (`z-index`).
+  - **Corrección:** Se aplicó una regla global `overflow-x-hidden` al `<body>` y `<html>` para eliminar definitivamente los problemas de scroll horizontal.
+  - **Ajuste:** Se cambió el punto de quiebre responsive principal de `md` a `lg` para que la vista móvil se aplique a un rango más amplio de dispositivos.
+- `resources/views/components/admin/sidebar.blade.php`
+  - **Corrección:** Se añadió `overflow-y-auto` para garantizar que la barra lateral principal sea siempre navegable en pantallas de poca altura.
+
+### 13.4 Beneficios y Mejoras Obtenidas
+- **Experiencia Móvil Superior:** La sección de mensajes ahora se siente como una aplicación nativa en dispositivos móviles.
+- **Estabilidad del Layout:** Eliminados todos los scrolls horizontales no deseados.
+- **Rendimiento Mejorado:** Las acciones de filtrado y selección de mensajes son ahora instantáneas gracias a Livewire, sin recargar la página.
+- **Mantenibilidad:** Centralizar toda la lógica en un solo componente Livewire hace que futuras actualizaciones sean más sencillas.

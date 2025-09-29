@@ -41,7 +41,7 @@ Desarrollar el portal administrativo y público para la **Gran Zona 5 de la Gran
 - Sistema de noticias con publicación programada
 - Tesorería con ingresos, egresos y balances
 - Repositorio documental con control de acceso
-- Mensajería interna con bandeja de entrada
+- **Mensajería Interna Avanzada**: Componente Livewire completamente rediseñado con interfaz adaptable (responsive) para escritorio y móvil, navegación optimizada y actualizaciones en tiempo real.
 - **Sistema de Foros** completo con gestión administrativa
 - **Sistema de FAQ** dinámico y categorizado
 - **Sistema de Reportes PDF completo** (15+ páginas)

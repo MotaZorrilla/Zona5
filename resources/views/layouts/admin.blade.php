@@ -88,14 +88,20 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+        html, body {
+            overflow-x: hidden;
+        }
     </style>
 </head>
-<body x-data="{ sidebarOpen: true }">
+<body x-data="{ sidebarOpen: true }" x-cloak>
+
+    <!-- Backdrop for mobile sidebar -->
+    <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black/50 z-40 lg:hidden" x-cloak></div>
 
     <x-admin.sidebar />
 
     <!-- Main Content -->
-    <main class="min-h-screen transition-all" :class="sidebarOpen ? 'md:w-[calc(100%-256px)] md:ml-64' : 'w-full'">
+    <main class="min-h-screen transition-all overflow-x-hidden" :class="sidebarOpen ? 'lg:w-[calc(100%-256px)] lg:ml-64' : 'w-full'">
         <div class="p-6">
             <!-- Top Navbar -->
             <div class="py-2 px-6 bg-gradient-to-r from-indigo-700 to-purple-800 flex items-center shadow-sm rounded-lg sticky top-6 z-30">

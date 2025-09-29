@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div class="fixed left-0 top-0 w-64 h-full bg-gradient-to-b from-indigo-700 to-purple-800 p-4 z-50 shadow-lg transition-transform duration-300" :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
+<div class="fixed left-0 top-0 w-64 h-full bg-gradient-to-b from-indigo-700 to-purple-800 p-4 z-50 shadow-lg transition-transform duration-300 overflow-y-auto" :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }">
     <div class="flex items-center justify-between pb-4 border-b border-gray-600">
         <a href="{{ route('welcome') }}" target="_blank" rel="noopener" class="flex items-center">
             <x-application-logo class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary-500 text-xl font-bold" />
