@@ -30,15 +30,25 @@ Route::name('public.')->group(function () {
     Route::get('logias/{lodge}', [PublicLodgeController::class, 'show'])->name('lodges.show');
     Route::get('/forums', [App\Http\Controllers\Public\ForumController::class, 'index'])->name('forums');
     Route::get('/forums/{forum}', [App\Http\Controllers\Public\ForumController::class, 'show'])->name('forums.show');
-    Route::post('/forums/{forum}/posts', [App\Http\Controllers\Public\ForumController::class, 'storePost'])->name('forums.store-post');
-    Route::post('/forums/posts/{post}/vote', [App\Http\Controllers\Public\ForumController::class, 'vote'])->name('forums.vote');
+
+    Route::middleware(['auth'])->group(function () {
+        Route::post('/forums/{forum}/posts', [App\Http\Controllers\Public\ForumController::class, 'storePost'])->name('forums.store-post');
+        Route::post('/forums/posts/{post}/vote', [App\Http\Controllers\Public\ForumController::class, 'vote'])->name('forums.vote');
+    });
     Route::get('/school', [App\Http\Controllers\Public\SchoolController::class, 'index'])->name('school');
-    Route::get('/archive', [App\Http\Controllers\Public\ArchiveController::class, 'index'])->name('archive');
+    Route::get('/archive', [App\Http\Controllers\Public\ArchiveController::class, 'index'])->name('archive')->middleware('public.access:auth');
     Route::get('/news', [App\Http\Controllers\Public\NewsController::class, 'index'])->name('news');
+    Route::get('/news/{news}', [App\Http\Controllers\Public\NewsController::class, 'show'])->name('news.show');
+    Route::get('/events/{event}', [App\Http\Controllers\Public\EventController::class, 'show'])->name('events.show');
     Route::get('/contact', [App\Http\Controllers\Public\ContactController::class, 'show'])->name('contact');
     Route::post('/contact', [App\Http\Controllers\Public\ContactController::class, 'store'])->name('contact.store');
     Route::view('/sitemap', 'public.sitemap')->name('sitemap');
     Route::view('/faq', 'public.faq')->name('faq');
+});
+
+// Rutas API públicas
+Route::prefix('api')->group(function () {
+    Route::get('/documents/{repository}', [App\Http\Controllers\Api\DocumentController::class, 'show'])->name('api.documents.show');
 });
 
 Route::view('/privacy-policy', 'public.privacy-policy')->name('privacy-policy');

@@ -1355,3 +1355,25 @@ El módulo de mensajería interna ha sido completamente refactorizado para mejor
 - **Estabilidad del Layout:** Eliminados todos los scrolls horizontales no deseados.
 - **Rendimiento Mejorado:** Las acciones de filtrado y selección de mensajes son ahora instantáneas gracias a Livewire, sin recargar la página.
 - **Mantenibilidad:** Centralizar toda la lógica en un solo componente Livewire hace que futuras actualizaciones sean más sencillas.
+
+---
+
+## 14. October 2025 Updates
+
+*   **News and Events Section:**
+    *   Added `show` methods to `NewsController` and created a new `EventController` to handle the detail pages for news and events.
+    *   Created `news-show.blade.php` and `event-show.blade.php` views.
+    *   Updated the `news.blade.php` view to link to the new detail pages.
+    *   Modified the `x-public.hero` component to improve contrast.
+*   **Forum Authentication:**
+    *   Added `auth` middleware to the `storePost` and `vote` routes in `routes/web.php`.
+    *   Updated the `forums.blade.php` view to show a login prompt for guest users.
+*   **Repository (Archivo Histórico):**
+    *   Removed the `GeneratePdfThumbnails` command and the `thumbnail_path` from the `Repository` model and database.
+    *   Updated the `archive.blade.php` view to display file-type icons.
+    *   Created and then deleted the `FixRepositoryFileSizes` command to update the file sizes of existing documents.
+    *   Updated the `RepositorySeeder` with the correct file sizes.
+*   **Footer:**
+    *   Added the application version number to the `public.blade.php` layout.
+*   **Contact Section:**
+    *   Updated the `SettingsSeeder` with the correct contact email domain.

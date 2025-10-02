@@ -26,8 +26,7 @@
                             :title="$item->title" 
                             :subtitle="$item->excerpt" 
                             type="Noticia" 
-                            link="#"
-                        >
+                            link="{{ route('public.news.show', $item) }}"                        >
                             <div class="mt-8 flex items-center gap-x-4 text-xs">
                                 <time datetime="{{ $item->published_at ? \Carbon\Carbon::parse($item->published_at)->format('Y-m-d') : \Carbon\Carbon::parse($item->created_at)->format('Y-m-d') }}" class="text-gray-500">
                                     {{ $item->published_at ? \Carbon\Carbon::parse($item->published_at)->format('d M, Y') : \Carbon\Carbon::parse($item->created_at)->format('d M, Y') }}
@@ -48,7 +47,8 @@
                             :title="$event->title" 
                             :subtitle="$event->description" 
                             type="Evento"
-                            link="#"
+                            type="Evento"
+                            link="{{ route('public.events.show', $event) }}"
                         >
                             <div class="mt-8 flex items-center gap-x-4 text-xs">
                                 <time datetime="{{ $event->start_time->format('Y-m-d') }}" class="text-gray-500">

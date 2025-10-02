@@ -34,7 +34,7 @@ class SettingsSeeder extends Seeder
         Setting::updateOrCreate(
             ['key' => 'site_email'],
             [
-                'value' => 'contacto@granzona5.org',
+                'value' => 'contacto@granzona5.com',
                 'type' => 'string',
                 'description' => 'Email principal de contacto'
             ]
@@ -71,7 +71,7 @@ class SettingsSeeder extends Seeder
         Setting::updateOrCreate(
             ['key' => 'contact_email'],
             [
-                'value' => 'contacto@granzona5.org',
+                'value' => 'contacto@granzona5.com',
                 'type' => 'string',
                 'description' => 'Email para contacto general'
             ]

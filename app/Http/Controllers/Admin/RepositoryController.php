@@ -134,7 +134,7 @@ class RepositoryController extends Controller
     {
         // Check if user has permission to download (all authenticated users can download)
         if (!Auth::check()) {
-            abort(403, 'No tienes permiso para acceder a este archivo.');
+            abort(403, 'Debes iniciar sesión para descargar este archivo.');
         }
         
         $path = Storage::disk('public')->path($repository->file_path);

@@ -169,6 +169,7 @@
                                         <span>Activo {{ $forum->last_activity_at->diffForHumans() }}</span>
                                     @endif
                                 </div>
+                                @auth
                                 <a href="{{ route('public.forums.show', $forum) }}"
                                    class="inline-flex items-center px-3 sm:px-4 py-2 bg-primary-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200"
                                    aria-label="Ver foro {{ $forum->title }}">
@@ -176,6 +177,16 @@
                                     <span class="sm:hidden">Ver</span>
                                     <i class="ri-arrow-right-line ml-1 sm:ml-2" aria-hidden="true"></i>
                                 </a>
+                                @endauth
+                                @guest
+                                <a href="{{ route('login') }}"
+                                   class="inline-flex items-center px-3 sm:px-4 py-2 bg-primary-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200"
+                                   aria-label="Iniciar sesión para ver el foro {{ $forum->title }}">
+                                    <span class="hidden sm:inline">Iniciar sesión para interactuar</span>
+                                    <span class="sm:hidden">Acceder</span>
+                                    <i class="ri-login-box-line ml-1 sm:ml-2" aria-hidden="true"></i>
+                                </a>
+                                @endguest
                             </div>
                         </div>
                     </div>

@@ -24,4 +24,13 @@ class NewsController extends Controller
 
         return view('public.news', compact('news', 'events'));
     }
+
+    public function show(News $news)
+    {
+        if ($news->status !== 'published') {
+            abort(404);
+        }
+
+        return view('public.news-show', compact('news'));
+    }
 }

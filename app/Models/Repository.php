@@ -41,6 +41,26 @@ class Repository extends Model
         'image_url',
     ];
 
+    protected $appends = [
+        'file_size_formatted',
+    ];
+
+    /**
+     * Accessor to format file size
+     */
+    public function getFileSizeFormattedAttribute()
+    {
+        $size = $this->file_size;
+        if ($size === null) return '0 Bytes';
+
+        $units = ['Bytes', 'KB', 'MB', 'GB'];
+        for ($i = 0; $size > 1024 && $i < count($units) - 1; $i++) {
+            $size /= 1024;
+        }
+        return round($size, 2) . ' ' . $units[$i];
+    }
+
+
     protected $dates = ['uploaded_at'];
 
     public function uploader()

@@ -131,6 +131,23 @@ php artisan serve
 
 ---
 
+## 6. Latest Updates (October 2nd, 2025)
+
+*   **News and Events Section:**
+    *   The "News and Events" cards are now clickable and link to their respective detail pages.
+    *   The detail pages for news and events have been created, featuring a hero section and the full content.
+    *   A "Back to News and Events" button has been added to the detail pages for easier navigation.
+*   **Forum Authentication:**
+    *   The forum now requires users to be logged in to interact (create posts and vote).
+    *   The "Explore" button on the forum list page now prompts guest users to log in.
+*   **Repository (Archivo Histórico):**
+    *   The document cards in the "Archivo Histórico" now display file-type icons instead of broken thumbnails.
+    *   The file sizes of the documents are now correctly calculated and displayed in the document details modal.
+*   **Footer:**
+    *   The application version number has been added to the footer.
+
+---
+
 ## 6. Documentación Técnica
 
 📋 **Para documentación técnica completa, consulte:**

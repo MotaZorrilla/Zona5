@@ -217,6 +217,7 @@
                         Jurisdiccionada a la<br>
                         <a href="https://www.granlogiadevenezuela.com" target="_blank" class="text-primary-400 hover:text-white transition-colors">Gran Logia de la República de Venezuela</a>
                     </p>
+                    <p class="text-xs text-gray-500">Versión de prueba 0.2.15</p>
                     <p class="text-sm text-gray-500">
                         Desarrollado por <a href="https://motazorrilla.com" target="_blank" rel="noopener noreferrer" class="font-semibold text-primary-400 hover:text-white transition-colors">@MotaZorrilla</a>
                     </p>
