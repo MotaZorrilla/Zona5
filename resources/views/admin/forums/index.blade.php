@@ -7,8 +7,10 @@
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-primary-600 mb-2">Foros de Discusión</h1>
-            <p class="text-sm text-gray-500">Gestiona los foros y las discusiones de la comunidad.</p>
+            <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+                <i class="ri-discuss-line"></i> Foros de Discusión
+            </h1>
+            <p class="text-sm text-gray-600 mt-1">Gestiona los foros y las discusiones de la comunidad.</p>
         </div>
         <a href="{{ route('admin.forums.create') }}" class="flex items-center bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
             <i class="ri-add-line mr-2"></i>

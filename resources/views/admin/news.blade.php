@@ -7,8 +7,10 @@
         <!-- Header -->
         <div class="flex justify-between items-center mb-8">
             <div>
-                <h1 class="text-3xl font-bold text-primary-600 mb-2">Gestión de Noticias</h1>
-                <p class="text-sm text-gray-500">Crea y administra las comunicaciones y artículos.</p>
+                <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+                    <i class="ri-newspaper-line"></i> Gestión de Noticias
+                </h1>
+                <p class="text-sm text-gray-600 mt-1">Crea y administra las comunicaciones y artículos.</p>
             </div>
             <a href="{{ route('admin.news.create') }}" class="flex items-center bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
                 <i class="ri-quill-pen-line mr-2"></i>

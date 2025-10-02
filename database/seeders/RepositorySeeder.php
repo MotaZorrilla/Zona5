@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Repository;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class RepositorySeeder extends Seeder
 {
@@ -13,90 +14,58 @@ class RepositorySeeder extends Seeder
      */
     public function run(): void
     {
-        // Obtener el primer usuario o crear uno por defecto
-        $user = User::first() ?: User::create([
-            'name' => 'Administrador',
-            'email' => 'admin@granzona5.org',
-            'password' => bcrypt('password'),
-        ]);
+        // Limpia la tabla para un estado inicial limpio
+        DB::table('repositories')->delete();
+
+        $user = User::first();
+        if (!$user) {
+            $user = User::factory()->create([
+                'name' => 'Admin Fundador',
+                'email' => 'admin@example.com',
+            ]);
+        }
 
         $repositories = [
             [
-                'title' => 'Fundación de la Gran Logia',
-                'description' => 'Un recorrido por los eventos y personajes que dieron origen a nuestra Gran Logia de la República de Venezuela.',
-                'category' => 'Historia',
+                'title' => 'Reglamento de Publicaciones y Medios Digitales',
+                'description' => 'Reglamento oficial que norma el uso de páginas web, correos electrónicos y otras publicaciones electrónicas de la Gran Logia de la República de Venezuela. Actualización 2020.',
+                'category' => 'Reglamentos',
                 'grade_level' => 'Todos',
                 'file_type' => 'pdf',
-                'file_name' => 'fundacion-gran-logia.pdf',
-                'file_path' => 'documents/historia/fundacion-gran-logia.pdf',
-                'file_size' => 1024000,
+                'file_name' => 'REGLAMENTO DE PUBLICACIONES EN MEDIOS IMPRESOS Y GESTIÓN EN PLATAFORMAS DIGITALES (1).pdf',
+                'file_path' => 'repository/REGLAMENTO DE PUBLICACIONES EN MEDIOS IMPRESOS Y GESTIÓN EN PLATAFORMAS DIGITALES (1).pdf',
+                'file_size' => 0, // Se puede calcular y actualizar después si es necesario
                 'uploaded_by' => $user->id,
-                'uploaded_at' => now()->subDays(30),
+                'uploaded_at' => now(),
             ],
             [
-                'title' => 'El Ritual del Compañero',
-                'description' => 'Análisis simbólico de los elementos y juramentos del segundo grado masónico.',
-                'category' => 'Ritual',
-                'grade_level' => 'Compañero',
-                'file_type' => 'pdf',
-                'file_name' => 'ritual-companero.pdf',
-                'file_path' => 'documents/ritual/ritual-companero.pdf',
-                'file_size' => 2048000,
-                'uploaded_by' => $user->id,
-                'uploaded_at' => now()->subDays(15),
-            ],
-            [
-                'title' => 'Constitución de la G.L.R.V.',
-                'description' => 'Documento fundamental que rige nuestra orden y establece los principios masónicos.',
-                'category' => 'Administración',
+                'title' => 'Newsletter G.L.S. del Paraguay N° 194 (Sept 2025)',
+                'description' => 'Boletín informativo de la Gran Logia Simbólica del Paraguay, edición N° 194 de septiembre de 2025. Contiene información sobre el Séptimo Encuentro Masónico Binacional Fraternidad y Esperanza.',
+                'category' => 'Boletines',
                 'grade_level' => 'Todos',
                 'file_type' => 'pdf',
-                'file_name' => 'constitucion-glrv.pdf',
-                'file_path' => 'documents/administracion/constitucion-glrv.pdf',
-                'file_size' => 512000,
+                'file_name' => 'GLSP-Newsletter194.pdf',
+                'file_path' => 'repository/GLSP-Newsletter194.pdf',
+                'file_size' => 0,
                 'uploaded_by' => $user->id,
-                'uploaded_at' => now()->subDays(7),
+                'uploaded_at' => now(),
             ],
             [
-                'title' => 'La Influencia de la Ilustración',
-                'description' => 'Cómo los principios de la Ilustración moldearon la masonería moderna y contemporánea.',
-                'category' => 'Historia',
-                'grade_level' => 'Maestro',
-                'file_type' => 'pdf',
-                'file_name' => 'influencia-ilustracion.pdf',
-                'file_path' => 'documents/historia/influencia-ilustracion.pdf',
-                'file_size' => 1536000,
-                'uploaded_by' => $user->id,
-                'uploaded_at' => now()->subDays(3),
-            ],
-            [
-                'title' => 'Plancha de Arquitectura Masónica',
-                'description' => 'Estudio detallado de los símbolos arquitectónicos en la masonería simbólica.',
-                'category' => 'Formación',
-                'grade_level' => 'Maestro',
-                'file_type' => 'pdf',
-                'file_name' => 'plancha-arquitectura.pdf',
-                'file_path' => 'documents/formacion/plancha-arquitectura.pdf',
-                'file_size' => 768000,
-                'uploaded_by' => $user->id,
-                'uploaded_at' => now()->subDays(1),
-            ],
-            [
-                'title' => 'Decreto N° 23-05',
-                'description' => 'Decreto emitido por la Gran Logia sobre la organización territorial de las zonas.',
-                'category' => 'Administración',
+                'title' => 'Modelo de Reporte Automático del Portal',
+                'description' => 'Primer modelo del reporte automático generado por el sistema del Portal de la Zona 5. Publicado para consulta, análisis y para generar un debate constructivo sobre la información presentada.',
+                'category' => 'Informes',
                 'grade_level' => 'Todos',
                 'file_type' => 'pdf',
-                'file_name' => 'decreto-23-05.pdf',
-                'file_path' => 'documents/administracion/decreto-23-05.pdf',
-                'file_size' => 256000,
+                'file_name' => 'Modelo de Reporte Automatico.pdf',
+                'file_path' => 'repository/Modelo de Reporte Automatico.pdf',
+                'file_size' => 0,
                 'uploaded_by' => $user->id,
                 'uploaded_at' => now(),
             ],
         ];
 
-        foreach ($repositories as $repository) {
-            Repository::create($repository);
+        foreach ($repositories as $repositoryData) {
+            Repository::create($repositoryData);
         }
     }
 }

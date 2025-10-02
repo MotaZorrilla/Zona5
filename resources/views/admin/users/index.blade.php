@@ -23,10 +23,7 @@
                     </a>
                 </div>
             </div>
-            <div class="relative mt-4">
-                <i class="ri-search-line absolute top-1/2 -translate-y-1/2 left-3 text-gray-400 text-lg"></i>
-                <input type="search" name="search" placeholder="Buscar miembros..." class="w-full bg-gray-50 border-2 border-gray-200 rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition-all shadow-sm focus:shadow-md" />
-            </div>
+
         <!-- Lista de elementos -->
         <div class="overflow-y-auto flex-grow p-5">
             @livewire('admin.users.manage-users')

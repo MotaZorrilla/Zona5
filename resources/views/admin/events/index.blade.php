@@ -7,8 +7,10 @@
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-gray-800">Gestión de Eventos</h1>
-            <p class="text-sm text-gray-500 mt-1">Planifica y administra los eventos de la Gran Zona.</p>
+            <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+                <i class="ri-calendar-todo-line"></i> Gestión de Eventos
+            </h1>
+            <p class="text-sm text-gray-600 mt-1">Planifica y administra los eventos de la Gran Zona.</p>
         </div>
         <a href="{{ route('admin.events.create') }}" class="flex items-center bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
             <i class="ri-add-line mr-2"></i>

@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
             TreasurySeeder::class,
             CourseSeeder::class,
             SettingsSeeder::class,
+            FaqSeeder::class,
+            ForumSeeder::class,
+            RepositorySeeder::class,
             // Lodge-specific seeders
             AsiloDeLaPazLodgeSeeder::class,
             AuroraDelYuruariLodgeSeeder::class,

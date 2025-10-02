@@ -1,15 +1,10 @@
 <div x-data="{ showEditModal: @entangle('showEditModal').live, showAddModal: @entangle('showAddModal').live }">
     <!-- Header with Add Button -->
     <div class="flex justify-between items-center mb-6">
-        <h3 id="venerable-masters-table" class="text-lg font-medium text-gray-900">Venerables Maestros por Logia</h3>
-        <button wire:click="openAddModal" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-            <i class="ri-add-line mr-2"></i>
-            Agregar Venerable Maestro
-        </button>
-    </div>
-    <!-- Header with Add Button -->
-    <div class="flex justify-between items-center mb-6">
-        <h3 id="venerable-masters-table" class="text-lg font-medium text-gray-900">Venerables Maestros por Logia</h3>
+        <div>
+            <h2 class="text-2xl font-bold text-gray-700">Venerables Maestros por Logia</h2>
+            <p class="text-sm text-gray-500 mt-1">Gestiona los venerables maestros de las logias de la zona 5.</p>
+        </div>
         <button wire:click="openAddModal" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
             <i class="ri-add-line mr-2"></i>
             Agregar Venerable Maestro

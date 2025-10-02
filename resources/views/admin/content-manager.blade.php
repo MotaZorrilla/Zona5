@@ -1,11 +1,15 @@
 @extends('layouts.admin')
 
+@section('title', 'Gestor de Contenido')
+
 @section('content')
 <div class="bg-white p-8 rounded-xl shadow-lg">
     <!-- Page header -->
     <div class="mb-8">
-        <h1 class="text-3xl font-bold text-primary-600 mb-2">Gestor de Contenido del Sitio</h1>
-        <p class="text-sm text-gray-500">Administra y personaliza el contenido de las páginas públicas de tu sitio web.</p>
+        <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+            <i class="ri-pencil-ruler-2-line"></i> Gestor de Contenido del Sitio
+        </h1>
+        <p class="text-sm text-gray-600 mt-1">Administra y personaliza el contenido de las páginas públicas de tu sitio web.</p>
     </div>
 
     <div class="bg-white shadow-lg rounded-sm">

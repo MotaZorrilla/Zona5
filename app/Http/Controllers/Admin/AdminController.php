@@ -28,7 +28,7 @@ class AdminController extends Controller
         $differenceCount = $memberCount - $sumOfDegrees;
 
         // Get recent activities
-        $recentActivities = ActivityLog::latest()->with('user', 'subject')->take(5)->get();
+        $recentActivities = ActivityLog::latest()->with('user', 'subject')->get();
 
         // KPIs específicos para el dashboard
         $newsCount = News::count();

@@ -30,6 +30,7 @@ class ActivityLogSeeder extends Seeder
         foreach ($users as $user) {
             ActivityLog::create([
                 'description' => "Se ha registrado el nuevo usuario: {$user->name}",
+                'action' => 'created',
                 'subject_id' => $user->id,
                 'subject_type' => get_class($user),
                 'user_id' => $admins->random()->id,
@@ -42,6 +43,7 @@ class ActivityLogSeeder extends Seeder
         foreach ($lodges as $lodge) {
             ActivityLog::create([
                 'description' => "La logia '{$lodge->name}' ha sido actualizada.",
+                'action' => 'updated',
                 'subject_id' => $lodge->id,
                 'subject_type' => get_class($lodge),
                 'user_id' => $admins->random()->id,

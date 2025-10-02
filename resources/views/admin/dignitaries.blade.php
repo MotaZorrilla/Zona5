@@ -7,8 +7,10 @@
     <!-- Directorio de Dignatarios de la Zona 5 -->
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-primary-600">Directorio de Dignatarios</h1>
-            <p class="text-sm text-gray-500 mt-1">Gestiona los dignatarios de la Zona 5 y visualiza los Venerables Maestros de cada logia.</p>
+            <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+                <i class="ri-user-star-line"></i> Directorio de Dignatarios
+            </h1>
+            <p class="text-sm text-gray-600 mt-1">Gestiona los dignatarios de la Zona 5 y visualiza los Venerables Maestros de cada logia.</p>
         </div>
         <a href="{{ route('admin.zone-dignitaries.create') }}" class="inline-flex items-center bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors ease-in-out duration-150">
             <i class="ri-add-line mr-2"></i>
@@ -57,7 +59,7 @@
     </div>
 
     <div class="mb-12">
-        <h2 class="text-2xl font-bold text-gray-700 mb-6">Junta Directiva de la Zona 5</h2>
+
         <div class="overflow-x-auto rounded-lg border border-gray-200">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-primary-500">
@@ -121,7 +123,6 @@
     </div>
 
     <div class="mb-12">
-        <h2 class="text-2xl font-bold text-gray-700 mb-6">Venerables Maestros por Logia</h2>
         <livewire:admin.zone-dignitaries.manage-venerable-masters :key="time()" />
     </div>
 </div>

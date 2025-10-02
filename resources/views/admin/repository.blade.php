@@ -7,8 +7,10 @@
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-primary-600 mb-2">Repositorio de Documentos</h1>
-            <p class="text-sm text-gray-500">Gestiona el material de estudio y administrativo.</p>
+            <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+                <i class="ri-archive-2-line"></i> Repositorio de Documentos
+            </h1>
+            <p class="text-sm text-gray-600 mt-1">Gestiona el material de estudio y administrativo.</p>
         </div>
         <a href="{{ route('admin.repository.create') }}" class="flex items-center bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
             <i class="ri-upload-cloud-2-line mr-2"></i>

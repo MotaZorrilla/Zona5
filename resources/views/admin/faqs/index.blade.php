@@ -7,8 +7,10 @@
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-primary-600 mb-2">Preguntas Frecuentes</h1>
-            <p class="text-sm text-gray-500">Gestiona las preguntas frecuentes del sitio público.</p>
+            <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+                <i class="ri-question-line"></i> Preguntas Frecuentes
+            </h1>
+            <p class="text-sm text-gray-600 mt-1">Gestiona las preguntas frecuentes del sitio público.</p>
         </div>
         <a href="{{ route('admin.faqs.create') }}" class="flex items-center bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
             <i class="ri-add-line mr-2"></i>

@@ -7,8 +7,10 @@
         <div class="p-6 border-b border-gray-100 bg-gradient-to-r from-white to-indigo-50 sticky top-0 bg-white z-10 shadow-sm rounded-t-xl">
             <div class="flex justify-between items-center">
                 <div>
-                    <h1 class="text-3xl font-bold text-indigo-800 mb-2">Dashboard</h1>
-                    <p class="text-sm text-gray-600">Panel de control y métricas generales de la Gran Zona 5.</p>
+                    <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+                        <i class="ri-dashboard-3-line"></i> Dashboard
+                    </h1>
+                    <p class="text-sm text-gray-600 mt-1">Panel de control y métricas generales de la Gran Zona 5.</p>
                 </div>
             </div>
         </div>

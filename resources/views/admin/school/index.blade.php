@@ -5,8 +5,10 @@
 <div class="bg-white p-8 rounded-xl shadow-lg">
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-primary-600 mb-2">Gestor de Cursos - Escuela Virtual</h1>
-            <p class="text-sm text-gray-500">Gestiona los cursos virtuales y materiales educativos.</p>
+            <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+                <i class="ri-book-open-line"></i> Gestor de Cursos - Escuela Virtual
+            </h1>
+            <p class="text-sm text-gray-600 mt-1">Gestiona los cursos virtuales y materiales educativos.</p>
         </div>
         <a href="{{ route('admin.school.create') }}" class="inline-flex items-center px-4 py-2 bg-primary-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-primary-700 active:bg-primary-900 focus:outline-none focus:border-primary-900 focus:ring ring-primary-300 disabled:opacity-25 transition ease-in-out duration-150">
             Añadir Curso

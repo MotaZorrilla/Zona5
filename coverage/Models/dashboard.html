@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for C:\xampp\htdocs\Zona5\app\Models</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=11.0.11" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css?v=11.0.11" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=11.0.11" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">C:\xampp\htdocs\Zona5\app</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Models</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="ActivityLog.php.html#9">App\Models\ActivityLog</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="CourseSession.php.html#8">App\Models\CourseSession</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumVote.php.html#9">App\Models\ForumVote</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Role.php.html#8">App\Models\Role</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Setting.php.html#9">App\Models\Setting</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Treasury.php.html#10">App\Models\Treasury</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#9">App\Models\ForumPost</a></td><td class="text-right">5%</td></tr>
+       <tr><td><a href="News.php.html#24">App\Models\News</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Repository.php.html#26">App\Models\Repository</a></td><td class="text-right">16%</td></tr>
+       <tr><td><a href="Forum.php.html#10">App\Models\Forum</a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Faq.php.html#9">App\Models\Faq</a></td><td class="text-right">58%</td></tr>
+       <tr><td><a href="User.php.html#12">App\Models\User</a></td><td class="text-right">70%</td></tr>
+       <tr><td><a href="Message.php.html#25">App\Models\Message</a></td><td class="text-right">75%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="ForumPost.php.html#9">App\Models\ForumPost</a></td><td class="text-right">902</td></tr>
+       <tr><td><a href="Setting.php.html#9">App\Models\Setting</a></td><td class="text-right">90</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="ActivityLog.php.html#15"><abbr title="App\Models\ActivityLog::subject">subject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivityLog.php.html#20"><abbr title="App\Models\ActivityLog::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="CourseSession.php.html#34"><abbr title="App\Models\CourseSession::course">course</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Faq.php.html#29"><abbr title="App\Models\Faq::scopeActive">scopeActive</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Faq.php.html#45"><abbr title="App\Models\Faq::getByCategory">getByCategory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#52"><abbr title="App\Models\Forum::creator">creator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#60"><abbr title="App\Models\Forum::scopeActive">scopeActive</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#68"><abbr title="App\Models\Forum::scopePinned">scopePinned</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#86"><abbr title="App\Models\Forum::getByCategory">getByCategory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#110"><abbr title="App\Models\Forum::latestPost">latestPost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#118"><abbr title="App\Models\Forum::postsCount">postsCount</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#126"><abbr title="App\Models\Forum::scopeFeatured">scopeFeatured</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#134"><abbr title="App\Models\Forum::scopeByActivity">scopeByActivity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#142"><abbr title="App\Models\Forum::scopeByPopularity">scopeByPopularity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#150"><abbr title="App\Models\Forum::updatePostsCount">updatePostsCount</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#158"><abbr title="App\Models\Forum::updateLastActivity">updateLastActivity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forum.php.html#166"><abbr title="App\Models\Forum::incrementViews">incrementViews</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#45"><abbr title="App\Models\ForumPost::forum">forum</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#53"><abbr title="App\Models\ForumPost::author">author</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#61"><abbr title="App\Models\ForumPost::parent">parent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#69"><abbr title="App\Models\ForumPost::replies">replies</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#77"><abbr title="App\Models\ForumPost::scopeApproved">scopeApproved</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#85"><abbr title="App\Models\ForumPost::scopePinned">scopePinned</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#93"><abbr title="App\Models\ForumPost::scopeUnlocked">scopeUnlocked</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#101"><abbr title="App\Models\ForumPost::scopeOrdered">scopeOrdered</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#110"><abbr title="App\Models\ForumPost::hasReplies">hasReplies</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#118"><abbr title="App\Models\ForumPost::repliesCount">repliesCount</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#126"><abbr title="App\Models\ForumPost::votes">votes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#134"><abbr title="App\Models\ForumPost::likes">likes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#142"><abbr title="App\Models\ForumPost::dislikes">dislikes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#150"><abbr title="App\Models\ForumPost::scopeFeatured">scopeFeatured</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#158"><abbr title="App\Models\ForumPost::scopeByPopularity">scopeByPopularity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#166"><abbr title="App\Models\ForumPost::scopeByVotes">scopeByVotes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#174"><abbr title="App\Models\ForumPost::hasUserVoted">hasUserVoted</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#182"><abbr title="App\Models\ForumPost::getUserVote">getUserVote</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#190"><abbr title="App\Models\ForumPost::hasUserLiked">hasUserLiked</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#198"><abbr title="App\Models\ForumPost::hasUserDisliked">hasUserDisliked</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#206"><abbr title="App\Models\ForumPost::addLike">addLike</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#232"><abbr title="App\Models\ForumPost::addDislike">addDislike</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#258"><abbr title="App\Models\ForumPost::removeVote">removeVote</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#276"><abbr title="App\Models\ForumPost::incrementViews">incrementViews</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumVote.php.html#26"><abbr title="App\Models\ForumVote::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumVote.php.html#34"><abbr title="App\Models\ForumVote::forumPost">forumPost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumVote.php.html#42"><abbr title="App\Models\ForumVote::scopeLikes">scopeLikes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumVote.php.html#50"><abbr title="App\Models\ForumVote::scopeDislikes">scopeDislikes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumVote.php.html#58"><abbr title="App\Models\ForumVote::scopeByUser">scopeByUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumVote.php.html#66"><abbr title="App\Models\ForumVote::scopeForPost">scopeForPost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Message.php.html#55"><abbr title="App\Models\Message::scopeRead">scopeRead</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Message.php.html#60"><abbr title="App\Models\Message::scopeArchived">scopeArchived</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="News.php.html#49"><abbr title="App\Models\News::scopePublished">scopePublished</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="News.php.html#56"><abbr title="App\Models\News::scopeDraft">scopeDraft</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="News.php.html#61"><abbr title="App\Models\News::scopeScheduled">scopeScheduled</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository.php.html#51"><abbr title="App\Models\Repository::scopeForGradeLevel">scopeForGradeLevel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository.php.html#56"><abbr title="App\Models\Repository::scopeForAprendiz">scopeForAprendiz</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository.php.html#61"><abbr title="App\Models\Repository::scopeForCompanero">scopeForCompanero</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository.php.html#66"><abbr title="App\Models\Repository::scopeForMaestro">scopeForMaestro</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository.php.html#71"><abbr title="App\Models\Repository::scopeForAll">scopeForAll</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Role.php.html#14"><abbr title="App\Models\Role::users">users</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Setting.php.html#18"><abbr title="App\Models\Setting::get">get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Setting.php.html#39"><abbr title="App\Models\Setting::set">set</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Treasury.php.html#31"><abbr title="App\Models\Treasury::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Treasury.php.html#36"><abbr title="App\Models\Treasury::lodge">lodge</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#66"><abbr title="App\Models\User::positions">positions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ForumPost.php.html#284"><abbr title="App\Models\ForumPost::boot">boot</abbr></a></td><td class="text-right">60%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Setting.php.html#18"><abbr title="App\Models\Setting::get">get</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="ForumPost.php.html#206"><abbr title="App\Models\ForumPost::addLike">addLike</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="ForumPost.php.html#232"><abbr title="App\Models\ForumPost::addDislike">addDislike</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="ForumPost.php.html#258"><abbr title="App\Models\ForumPost::removeVote">removeVote</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Setting.php.html#39"><abbr title="App\Models\Setting::set">set</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="ForumPost.php.html#284"><abbr title="App\Models\ForumPost::boot">boot</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 11.0.11</a> using <a href="https://www.php.net/" target="_top">PHP 8.2.12</a> and <a href="https://phpunit.de/">PHPUnit 11.5.35</a> at Mon Sep 29 12:08:09 -04 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js?v=11.0.11" type="text/javascript"></script>
+  <script src="../_js/d3.min.js?v=11.0.11" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js?v=11.0.11" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([6,1,2,0,0,1,1,0,2,0,0,6], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([63,0,0,0,0,0,0,1,0,0,0,20], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,2,"<a href=\"ActivityLog.php.html#9\">App\\Models\\ActivityLog<\/a>"],[100,0,"<a href=\"Course.php.html#9\">App\\Models\\Course<\/a>"],[0,1,"<a href=\"CourseSession.php.html#8\">App\\Models\\CourseSession<\/a>"],[100,1,"<a href=\"Event.php.html#9\">App\\Models\\Event<\/a>"],[58.333333333333336,4,"<a href=\"Faq.php.html#9\">App\\Models\\Faq<\/a>"],[40,15,"<a href=\"Forum.php.html#10\">App\\Models\\Forum<\/a>"],[5.263157894736842,32,"<a href=\"ForumPost.php.html#9\">App\\Models\\ForumPost<\/a>"],[0,6,"<a href=\"ForumVote.php.html#9\">App\\Models\\ForumVote<\/a>"],[100,3,"<a href=\"Lodge.php.html#22\">App\\Models\\Lodge<\/a>"],[75,8,"<a href=\"Message.php.html#25\">App\\Models\\Message<\/a>"],[14.285714285714285,4,"<a href=\"News.php.html#24\">App\\Models\\News<\/a>"],[100,0,"<a href=\"Position.php.html#7\">App\\Models\\Position<\/a>"],[16.666666666666664,6,"<a href=\"Repository.php.html#26\">App\\Models\\Repository<\/a>"],[0,1,"<a href=\"Role.php.html#8\">App\\Models\\Role<\/a>"],[0,9,"<a href=\"Setting.php.html#9\">App\\Models\\Setting<\/a>"],[0,2,"<a href=\"Treasury.php.html#10\">App\\Models\\Treasury<\/a>"],[70,5,"<a href=\"User.php.html#12\">App\\Models\\User<\/a>"],[100,0,"<a href=\"ZoneDignitaries.php.html#8\">App\\Models\\ZoneDignitaries<\/a>"],[100,0,"<a href=\"ZoneDignitary.php.html#9\">App\\Models\\ZoneDignitary<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"ActivityLog.php.html#15\">App\\Models\\ActivityLog::subject<\/a>"],[0,1,"<a href=\"ActivityLog.php.html#20\">App\\Models\\ActivityLog::user<\/a>"],[0,1,"<a href=\"CourseSession.php.html#34\">App\\Models\\CourseSession::course<\/a>"],[100,1,"<a href=\"Event.php.html#30\">App\\Models\\Event::creator<\/a>"],[0,1,"<a href=\"Faq.php.html#29\">App\\Models\\Faq::scopeActive<\/a>"],[100,1,"<a href=\"Faq.php.html#37\">App\\Models\\Faq::scopeOrdered<\/a>"],[0,1,"<a href=\"Faq.php.html#45\">App\\Models\\Faq::getByCategory<\/a>"],[100,1,"<a href=\"Faq.php.html#56\">App\\Models\\Faq::getCategories<\/a>"],[100,1,"<a href=\"Forum.php.html#44\">App\\Models\\Forum::posts<\/a>"],[0,1,"<a href=\"Forum.php.html#52\">App\\Models\\Forum::creator<\/a>"],[0,1,"<a href=\"Forum.php.html#60\">App\\Models\\Forum::scopeActive<\/a>"],[0,1,"<a href=\"Forum.php.html#68\">App\\Models\\Forum::scopePinned<\/a>"],[100,1,"<a href=\"Forum.php.html#76\">App\\Models\\Forum::scopeOrdered<\/a>"],[0,1,"<a href=\"Forum.php.html#86\">App\\Models\\Forum::getByCategory<\/a>"],[100,1,"<a href=\"Forum.php.html#97\">App\\Models\\Forum::getCategories<\/a>"],[0,1,"<a href=\"Forum.php.html#110\">App\\Models\\Forum::latestPost<\/a>"],[0,1,"<a href=\"Forum.php.html#118\">App\\Models\\Forum::postsCount<\/a>"],[0,1,"<a href=\"Forum.php.html#126\">App\\Models\\Forum::scopeFeatured<\/a>"],[0,1,"<a href=\"Forum.php.html#134\">App\\Models\\Forum::scopeByActivity<\/a>"],[0,1,"<a href=\"Forum.php.html#142\">App\\Models\\Forum::scopeByPopularity<\/a>"],[0,1,"<a href=\"Forum.php.html#150\">App\\Models\\Forum::updatePostsCount<\/a>"],[0,1,"<a href=\"Forum.php.html#158\">App\\Models\\Forum::updateLastActivity<\/a>"],[0,1,"<a href=\"Forum.php.html#166\">App\\Models\\Forum::incrementViews<\/a>"],[0,1,"<a href=\"ForumPost.php.html#45\">App\\Models\\ForumPost::forum<\/a>"],[0,1,"<a href=\"ForumPost.php.html#53\">App\\Models\\ForumPost::author<\/a>"],[0,1,"<a href=\"ForumPost.php.html#61\">App\\Models\\ForumPost::parent<\/a>"],[0,1,"<a href=\"ForumPost.php.html#69\">App\\Models\\ForumPost::replies<\/a>"],[0,1,"<a href=\"ForumPost.php.html#77\">App\\Models\\ForumPost::scopeApproved<\/a>"],[0,1,"<a href=\"ForumPost.php.html#85\">App\\Models\\ForumPost::scopePinned<\/a>"],[0,1,"<a href=\"ForumPost.php.html#93\">App\\Models\\ForumPost::scopeUnlocked<\/a>"],[0,1,"<a href=\"ForumPost.php.html#101\">App\\Models\\ForumPost::scopeOrdered<\/a>"],[0,1,"<a href=\"ForumPost.php.html#110\">App\\Models\\ForumPost::hasReplies<\/a>"],[0,1,"<a href=\"ForumPost.php.html#118\">App\\Models\\ForumPost::repliesCount<\/a>"],[0,1,"<a href=\"ForumPost.php.html#126\">App\\Models\\ForumPost::votes<\/a>"],[0,1,"<a href=\"ForumPost.php.html#134\">App\\Models\\ForumPost::likes<\/a>"],[0,1,"<a href=\"ForumPost.php.html#142\">App\\Models\\ForumPost::dislikes<\/a>"],[0,1,"<a href=\"ForumPost.php.html#150\">App\\Models\\ForumPost::scopeFeatured<\/a>"],[0,1,"<a href=\"ForumPost.php.html#158\">App\\Models\\ForumPost::scopeByPopularity<\/a>"],[0,1,"<a href=\"ForumPost.php.html#166\">App\\Models\\ForumPost::scopeByVotes<\/a>"],[0,1,"<a href=\"ForumPost.php.html#174\">App\\Models\\ForumPost::hasUserVoted<\/a>"],[0,1,"<a href=\"ForumPost.php.html#182\">App\\Models\\ForumPost::getUserVote<\/a>"],[0,1,"<a href=\"ForumPost.php.html#190\">App\\Models\\ForumPost::hasUserLiked<\/a>"],[0,1,"<a href=\"ForumPost.php.html#198\">App\\Models\\ForumPost::hasUserDisliked<\/a>"],[0,3,"<a href=\"ForumPost.php.html#206\">App\\Models\\ForumPost::addLike<\/a>"],[0,3,"<a href=\"ForumPost.php.html#232\">App\\Models\\ForumPost::addDislike<\/a>"],[0,3,"<a href=\"ForumPost.php.html#258\">App\\Models\\ForumPost::removeVote<\/a>"],[0,1,"<a href=\"ForumPost.php.html#276\">App\\Models\\ForumPost::incrementViews<\/a>"],[60,2,"<a href=\"ForumPost.php.html#284\">App\\Models\\ForumPost::boot<\/a>"],[0,1,"<a href=\"ForumVote.php.html#26\">App\\Models\\ForumVote::user<\/a>"],[0,1,"<a href=\"ForumVote.php.html#34\">App\\Models\\ForumVote::forumPost<\/a>"],[0,1,"<a href=\"ForumVote.php.html#42\">App\\Models\\ForumVote::scopeLikes<\/a>"],[0,1,"<a href=\"ForumVote.php.html#50\">App\\Models\\ForumVote::scopeDislikes<\/a>"],[0,1,"<a href=\"ForumVote.php.html#58\">App\\Models\\ForumVote::scopeByUser<\/a>"],[0,1,"<a href=\"ForumVote.php.html#66\">App\\Models\\ForumVote::scopeForPost<\/a>"],[100,2,"<a href=\"Lodge.php.html#36\">App\\Models\\Lodge::boot<\/a>"],[100,1,"<a href=\"Lodge.php.html#47\">App\\Models\\Lodge::users<\/a>"],[100,1,"<a href=\"Message.php.html#45\">App\\Models\\Message::recipient<\/a>"],[100,1,"<a href=\"Message.php.html#50\">App\\Models\\Message::scopeUnread<\/a>"],[0,1,"<a href=\"Message.php.html#55\">App\\Models\\Message::scopeRead<\/a>"],[0,1,"<a href=\"Message.php.html#60\">App\\Models\\Message::scopeArchived<\/a>"],[100,1,"<a href=\"Message.php.html#65\">App\\Models\\Message::isUnread<\/a>"],[100,1,"<a href=\"Message.php.html#70\">App\\Models\\Message::markAsRead<\/a>"],[100,1,"<a href=\"Message.php.html#75\">App\\Models\\Message::markAsUnread<\/a>"],[100,1,"<a href=\"Message.php.html#80\">App\\Models\\Message::archive<\/a>"],[100,1,"<a href=\"News.php.html#44\">App\\Models\\News::author<\/a>"],[0,1,"<a href=\"News.php.html#49\">App\\Models\\News::scopePublished<\/a>"],[0,1,"<a href=\"News.php.html#56\">App\\Models\\News::scopeDraft<\/a>"],[0,1,"<a href=\"News.php.html#61\">App\\Models\\News::scopeScheduled<\/a>"],[100,1,"<a href=\"Repository.php.html#46\">App\\Models\\Repository::uploader<\/a>"],[0,1,"<a href=\"Repository.php.html#51\">App\\Models\\Repository::scopeForGradeLevel<\/a>"],[0,1,"<a href=\"Repository.php.html#56\">App\\Models\\Repository::scopeForAprendiz<\/a>"],[0,1,"<a href=\"Repository.php.html#61\">App\\Models\\Repository::scopeForCompanero<\/a>"],[0,1,"<a href=\"Repository.php.html#66\">App\\Models\\Repository::scopeForMaestro<\/a>"],[0,1,"<a href=\"Repository.php.html#71\">App\\Models\\Repository::scopeForAll<\/a>"],[0,1,"<a href=\"Role.php.html#14\">App\\Models\\Role::users<\/a>"],[0,6,"<a href=\"Setting.php.html#18\">App\\Models\\Setting::get<\/a>"],[0,3,"<a href=\"Setting.php.html#39\">App\\Models\\Setting::set<\/a>"],[0,1,"<a href=\"Treasury.php.html#31\">App\\Models\\Treasury::user<\/a>"],[0,1,"<a href=\"Treasury.php.html#36\">App\\Models\\Treasury::lodge<\/a>"],[100,1,"<a href=\"User.php.html#48\">App\\Models\\User::casts<\/a>"],[100,1,"<a href=\"User.php.html#56\">App\\Models\\User::roles<\/a>"],[100,1,"<a href=\"User.php.html#61\">App\\Models\\User::lodges<\/a>"],[0,1,"<a href=\"User.php.html#66\">App\\Models\\User::positions<\/a>"],[100,1,"<a href=\"User.php.html#76\">App\\Models\\User::unreadNotifications<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

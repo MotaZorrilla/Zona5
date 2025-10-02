@@ -22,14 +22,15 @@ trait LogsActivity
         });
     }
 
-    protected static function logActivity($description, $model)
+    protected static function logActivity($action, $model)
     {
         if (app()->runningInConsole()) {
             return; // No registrar actividades desde comandos de consola
         }
 
         ActivityLog::create([
-            'description' => static::formatDescription($description, $model),
+            'description' => static::formatDescription($action, $model),
+            'action' => $action,
             'subject_id' => $model->id,
             'subject_type' => get_class($model),
             'user_id' => Auth::id(),

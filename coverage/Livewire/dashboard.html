@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for C:\xampp\htdocs\Zona5\app\Livewire</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=11.0.11" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css?v=11.0.11" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=11.0.11" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">C:\xampp\htdocs\Zona5\app</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Livewire</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Admin/ContentManager/BrandIdentity.php.html#10">App\Livewire\Admin\ContentManager\BrandIdentity</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/LodgeMembersOverview.php.html#8">App\Livewire\Admin\LodgeMembersOverview</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/Users/ManageUsers.php.html#9">App\Livewire\Admin\Users\ManageUsers</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#12">App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#9">App\Livewire\EventCalendar</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/Lodges/ListLodges.php.html#9">App\Livewire\Admin\Lodges\ListLodges</a></td><td class="text-right">47%</td></tr>
+       <tr><td><a href="Forms/LoginForm.php.html#13">App\Livewire\Forms\LoginForm</a></td><td class="text-right">55%</td></tr>
+       <tr><td><a href="Notifications.php.html#8">App\Livewire\Notifications</a></td><td class="text-right">65%</td></tr>
+       <tr><td><a href="Admin/Messages/MessageCenter.php.html#9">App\Livewire\Admin\Messages\MessageCenter</a></td><td class="text-right">65%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#12">App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters</a></td><td class="text-right">1260</td></tr>
+       <tr><td><a href="EventCalendar.php.html#9">App\Livewire\EventCalendar</a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="Admin/Users/ManageUsers.php.html#9">App\Livewire\Admin\Users\ManageUsers</a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="Admin/ContentManager/BrandIdentity.php.html#10">App\Livewire\Admin\ContentManager\BrandIdentity</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Admin/LodgeMembersOverview.php.html#8">App\Livewire\Admin\LodgeMembersOverview</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Admin/Messages/MessageCenter.php.html#9">App\Livewire\Admin\Messages\MessageCenter</a></td><td class="text-right">14</td></tr>
+       <tr><td><a href="Admin/Lodges/ListLodges.php.html#9">App\Livewire\Admin\Lodges\ListLodges</a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="Notifications.php.html#8">App\Livewire\Notifications</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Forms/LoginForm.php.html#13">App\Livewire\Forms\LoginForm</a></td><td class="text-right">7</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Admin/ContentManager/BrandIdentity.php.html#23"><abbr title="App\Livewire\Admin\ContentManager\BrandIdentity::mount">mount</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ContentManager/BrandIdentity.php.html#31"><abbr title="App\Livewire\Admin\ContentManager\BrandIdentity::save">save</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ContentManager/BrandIdentity.php.html#67"><abbr title="App\Livewire\Admin\ContentManager\BrandIdentity::render">render</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/LodgeMembersOverview.php.html#13"><abbr title="App\Livewire\Admin\LodgeMembersOverview::render">render</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/LodgeMembersOverview.php.html#32"><abbr title="App\Livewire\Admin\LodgeMembersOverview::sort">sort</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/Lodges/ListLodges.php.html#18"><abbr title="App\Livewire\Admin\Lodges\ListLodges::sortBy">sortBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/Messages/MessageCenter.php.html#20"><abbr title="App\Livewire\Admin\Messages\MessageCenter::messageSelected">messageSelected</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/Users/ManageUsers.php.html#22"><abbr title="App\Livewire\Admin\Users\ManageUsers::mount">mount</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/Users/ManageUsers.php.html#27"><abbr title="App\Livewire\Admin\Users\ManageUsers::sortBy">sortBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/Users/ManageUsers.php.html#38"><abbr title="App\Livewire\Admin\Users\ManageUsers::render">render</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/Users/ManageUsers.php.html#90"><abbr title="App\Livewire\Admin\Users\ManageUsers::openUserModal">openUserModal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#45"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::order">order</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#57"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::openEditModal">openEditModal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#87"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::closeEditModal">closeEditModal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#94"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::openAddModal">openAddModal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#101"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::closeAddModal">closeAddModal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#108"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::updatedSelectedLodgeId">updatedSelectedLodgeId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#125"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::updateVenerableMaster">updateVenerableMaster</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#171"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::addVenerableMaster">addVenerableMaster</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#204"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::createNewUserAndMakeVm">createNewUserAndMakeVm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#238"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::removeVenerableMaster">removeVenerableMaster</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#261"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::render">render</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#15"><abbr title="App\Livewire\EventCalendar::mount">mount</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#22"><abbr title="App\Livewire\EventCalendar::loadEvents">loadEvents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#32"><abbr title="App\Livewire\EventCalendar::previousMonth">previousMonth</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#43"><abbr title="App\Livewire\EventCalendar::nextMonth">nextMonth</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#54"><abbr title="App\Livewire\EventCalendar::goToCurrentMonth">goToCurrentMonth</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#61"><abbr title="App\Livewire\EventCalendar::getDaysInMonthProperty">getDaysInMonthProperty</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#66"><abbr title="App\Livewire\EventCalendar::getFirstDayOfMonthProperty">getFirstDayOfMonthProperty</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#71"><abbr title="App\Livewire\EventCalendar::getMonthNameProperty">getMonthNameProperty</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#81"><abbr title="App\Livewire\EventCalendar::getEventsForDay">getEventsForDay</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventCalendar.php.html#90"><abbr title="App\Livewire\EventCalendar::render">render</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Notifications.php.html#15"><abbr title="App\Livewire\Notifications::refreshNotificationCount">refreshNotificationCount</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Notifications.php.html#20"><abbr title="App\Livewire\Notifications::markAsRead">markAsRead</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/LoginForm.php.html#47"><abbr title="App\Livewire\Forms\LoginForm::ensureIsNotRateLimited">ensureIsNotRateLimited</abbr></a></td><td class="text-right">20%</td></tr>
+       <tr><td><a href="Admin/Lodges/ListLodges.php.html#29"><abbr title="App\Livewire\Admin\Lodges\ListLodges::render">render</abbr></a></td><td class="text-right">60%</td></tr>
+       <tr><td><a href="Admin/Messages/MessageCenter.php.html#34"><abbr title="App\Livewire\Admin\Messages\MessageCenter::render">render</abbr></a></td><td class="text-right">74%</td></tr>
+       <tr><td><a href="Notifications.php.html#35"><abbr title="App\Livewire\Notifications::getUnreadCountProperty">getUnreadCountProperty</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Admin/Users/ManageUsers.php.html#38"><abbr title="App\Livewire\Admin\Users\ManageUsers::render">render</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#125"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::updateVenerableMaster">updateVenerableMaster</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#171"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::addVenerableMaster">addVenerableMaster</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Admin/ContentManager/BrandIdentity.php.html#31"><abbr title="App\Livewire\Admin\ContentManager\BrandIdentity::save">save</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#204"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::createNewUserAndMakeVm">createNewUserAndMakeVm</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#238"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::removeVenerableMaster">removeVenerableMaster</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#261"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::render">render</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Admin/LodgeMembersOverview.php.html#32"><abbr title="App\Livewire\Admin\LodgeMembersOverview::sort">sort</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Admin/Lodges/ListLodges.php.html#18"><abbr title="App\Livewire\Admin\Lodges\ListLodges::sortBy">sortBy</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Admin/Messages/MessageCenter.php.html#20"><abbr title="App\Livewire\Admin\Messages\MessageCenter::messageSelected">messageSelected</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Admin/Users/ManageUsers.php.html#27"><abbr title="App\Livewire\Admin\Users\ManageUsers::sortBy">sortBy</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#45"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::order">order</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#57"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::openEditModal">openEditModal</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="EventCalendar.php.html#81"><abbr title="App\Livewire\EventCalendar::getEventsForDay">getEventsForDay</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Notifications.php.html#20"><abbr title="App\Livewire\Notifications::markAsRead">markAsRead</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Admin/Messages/MessageCenter.php.html#34"><abbr title="App\Livewire\Admin\Messages\MessageCenter::render">render</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Admin/LodgeMembersOverview.php.html#13"><abbr title="App\Livewire\Admin\LodgeMembersOverview::render">render</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Admin/ZoneDignitaries/ManageVenerableMasters.php.html#108"><abbr title="App\Livewire\Admin\ZoneDignitaries\ManageVenerableMasters::updatedSelectedLodgeId">updatedSelectedLodgeId</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EventCalendar.php.html#32"><abbr title="App\Livewire\EventCalendar::previousMonth">previousMonth</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EventCalendar.php.html#43"><abbr title="App\Livewire\EventCalendar::nextMonth">nextMonth</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Forms/LoginForm.php.html#47"><abbr title="App\Livewire\Forms\LoginForm::ensureIsNotRateLimited">ensureIsNotRateLimited</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Admin/Lodges/ListLodges.php.html#29"><abbr title="App\Livewire\Admin\Lodges\ListLodges::render">render</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Notifications.php.html#35"><abbr title="App\Livewire\Notifications::getUnreadCountProperty">getUnreadCountProperty</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 11.0.11</a> using <a href="https://www.php.net/" target="_top">PHP 8.2.12</a> and <a href="https://phpunit.de/">PHPUnit 11.5.35</a> at Mon Sep 29 12:08:09 -04 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js?v=11.0.11" type="text/javascript"></script>
+  <script src="../_js/d3.min.js?v=11.0.11" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js?v=11.0.11" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([5,0,0,0,0,1,1,2,0,0,0,1], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([34,0,0,1,0,0,0,1,1,1,0,5], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Actions\/Logout.php.html#8\">App\\Livewire\\Actions\\Logout<\/a>"],[0,7,"<a href=\"Admin\/ContentManager\/BrandIdentity.php.html#10\">App\\Livewire\\Admin\\ContentManager\\BrandIdentity<\/a>"],[0,5,"<a href=\"Admin\/LodgeMembersOverview.php.html#8\">App\\Livewire\\Admin\\LodgeMembersOverview<\/a>"],[47.368421052631575,6,"<a href=\"Admin\/Lodges\/ListLodges.php.html#9\">App\\Livewire\\Admin\\Lodges\\ListLodges<\/a>"],[65.625,10,"<a href=\"Admin\/Messages\/MessageCenter.php.html#9\">App\\Livewire\\Admin\\Messages\\MessageCenter<\/a>"],[0,12,"<a href=\"Admin\/Users\/ManageUsers.php.html#9\">App\\Livewire\\Admin\\Users\\ManageUsers<\/a>"],[0,35,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#12\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters<\/a>"],[0,14,"<a href=\"EventCalendar.php.html#9\">App\\Livewire\\EventCalendar<\/a>"],[55.55555555555556,5,"<a href=\"Forms\/LoginForm.php.html#13\">App\\Livewire\\Forms\\LoginForm<\/a>"],[65,8,"<a href=\"Notifications.php.html#8\">App\\Livewire\\Notifications<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Actions\/Logout.php.html#13\">App\\Livewire\\Actions\\Logout::__invoke<\/a>"],[0,1,"<a href=\"Admin\/ContentManager\/BrandIdentity.php.html#23\">App\\Livewire\\Admin\\ContentManager\\BrandIdentity::mount<\/a>"],[0,5,"<a href=\"Admin\/ContentManager\/BrandIdentity.php.html#31\">App\\Livewire\\Admin\\ContentManager\\BrandIdentity::save<\/a>"],[0,1,"<a href=\"Admin\/ContentManager\/BrandIdentity.php.html#67\">App\\Livewire\\Admin\\ContentManager\\BrandIdentity::render<\/a>"],[0,2,"<a href=\"Admin\/LodgeMembersOverview.php.html#13\">App\\Livewire\\Admin\\LodgeMembersOverview::render<\/a>"],[0,3,"<a href=\"Admin\/LodgeMembersOverview.php.html#32\">App\\Livewire\\Admin\\LodgeMembersOverview::sort<\/a>"],[0,3,"<a href=\"Admin\/Lodges\/ListLodges.php.html#18\">App\\Livewire\\Admin\\Lodges\\ListLodges::sortBy<\/a>"],[60,3,"<a href=\"Admin\/Lodges\/ListLodges.php.html#29\">App\\Livewire\\Admin\\Lodges\\ListLodges::render<\/a>"],[0,3,"<a href=\"Admin\/Messages\/MessageCenter.php.html#20\">App\\Livewire\\Admin\\Messages\\MessageCenter::messageSelected<\/a>"],[100,1,"<a href=\"Admin\/Messages\/MessageCenter.php.html#29\">App\\Livewire\\Admin\\Messages\\MessageCenter::getSelectedMessageProperty<\/a>"],[74.07407407407408,6,"<a href=\"Admin\/Messages\/MessageCenter.php.html#34\">App\\Livewire\\Admin\\Messages\\MessageCenter::render<\/a>"],[0,1,"<a href=\"Admin\/Users\/ManageUsers.php.html#22\">App\\Livewire\\Admin\\Users\\ManageUsers::mount<\/a>"],[0,3,"<a href=\"Admin\/Users\/ManageUsers.php.html#27\">App\\Livewire\\Admin\\Users\\ManageUsers::sortBy<\/a>"],[0,7,"<a href=\"Admin\/Users\/ManageUsers.php.html#38\">App\\Livewire\\Admin\\Users\\ManageUsers::render<\/a>"],[0,1,"<a href=\"Admin\/Users\/ManageUsers.php.html#90\">App\\Livewire\\Admin\\Users\\ManageUsers::openUserModal<\/a>"],[0,3,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#45\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::order<\/a>"],[0,3,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#57\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::openEditModal<\/a>"],[0,1,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#87\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::closeEditModal<\/a>"],[0,1,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#94\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::openAddModal<\/a>"],[0,1,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#101\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::closeAddModal<\/a>"],[0,2,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#108\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::updatedSelectedLodgeId<\/a>"],[0,6,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#125\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::updateVenerableMaster<\/a>"],[0,6,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#171\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::addVenerableMaster<\/a>"],[0,4,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#204\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::createNewUserAndMakeVm<\/a>"],[0,4,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#238\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::removeVenerableMaster<\/a>"],[0,4,"<a href=\"Admin\/ZoneDignitaries\/ManageVenerableMasters.php.html#261\">App\\Livewire\\Admin\\ZoneDignitaries\\ManageVenerableMasters::render<\/a>"],[0,1,"<a href=\"EventCalendar.php.html#15\">App\\Livewire\\EventCalendar::mount<\/a>"],[0,1,"<a href=\"EventCalendar.php.html#22\">App\\Livewire\\EventCalendar::loadEvents<\/a>"],[0,2,"<a href=\"EventCalendar.php.html#32\">App\\Livewire\\EventCalendar::previousMonth<\/a>"],[0,2,"<a href=\"EventCalendar.php.html#43\">App\\Livewire\\EventCalendar::nextMonth<\/a>"],[0,1,"<a href=\"EventCalendar.php.html#54\">App\\Livewire\\EventCalendar::goToCurrentMonth<\/a>"],[0,1,"<a href=\"EventCalendar.php.html#61\">App\\Livewire\\EventCalendar::getDaysInMonthProperty<\/a>"],[0,1,"<a href=\"EventCalendar.php.html#66\">App\\Livewire\\EventCalendar::getFirstDayOfMonthProperty<\/a>"],[0,1,"<a href=\"EventCalendar.php.html#71\">App\\Livewire\\EventCalendar::getMonthNameProperty<\/a>"],[0,3,"<a href=\"EventCalendar.php.html#81\">App\\Livewire\\EventCalendar::getEventsForDay<\/a>"],[0,1,"<a href=\"EventCalendar.php.html#90\">App\\Livewire\\EventCalendar::render<\/a>"],[100,2,"<a href=\"Forms\/LoginForm.php.html#29\">App\\Livewire\\Forms\\LoginForm::authenticate<\/a>"],[20,2,"<a href=\"Forms\/LoginForm.php.html#47\">App\\Livewire\\Forms\\LoginForm::ensureIsNotRateLimited<\/a>"],[100,1,"<a href=\"Forms\/LoginForm.php.html#68\">App\\Livewire\\Forms\\LoginForm::throttleKey<\/a>"],[0,1,"<a href=\"Notifications.php.html#15\">App\\Livewire\\Notifications::refreshNotificationCount<\/a>"],[0,3,"<a href=\"Notifications.php.html#20\">App\\Livewire\\Notifications::markAsRead<\/a>"],[88.88888888888889,2,"<a href=\"Notifications.php.html#35\">App\\Livewire\\Notifications::getUnreadCountProperty<\/a>"],[100,2,"<a href=\"Notifications.php.html#52\">App\\Livewire\\Notifications::render<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

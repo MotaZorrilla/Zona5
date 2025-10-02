@@ -5,8 +5,10 @@
 <div class="bg-white p-8 rounded-xl shadow-lg">
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-primary-600 mb-2">Gestión de Tesorería</h1>
-            <p class="text-sm text-gray-500">Gestiona los ingresos, egresos y balance financiero.</p>
+            <h1 class="text-2xl font-bold text-indigo-800 flex items-center gap-2">
+                <i class="ri-scales-3-line"></i> Gestión de Tesorería
+            </h1>
+            <p class="text-sm text-gray-600 mt-1">Gestiona los ingresos, egresos y balance financiero.</p>
         </div>
         <div class="flex space-x-4">
             <a href="{{ route('admin.treasury.create', ['type' => 'expense']) }}" 
@@ -24,7 +26,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-blue-500 p-6">
             <h3 class="text-sm font-medium text-gray-500 truncate">Saldo Actual</h3>
-            <p class="mt-1 text-3xl font-semibold text-gray-900">$ {{ number_format($summary['total_balance'], 2) }}</p>
+            <p class="mt-1 text-3xl font-semibold text-gray-900">+ $ {{ number_format($summary['total_balance'], 2) }}</p>
         </div>
         <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-green-500 p-6">
             <h3 class="text-sm font-medium text-gray-500 truncate">Ingresos (Este mes)</h3>
