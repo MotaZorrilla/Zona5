@@ -28,11 +28,13 @@ new #[Layout('layouts.guest')] class extends Component
 
         $validated['password'] = Hash::make($validated['password']);
 
+        $validated['status'] = \App\Enums\UserStatusEnum::PENDING;
+        
         event(new Registered($user = User::create($validated)));
 
         Auth::login($user);
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+        $this->redirect(route('profile', absolute: false), navigate: true);
     }
 }; ?>
 

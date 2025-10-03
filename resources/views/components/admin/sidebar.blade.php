@@ -5,39 +5,60 @@
             <x-application-logo class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary-500 text-xl font-bold" />
             <span class="text-xl font-bold text-white ml-3">Gran Zona 5</span>
         </a>
-        <button @click="sidebarOpen = false" class="text-white hover:text-gray-300">
+        <button @click="sidebarOpen = false" class="text-white hover:text-gray-30">
             <i class="ri-close-line text-2xl"></i>
         </button>
     </div>
-    <ul class="mt-4">
-        <li class="mb-1"><a href="{{ route('admin.dashboard') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i class="ri-dashboard-3-line mr-3 text-white"></i><span class="text-white font-sans">Dashboard</span></a></li>
-        
-        <hr class="my-2 border-gray-600">
+    
+    @if(auth()->user() && auth()->user()->isPending())
+        <!-- Barra lateral minimal para usuarios pendientes -->
+        <ul class="mt-4">
+            <li class="mb-1">
+                <a href="{{ route('profile') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('profile') ? 'active' : '' }}">
+                    <i class="ri-user-line mr-3 text-white"></i>
+                    <span class="text-white font-sans">Mi Perfil</span>
+                </a>
+            </li>
+            <li class="mb-1">
+                <a href="{{ route('profile') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('profile') ? 'active' : '' }}">
+                    <i class="ri-settings-2-line mr-3 text-white"></i>
+                    <span class="text-white font-sans">Configurar Perfil</span>
+                </a>
+            </li>
+        </ul>
+    @else
+        <!-- Barra lateral completa para usuarios aprobados -->
+        <ul class="mt-4">
+            <li class="mb-1"><a href="{{ route('admin.dashboard') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i class="ri-dashboard-3-line mr-3 text-white"></i><span class="text-white font-sans">Dashboard</span></a></li>
+            
+            <hr class="my-2 border-gray-600">
 
-        <li class="mb-1"><a href="{{ route('admin.users.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.users.*') ? 'active' : '' }}"><i class="ri-group-line mr-3 text-white"></i><span class="text-white font-sans">Miembros</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.zone-dignitaries.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.zone-dignitaries.index') ? 'active' : '' }}"><i class="ri-user-star-line mr-3 text-white"></i><span class="text-white font-sans">Dignatarios</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.lodges.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.lodges.index') ? 'active' : '' }}"><i class="ri-bank-line mr-3 text-white"></i><span class="text-white font-sans">Logias</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.users.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.users.*') ? 'active' : '' }}"><i class="ri-group-line mr-3 text-white"></i><span class="text-white font-sans">Miembros</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.pending-users') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.pending-users') ? 'active' : '' }}"><i class="ri-user-forbid-line mr-3 text-white"></i><span class="text-white font-sans">Usuarios Pendientes</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.zone-dignitaries.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.zone-dignitaries.index') ? 'active' : '' }}"><i class="ri-user-star-line mr-3 text-white"></i><span class="text-white font-sans">Dignatarios</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.lodges.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.lodges.index') ? 'active' : '' }}"><i class="ri-bank-line mr-3 text-white"></i><span class="text-white font-sans">Logias</span></a></li>
 
-        <hr class="my-2 border-gray-600">
+            <hr class="my-2 border-gray-60">
 
-        <li class="mb-1"><a href="{{ route('admin.news.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.news.*') ? 'active' : '' }}"><i class="ri-newspaper-line mr-3 text-white"></i><span class="text-white font-sans">Noticias</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.events.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.events.*') ? 'active' : '' }}"><i class="ri-calendar-todo-line mr-3 text-white"></i><span class="text-white font-sans">Eventos</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.repository.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.repository.*') ? 'active' : '' }}"><i class="ri-archive-2-line mr-3 text-white"></i><span class="text-white font-sans">Repositorio</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.school.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.school.*') ? 'active' : '' }}"><i class="ri-book-open-line mr-3 text-white"></i><span class="text-white font-sans">Escuela Virtual</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.forums.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.forums.*') ? 'active' : '' }}"><i class="ri-discuss-line mr-3 text-white"></i><span class="text-white font-sans">Foros</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.faqs.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}"><i class="ri-question-line mr-3 text-white"></i><span class="text-white font-sans">FAQ</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.news.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.news.*') ? 'active' : '' }}"><i class="ri-newspaper-line mr-3 text-white"></i><span class="text-white font-sans">Noticias</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.events.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.events.*') ? 'active' : '' }}"><i class="ri-calendar-todo-line mr-3 text-white"></i><span class="text-white font-sans">Eventos</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.repository.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.repository.*') ? 'active' : '' }}"><i class="ri-archive-2-line mr-3 text-white"></i><span class="text-white font-sans">Repositorio</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.school.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.school.*') ? 'active' : '' }}"><i class="ri-book-open-line mr-3 text-white"></i><span class="text-white font-sans">Escuela Virtual</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.forums.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.forums.*') ? 'active' : '' }}"><i class="ri-discuss-line mr-3 text-white"></i><span class="text-white font-sans">Foros</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.faqs.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}"><i class="ri-question-line mr-3 text-white"></i><span class="text-white font-sans">FAQ</span></a></li>
 
-        <hr class="my-2 border-gray-600">
+            <hr class="my-2 border-gray-600">
 
-        <li class="mb-1"><a href="{{ route('admin.messages.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.messages.*') ? 'active' : '' }}"><i class="ri-mail-line mr-3 text-white"></i><span class="text-white font-sans">Mensajes</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.treasury.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.treasury.*') ? 'active' : '' }}"><i class="ri-scales-3-line mr-3 text-white"></i><span class="text-white font-sans">Tesorería</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.content-manager.show', 'general') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.content-manager.*') ? 'active' : '' }}"><i class="ri-pencil-ruler-2-line mr-3 text-white"></i><span class="text-white font-sans">Gestor de Contenido</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.messages.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.messages.*') ? 'active' : '' }}"><i class="ri-mail-line mr-3 text-white"></i><span class="text-white font-sans">Mensajes</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.treasury.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.treasury.*') ? 'active' : '' }}"><i class="ri-scales-3-line mr-3 text-white"></i><span class="text-white font-sans">Tesorería</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.content-manager.show', 'general') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.content-manager.*') ? 'active' : '' }}"><i class="ri-pencil-ruler-2-line mr-3 text-white"></i><span class="text-white font-sans">Gestor de Contenido</span></a></li>
 
-        <hr class="my-4 border-gray-600">
+            <hr class="my-4 border-gray-600">
 
-        <li class="mb-1"><a href="{{ route('admin.reports.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}"><i class="ri-file-chart-line mr-3 text-white"></i><span class="text-white font-sans">Reportes</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.settings.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.settings.index') ? 'active' : '' }}"><i class="ri-settings-3-line mr-3 text-white"></i><span class="text-white font-sans">Configuración</span></a></li>
-        <li class="mb-1"><a href="{{ route('admin.help') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.help') ? 'active' : '' }}"><i class="ri-question-line mr-3 text-white"></i><span class="text-white font-sans">Ayuda</span></a></li>
-    </ul>
+            <li class="mb-1"><a href="{{ route('admin.reports.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}"><i class="ri-file-chart-line mr-3 text-white"></i><span class="text-white font-sans">Reportes</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.settings.index') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.settings.index') ? 'active' : '' }}"><i class="ri-settings-3-line mr-3 text-white"></i><span class="text-white font-sans">Configuración</span></a></li>
+            <li class="mb-1"><a href="{{ route('admin.help') }}" class="flex items-center py-2.5 px-4 rounded-lg sidebar-link gradient-hover {{ request()->routeIs('admin.help') ? 'active' : '' }}"><i class="ri-question-line mr-3 text-white"></i><span class="text-white font-sans">Ayuda</span></a></li>
+        </ul>
+    @endif
 </div>
 <!-- End Sidebar -->

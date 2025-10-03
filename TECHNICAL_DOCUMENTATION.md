@@ -1377,3 +1377,57 @@ El módulo de mensajería interna ha sido completamente refactorizado para mejor
     *   Added the application version number to the `public.blade.php` layout.
 *   **Contact Section:**
     *   Updated the `SettingsSeeder` with the correct contact email domain.
+    
+---
+    
+## 15. ACTUALIZACIONES OCTUBRE 3ER 2025 - MEJORAS EN PERFIL DE USUARIO
+
+### 15.1 Resumen de Cambios
+
+#### Problemas Resueltos:
+- **Visibilidad de email en tabla de usuarios pendientes**: Se corrigió el color del texto del email en la tabla de usuarios pendientes que era prácticamente invisible.
+- **Flujo de registro y perfil**: Se integró la configuración de perfil directamente en la vista de perfil principal en lugar de tener una página separada de configuración.
+- **Navegación entre perfiles**: Se actualizó la navegación para que los usuarios accedan directamente a su perfil principal después del registro.
+
+### 15.2 Componentes y Archivos Modificados
+
+#### **Correcciones Visuales**
+- `resources/views/livewire/admin/pending-users.blade.php`
+ - **Cambio:** Se modificó la clase `text-gray-50` a `text-gray-500` para hacer visible el email en la tabla de usuarios pendientes.
+
+#### **Integración de Configuración de Perfil**
+- `app/Livewire/ProfileSetupForm.php`
+  - **Creación:** Nuevo componente Livewire para manejar la configuración de perfil.
+  - **Responsabilidad:** Gestiona los campos de configuración del perfil y actualiza la información del usuario.
+  
+- `resources/views/livewire/profile-setup-form.blade.php`
+  - **Creación:** Vista para el nuevo componente de configuración de perfil.
+  - **Contenido:** Formulario con campos para información personal y de logia.
+
+- `resources/views/profile.blade.php`
+ - **Cambio:** Se integró directamente el componente `ProfileSetupForm` en la vista de perfil principal.
+  - **Beneficio:** Los usuarios ahora pueden completar su perfil sin necesidad de navegar a una página separada.
+
+#### **Actualizaciones de Navegación y Rutas**
+- `routes/auth.php`
+  - **Cambio:** Se eliminó la ruta `profile.setup` ya que ya no se utiliza.
+  
+- `resources/views/livewire/pages/auth/register.blade.php`
+  - **Cambio:** Se modificó la redirección después del registro para que apunte a `route('profile')` en lugar de `route('profile.setup')`.
+
+- `resources/views/components/admin/sidebar.blade.php`
+  - **Cambio:** Se actualizó el enlace de "Configurar Perfil" para que apunte a `route('profile')` en lugar de `route('profile.setup')`.
+
+- `resources/views/layouts/admin.blade.php`
+  - **Cambio:** Se actualizó el enlace de "Configurar Perfil" en el menú de usuario para que apunte a `route('profile')`.
+
+#### **Configuración de Livewire**
+- `config/livewire.php`
+  - **Creación:** Se creó archivo de configuración de Livewire.
+  - **Cambio:** Se estableció el layout predeterminado a `layouts.admin` para que los componentes de Livewire usen el layout del sistema administrativo.
+
+### 15.3 Beneficios Obtenidos
+- **Mejora de UX:** Los usuarios pueden completar su perfil directamente en la vista de perfil principal.
+- **Consistencia visual:** Todos los componentes de perfil ahora usan el mismo layout del sistema administrativo.
+- **Simplificación del flujo:** Eliminación de páginas intermedias para la configuración de perfil.
+- **Corrección de usabilidad:** El email en la tabla de usuarios pendientes ahora es visible para los administradores.

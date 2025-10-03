@@ -131,7 +131,7 @@ php artisan serve
 
 ---
 
-## 6. Latest Updates (October 2nd, 2025)
+## 6. Latest Updates (October 3rd, 2025)
 
 *   **News and Events Section:**
     *   The "News and Events" cards are now clickable and link to their respective detail pages.
@@ -145,6 +145,13 @@ php artisan serve
     *   The file sizes of the documents are now correctly calculated and displayed in the document details modal.
 *   **Footer:**
     *   The application version number has been added to the footer.
+*   **Profile Configuration:**
+    *   Fixed email visibility in pending users table by changing text color from `text-gray-50` to `text-gray-500`
+    *   Integrated profile setup form directly into the main profile page instead of separate setup page
+    *   Created new `ProfileSetupForm` Livewire component to handle profile configuration
+    *   Updated navigation to point to profile page instead of separate setup page
+    *   Modified registration flow to redirect to main profile page after registration
+    *   Adjusted Livewire configuration to use `layouts.admin` as default layout
 
 ---
 

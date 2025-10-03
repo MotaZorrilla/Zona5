@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -28,6 +29,7 @@ class User extends Authenticatable
         'degree',
         'profession',
         'phone_number',
+        'status',
     ];
 
     /**
@@ -50,7 +52,42 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'status' => 'string',
         ];
+    }
+    
+    /**
+     * Set the default value for the status attribute
+     */
+    protected function status(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value ?? 'pending',
+        );
+    }
+    
+    /**
+     * Check if user is active
+     */
+    public function isActive(): bool
+    {
+        return $this->status === \App\Enums\UserStatusEnum::ACTIVE;
+    }
+    
+    /**
+     * Check if user is pending
+     */
+    public function isPending(): bool
+    {
+        return $this->status === \App\Enums\UserStatusEnum::PENDING;
+    }
+    
+    /**
+     * Check if user is inactive
+     */
+    public function isInactive(): bool
+    {
+        return $this->status === \App\Enums\UserStatusEnum::INACTIVE;
     }
 
     public function roles()

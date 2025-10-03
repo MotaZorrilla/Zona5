@@ -38,6 +38,17 @@ class LoginForm extends Form
             ]);
         }
 
+        $user = Auth::user();
+        
+        // Verificar si el usuario tiene estado activo
+        if (!$user->isActive()) {
+            Auth::logout();
+            
+            throw ValidationException::withMessages([
+                'form.email' => 'Tu cuenta no está activa. Por favor contacta al administrador.',
+            ]);
+        }
+
         RateLimiter::clear($this->throttleKey());
     }
 

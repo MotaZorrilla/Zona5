@@ -65,6 +65,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::middleware(['role:SuperAdmin,Admin'])->group(function () {
         Route::resource('lodges', App\Http\Controllers\Admin\LodgeController::class);
         Route::resource('users', App\Http\Controllers\Admin\UserController::class);
+        
+        // Ruta para gestionar usuarios pendientes
+        Route::get('pending-users', [App\Http\Controllers\Admin\PendingUsersController::class, 'index'])->name('pending-users');
         Route::resource('zone-dignitaries', App\Http\Controllers\Admin\ZoneDignitaryController::class);
         Route::resource('news', App\Http\Controllers\Admin\NewsController::class)->except(['show']);
         Route::resource('forums', App\Http\Controllers\Admin\ForumController::class)->except(['show']);
@@ -125,6 +128,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 Route::get('dashboard', function () {
     return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('test-pending-users', function () {
+    return view('test-pending-users');
+})->middleware(['auth', 'role:SuperAdmin,Admin'])->name('test-pending-users');
 
 // Rutas temporales para previsualización
 Route::view('/admin-preview', 'admin-preview')->name('admin-preview');
